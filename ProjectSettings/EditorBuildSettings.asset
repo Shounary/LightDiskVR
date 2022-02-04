@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/FightRoom.unity
+    guid: b61d63fd0fc914d4cb7cafe416ee826b
+  - enabled: 0
+    path: Assets/Scenes/TrargetPracticeRoom.unity
+    guid: 95d6bfeeeb410544683ddacce321cc84
+  - enabled: 0
+    path: Assets/Scenes/Old/OldArena.unity
+    guid: eef06951a815f2148b228c7fcb03533a
+  - enabled: 0
+    path: Assets/Scenes/Old/OldLargeArena.unity
+    guid: 171a8626f85e7d345bb96ee75858aeb4
+  - enabled: 1
+    path: Assets/Scenes/Current/GraphicArena.unity
+    guid: 7352e654c88b4fd4e90ab128661dc8b8
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7a1a1eda5721dcd48b8a0d744ba6685d, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 8daf9eaca3c2bc44dbeb1e190102cb4c, type: 2}
