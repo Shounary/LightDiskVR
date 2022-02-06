@@ -6,18 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/FightRoom.unity
-    guid: b61d63fd0fc914d4cb7cafe416ee826b
-  - enabled: 0
-    path: Assets/Scenes/TrargetPracticeRoom.unity
-    guid: 95d6bfeeeb410544683ddacce321cc84
-  - enabled: 0
     path: Assets/Scenes/Old/OldArena.unity
     guid: eef06951a815f2148b228c7fcb03533a
   - enabled: 0
     path: Assets/Scenes/Old/OldLargeArena.unity
     guid: 171a8626f85e7d345bb96ee75858aeb4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Current/GraphicArena.unity
     guid: 7352e654c88b4fd4e90ab128661dc8b8
   m_configObjects:
