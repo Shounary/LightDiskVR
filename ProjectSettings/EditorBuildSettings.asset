@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/Old/OldArena.unity
     guid: eef06951a815f2148b228c7fcb03533a
   - enabled: 0
@@ -14,6 +20,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Current/GraphicArena.unity
     guid: 7352e654c88b4fd4e90ab128661dc8b8
+  - enabled: 1
+    path: Assets/Scenes/TestingGrounds/UnityNetcodeTest.unity
+    guid: b8c738aa1bbcfb44c90ecb91db2f2ecd
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7a1a1eda5721dcd48b8a0d744ba6685d, type: 2}
