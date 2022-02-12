@@ -141,6 +141,19 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
   - {fileID: -3634742418849765424, guid: 8daf9eaca3c2bc44dbeb1e190102cb4c, type: 2}
   metroInputSource: 0
@@ -159,7 +172,8 @@ PlayerSettings:
   resolutionScalingMode: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Android: com.DefaultCompany.LightDiskVR
   buildNumber:
     Standalone: 0
     iPhone: 0
