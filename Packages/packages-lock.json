@@ -12,7 +12,7 @@
     },
     "com.unity.burst": {
       "version": "1.6.4",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.2.1"
@@ -80,7 +80,7 @@
     },
     "com.unity.mathematics": {
       "version": "1.2.5",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -271,8 +271,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.transport": {
-      "version": "1.0.0-pre.13",
-      "depth": 0,
+      "version": "1.0.0-pre.12",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.collections": "1.1.0",

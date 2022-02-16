@@ -29,7 +29,6 @@ public class RelayManager : MonoBehaviour
     {
         get
         {
-            print(Transport.Protocol);
             return Transport?.Protocol == UnityTransport.ProtocolType.RelayUnityTransport;
         }
     }

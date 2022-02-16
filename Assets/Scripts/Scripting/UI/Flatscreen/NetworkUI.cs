@@ -17,6 +17,10 @@ public class NetworkUI : MonoBehaviour
     private TextMeshProUGUI playersInGameText;
     [SerializeField]
     private TMP_InputField joinCode;
+    [SerializeField]
+    private Button joinCodeButton;
+
+    private string sharedJoinCode;
 
     private void Awake()
     {
@@ -27,21 +31,32 @@ public class NetworkUI : MonoBehaviour
     {
         startHostButton.onClick.AddListener(async delegate
         {
-            print(RelayManager.Instance.Relayable);
+            sharedJoinCode = null;
+            RelayHostData hostData = new RelayHostData() { 
+                JoinCode = null
+            };
             if (RelayManager.Instance.Relayable && joinCode.text != null)
             {
-                RelayHostData hostData = await RelayManager.Instance.HostGame();
-                Debug.Log(hostData.AllocationID);
+                hostData = await RelayManager.Instance.HostGame();
             }
-            Debug.Log(NetworkManager.Singleton.StartHost() ?
-                "Host started..." : "Host could not be started...");
+
+            var successful = NetworkManager.Singleton.StartHost();
+
+            if (successful)
+            {
+                Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
+                sharedJoinCode = hostData.JoinCode;
+            } else
+            {
+                Debug.Log("Host could not be started");
+            }
         });
 
-        startServerButton.onClick.AddListener(delegate
-        {
-            Debug.Log(NetworkManager.Singleton.StartServer() ?
-                "Server started..." : "Server could not be started...");
-        });
+        //startServerButton.onClick.AddListener(delegate
+        //{
+        //    Debug.Log(NetworkManager.Singleton.StartServer() ?
+        //        "Server started..." : "Server could not be started...");
+        //});
 
         startClientButton.onClick.AddListener(async delegate
         {
@@ -50,6 +65,25 @@ public class NetworkUI : MonoBehaviour
             Debug.Log(NetworkManager.Singleton.StartClient() ?
                 "Client started..." : "Client could not be started...");
         });
+
+        joinCodeButton.onClick.AddListener(delegate
+        {
+            if (sharedJoinCode != null)
+            {
+                SetJoinButtonText(sharedJoinCode);
+            }
+        });
+    }
+
+    IEnumerator ResumeText(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        SetJoinButtonText("Get Join Code");
+    }
+
+    private void SetJoinButtonText(string text)
+    {
+        joinCodeButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = text;
     }
 
     private void Update()
