@@ -15,6 +15,8 @@ public class NetworkUI : MonoBehaviour
     private Button startClientButton;
     [SerializeField]
     private TextMeshProUGUI playersInGameText;
+    [SerializeField]
+    private TMP_InputField joinCode;
 
     private void Awake()
     {
@@ -23,8 +25,14 @@ public class NetworkUI : MonoBehaviour
 
     private void Start()
     {
-        startHostButton.onClick.AddListener(delegate
+        startHostButton.onClick.AddListener(async delegate
         {
+            print(RelayManager.Instance.Relayable);
+            if (RelayManager.Instance.Relayable && joinCode.text != null)
+            {
+                RelayHostData hostData = await RelayManager.Instance.HostGame();
+                Debug.Log(hostData.AllocationID);
+            }
             Debug.Log(NetworkManager.Singleton.StartHost() ?
                 "Host started..." : "Host could not be started...");
         });
@@ -35,8 +43,10 @@ public class NetworkUI : MonoBehaviour
                 "Server started..." : "Server could not be started...");
         });
 
-        startClientButton.onClick.AddListener(delegate
+        startClientButton.onClick.AddListener(async delegate
         {
+            if (RelayManager.Instance.Relayable && joinCode.text != null)
+                await RelayManager.Instance.JoinGame(joinCode.text);
             Debug.Log(NetworkManager.Singleton.StartClient() ?
                 "Client started..." : "Client could not be started...");
         });
