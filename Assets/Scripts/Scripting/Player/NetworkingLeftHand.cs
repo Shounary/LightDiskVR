@@ -38,7 +38,7 @@ public class NetworkingLeftHand : MonoBehaviour
     }
 
     private void Update() {
-        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger)) {
+        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed) && pressed) {
             NetworkManager.Singleton.StartHost();
         }
     }

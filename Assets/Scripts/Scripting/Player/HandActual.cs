@@ -40,7 +40,7 @@ public class HandActual : MonoBehaviour
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
             AttractDisk(trigger);
         }
-        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool pressed) && pressed) {
+        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed) && pressed) {
             LevelManager.instance.LoadScene(SceneManager.GetActiveScene().name);
         }
     }

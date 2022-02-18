@@ -1330,6 +1330,7 @@ GameObject:
   - component: {fileID: 9113178656336530798}
   - component: {fileID: -8180108369994578911}
   - component: {fileID: 2912388627983630196}
+  - component: {fileID: 8837463943112112981}
   m_Layer: 0
   m_Name: NetworkAvatar
   m_TagString: Untagged
@@ -1345,7 +1346,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4224351195641804899}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.18250138, y: 0.002, z: -2.83}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3884024700028345143}
@@ -1529,6 +1530,19 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   CanCommitToTransform: 0
+--- !u!114 &8837463943112112981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224351195641804899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7976e9ebe4c2054f9c037e5ba75263a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vrRig: {fileID: 9113178656336530798}
 --- !u!1 &4371527281054250422
 GameObject:
   m_ObjectHideFlags: 0
