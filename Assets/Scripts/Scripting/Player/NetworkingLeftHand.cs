@@ -37,17 +37,9 @@ public class NetworkingLeftHand : MonoBehaviour
         animator = spawnedModel.GetComponent<Animator>();
     }
 
-
-    private Rigidbody GetTargetDisk(Transform controllerTransform)
-    {
-        return ArenaInfo.instance.playerDisks[0]; // BETTER version to be implemented
-    }
-
-    private void UpdateAnimation()
-    {
-        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger))
-        {
-            NetworkManager.Singleton.StartHost();     
+    private void Update() {
+        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger)) {
+            NetworkManager.Singleton.StartHost();
         }
     }
 }
