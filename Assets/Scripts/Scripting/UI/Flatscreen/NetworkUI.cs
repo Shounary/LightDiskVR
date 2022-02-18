@@ -38,6 +38,13 @@ public class NetworkUI : MonoBehaviour
             if (RelayManager.Instance.Relayable && joinCode.text != null)
             {
                 hostData = await RelayManager.Instance.HostGame();
+                RelayManager.Instance.Transport.SetRelayServerData(
+                    hostData.IPv4Address,
+                    hostData.Port,
+                    hostData.AllocationIDBytes,
+                    hostData.Key,
+                    hostData.ConnectionData
+                    );
             }
 
             var successful = NetworkManager.Singleton.StartHost();
@@ -60,10 +67,34 @@ public class NetworkUI : MonoBehaviour
 
         startClientButton.onClick.AddListener(async delegate
         {
+            RelayJoinData joinData = new RelayJoinData();
+
             if (RelayManager.Instance.Relayable && joinCode.text != null)
-                await RelayManager.Instance.JoinGame(joinCode.text);
-            Debug.Log(NetworkManager.Singleton.StartClient() ?
-                "Client started..." : "Client could not be started...");
+            {
+                joinData = await RelayManager.Instance.JoinGame(joinCode.text);
+
+                RelayManager.Instance.Transport.SetClientRelayData(
+                    joinData.IPv4Address,
+                    joinData.Port,
+                    joinData.AllocationIDBytes,
+                    joinData.Key,
+                    joinData.ConnectionData,
+                    joinData.HostConnectionData
+                    );
+            }
+
+            var successful = NetworkManager.Singleton.StartClient();
+
+            if (successful)
+            {
+                Debug.Log("Client connected to " + joinData.IPv4Address + ":" + joinData.Port + " under join code " + joinCode.text);
+
+                joinCode.text = null;
+            }
+            else
+            {
+                Debug.Log("Client could not be started");
+            }
         });
 
         joinCodeButton.onClick.AddListener(delegate

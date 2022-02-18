@@ -23,9 +23,12 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestingGrounds/UnityNetcodeTest.unity
     guid: 46cf7d24abb8bbb41b38cb0eca9f449b
+  - enabled: 1
+    path: Assets/Scenes/TestingGrounds/UnityRelayTest.unity
+    guid: 5f53f777e4b97aa4dbff52ca738757cb
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7a1a1eda5721dcd48b8a0d744ba6685d, type: 2}
