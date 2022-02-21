@@ -14,6 +14,8 @@ public class NetworkUI : MonoBehaviour
     [SerializeField]
     private Button startClientButton;
     [SerializeField]
+    private Button spawnObjButton;
+    [SerializeField]
     private TextMeshProUGUI playersInGameText;
     [SerializeField]
     private TMP_InputField joinCode;
@@ -53,6 +55,8 @@ public class NetworkUI : MonoBehaviour
             {
                 Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
                 sharedJoinCode = hostData.JoinCode;
+                //NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject;
+                
             } else
             {
                 Debug.Log("Host could not be started");
