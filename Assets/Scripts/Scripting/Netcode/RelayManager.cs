@@ -18,6 +18,11 @@ public class RelayManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     [SerializeField]
     private string env = "production";
     [SerializeField]
