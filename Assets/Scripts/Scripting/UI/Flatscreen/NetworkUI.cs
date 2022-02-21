@@ -55,7 +55,6 @@ public class NetworkUI : MonoBehaviour
             {
                 Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
                 sharedJoinCode = hostData.JoinCode;
-                //NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject;
                 
             } else
             {
