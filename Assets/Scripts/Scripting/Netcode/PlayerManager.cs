@@ -18,6 +18,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void Start()
     {
+        Debug.Log("player manager has been called");
         NetworkManager.Singleton.OnClientConnectedCallback += (id) =>
         {
             if (IsServer)

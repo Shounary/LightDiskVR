@@ -28,7 +28,7 @@ public class RelayManager : MonoBehaviour
     [SerializeField]
     private int max_conn;
 
-    public UnityTransport Transport => NetworkManager.Singleton.gameObject.GetComponent<NetworkTransport>() as UnityTransport;
+    public UnityTransport Transport => NetworkManager.Singleton.gameObject.GetComponent<UnityTransport>();
 
     public bool Relayable
     {

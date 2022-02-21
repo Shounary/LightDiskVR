@@ -14,6 +14,8 @@ public class NetworkUI : MonoBehaviour
     [SerializeField]
     private Button startClientButton;
     [SerializeField]
+    private Button spawnObjButton;
+    [SerializeField]
     private TextMeshProUGUI playersInGameText;
     [SerializeField]
     private TMP_InputField joinCode;
