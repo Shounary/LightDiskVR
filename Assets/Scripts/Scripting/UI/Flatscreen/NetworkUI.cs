@@ -55,8 +55,7 @@ public class NetworkUI : MonoBehaviour
             {
                 Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
                 sharedJoinCode = hostData.JoinCode;
-
-                CommonSuccess();
+                
             } else
             {
                 Debug.Log("Host could not be started");
@@ -94,7 +93,6 @@ public class NetworkUI : MonoBehaviour
                 Debug.Log("Client connected to " + joinData.IPv4Address + ":" + joinData.Port + " under join code " + joinCode.text);
 
                 joinCode.text = null;
-                CommonSuccess();
             }
             else
             {
@@ -111,11 +109,6 @@ public class NetworkUI : MonoBehaviour
         });
     }
 
-    private void CommonSuccess()
-    {
-        Debug.Log("common success");
-    }
-
     IEnumerator ResumeText(float time)
     {
         yield return new WaitForSecondsRealtime(time);
@@ -129,6 +122,7 @@ public class NetworkUI : MonoBehaviour
 
     private void Update()
     {
+        playersInGameText.text = $"Players in game: {PlayerManager.Instance.PlayersInGame}";
     }
 
 

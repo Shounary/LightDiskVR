@@ -166,6 +166,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.DefaultCompany.LightDiskVR
+    Standalone: com.DefaultCompany.LightDiskVR
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -796,7 +797,7 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 1
+  activeInputHandler: 2
   cloudProjectId: 98d5c94e-6714-456b-b7bb-0c3230e07bc1
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []

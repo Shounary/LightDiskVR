@@ -1331,6 +1331,7 @@ GameObject:
   - component: {fileID: -8180108369994578911}
   - component: {fileID: 2912388627983630196}
   - component: {fileID: 8837463943112112981}
+  - component: {fileID: 2834309385314605955}
   m_Layer: 0
   m_Name: NetworkAvatar
   m_TagString: Untagged
@@ -1543,6 +1544,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vrRig: {fileID: 9113178656336530798}
+--- !u!114 &2834309385314605955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4224351195641804899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e002c30c174a65469836496bd58f567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4371527281054250422
 GameObject:
   m_ObjectHideFlags: 0
