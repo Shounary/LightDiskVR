@@ -66,7 +66,7 @@ public class ClientAccessor : BaseAccessor
     [ClientRpc]
     public void EnterMatchConfigClientRPC()
     {
-        Debug.Log(string.Format("Client {0} entered match config stage", NetworkManager.Singleton.LocalClientId));
+        Debug.Log(string.Format("Client {0} entered match config", NetworkManager.Singleton.LocalClientId));
 
         base.EnterMatchConfig();
     }
@@ -74,7 +74,13 @@ public class ClientAccessor : BaseAccessor
     [ClientRpc]
     public void EnterPlayerConfigClientRPC()
     {
-        Debug.Log("Exiting Match Config Stage as a Client");
+        Debug.Log("Exiting Player Config as a Client");
+
+        m_PlayerConfig = new PlayerConfig()
+        {
+            MatchConfig = MatchConfig
+        };
+        m_PlayerConfig.SpawnPoint = 0;
 
         PrintMatchConfig();
         base.EnterPlayerConfig();
@@ -83,6 +89,7 @@ public class ClientAccessor : BaseAccessor
     [ClientRpc]
     public void EnterMatchClientRPC()
     {
+        PrintPlayerConfig();
         base.EnterMatch();
     }
 
@@ -95,7 +102,7 @@ public class ClientAccessor : BaseAccessor
     [ClientRpc]
     public void ClearLockClientRPC(string lock_name)
     {
-        SetLock(false, lock_name);
+        SetLock(true, lock_name);
     }
 
 }

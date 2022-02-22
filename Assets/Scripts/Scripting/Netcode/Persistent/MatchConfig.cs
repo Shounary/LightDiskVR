@@ -55,10 +55,10 @@ public class MatchConfig
     private static System.Tuple<string, System.Func<bool>>[] WinConditions =
     {
         // NO EXIT! >:]
-        new System.Tuple<string, System.Func<bool>>("NO EXIT", () => false),
+        new System.Tuple<string, System.Func<bool>>("NO WIN", () => false),
 
         // INSTANT EXIT! ]:<
-        new System.Tuple<string, System.Func<bool>>("INSTANT EXIT", () => true)
+        new System.Tuple<string, System.Func<bool>>("INSTANT WIN", () => true)
     };
 
     public int WinConditionIndex

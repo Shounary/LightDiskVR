@@ -19,8 +19,9 @@ public class MatchConfigMenuUIFlat : MonoBehaviour
                 HostAccessor hostAccessor = accessor as HostAccessor;
                 hostAccessor.EnterPlayerConfig();
             }
-            catch
+            catch (UnityException e)
             {
+                Debug.Log(e.StackTrace);
                 Debug.Log("Cannot Click!");
             }
         });

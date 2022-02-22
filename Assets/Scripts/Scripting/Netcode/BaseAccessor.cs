@@ -24,6 +24,7 @@ public abstract class BaseAccessor : NetworkBehaviour
     #region PLAYERCONFIG
     protected int? SpawnPoint;
     protected PlayerConfig m_PlayerConfig;
+    public PlayerConfig PlayerConfig => m_PlayerConfig;
     #endregion
 
     public void PrintMatchConfig()
@@ -43,6 +44,16 @@ public abstract class BaseAccessor : NetworkBehaviour
         StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(true);
     }
 
+    public void PrintPlayerConfig()
+    {
+        Debug.Log(
+            string.Format(
+                "... SpawnPoint: {0} located at {1}",
+                m_PlayerConfig.SpawnPoint,
+                m_PlayerConfig.SpawnPosition
+            ));
+    }
+
     public void EnterPlayerConfig()
     {
         StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(false);
@@ -54,13 +65,6 @@ public abstract class BaseAccessor : NetworkBehaviour
         Debug.Log("Entering battle scene");
 
         StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(false);
-
-        NetworkManager.Singleton.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(
-                MatchConfig.Arena.BuildIndex
-                ).name,
-            UnityEngine.SceneManagement.LoadSceneMode.Single
-            );
     }
 
     public void EnterResult()

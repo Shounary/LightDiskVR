@@ -15,8 +15,6 @@ public class ArenaEditor : Editor
     {
         base.OnInspectorGUI();
 
-        EditorGUILayout.LabelField(
-            SceneManager.GetSceneByBuildIndex(BuildIndex.intValue).name
-            );
+        EditorGUILayout.LabelField(System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(BuildIndex.intValue)));
     }
 }

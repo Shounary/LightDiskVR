@@ -6,24 +6,19 @@ public class PlayerConfig
 {
     public MatchConfig MatchConfig;
 
-    private int? m_SpawnPoint;
+    private int m_SpawnPoint = 0;
 
-    public int? SpawnPoint
+    public int SpawnPoint
     {
         get { return m_SpawnPoint; }
         set
         {
-            if (MatchConfig.RegisterSpawnPoint(value.GetValueOrDefault(-1)))
-            {
-                m_SpawnPoint = value;
-            }
+            Arena arena = MatchConfig.Arena;
+            if (arena == null)
+                throw new UnityException("Invalid Match Config (contains no arena)!");
+            m_SpawnPoint = MathUtils.Mod(value, MatchConfig.Arena.SpawnPoints.Length);
         }
     }
 
-    public Vector3? SpawnPosition
-    {
-        get {
-            if (m_SpawnPoint == null) return null;
-            return MatchConfig.Arena?.SpawnPoints[m_SpawnPoint.GetValueOrDefault(0)]; }
-    }
+    public Vector3? SpawnPosition => MatchConfig.Arena?.SpawnPoints[m_SpawnPoint];
 }

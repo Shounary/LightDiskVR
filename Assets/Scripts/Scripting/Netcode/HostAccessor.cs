@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
@@ -48,7 +49,7 @@ public class HostAccessor : BaseAccessor
     public new void EnterMatchConfig()
     {
         base.EnterMatchConfig();
-        Debug.Log(string.Format("Host {0} entered match config stage", NetworkManager.Singleton.LocalClientId));
+        Debug.Log(string.Format("Host {0} entered match config", NetworkManager.Singleton.LocalClientId));
 
         m_GameStage.Value = GameStage.MatchConfig;
         m_MatchConfig = new MatchConfig();
@@ -70,16 +71,22 @@ public class HostAccessor : BaseAccessor
     #region PLAYER_CONFIG
     public new void EnterPlayerConfig()
     {
-        Debug.Log("Exiting Match Config Stage as a Host");
+        Debug.Log("Exiting Player Config as a Host");
         PrintMatchConfig();
 
         m_GameStage.Value = GameStage.PlayerConfig;
-        m_MatchConfig = new MatchConfig();
-
-        foreach(NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
+        m_PlayerConfig = new PlayerConfig()
         {
-            Debug.Log(string.Format("Attempt to let {0} proceed to Player Config stage", client.ClientId));
-            client.PlayerObject.gameObject.GetComponent<ClientAccessor>().EnterPlayerConfigClientRPC();
+            MatchConfig = m_MatchConfig
+        };
+
+        foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
+        {
+            Debug.Log(string.Format("Attempt to let {0} proceed to Player Config", client.ClientId));
+            try {
+                client.PlayerObject.gameObject.GetComponent<ClientAccessor>().EnterPlayerConfigClientRPC();
+            }
+            catch { }
         }
 
         base.EnterPlayerConfig();
@@ -93,6 +100,35 @@ public class HostAccessor : BaseAccessor
             Debug.Log("Not all clients are ready!");
             return;
         }
+
+        IEnumerable<int> SpawnPointsList = NetworkManager.Singleton.ConnectedClientsList.Select((client) => {
+            return client.PlayerObject.GetComponent<BaseAccessor>().PlayerConfig.SpawnPoint;
+        });
+
+        HashSet<int> SpawnPointsSet = new HashSet<int>(SpawnPointsList);
+
+        if (SpawnPointsSet.Count() < SpawnPointsList.Count())
+        {
+            Debug.Log("Repeated spawn points!");
+            foreach (int i in SpawnPointsList)
+            {
+                Debug.Log(string.Format("... {0}", i));
+            }
+            return;
+        }
+
+        string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
+
+        Debug.Log(
+            string.Format(
+                "Host is starting the match in {0} at build index {1}",
+                sceneName,
+                MatchConfig.Arena.BuildIndex
+            ));
+
+        PrintPlayerConfig();
+
+        NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
 
         base.EnterMatch();
     }
