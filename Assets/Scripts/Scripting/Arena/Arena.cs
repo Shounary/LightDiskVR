@@ -5,20 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Custom/Arena")]
 public class Arena : ScriptableObject
 {
-    [SerializeField]
-    private ScenePicker scene;
-
-    public string ScenePath
-    {
-        get { return scene.scenePath; }
-    }
+    public int BuildIndex;
 
     [SerializeField]
-    private Vector3[] _spawnPoints;
+    protected Vector3[] _spawnPoints;
 
     public Vector3[] SpawnPoints
     {
         get { return _spawnPoints; }
     }
-
 }

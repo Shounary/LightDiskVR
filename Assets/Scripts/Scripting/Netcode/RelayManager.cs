@@ -23,8 +23,9 @@ public class RelayManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    [SerializeField]
-    private string env = "production";
+    // [SerializeField]
+    // private string env = "production";
+
     [SerializeField]
     private int max_conn;
 

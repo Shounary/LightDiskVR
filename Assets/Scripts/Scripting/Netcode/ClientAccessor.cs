@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class ClientAccessor : CommonAccessor
+public class ClientAccessor : BaseAccessor
 {
     private Dictionary<string, bool> Lock;
     private bool DefaultLock;
 
-    public override GameStage GetGameStage()
-    {
-        return GameStage.MatchConfig;
+    public override GameStage GameStage {
+        get {
+            return GameStage.MatchConfig;
+        }
     }
+    
 
     /// <summary>
     /// get ready/unready for event associated with key
@@ -40,4 +42,8 @@ public class ClientAccessor : CommonAccessor
             return val;
         }
     }
+
+    // TODO: implement
+    public override MatchConfig MatchConfig { get { throw new System.NotImplementedException(); return null; } }
+    public override PlayerConfig PlayerConfig { get { throw new System.NotImplementedException(); return null; } }
 }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 [System.Serializable]
 public class MatchConfig
 {
@@ -10,12 +12,16 @@ public class MatchConfig
         {
             m_Arena = value;
 
+            if (value == null) return;
+
             m_SpawnAvailability = new bool[value.SpawnPoints.Length];
             for (int i = 0; i < m_SpawnAvailability.Length; i++) m_SpawnAvailability[i] = true;
+
+            Debug.Log("Arena has changed, availabilities have been cleared!");
         }
     }
 
-    private int m_MaxTeams;
+    private int m_MaxTeams = 1; // 1 = every one is their own team; >1 = actually function like teams
 
     public int MaxTeams
     {
@@ -29,7 +35,37 @@ public class MatchConfig
         }
     }
 
-    public System.Func<bool> WinCondition;
+    /// <summary>
+    /// for UI description of the max team number
+    /// </summary>
+    public string GetMaxTeamDescription
+    {
+        get
+        {
+            return MaxTeams > 1 ? "NO TEAM" : string.Format("{0} TEAMS", MaxTeams); 
+        }
+    }
+
+    public System.Func<bool> WinCondition
+    {
+        get { return WinConditions[WinConditionIndex]; }
+    }
+
+    private static System.Func<bool>[] WinConditions =
+    {
+        () => false, // NO EXIT! >:]
+
+    };
+
+    public int WinConditionIndex
+    {
+        get { return m_WinConditionIndex; }
+        set
+        {
+            m_WinConditionIndex = MathUtils.Mod(value, WinConditions.Length);
+        }
+    }
+    private int m_WinConditionIndex = 0;
 
     private bool[] m_SpawnAvailability;
 
