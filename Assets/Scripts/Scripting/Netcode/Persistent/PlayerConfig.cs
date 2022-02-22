@@ -1,7 +1,8 @@
 using UnityEngine;
+using Unity.Netcode;
 
 [System.Serializable]
-public class PlayerConfig : MonoBehaviour
+public class PlayerConfig
 {
     public MatchConfig MatchConfig;
 

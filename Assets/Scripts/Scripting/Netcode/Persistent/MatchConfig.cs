@@ -1,10 +1,11 @@
 using UnityEngine;
+using Unity.Netcode;
 
 [System.Serializable]
 public class MatchConfig
 {
 
-    private Arena m_Arena;
+    private Arena m_Arena = MatchConfigFactory.Instance.Arena;
     public Arena Arena
     {
         get { return m_Arena; }
@@ -46,15 +47,18 @@ public class MatchConfig
         }
     }
 
-    public System.Func<bool> WinCondition
+    public System.Tuple<string, System.Func<bool>> WinCondition
     {
         get { return WinConditions[WinConditionIndex]; }
     }
 
-    private static System.Func<bool>[] WinConditions =
+    private static System.Tuple<string, System.Func<bool>>[] WinConditions =
     {
-        () => false, // NO EXIT! >:]
+        // NO EXIT! >:]
+        new System.Tuple<string, System.Func<bool>>("NO EXIT", () => false),
 
+        // INSTANT EXIT! ]:<
+        new System.Tuple<string, System.Func<bool>>("INSTANT EXIT", () => true)
     };
 
     public int WinConditionIndex

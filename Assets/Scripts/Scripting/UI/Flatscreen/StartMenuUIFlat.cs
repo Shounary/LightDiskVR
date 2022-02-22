@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Unity.Netcode;
 using TMPro;
 
-public class StartMenuUIFlat : MonoBehaviour
+public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
 {
     [SerializeField]
     private Button startServerButton;
@@ -24,10 +24,7 @@ public class StartMenuUIFlat : MonoBehaviour
 
     private string sharedJoinCode;
 
-    private void Awake()
-    {
-        
-    }
+    public GameObject StartMenu, MatchConfigMenu, PlayerConfigMenu;
 
     private void Start()
     {

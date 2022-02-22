@@ -26,11 +26,11 @@ public class MatchConfigFactory : MonoBehaviour
     private int m_ArenaIndex = 0;
     public Arena Arena { get { return Arenas[ArenaIndex]; } }
 
-    public Arena GetArena(string name)
+    public Arena GetArena(int id)
     {
         foreach (Arena a in Arenas)
         {
-            if (a.name.Equals(name)) return a;
+            if (a.BuildIndex == id) return a;
         }
         return null;
     }

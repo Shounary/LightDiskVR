@@ -8,13 +8,6 @@ public class ClientAccessor : BaseAccessor
     private Dictionary<string, bool> Lock;
     private bool DefaultLock;
 
-    public override GameStage GameStage {
-        get {
-            return GameStage.MatchConfig;
-        }
-    }
-    
-
     /// <summary>
     /// get ready/unready for event associated with key
     /// </summary>
@@ -43,7 +36,66 @@ public class ClientAccessor : BaseAccessor
         }
     }
 
-    // TODO: implement
-    public override MatchConfig MatchConfig { get { throw new System.NotImplementedException(); return null; } }
-    public override PlayerConfig PlayerConfig { get { throw new System.NotImplementedException(); return null; } }
+    public override MatchConfig MatchConfig { get { return s_MatchConfig; } }
+    private MatchConfig s_MatchConfig;
+
+    private void OnEnable()
+    {
+        s_MatchConfig = new MatchConfig();
+
+        ArenaID.OnValueChanged += delegate
+        {
+            s_MatchConfig.Arena = MatchConfigFactory.Instance.GetArena(ArenaID.Value);
+            // TODO: Update UI
+        };
+
+        MaxTeams.OnValueChanged += delegate
+        {
+            s_MatchConfig.MaxTeams = MaxTeams.Value;
+            // TODO: Update UI
+        };
+
+        WinConditionIndex.OnValueChanged += delegate
+        {
+            s_MatchConfig.WinConditionIndex = MaxTeams.Value;
+            // TODO: Update UI
+        };
+
+    }
+
+    [ClientRpc]
+    public void EnterMatchConfigClientRPC()
+    {
+        Debug.Log(string.Format("Client {0} entered match config stage", NetworkManager.Singleton.LocalClientId));
+
+        base.EnterMatchConfig();
+    }
+
+    [ClientRpc]
+    public void EnterPlayerConfigClientRPC()
+    {
+        Debug.Log("Exiting Match Config Stage as a Client");
+
+        PrintMatchConfig();
+        base.EnterPlayerConfig();
+    }
+
+    [ClientRpc]
+    public void EnterMatchClientRPC()
+    {
+        base.EnterMatch();
+    }
+
+    [ClientRpc]
+    public void EnterResultClientRPC()
+    {
+        base.EnterResult();
+    }
+
+    [ClientRpc]
+    public void ClearLockClientRPC(string lock_name)
+    {
+        SetLock(false, lock_name);
+    }
+
 }

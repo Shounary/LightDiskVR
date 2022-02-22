@@ -6,22 +6,72 @@ using Unity.Networking;
 
 public abstract class BaseAccessor : NetworkBehaviour
 {
+    protected NetworkVariable<GameStage> m_GameStage = new NetworkVariable<GameStage>();
+
     public NetworkObject PlayerObject
     {
         get { return NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject(); }
     }
 
-    public abstract GameStage GameStage { get; }
+    public GameStage GameStage { get { return m_GameStage.Value; } }
 
-    public abstract MatchConfig MatchConfig { get; }
-
-    public abstract PlayerConfig PlayerConfig { get; }
 
     #region MATCHCONFIG
-    protected Arena Arena;
+    protected NetworkVariable<int> ArenaID, MaxTeams, WinConditionIndex;
+    public abstract MatchConfig MatchConfig { get; }
     #endregion
 
     #region PLAYERCONFIG
-    protected int SpawnPoint;
+    protected int? SpawnPoint;
+    protected PlayerConfig m_PlayerConfig;
     #endregion
+
+    public void PrintMatchConfig()
+    {
+        Debug.Log(
+            string.Format(
+                "... Arena: {0}, MaxTeams {1}, WinCondition: {2}",
+                MatchConfig.Arena.name,
+                MatchConfig.MaxTeams,
+                MatchConfig.WinCondition.Item1)
+            );
+    }
+
+    public void EnterMatchConfig()
+    {
+        StartMenuUIFlat.Instance.StartMenu.SetActive(false);
+        StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(true);
+    }
+
+    public void EnterPlayerConfig()
+    {
+        StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(false);
+        StartMenuUIFlat.Instance.PlayerConfigMenu.SetActive(true);
+    }
+
+    public void EnterMatch()
+    {
+        Debug.Log("Entering battle scene");
+
+        StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(false);
+
+        NetworkManager.Singleton.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(
+                MatchConfig.Arena.BuildIndex
+                ).name,
+            UnityEngine.SceneManagement.LoadSceneMode.Single
+            );
+    }
+
+    public void EnterResult()
+    {
+        Debug.Log("Going back go common scene");
+
+        NetworkManager.Singleton.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(
+                0
+                ).name,
+            UnityEngine.SceneManagement.LoadSceneMode.Single
+            );
+    }
 }

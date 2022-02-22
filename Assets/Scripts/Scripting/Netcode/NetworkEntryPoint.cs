@@ -16,19 +16,35 @@ public class NetworkEntryPoint : NetworkBehaviour
                 IsHost, IsClient, IsOwner)
             );
 
+        DontDestroyOnLoad(gameObject);
+
         if (IsHost)
         {
-            HostAccessor c_Accessor = gameObject.AddComponent<HostAccessor>();
-            accessor = c_Accessor;
+            HostAccessor h_Accessor = gameObject.AddComponent<HostAccessor>();
+            h_Accessor.EnterMatchConfig();
 
-            // set game stage
-            c_Accessor.EnterMatchConfig();
+            accessor = h_Accessor;
         }
         else
         {
-            accessor = gameObject.AddComponent<ClientAccessor>();
+            ClientAccessor c_Accessor = gameObject.AddComponent<ClientAccessor>();
+            
+            // after match is already set, cannot join any more
+            if (c_Accessor.GameStage <= GameStage.MatchConfig)
+            {
+                c_Accessor.EnterMatchConfigClientRPC();
+            }
+            else
+            {
+                Debug.Log("TOO LATE FOR JOINING GAME!");
+                NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
+
+                Destroy(gameObject);
+            }
+
+            accessor = c_Accessor;
         }
 
-        Debug.Log(accessor.GameStage);
+        
     }
 }
