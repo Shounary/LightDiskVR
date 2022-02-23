@@ -1331,7 +1331,7 @@ GameObject:
   - component: {fileID: -8180108369994578911}
   - component: {fileID: 2912388627983630196}
   - component: {fileID: 8837463943112112981}
-  - component: {fileID: 2834309385314605955}
+  - component: {fileID: 3473292975216033087}
   m_Layer: 0
   m_Name: NetworkAvatar
   m_TagString: Untagged
@@ -1544,7 +1544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vrRig: {fileID: 9113178656336530798}
---- !u!114 &2834309385314605955
+--- !u!114 &3473292975216033087
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1553,9 +1553,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4224351195641804899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e002c30c174a65469836496bd58f567, type: 3}
+  m_Script: {fileID: 11500000, guid: 53ea0f416199ff94bb4426d9f4e0a73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
+  defaultPositionRange: {x: -4, y: 4}
+  forwardBackPosition:
+    m_InternalValue: 0
+  leftRightPosition:
+    m_InternalValue: 0
 --- !u!1 &4371527281054250422
 GameObject:
   m_ObjectHideFlags: 0
