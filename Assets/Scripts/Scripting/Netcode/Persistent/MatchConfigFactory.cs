@@ -24,7 +24,7 @@ public class MatchConfigFactory : MonoBehaviour
         }
     }
     private int m_ArenaIndex = 0;
-    public Arena Arena { get { return Arenas[ArenaIndex]; } }
+    public Arena Arena { get { Debug.Log(string.Format("trying to get arena at arr index {0}", m_ArenaIndex)); return Arenas[ArenaIndex]; } }
 
     public Arena GetArena(int id)
     {

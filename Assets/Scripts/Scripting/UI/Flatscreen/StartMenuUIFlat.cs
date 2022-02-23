@@ -53,7 +53,7 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
                 Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
                 sharedJoinCode = hostData.JoinCode;
 
-                CommonSuccess();
+                MatchConfigMenu.GetComponent<MatchConfigMenuUIFlat>().JoinCode.text = sharedJoinCode;
             } else
             {
                 Debug.Log("Host could not be started");
@@ -91,7 +91,6 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
                 Debug.Log("Client connected to " + joinData.IPv4Address + ":" + joinData.Port + " under join code " + joinCode.text);
 
                 joinCode.text = null;
-                CommonSuccess();
             }
             else
             {
@@ -106,11 +105,6 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
                 SetJoinButtonText(sharedJoinCode);
             }
         });
-    }
-
-    private void CommonSuccess()
-    {
-        Debug.Log("common success");
     }
 
     IEnumerator ResumeText(float time)
