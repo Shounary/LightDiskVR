@@ -18,8 +18,14 @@ public class RelayManager : MonoBehaviour
         _instance = this;
     }
 
-    [SerializeField]
-    private string env = "production";
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    // [SerializeField]
+    // private string env = "production";
+
     [SerializeField]
     private int max_conn;
 
