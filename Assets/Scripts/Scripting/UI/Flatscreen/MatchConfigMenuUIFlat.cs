@@ -6,6 +6,7 @@ using Unity.Netcode;
 public class MatchConfigMenuUIFlat : MonoBehaviour
 {
     public UnityEngine.UI.Button UseDefault;
+    public UnityEngine.UI.Text JoinCode;
 
     private void Start()
     {
