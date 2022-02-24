@@ -43,6 +43,21 @@ public abstract class BaseAccessor : NetworkBehaviour
         Debug.Log("Entering Match Config");
         StartMenuUIFlat.Instance.StartMenu.SetActive(false);
         StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(true);
+
+        BasePingServerRPC();
+        BasePingClientRPC();
+    }
+
+    [ServerRpc]
+    public void BasePingServerRPC()
+    {
+        Debug.Log("Ping server");
+    }
+    
+    [ClientRpc]
+    public void BasePingClientRPC()
+    {
+        Debug.Log("Ping client");
     }
 
     public void PrintPlayerConfig()

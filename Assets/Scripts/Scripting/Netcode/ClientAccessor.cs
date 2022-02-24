@@ -63,6 +63,17 @@ public class ClientAccessor : BaseAccessor
 
     }
 
+    public override void EnterMatchConfig()
+    {
+        base.EnterMatchConfig();
+
+        foreach(NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
+        {
+            HostAccessor acc = client.PlayerObject.GetComponent<HostAccessor>();
+            if (acc != null) acc.PingServerRPC("client");
+        }
+    }
+
     [ClientRpc]
     public void EnterPlayerConfigClientRPC()
     {

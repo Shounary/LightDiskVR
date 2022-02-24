@@ -40,6 +40,8 @@ public class HostAccessor : BaseAccessor
     public override void EnterMatchConfig()
     {
         base.EnterMatchConfig();
+        PingServerRPC("host");
+
         Debug.Log(string.Format("Host {0} entered match config", NetworkManager.Singleton.LocalClientId));
 
         m_GameStage.Value = GameStage.MatchConfig;
@@ -48,6 +50,12 @@ public class HostAccessor : BaseAccessor
         ArenaID.Value = m_MatchConfig.Arena.BuildIndex;
         MaxTeams.Value = m_MatchConfig.MaxTeams;
         WinConditionIndex.Value = m_MatchConfig.WinConditionIndex;
+    }
+
+    [ServerRpc]
+    public void PingServerRPC(string name)
+    {
+        Debug.Log(name + " pinged the server");
     }
 
     public void IncrementMaxTeam() { MaxTeams.Value = ++m_MatchConfig.MaxTeams;}
@@ -85,9 +93,8 @@ public class HostAccessor : BaseAccessor
             return;
         }
 
-        IEnumerable<int> SpawnPointsList = NetworkManager.Singleton.ConnectedClientsList.Select((client) => {
-            return client.PlayerObject.GetComponent<BaseAccessor>().PlayerConfig.SpawnPoint;
-        });
+        IEnumerable<int> SpawnPointsList = NetworkManager.Singleton.ConnectedClientsList
+            .Select((client) => client.PlayerObject.GetComponent<BaseAccessor>().PlayerConfig.SpawnPoint);
 
         int j = 0;
         foreach (int i in SpawnPointsList)
