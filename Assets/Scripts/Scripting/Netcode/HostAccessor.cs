@@ -27,16 +27,7 @@ public class HostAccessor : BaseAccessor
             IReadOnlyList<NetworkClient> clients = NetworkManager.Singleton.ConnectedClientsList;
 
             bool tally = true;
-            foreach(NetworkClient client in clients)
-            {
-                try
-                {
-                    ClientAccessor p = client.PlayerObject.GetComponent<ClientAccessor>();
-                    tally &= p.GetEventReadyState(lock_id);
-                    if (!tally) { break; }
-                }
-                catch { }
-            }
+            RollCall(client => tally &= client.GetEventReadyState(lock_id));
 
             return tally;
         }
@@ -46,7 +37,7 @@ public class HostAccessor : BaseAccessor
 
 
     #region MATCH_CONFIG
-    public new void EnterMatchConfig()
+    public override void EnterMatchConfig()
     {
         base.EnterMatchConfig();
         Debug.Log(string.Format("Host {0} entered match config", NetworkManager.Singleton.LocalClientId));
@@ -54,9 +45,9 @@ public class HostAccessor : BaseAccessor
         m_GameStage.Value = GameStage.MatchConfig;
         m_MatchConfig = new MatchConfig();
 
-        ArenaID = new NetworkVariable<int>(m_MatchConfig.Arena.BuildIndex);
-        MaxTeams = new NetworkVariable<int>(m_MatchConfig.MaxTeams);
-        WinConditionIndex = new NetworkVariable<int>(m_MatchConfig.WinConditionIndex);
+        ArenaID.Value = m_MatchConfig.Arena.BuildIndex;
+        MaxTeams.Value = m_MatchConfig.MaxTeams;
+        WinConditionIndex.Value = m_MatchConfig.WinConditionIndex;
     }
 
     public void IncrementMaxTeam() { MaxTeams.Value = ++m_MatchConfig.MaxTeams;}
@@ -69,7 +60,7 @@ public class HostAccessor : BaseAccessor
     #endregion
 
     #region PLAYER_CONFIG
-    public new void EnterPlayerConfig()
+    public override void EnterPlayerConfig()
     {
         Debug.Log("Exiting Player Config as a Host");
         PrintMatchConfig();
@@ -80,20 +71,13 @@ public class HostAccessor : BaseAccessor
             MatchConfig = m_MatchConfig
         };
 
-        foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
-        {
-            Debug.Log(string.Format("Attempt to let {0} proceed to Player Config", client.ClientId));
-            try {
-                client.PlayerObject.gameObject.GetComponent<ClientAccessor>().EnterPlayerConfigClientRPC();
-            }
-            catch { }
-        }
+        RollCall(client => client.EnterPlayerConfigClientRPC());
 
         base.EnterPlayerConfig();
     }
     #endregion
 
-    public new void EnterMatch()
+    public override void EnterMatch()
     {
         if (!ClientLock())
         {
@@ -105,15 +89,17 @@ public class HostAccessor : BaseAccessor
             return client.PlayerObject.GetComponent<BaseAccessor>().PlayerConfig.SpawnPoint;
         });
 
+        int j = 0;
+        foreach (int i in SpawnPointsList)
+        {
+            Debug.Log(string.Format("player {0} chose spawn point {1}", j++, i));
+        }
+
         HashSet<int> SpawnPointsSet = new HashSet<int>(SpawnPointsList);
 
         if (SpawnPointsSet.Count() < SpawnPointsList.Count())
         {
             Debug.Log("Repeated spawn points!");
-            foreach (int i in SpawnPointsList)
-            {
-                Debug.Log(string.Format("... {0}", i));
-            }
             return;
         }
 
@@ -133,20 +119,13 @@ public class HostAccessor : BaseAccessor
         base.EnterMatch();
     }
 
-    public new void EnterResult()
+    public override void EnterResult()
     {
         throw new System.NotImplementedException();
     }
 
     public void ClearLock(string lock_name)
     {
-        foreach(NetworkClient client in NetworkManager.Singleton.ConnectedClientsList)
-        {
-            try
-            {
-                client.PlayerObject.GetComponent<ClientAccessor>().ClearLockClientRPC(lock_name);
-            }
-            catch { }
-        }
+        RollCall(client => client.ClearLockClientRPC(lock_name));
     }
 }

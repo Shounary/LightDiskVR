@@ -64,14 +64,6 @@ public class ClientAccessor : BaseAccessor
     }
 
     [ClientRpc]
-    public void EnterMatchConfigClientRPC()
-    {
-        Debug.Log(string.Format("Client {0} entered match config", NetworkManager.Singleton.LocalClientId));
-
-        base.EnterMatchConfig();
-    }
-
-    [ClientRpc]
     public void EnterPlayerConfigClientRPC()
     {
         Debug.Log("Exiting Player Config as a Client");

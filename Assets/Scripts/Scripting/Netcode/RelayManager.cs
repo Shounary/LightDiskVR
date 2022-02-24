@@ -107,7 +107,7 @@ public class RelayManager : MonoBehaviour
             IPv4Address = allocation.RelayServer.IpV4
         };
 
-        Debug.Log($"Client joined with {joinCode}");
+        // Debug.Log($"Client joined with {joinCode}");
 
         return data;
     }

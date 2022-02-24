@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
-using Unity.Networking;
+using System;
 
 public abstract class BaseAccessor : NetworkBehaviour
 {
-    protected NetworkVariable<GameStage> m_GameStage = new NetworkVariable<GameStage>();
+    protected NetworkVariable<GameStage> m_GameStage = new NetworkVariable<GameStage>(GameStage.MatchConfig);
 
-    public NetworkObject PlayerObject
-    {
-        get { return NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject(); }
-    }
+    public NetworkObject PlayerObject => NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject();
 
-    public GameStage GameStage { get { return m_GameStage.Value; } }
+    public GameStage GameStage => m_GameStage.Value;
 
 
     #region MATCHCONFIG
-    protected NetworkVariable<int> ArenaID, MaxTeams, WinConditionIndex;
+    protected NetworkVariable<int> 
+        ArenaID = new NetworkVariable<int>(0), 
+        MaxTeams = new NetworkVariable<int>(1), 
+        WinConditionIndex = new NetworkVariable<int>(0);
     public abstract MatchConfig MatchConfig { get; }
     #endregion
 
@@ -38,8 +38,9 @@ public abstract class BaseAccessor : NetworkBehaviour
             );
     }
 
-    public void EnterMatchConfig()
+    public virtual void EnterMatchConfig()
     {
+        Debug.Log("Entering Match Config");
         StartMenuUIFlat.Instance.StartMenu.SetActive(false);
         StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(true);
     }
@@ -54,20 +55,20 @@ public abstract class BaseAccessor : NetworkBehaviour
             ));
     }
 
-    public void EnterPlayerConfig()
+    public virtual void EnterPlayerConfig()
     {
         StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(false);
         StartMenuUIFlat.Instance.PlayerConfigMenu.SetActive(true);
     }
 
-    public void EnterMatch()
+    public virtual void EnterMatch()
     {
         Debug.Log("Entering battle scene");
 
         StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(false);
     }
 
-    public void EnterResult()
+    public virtual void EnterResult()
     {
         Debug.Log("Going back go common scene");
 
@@ -77,5 +78,17 @@ public abstract class BaseAccessor : NetworkBehaviour
                 ).name,
             UnityEngine.SceneManagement.LoadSceneMode.Single
             );
+    }
+
+    public void RollCall(Action<ClientAccessor> action)
+    {
+        foreach (NetworkClient client in NetworkManager.ConnectedClientsList)
+        {
+            var acc = client.PlayerObject.GetComponent<BaseAccessor>();
+            if (acc is ClientAccessor)
+            {
+                action(acc as ClientAccessor);
+            }
+        }
     }
 }

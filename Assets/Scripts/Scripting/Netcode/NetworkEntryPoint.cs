@@ -8,7 +8,7 @@ public class NetworkEntryPoint : NetworkBehaviour
 {
     BaseAccessor accessor;
 
-    private void Start()
+    public override void OnNetworkSpawn()
     {
         Debug.Log(
             string.Format(
@@ -18,33 +18,31 @@ public class NetworkEntryPoint : NetworkBehaviour
 
         DontDestroyOnLoad(gameObject);
 
-        if (IsHost)
+        if (IsOwner)
         {
-            HostAccessor h_Accessor = gameObject.AddComponent<HostAccessor>();
-            h_Accessor.EnterMatchConfig();
-
-            accessor = h_Accessor;
-        }
-        else
-        {
-            ClientAccessor c_Accessor = gameObject.AddComponent<ClientAccessor>();
-            
-            // after match is already set, cannot join any more
-            if (c_Accessor.GameStage <= GameStage.MatchConfig)
+            if (IsHost)
             {
-                c_Accessor.EnterMatchConfigClientRPC();
+                accessor = gameObject.AddComponent<HostAccessor>();
+                accessor.EnterMatchConfig();
             }
             else
             {
-                Debug.Log("TOO LATE FOR JOINING GAME!");
-                NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
+                ClientAccessor c_Accessor = gameObject.AddComponent<ClientAccessor>();
 
-                Destroy(gameObject);
+                // after match is already set, cannot join any more
+                if (c_Accessor.GameStage <= GameStage.MatchConfig)
+                {
+                    c_Accessor.EnterMatchConfig();
+                    accessor = c_Accessor;
+                }
+                else
+                {
+                    Debug.Log("TOO LATE FOR JOINING GAME!");
+                    NetworkManager.Singleton.DisconnectClient(NetworkManager.Singleton.LocalClientId);
+
+                    Destroy(gameObject);
+                }
             }
-
-            accessor = c_Accessor;
         }
-
-        
     }
 }
