@@ -8,6 +8,11 @@ public class PlayerConfig
 
     private int m_SpawnPoint = 0;
 
+    public PlayerConfig(MatchConfig matchConfig)
+    {
+        MatchConfig = matchConfig;
+    }
+
     public int SpawnPoint
     {
         get { return m_SpawnPoint; }
