@@ -9,20 +9,12 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
 
     private void Start()
     {
-        BaseAccessor accessor = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject().gameObject.GetComponent<BaseAccessor>();
-        UseDefault.enabled = accessor is HostAccessor;
+        BaseAccessor accessor = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject().GetComponent<BaseAccessor>();
+        UseDefault.enabled = NetworkManager.Singleton.IsHost;
         UseDefault.onClick.RemoveAllListeners();
         UseDefault.onClick.AddListener(delegate
         {
-            try
-            {
-                HostAccessor hostAccessor = accessor as HostAccessor;
-                hostAccessor.EnterMatch();
-            }
-            catch (UnityException e)
-            {
-                Debug.Log(e.StackTrace);
-            }
+            accessor.PlayerConfigExit();
         });
     }
 }
