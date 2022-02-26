@@ -18,7 +18,9 @@ public class NetworkUI : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI playersInGameText;
     [SerializeField]
-    private TMP_InputField joinCode;
+    private Text joinCode;
+    [SerializeField]
+    private Text joinCodeDisplay;
     [SerializeField]
     private Button joinCodeButton;
 
@@ -55,6 +57,12 @@ public class NetworkUI : MonoBehaviour
             {
                 Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
                 sharedJoinCode = hostData.JoinCode;
+
+                // display join code in a UI text the moment host is created
+                if (sharedJoinCode != null)
+                {
+                    joinCodeDisplay.text = sharedJoinCode;
+                }
                 
             } else
             {
