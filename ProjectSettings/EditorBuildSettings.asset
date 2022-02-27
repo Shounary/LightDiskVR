@@ -15,8 +15,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Current/GraphicArena.unity
     guid: 7352e654c88b4fd4e90ab128661dc8b8
   - enabled: 1
+<<<<<<< HEAD
     path: Assets/Scenes/Current/Rohan_GraphicArena.unity
     guid: 7e969c3a95db442fb8a60dc6777e153c
+=======
+    path: Assets/Scenes/KunalWorkshop.unity
+    guid: 684b331e95719427e8714ecf643fc43e
+>>>>>>> pr/12
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 7a1a1eda5721dcd48b8a0d744ba6685d, type: 2}
