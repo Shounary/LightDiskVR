@@ -28,7 +28,6 @@ public class VRAnimatorController : MonoBehaviour
 
         Vector3 headSetLocalSpeed = transform.InverseTransformDirection(headSetSpeed);
         previousPos = vrRig.head.vrTarget.position;
-        Debug.Log(headSetLocalSpeed);
 
         float previousDirectionX = animator.GetFloat("directionX");
         float previousDirectionY = animator.GetFloat("directionY");
