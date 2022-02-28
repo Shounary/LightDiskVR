@@ -6,13 +6,19 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class StasisDisk : MonoBehaviour
 {
+    // This stuff probably needs to be changed to make compatible with more than one player
+    // Sorry Chase
     public InputDeviceCharacteristics controllerCharacteristics;
-
     private InputDevice targetDevice;
 
+    public int maxStasis = 1;
+    private int stasisCount = 0;
+
+    public float velocityDivisor = 5;
     private Vector3 storedVelocity;
     private bool inStasis;
     private Rigidbody body;
+    private bool isHeld;
     
 
     // Start is called before the first frame update
@@ -25,8 +31,9 @@ public class StasisDisk : MonoBehaviour
             targetDevice = inputDevices[0];
         }
 
-        // Set up Stasis physics stuff
+        // Set up Stasis checks and physics stuff
         inStasis = false;
+        isHeld = false;
         body = GetComponent<Rigidbody>();
     }
 
@@ -34,24 +41,33 @@ public class StasisDisk : MonoBehaviour
     void Update()
     {
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool trigger)) {
-            startStasis();
-        } else {
+            if (!inStasis && stasisCount < maxStasis && !isHeld) {
+                startStasis();
+            }
+        } else if (inStasis) {
             endStasis();
         }
     }
 
-    public void startStasis() {
-        if (!inStasis) {
-            inStasis = true;
-            storedVelocity = body.velocity;
-            body.velocity = body.velocity / 5;
-        }
+    private void startStasis() {
+        inStasis = true;
+        storedVelocity = body.velocity;
+        body.velocity = body.velocity / velocityDivisor;
+        stasisCount++;
     }
 
-    public void endStasis() {
-        if (inStasis) {
-            inStasis = false;
-            body.velocity = storedVelocity;
-        }
+    private void endStasis() {
+        inStasis = false;
+        body.velocity = storedVelocity;
+    }
+
+    // Called by XR Interactable when select entered
+    public void Grab() {
+        isHeld = true;
+    }
+
+    // Called by XR Interactable when select exited
+    public void LetGo() {
+        isHeld = false;
     }
 }
