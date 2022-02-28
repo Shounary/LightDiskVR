@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7627459852844358272}
   - component: {fileID: 4834287168582458061}
   - component: {fileID: 1916699014}
+  - component: {fileID: 6070709432925138090}
   m_Layer: 7
   m_Name: PlayerDisk
   m_TagString: PlayerDisk
@@ -223,6 +224,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &6070709432925138090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087088235417820408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b793c46e23af46b2c18bfe5fad54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryColor: {r: 0, g: 0, b: 0, a: 0}
+  accentColor: {r: 0, g: 0, b: 0, a: 0}
+  damage: 0
+  isSummonable: 0
+  storableLocations: []
 --- !u!1 &6975627547615817192
 GameObject:
   m_ObjectHideFlags: 0
