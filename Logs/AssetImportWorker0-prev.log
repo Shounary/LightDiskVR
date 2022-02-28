@@ -1,0 +1,1729 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.26f1 (7298b473bc1a) revision 7510196'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19043) 64bit Professional' Language: 'en' Physical Memory: 32658 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.26f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/rtrea/Documents/LightDiskVR
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+61894
+Successfully changed project path to: C:/Users/rtrea/Documents/LightDiskVR
+C:/Users/rtrea/Documents/LightDiskVR
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 68.07 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.81 ms.
+Initialize engine version: 2020.3.26f1 (7298b473bc1a)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/rtrea/Documents/LightDiskVR/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1650 (ID=0x1f82)
+    Vendor:   
+    VRAM:     3962 MB
+    Driver:   27.21.14.6677
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56324
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.26f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001611 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 57.27 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.480 seconds
+Domain Reload Profiling:
+	ReloadAssembly (480ms)
+		BeginReloadAssembly (44ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (0ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (1ms)
+		EndReloadAssembly (378ms)
+			LoadAssemblies (42ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (120ms)
+			ReleaseScriptCaches (0ms)
+			RebuildScriptCaches (23ms)
+			SetupLoadedEditorAssemblies (153ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (57ms)
+				BeforeProcessingInitializeOnLoad (6ms)
+				ProcessInitializeOnLoadAttributes (64ms)
+				ProcessInitializeOnLoadMethodAttributes (22ms)
+				AfterProcessingInitializeOnLoad (0ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (0ms)
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.008503 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 55.17 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+[XR] OculusXRPlugin: registering subsystems
+[XR] Unable to register display lifecyle provider: [1]
+[XR] Oculus Input lifecycle provider registered.
+[XR] Unable to register input lifecyle provider: [1]
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:250 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:235 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <55729f52d042492e9efc384182ae2feb>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.508 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1509ms)
+		BeginReloadAssembly (131ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (17ms)
+		EndReloadAssembly (1322ms)
+			LoadAssemblies (87ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (278ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (51ms)
+			SetupLoadedEditorAssemblies (810ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (55ms)
+				BeforeProcessingInitializeOnLoad (76ms)
+				ProcessInitializeOnLoadAttributes (652ms)
+				ProcessInitializeOnLoadMethodAttributes (18ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (4ms)
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 0.79 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3728 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 158.9 MB.
+System memory in use after: 159.1 MB.
+
+Unloading 42 unused Assets to reduce memory usage. Loaded Objects now: 4145.
+Total: 3.327900 ms (FindLiveObjects: 0.311200 ms CreateObjectMapping: 0.188000 ms MarkObjects: 2.761600 ms  DeleteObjects: 0.066500 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Scripts/Scripting/Player/StasisDisk.cs
+  artifactKey: Guid(1363c0a7fefdd7d429245ea20a5536b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Scripting/Player/StasisDisk.cs using Guid(1363c0a7fefdd7d429245ea20a5536b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8110cd29b0961f952d1adae2e8df1072') in 0.031712 seconds 
+  Import took 0.036209 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.007868 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.95 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.09 ms.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:250 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:235 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <55729f52d042492e9efc384182ae2feb>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.043 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1043ms)
+		BeginReloadAssembly (101ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (3ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (32ms)
+		EndReloadAssembly (894ms)
+			LoadAssemblies (78ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (261ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (37ms)
+			SetupLoadedEditorAssemblies (426ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (63ms)
+				ProcessInitializeOnLoadAttributes (338ms)
+				ProcessInitializeOnLoadMethodAttributes (15ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.90 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3600 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 151.4 MB.
+System memory in use after: 151.7 MB.
+
+Unloading 35 unused Assets to reduce memory usage. Loaded Objects now: 4148.
+Total: 3.028000 ms (FindLiveObjects: 0.259200 ms CreateObjectMapping: 0.166900 ms MarkObjects: 2.583500 ms  DeleteObjects: 0.017600 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 45.671883 seconds.
+  path: Assets/Scripts/Scripting/Player/StasisDisk.cs
+  artifactKey: Guid(1363c0a7fefdd7d429245ea20a5536b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Scripting/Player/StasisDisk.cs using Guid(1363c0a7fefdd7d429245ea20a5536b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e3b2ec71a1820abcd56d7831a29b24b6') in 0.005815 seconds 
+  Import took 0.010464 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.529521 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.83 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:250 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:235 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <55729f52d042492e9efc384182ae2feb>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.078 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1078ms)
+		BeginReloadAssembly (95ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (33ms)
+		EndReloadAssembly (930ms)
+			LoadAssemblies (80ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (260ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (35ms)
+			SetupLoadedEditorAssemblies (436ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (64ms)
+				ProcessInitializeOnLoadAttributes (346ms)
+				ProcessInitializeOnLoadMethodAttributes (15ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (7ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.87 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3600 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 151.5 MB.
+System memory in use after: 151.8 MB.
+
+Unloading 35 unused Assets to reduce memory usage. Loaded Objects now: 4151.
+Total: 3.578500 ms (FindLiveObjects: 0.333700 ms CreateObjectMapping: 0.236400 ms MarkObjects: 2.984000 ms  DeleteObjects: 0.023300 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 10880.613021 seconds.
+  path: Assets/Scripts/Scripting/Player/StasisDisk.cs
+  artifactKey: Guid(1363c0a7fefdd7d429245ea20a5536b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/Scripting/Player/StasisDisk.cs using Guid(1363c0a7fefdd7d429245ea20a5536b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a0464ca750b7cd7d6a6732412832c23') in 0.009517 seconds 
+  Import took 0.013783 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 6267.342502 seconds.
+  path: Assets/Imports/Oculus Hands/Models/l_hand_skeletal_lowres.fbx
+  artifactKey: Guid(ca20b3907ff1c794cb89c1ad2cce8282) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Oculus Hands/Models/l_hand_skeletal_lowres.fbx using Guid(ca20b3907ff1c794cb89c1ad2cce8282) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5c5002b053127047efa6564569c6d7d1') in 0.287937 seconds 
+  Import took 0.293655 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000253 seconds.
+  path: Assets/Imports/Oculus Hands/Models/r_hand_skeletal_lowres.fbx
+  artifactKey: Guid(d0c255d07fd68f14b94e55d388e7e6bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Oculus Hands/Models/r_hand_skeletal_lowres.fbx using Guid(d0c255d07fd68f14b94e55d388e7e6bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a22fb77cbf22ead5c80561385564892b') in 0.025194 seconds 
+  Import took 0.029812 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000237 seconds.
+  path: Assets/Imports/Oculus Hands/Materials/Hands_solid.mat
+  artifactKey: Guid(3637b758ff163493f8bb8b6d7e96d7ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Oculus Hands/Materials/Hands_solid.mat using Guid(3637b758ff163493f8bb8b6d7e96d7ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2295b2ef98843a71ccec44a6a2cb7f7a') in 0.023317 seconds 
+  Import took 0.027792 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 21.166033 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Textures/SMAA/AreaTex.tga
+  artifactKey: Guid(d1f1048909d55cd4fa1126ab998f617e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Textures/SMAA/AreaTex.tga using Guid(d1f1048909d55cd4fa1126ab998f617e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5fe0624972058d6376628a77033065d4') in 0.023262 seconds 
+  Import took 0.028193 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.504790 seconds.
+  path: Packages/com.unity.animation.rigging/Editor/Shapes/SquareEffector.asset
+  artifactKey: Guid(707439f5f179a460987ecbb96364c8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.animation.rigging/Editor/Shapes/SquareEffector.asset using Guid(707439f5f179a460987ecbb96364c8a9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '102c05204e14d32402498dc7d2e7ebb5') in 0.014584 seconds 
+  Import took 0.019360 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 20.837062 seconds.
+  path: ProjectSettings/TagManager.asset
+  artifactKey: Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing ProjectSettings/TagManager.asset using Guid(00000000000000003000000000000000) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c53413d2c57c5ab89d1529ebcae7fb2') in 0.006086 seconds 
+  Import took 0.010995 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.009044 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.87 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:250 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:235 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <55729f52d042492e9efc384182ae2feb>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.119 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1119ms)
+		BeginReloadAssembly (124ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (5ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (38ms)
+		EndReloadAssembly (943ms)
+			LoadAssemblies (80ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (273ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (37ms)
+			SetupLoadedEditorAssemblies (424ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (60ms)
+				ProcessInitializeOnLoadAttributes (336ms)
+				ProcessInitializeOnLoadMethodAttributes (17ms)
+				AfterProcessingInitializeOnLoad (6ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (18ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.84 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+Unloading 3600 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 170.8 MB.
+System memory in use after: 171.0 MB.
+
+Unloading 36 unused Assets to reduce memory usage. Loaded Objects now: 4238.
+Total: 3.253800 ms (FindLiveObjects: 0.266900 ms CreateObjectMapping: 0.165400 ms MarkObjects: 2.800800 ms  DeleteObjects: 0.020000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008344 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.84 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:250 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:235 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <55729f52d042492e9efc384182ae2feb>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.102 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1103ms)
+		BeginReloadAssembly (99ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (31ms)
+		EndReloadAssembly (953ms)
+			LoadAssemblies (87ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (266ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (38ms)
+			SetupLoadedEditorAssemblies (438ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (62ms)
+				ProcessInitializeOnLoadAttributes (349ms)
+				ProcessInitializeOnLoadMethodAttributes (16ms)
+				AfterProcessingInitializeOnLoad (7ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (11ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.84 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3600 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 170.8 MB.
+System memory in use after: 171.1 MB.
+
+Unloading 35 unused Assets to reduce memory usage. Loaded Objects now: 4241.
+Total: 4.169900 ms (FindLiveObjects: 0.298700 ms CreateObjectMapping: 0.151800 ms MarkObjects: 3.663700 ms  DeleteObjects: 0.054800 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008385 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.87 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.08 ms.
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.NullReferenceException: Object reference not set to an instance of an object
+  at Unity.XR.Oculus.OculusLoader.AssetPathToAbsolutePath (System.String assetPath) [0x00048] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:250 
+  at Unity.XR.Oculus.OculusLoader.EditorLoadOVRPlugin () [0x0007b] in C:\Users\rtrea\Documents\LightDiskVR\Library\PackageCache\com.unity.xr.oculus@1.11.0\Runtime\OculusLoader.cs:235 
+  at (wrapper managed-to-native) System.Reflection.MonoMethod.InternalInvoke(System.Reflection.MonoMethod,object,object[],System.Exception&)
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00032] in <695d1cc93cca45069c528c15c9fdd749>:0 
+   --- End of inner exception stack trace ---
+  at System.Reflection.MonoMethod.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00048] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <695d1cc93cca45069c528c15c9fdd749>:0 
+  at UnityEditor.EditorAssemblies.ProcessInitializeOnLoadMethodAttributes () [0x00047] in <55729f52d042492e9efc384182ae2feb>:0 
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogError (object)
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+Mono: successfully reloaded assembly
+- Completed reload, in  1.077 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1078ms)
+		BeginReloadAssembly (101ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (4ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (31ms)
+		EndReloadAssembly (929ms)
+			LoadAssemblies (80ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (253ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (37ms)
+			SetupLoadedEditorAssemblies (430ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (3ms)
+				SetLoadedEditorAssemblies (0ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (63ms)
+				ProcessInitializeOnLoadAttributes (340ms)
+				ProcessInitializeOnLoadMethodAttributes (16ms)
+				AfterProcessingInitializeOnLoad (5ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (12ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.88 ms, found 10 plugins.
+Preloading 1 native plugins for Editor in 0.07 ms.
+Unloading 3600 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 170.8 MB.
+System memory in use after: 171.1 MB.
+
+Unloading 35 unused Assets to reduce memory usage. Loaded Objects now: 4244.
+Total: 3.936300 ms (FindLiveObjects: 0.346400 ms CreateObjectMapping: 0.249400 ms MarkObjects: 3.318400 ms  DeleteObjects: 0.021200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 673.851311 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Airlock/Airlock_Disabled.prefab
+  artifactKey: Guid(89da53e018f0c7e488e9b565d32c3f58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Airlock/Airlock_Disabled.prefab using Guid(89da53e018f0c7e488e9b565d32c3f58) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6eba26e062f591d0763ced9f2d4dc58') in 0.242236 seconds 
+  Import took 0.248133 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000210 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Airlock/Airlock_Enabled.prefab
+  artifactKey: Guid(6827107244ab4384584994f2f08876c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Airlock/Airlock_Enabled.prefab using Guid(6827107244ab4384584994f2f08876c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'faf370d0946b3fefe2e256b8c0bbfeaa') in 0.062662 seconds 
+  Import took 0.068288 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.797889 seconds.
+  path: Assets/Presets/Defaults/AlbedoTexture_Default.preset
+  artifactKey: Guid(e8537455c6c08bd4e8bf0be3707da685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Presets/Defaults/AlbedoTexture_Default.preset using Guid(e8537455c6c08bd4e8bf0be3707da685) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27fd9538c5906813df7c233304c88bbb') in 0.012469 seconds 
+  Import took 0.017272 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000248 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Dodging Right.fbx
+  artifactKey: Guid(6d604686275c3344c8bb29929c9b7cf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Dodging Right.fbx using Guid(6d604686275c3344c8bb29929c9b7cf5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e32c196a571b8a23615a999ef9f5dd05') in 0.072031 seconds 
+  Import took 0.076652 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.338927 seconds.
+  path: Assets/Imports/ybot.fbx
+  artifactKey: Guid(9d238e432b58829449a8456a0091fd73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/ybot.fbx using Guid(9d238e432b58829449a8456a0091fd73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f153750b3ec57ded733706fbfd74a9ea') in 0.077946 seconds 
+  Import took 0.082995 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.936166 seconds.
+  path: Assets/XR/Settings/Open XR Package Settings.asset
+  artifactKey: Guid(8daf9eaca3c2bc44dbeb1e190102cb4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/XR/Settings/Open XR Package Settings.asset using Guid(8daf9eaca3c2bc44dbeb1e190102cb4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b7a8f12aab1f32725512ce90f3491f3') in 0.016448 seconds 
+  Import took 0.021457 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.342155 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/armada.fbx
+  artifactKey: Guid(2e29a94ebd7558f47bc4a67c4b12eb15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/armada.fbx using Guid(2e29a94ebd7558f47bc4a67c4b12eb15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2e947246e3406c65f61e25df10b1b3f8') in 0.016399 seconds 
+  Import took 0.021530 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000292 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/armada to esquiva.fbx
+  artifactKey: Guid(faa3628f239220341a6db30a78272691) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/armada to esquiva.fbx using Guid(faa3628f239220341a6db30a78272691) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9072750d50719a638d513b9097909fba') in 0.016240 seconds 
+  Import took 0.020983 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.372413 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/au to role.fbx
+  artifactKey: Guid(8ec84e4b0bc4f01479b5de9b0f52555f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/au to role.fbx using Guid(8ec84e4b0bc4f01479b5de9b0f52555f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c899dd09987013381545751f3a89de09') in 0.016653 seconds 
+  Import took 0.021970 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Backflip.fbx
+  artifactKey: Guid(238d511544d232741bd038d482c02f22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Backflip.fbx using Guid(238d511544d232741bd038d482c02f22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '018df5235049ba59332528c7a7ec0328') in 0.016699 seconds 
+  Import took 0.021788 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000185 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Groups/BarrelsGroup.prefab
+  artifactKey: Guid(594016eab5c465c4291a4f6420014575) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Groups/BarrelsGroup.prefab using Guid(594016eab5c465c4291a4f6420014575) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ca48de55d99e701d992376a750538d1') in 0.027040 seconds 
+  Import took 0.032194 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000232 seconds.
+  path: Assets/Prefabs/UIBasic/BlackImage.prefab
+  artifactKey: Guid(6f8cf4dfb412ff3428563e42efe64dd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/UIBasic/BlackImage.prefab using Guid(6f8cf4dfb412ff3428563e42efe64dd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1a76bf2fded4d52faa36ce5dba0e3d6') in 0.011324 seconds 
+  Import took 0.016156 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/bencao.fbx
+  artifactKey: Guid(bb09f649342390f4e8fbaf7cd53a9468) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/bencao.fbx using Guid(bb09f649342390f4e8fbaf7cd53a9468) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ecd24e60d093703edd202f92dd6854bc') in 0.015329 seconds 
+  Import took 0.020267 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000253 seconds.
+  path: Assets/Scenes/MikhailWorkshop/Material/BlueSaber.mat
+  artifactKey: Guid(60506de429e6a7a468d36013a3988402) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/MikhailWorkshop/Material/BlueSaber.mat using Guid(60506de429e6a7a468d36013a3988402) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad9f984c1350280fc58296f399e99fe4') in 0.015255 seconds 
+  Import took 0.020149 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000185 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/Container_Holder (Green).prefab
+  artifactKey: Guid(1aec6b33fb9565f47b8e62e703f02736) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/Container_Holder (Green).prefab using Guid(1aec6b33fb9565f47b8e62e703f02736) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b0b91a60921e11d1452693c526e555ae') in 0.014331 seconds 
+  Import took 0.019019 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Props/Sci-Fi Props.fbx
+  artifactKey: Guid(4549fcfad55250740bdca714a2e80b7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Props/Sci-Fi Props.fbx using Guid(4549fcfad55250740bdca714a2e80b7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d0357c09e8b9d3758c928406a425216') in 0.106251 seconds 
+  Import took 0.111124 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DiamondPlate004_2K_Normal.png
+  artifactKey: Guid(3d6b4ce88d3be684295b1d0d0510d21f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DiamondPlate004_2K_Normal.png using Guid(3d6b4ce88d3be684295b1d0d0510d21f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '046e909f7115385665d945a45bee2675') in 0.028294 seconds 
+  Import took 0.033207 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/Prefabs/Enemies/EnemyBot.prefab
+  artifactKey: Guid(4ceb2126c89f11048b9d671001878028) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/EnemyBot.prefab using Guid(4ceb2126c89f11048b9d671001878028) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7c2fc343edaf641a53771efba707afcf') in 1.004046 seconds 
+  Import took 1.011731 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000455 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/Light.mat
+  artifactKey: Guid(5213cbee6a60e0342a13fe158933f5d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/Light.mat using Guid(5213cbee6a60e0342a13fe158933f5d5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c160d871bd322501281af74432e73ed') in 0.010979 seconds 
+  Import took 0.015571 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000220 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/Lightmap-1_comp_dir.png
+  artifactKey: Guid(5c19c82e5a8922f4696ff7fb79499e1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/Lightmap-1_comp_dir.png using Guid(5c19c82e5a8922f4696ff7fb79499e1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1a75d75a40d3d3ec873b0310427dd43b') in 0.013899 seconds 
+  Import took 0.018365 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000556 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DiamondPlate004_2K_Roughness.png
+  artifactKey: Guid(c6333cd1e5f80ee4285c12999b218e59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DiamondPlate004_2K_Roughness.png using Guid(c6333cd1e5f80ee4285c12999b218e59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16c07ebe5024267908c13816bdc53bdd') in 0.011549 seconds 
+  Import took 0.015946 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000240 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/capoeira (2).fbx
+  artifactKey: Guid(2881a09a8d66ee942a451b8bfa8c24bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/capoeira (2).fbx using Guid(2881a09a8d66ee942a451b8bfa8c24bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c4001a6ee5510212300fd435a7b491d') in 0.018279 seconds 
+  Import took 0.022827 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000233 seconds.
+  path: Assets/Sprites/Dead.png
+  artifactKey: Guid(07c5456fbc788c2498a621de3c0d43b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Dead.png using Guid(07c5456fbc788c2498a621de3c0d43b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e6ecaa07719bca07c3cb3a1ff40f747') in 0.031523 seconds 
+  Import took 0.036470 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Prefabs/Enemies/EnemyDrone.prefab
+  artifactKey: Guid(49ca87c443267dc4199b7b49f647038d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/EnemyDrone.prefab using Guid(49ca87c443267dc4199b7b49f647038d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a0a76ff3aae2c3f1cb1b1e9459e23a1') in 0.016354 seconds 
+  Import took 0.021082 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000202 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/Barrel_Holder.prefab
+  artifactKey: Guid(200cfa5de6679b147ae970eaaf753966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/Barrel_Holder.prefab using Guid(200cfa5de6679b147ae970eaaf753966) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '442d610884215432e91e22e0e3a43a18') in 0.012426 seconds 
+  Import took 0.017013 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000319 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/ginga variation 1.fbx
+  artifactKey: Guid(1ca7fc3061e0912419220526dc5f2eba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/ginga variation 1.fbx using Guid(1ca7fc3061e0912419220526dc5f2eba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a13925f708240453408ee7fbbb93c2e8') in 0.015721 seconds 
+  Import took 0.020458 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/LightingData.asset
+  artifactKey: Guid(9bfa2a9555e4be24d8bc028c1556823e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/LightingData.asset using Guid(9bfa2a9555e4be24d8bc028c1556823e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'af47b29d005221df1b7028a76a08dbf0') in 0.018842 seconds 
+  Import took 0.023623 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000225 seconds.
+  path: Assets/Imports/DizzyMedia/Editor/Resources/Discord.png
+  artifactKey: Guid(b33dda28c0422d24fadb5a9c7887503c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/Editor/Resources/Discord.png using Guid(b33dda28c0422d24fadb5a9c7887503c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d9cb8a0f8710db6dcfb8db9a78b73a9') in 0.012571 seconds 
+  Import took 0.016841 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000238 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/Green.mat
+  artifactKey: Guid(fee162d59fc27384da1d8d82cc5618ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/Green.mat using Guid(fee162d59fc27384da1d8d82cc5618ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1b4d0f5c1418182682a636737233c358') in 0.010752 seconds 
+  Import took 0.015271 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000196 seconds.
+  path: Assets/Imports/Oculus Hands/Prefabs/Left Hand Model.prefab
+  artifactKey: Guid(65847589f926b734d9eaed6e25f0046b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Oculus Hands/Prefabs/Left Hand Model.prefab using Guid(65847589f926b734d9eaed6e25f0046b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3797e1ddcc4a2900a056557d7528bd22') in 0.026342 seconds 
+  Import took 0.031189 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Ceiling.fbx
+  artifactKey: Guid(6ed1f4618b93db14a9908c1bc50f0419) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Ceiling.fbx using Guid(6ed1f4618b93db14a9908c1bc50f0419) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd78e5ef91fbf3fea786e0ee22f239bec') in 0.128283 seconds 
+  Import took 0.132984 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000205 seconds.
+  path: Assets/Prefabs/VR_and_Hands/HandTemplateLeft.prefab
+  artifactKey: Guid(65b59b654d49bfb40a991abf9d381eb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/VR_and_Hands/HandTemplateLeft.prefab using Guid(65b59b654d49bfb40a991abf9d381eb7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcfa27966f2b15e14ff0e9fcbe732853') in 0.009420 seconds 
+  Import took 0.014118 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000210 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Groups/BoxesGroup.prefab
+  artifactKey: Guid(8f3fe0e61df78294cadd4f914000ab82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Groups/BoxesGroup.prefab using Guid(8f3fe0e61df78294cadd4f914000ab82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1829fb0d75dc873683ad5043bc85e955') in 0.013051 seconds 
+  Import took 0.018029 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.001983 seconds.
+  path: Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathLL.prefab
+  artifactKey: Guid(297d9f9a4db58fc48ad52a108556c66e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathLL.prefab using Guid(297d9f9a4db58fc48ad52a108556c66e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a7b798347256f44359c26d1533a1409') in 0.012107 seconds 
+  Import took 0.017072 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Floor/Floor Collection.prefab
+  artifactKey: Guid(ef0d3ffec5af23e448433ee46e0eb376) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Floor/Floor Collection.prefab using Guid(ef0d3ffec5af23e448433ee46e0eb376) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b73ecc5199bb8f5e77cb0d88752d2a21') in 0.018639 seconds 
+  Import took 0.023660 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000171 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/esquiva 1.fbx
+  artifactKey: Guid(318e9cd2074aab94da1f7b1a5138efc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/esquiva 1.fbx using Guid(318e9cd2074aab94da1f7b1a5138efc3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4f6f911cba47f40d085ce25b187f37f9') in 0.015734 seconds 
+  Import took 0.020483 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DiamondPlate004_2K_Displacement.png
+  artifactKey: Guid(53cc97824b44c1645bb38346b0974516) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DiamondPlate004_2K_Displacement.png using Guid(53cc97824b44c1645bb38346b0974516) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7029659c4835ecd96f46d64ad2a47a41') in 0.010779 seconds 
+  Import took 0.015199 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Crouching.fbx
+  artifactKey: Guid(e8f8f93ac081eac4f93fef4108ca45b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Crouching.fbx using Guid(e8f8f93ac081eac4f93fef4108ca45b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48d4ffa7a4a34d3b4169c78171cc1fa3') in 0.015572 seconds 
+  Import took 0.020443 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000250 seconds.
+  path: Assets/Scenes/MikhailWorkshop/Material/BlueSaber 1.mat
+  artifactKey: Guid(6019a4b5d56a2024a90a92d6222140e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/MikhailWorkshop/Material/BlueSaber 1.mat using Guid(6019a4b5d56a2024a90a92d6222140e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a9549f79d97b2a75ecb35c218bdf1f3') in 0.016140 seconds 
+  Import took 0.021329 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathTorso.prefab
+  artifactKey: Guid(9b6c811883f9120449ff910eae6f8f01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathTorso.prefab using Guid(9b6c811883f9120449ff910eae6f8f01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1905c1f5b03223bc8ab31227c39045d') in 0.012952 seconds 
+  Import took 0.017933 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/esquiva 2.fbx
+  artifactKey: Guid(785d508a90701a5498e0b0f87c079a27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/esquiva 2.fbx using Guid(785d508a90701a5498e0b0f87c079a27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab8a3c47268f410cd006db7115d1f798') in 0.016322 seconds 
+  Import took 0.021282 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/Prefabs/DeathEffects/EnemyDeathEffect.prefab
+  artifactKey: Guid(2e2aec08967244a46866f72c3a050560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/DeathEffects/EnemyDeathEffect.prefab using Guid(2e2aec08967244a46866f72c3a050560) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6010cc2d3a74bcc8fca0f0662d40c34') in 0.012023 seconds 
+  Import took 0.016926 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000199 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Crouch Idle 02 Looking Around.fbx
+  artifactKey: Guid(467dfd0dd7569af418451f2821939978) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Crouch Idle 02 Looking Around.fbx using Guid(467dfd0dd7569af418451f2821939978) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1660faa93d8c828af63abe87ac002d4f') in 0.017288 seconds 
+  Import took 0.022390 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000184 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/esquiva 4.fbx
+  artifactKey: Guid(151e2b9503e301341a1789b34ef5167e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/esquiva 4.fbx using Guid(151e2b9503e301341a1789b34ef5167e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b982712297defe295d2e19c64f1e45c3') in 0.016840 seconds 
+  Import took 0.021776 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000166 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/BoxSmall_Holder.prefab
+  artifactKey: Guid(535f3a5e04e9c8345b8a3e6a5b1eea39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/BoxSmall_Holder.prefab using Guid(535f3a5e04e9c8345b8a3e6a5b1eea39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c87d8dfb6114a4bf51b05be0f79fdb9a') in 0.012944 seconds 
+  Import took 0.017755 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000218 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/Container_Large.prefab
+  artifactKey: Guid(ee3399547f9c22841aac6bd8a00d67e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/Container_Large.prefab using Guid(ee3399547f9c22841aac6bd8a00d67e9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76cbf0a15b06f95d2c8cd389eac6c7fe') in 0.013549 seconds 
+  Import took 0.019434 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/BoxLarge_Holder.prefab
+  artifactKey: Guid(8017cba48c7353e4b810880de3286ba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/BoxLarge_Holder.prefab using Guid(8017cba48c7353e4b810880de3286ba9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ed87e1611856bc4a6f9eb4404c6ffd20') in 0.012313 seconds 
+  Import took 0.017255 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/Imports/DizzyMedia/Editor/Resources/Docs.png
+  artifactKey: Guid(e3b3d0dbb246f33429366771ab68f37a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/Editor/Resources/Docs.png using Guid(e3b3d0dbb246f33429366771ab68f37a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '574add3d0ea533ef0762688de6af2a64') in 0.014911 seconds 
+  Import took 0.019565 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Female Crouch Pose.fbx
+  artifactKey: Guid(6743f1c870cc72a438543a98b7d98ec2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Female Crouch Pose.fbx using Guid(6743f1c870cc72a438543a98b7d98ec2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd493e9e04030598d1472856fb37a98cf') in 0.016169 seconds 
+  Import took 0.021188 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Imports/ybot@Idle (1).fbx
+  artifactKey: Guid(c27ca59eac766ef4f810e8dcb8d8fb74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/ybot@Idle (1).fbx using Guid(c27ca59eac766ef4f810e8dcb8d8fb74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31e4df8aecefa9500416ba00291dfec4') in 0.010914 seconds 
+  Import took 0.015954 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000180 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Floor/Floor Piece.prefab
+  artifactKey: Guid(8ef364d657598fc4b93fca618c5391bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Floor/Floor Piece.prefab using Guid(8ef364d657598fc4b93fca618c5391bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edb1461eb05960f1e252aa832f0cdd0a') in 0.017828 seconds 
+  Import took 0.023041 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DIAMONDPLATE.mat
+  artifactKey: Guid(11ab37fc9fd75144181c9486b81c11df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DIAMONDPLATE.mat using Guid(11ab37fc9fd75144181c9486b81c11df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6fdd5558f1315c18706c10f55e45b5e5') in 0.017275 seconds 
+  Import took 0.022456 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Crouched To Sprinting.fbx
+  artifactKey: Guid(d86792c7ed0928848b6f4896ea0f0580) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Crouched To Sprinting.fbx using Guid(d86792c7ed0928848b6f4896ea0f0580) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27ff7fd8e802293b614e3a3cfaa28f67') in 0.015836 seconds 
+  Import took 0.020849 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000173 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/ginga sideways 2.fbx
+  artifactKey: Guid(ba36397be4734074d91a2222aee2ee97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/ginga sideways 2.fbx using Guid(ba36397be4734074d91a2222aee2ee97) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0fe351ce2c035434e7387d06ccdfe6b3') in 0.016749 seconds 
+  Import took 0.021774 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000181 seconds.
+  path: Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathLH.prefab
+  artifactKey: Guid(6f301fd65b9c4304892a607c62239d87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathLH.prefab using Guid(6f301fd65b9c4304892a607c62239d87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7718750c67ec7c394eb3228ff5973634') in 0.012198 seconds 
+  Import took 0.017156 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000202 seconds.
+  path: Assets/Imports/Oculus Hands/Animations/l_hand_fist_anim.fbx
+  artifactKey: Guid(7cb2e1480bb51ce4282f540ea3f41d4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Oculus Hands/Animations/l_hand_fist_anim.fbx using Guid(7cb2e1480bb51ce4282f540ea3f41d4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e513b285ae016363f219da6d8e3e0502') in 0.009648 seconds 
+  Import took 0.015232 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Walls/Cornerfill_Holder.prefab
+  artifactKey: Guid(45101977a1668b940a75d64347da7861) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Walls/Cornerfill_Holder.prefab using Guid(45101977a1668b940a75d64347da7861) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1b6eab3b9f1c45f3cf582897c5d13aa') in 0.010964 seconds 
+  Import took 0.015914 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/Prefabs/VR_and_Hands/HandActualL.prefab
+  artifactKey: Guid(00cc17fa45fe4ac4c94f4108b1c8dce9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/VR_and_Hands/HandActualL.prefab using Guid(00cc17fa45fe4ac4c94f4108b1c8dce9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3fd4492930fc01c7b218d594dd3664e') in 0.009318 seconds 
+  Import took 0.015269 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Groups/BoxesGroup2.prefab
+  artifactKey: Guid(14b12f75d818dc8489b7d1faa1b670ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Groups/BoxesGroup2.prefab using Guid(14b12f75d818dc8489b7d1faa1b670ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a59054313a33959332c46b32d0adda9') in 0.013472 seconds 
+  Import took 0.018677 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000179 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Left Strafe.fbx
+  artifactKey: Guid(d802cb46ada59424c98295cc7f4bf054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Left Strafe.fbx using Guid(d802cb46ada59424c98295cc7f4bf054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18581431d15454a91fa28c681175d3c8') in 0.018638 seconds 
+  Import took 0.023826 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000192 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Audio/Sound Effects/DoorClose.wav
+  artifactKey: Guid(34835fa3c16aad14a86326191abce398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Audio/Sound Effects/DoorClose.wav using Guid(34835fa3c16aad14a86326191abce398) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a7d487f2313417c1d1e1c21d16a38790') in 0.069126 seconds 
+  Import took 0.073894 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/chapa giratoria 2.fbx
+  artifactKey: Guid(b1a80df415cd43f409772cc4573e6d03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/chapa giratoria 2.fbx using Guid(b1a80df415cd43f409772cc4573e6d03) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c41f5ba60b6f12e241e58af699e88ab') in 0.016958 seconds 
+  Import took 0.021878 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/Lightmap-0_comp_dir.png
+  artifactKey: Guid(3ccd13cd06e8f3e478a804793582cebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/Lightmap-0_comp_dir.png using Guid(3ccd13cd06e8f3e478a804793582cebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ea333016d24e5223dbf54ff7a1a6193') in 0.015010 seconds 
+  Import took 0.020177 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000156 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/ginga backward.fbx
+  artifactKey: Guid(b893b321f9097a2438bb4454090c5848) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/ginga backward.fbx using Guid(b893b321f9097a2438bb4454090c5848) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05381c046ab69e5160e4763207db31e7') in 0.016350 seconds 
+  Import took 0.021239 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000198 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/capoeira.fbx
+  artifactKey: Guid(50a28d60b3a47ad409daff2a81c3f9fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/capoeira.fbx using Guid(50a28d60b3a47ad409daff2a81c3f9fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9df4744144cbc751078fbdb372e40fed') in 0.016634 seconds 
+  Import took 0.021745 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathRH.prefab
+  artifactKey: Guid(6a792c6314df8f94ca98d36fb5491868) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathRH.prefab using Guid(6a792c6314df8f94ca98d36fb5491868) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b3e062336a5b57fbf54454a67a9dd56') in 0.011707 seconds 
+  Import took 0.016494 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/Presets/Defaults/AudioDecompressOnLoad.preset
+  artifactKey: Guid(e7689051185d12f4298e1ebb2693a29f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Presets/Defaults/AudioDecompressOnLoad.preset using Guid(e7689051185d12f4298e1ebb2693a29f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6664495ae799731c129f597a1fb82827') in 0.010677 seconds 
+  Import took 0.015575 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000200 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/Lightmap-0_comp_dir.png
+  artifactKey: Guid(863a501c89e6a974cafd728e45ff8d33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/Lightmap-0_comp_dir.png using Guid(863a501c89e6a974cafd728e45ff8d33) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd595aba6dd0611c5406dee61ba24ff6a') in 0.018166 seconds 
+  Import took 0.022974 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Diagonal Wall Run.fbx
+  artifactKey: Guid(bc26ef65556e14f4b9d9d8f2a2f56f4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Diagonal Wall Run.fbx using Guid(bc26ef65556e14f4b9d9d8f2a2f56f4a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7507ce18ab5517968c973fd92eaffc7c') in 0.015968 seconds 
+  Import took 0.020921 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000193 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/ginga sideways 1.fbx
+  artifactKey: Guid(da4e97baca25ab3468169c431bdd22d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/ginga sideways 1.fbx using Guid(da4e97baca25ab3468169c431bdd22d7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dabe5d1a5cee48c8512a82e80f85533e') in 0.016169 seconds 
+  Import took 0.021472 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000158 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Crouch Idle 02 Looking Around (1).fbx
+  artifactKey: Guid(080d2548167d4384f8f2084d17eb61fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Crouch Idle 02 Looking Around (1).fbx using Guid(080d2548167d4384f8f2084d17eb61fa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27402cd2c237459dbe09caf440caf224') in 0.017206 seconds 
+  Import took 0.022458 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000334 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Door 2.fbx
+  artifactKey: Guid(9c6d600eaa8e61242936a71d26c2e5a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Door 2.fbx using Guid(9c6d600eaa8e61242936a71d26c2e5a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c792965b8e3201428d837b5e6639e5fd') in 0.038918 seconds 
+  Import took 0.043878 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/Glass.mat
+  artifactKey: Guid(92fa763c26dedbe4fba4d22935eff79a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/Glass.mat using Guid(92fa763c26dedbe4fba4d22935eff79a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5fd08208546c577160862a3b8a50a609') in 0.020140 seconds 
+  Import took 0.024746 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/chapa 2.fbx
+  artifactKey: Guid(8257e96f7df51c54ea2cbac30f00af32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/chapa 2.fbx using Guid(8257e96f7df51c54ea2cbac30f00af32) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21a6c01bb1a9b7161870450491db5e6c') in 0.016033 seconds 
+  Import took 0.021002 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/Imports/Oculus Hands/Animations/l_hand_default_anim.fbx
+  artifactKey: Guid(1ae9aefe37a62de429ddc2edd1ca36f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Oculus Hands/Animations/l_hand_default_anim.fbx using Guid(1ae9aefe37a62de429ddc2edd1ca36f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bae5b916c8353406764be654f9609b18') in 0.010013 seconds 
+  Import took 0.015278 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DiamondPlate004_2K_Metalness.png
+  artifactKey: Guid(35f2197f41c0f0346b2e86f62284329c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/_Materials/DiamondPlate_2K/DiamondPlate004_2K_Metalness.png using Guid(35f2197f41c0f0346b2e86f62284329c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b88f3943dd2c2a550d5179112e3d0c34') in 0.012067 seconds 
+  Import took 0.016976 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/Prefabs/VR_and_Hands/HandTemplateRight.prefab
+  artifactKey: Guid(214f8c0c866749240b99e7208b409f6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/VR_and_Hands/HandTemplateRight.prefab using Guid(214f8c0c866749240b99e7208b409f6f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '58cbc2bd9834331036187ffa73b7ca37') in 0.012436 seconds 
+  Import took 0.017582 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000194 seconds.
+  path: Assets/Imports/Frisbee Throw.fbx
+  artifactKey: Guid(0b35fa029c24a674186bd1ada1fa7637) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Frisbee Throw.fbx using Guid(0b35fa029c24a674186bd1ada1fa7637) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2daeccc4f85542840e689747530b1a10') in 0.047318 seconds 
+  Import took 0.052586 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000181 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Jump Over.fbx
+  artifactKey: Guid(aabcdb4dd29aa8e4084114c1b9a85ce3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Jump Over.fbx using Guid(aabcdb4dd29aa8e4084114c1b9a85ce3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '53b4c5fdb83ceedddaddcc0ed17facd9') in 0.016766 seconds 
+  Import took 0.021811 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000169 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/LightingData.asset
+  artifactKey: Guid(916ed859825d679439e5c385fdce1cec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/LightingData.asset using Guid(916ed859825d679439e5c385fdce1cec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '459231c19da4990cd5958d56a67f2df7') in 0.007124 seconds 
+  Import took 0.011904 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000211 seconds.
+  path: Assets/Prefabs/Enemies/Logic/EnemyAIMovementZone.prefab
+  artifactKey: Guid(a4e56d4593d50b84691a70b43be87c6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/Enemies/Logic/EnemyAIMovementZone.prefab using Guid(a4e56d4593d50b84691a70b43be87c6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5abf9a244465364d33ad818bad8251ff') in 0.011109 seconds 
+  Import took 0.016313 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000227 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Skybox/front.png
+  artifactKey: Guid(ac3097730848bda428fdc0d0ae7f41cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Skybox/front.png using Guid(ac3097730848bda428fdc0d0ae7f41cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39565b7d11f7bd7c7407adfb20319224') in 0.018231 seconds 
+  Import took 0.023362 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000286 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Crouch Idle 01.fbx
+  artifactKey: Guid(d246de9e221871c46b1756912be443a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Crouch Idle 01.fbx using Guid(d246de9e221871c46b1756912be443a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a34385546ff3879e287d98c69d94a005') in 0.017231 seconds 
+  Import took 0.022351 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000160 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/Lightmap-0_comp_light.exr
+  artifactKey: Guid(87d38578dd240884aa80fa28cbc06798) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/Lightmap-0_comp_light.exr using Guid(87d38578dd240884aa80fa28cbc06798) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb87f7bd1dfc42f3349841d9838ccc11') in 0.022832 seconds 
+  Import took 0.027604 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000208 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/esquiva 3.fbx
+  artifactKey: Guid(ad91abf27f36fbe4a930e7dd65811b56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/esquiva 3.fbx using Guid(ad91abf27f36fbe4a930e7dd65811b56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f16c2abfc79bbfe85c2c19e2a648bdc7') in 0.016151 seconds 
+  Import took 0.021226 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Idle.fbx
+  artifactKey: Guid(2715a603786e4f145bbd264ab77c88e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Idle.fbx using Guid(2715a603786e4f145bbd264ab77c88e1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f1d043cefe1872d25729f396123e667') in 0.016255 seconds 
+  Import took 0.021214 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000201 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Door.fbx
+  artifactKey: Guid(d6ac3259ab2b8e042883ff65dea236f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Door.fbx using Guid(d6ac3259ab2b8e042883ff65dea236f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9798a3f2a064d293f2b409c13b9ec86') in 0.038447 seconds 
+  Import took 0.043404 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Audio/Sound Effects/DoorOpen.wav
+  artifactKey: Guid(14583a749d279124299e31e5dfbf43aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Audio/Sound Effects/DoorOpen.wav using Guid(14583a749d279124299e31e5dfbf43aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e407ccd73a02e4962092898b2668ba58') in 0.013061 seconds 
+  Import took 0.017747 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000162 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/ginga variation 3.fbx
+  artifactKey: Guid(6d347b7eddee1f646a65c173c4edcf0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/ginga variation 3.fbx using Guid(6d347b7eddee1f646a65c173c4edcf0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e25f7058acd67fa62e51e03bf299879e') in 0.017596 seconds 
+  Import took 0.022755 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000153 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/au.fbx
+  artifactKey: Guid(c4716f0d28573f642a830815da61a857) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/au.fbx using Guid(c4716f0d28573f642a830815da61a857) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cda56e04f3865b8e9a79a163834fc87e') in 0.016455 seconds 
+  Import took 0.021464 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000202 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Skybox/bottom.png
+  artifactKey: Guid(c27db449c17253b41be99ea5568e6701) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Skybox/bottom.png using Guid(c27db449c17253b41be99ea5568e6701) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8475ddb74fdf95fea2c3b853f6d8654f') in 0.017556 seconds 
+  Import took 0.022485 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Imports/MixamoAnims/xbot@Frisbee Throw.fbx
+  artifactKey: Guid(f8487edf3ea5e5441a154ad68aec771d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/xbot@Frisbee Throw.fbx using Guid(f8487edf3ea5e5441a154ad68aec771d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e590c04d75fb2b3376717d36e3257e8a') in 0.016769 seconds 
+  Import took 0.021709 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000172 seconds.
+  path: Assets/Imports/DizzyMedia/Editor/Resources/Facebook.png
+  artifactKey: Guid(12297004cb37f45b0823ad2625703775) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/Editor/Resources/Facebook.png using Guid(12297004cb37f45b0823ad2625703775) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc55e8ac61e689b568ad91867391a6e8') in 0.013608 seconds 
+  Import took 0.018427 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000166 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/Container_Holder (Red).prefab
+  artifactKey: Guid(5bb8773b6f6babd46a8240ac77e17ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Single/Container_Holder (Red).prefab using Guid(5bb8773b6f6babd46a8240ac77e17ff3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a0f53a051f7f877d0e3e43aa6b2a2294') in 0.014553 seconds 
+  Import took 0.019299 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000177 seconds.
+  path: Assets/Imports/Oculus Hands/Animations/l_hand_pinch_anim.fbx
+  artifactKey: Guid(a91ff20f7450bf446a6bf0bfb5e932ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/Oculus Hands/Animations/l_hand_pinch_anim.fbx using Guid(a91ff20f7450bf446a6bf0bfb5e932ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0dd878baca7aec5cef594967442bcdf') in 0.009811 seconds 
+  Import took 0.014892 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/ginga variation 2.fbx
+  artifactKey: Guid(911964afbd5857c4299f91b4bcad4e93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/ginga variation 2.fbx using Guid(911964afbd5857c4299f91b4bcad4e93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ecf066955ae908780e6d89b20f659984') in 0.017060 seconds 
+  Import took 0.021988 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000188 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Skybox/left.png
+  artifactKey: Guid(5ee173ce806ce0b45b6c7dc1e192da52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Skybox/left.png using Guid(5ee173ce806ce0b45b6c7dc1e192da52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f44444435ecdacd547544d0d20c0097c') in 0.018154 seconds 
+  Import took 0.022977 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000182 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Level.fbx
+  artifactKey: Guid(ab052a62dbb927449b02d208af93fe2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Level.fbx using Guid(ab052a62dbb927449b02d208af93fe2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6c4999ff98eb80535e4fc1e4305eae3') in 0.113264 seconds 
+  Import took 0.118343 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000197 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/ginga sideways to au.fbx
+  artifactKey: Guid(763e99a0afcdecf4fae2cc1f9f9882be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/ginga sideways to au.fbx using Guid(763e99a0afcdecf4fae2cc1f9f9882be) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c54ac955d62e23abc48e71ebafcdc652') in 0.017488 seconds 
+  Import took 0.022398 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Front Twist Flip.fbx
+  artifactKey: Guid(23df5c3666aa3da42baaf6038ce60a9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Front Twist Flip.fbx using Guid(23df5c3666aa3da42baaf6038ce60a9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2986049a7b42c5edbe12647e8424ec4e') in 0.020259 seconds 
+  Import took 0.025298 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000175 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Ceiling/Ceiling.prefab
+  artifactKey: Guid(cf0fd3c73b7786f48b7af7b80972391c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Ceiling/Ceiling.prefab using Guid(cf0fd3c73b7786f48b7af7b80972391c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00a43312edc75ddfc0ea3d57548f69cd') in 0.015646 seconds 
+  Import took 0.020733 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000177 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/Lightmap-1_comp_dir.png
+  artifactKey: Guid(4a03462b147fd6445ae962a2d2bd66ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/Lightmap-1_comp_dir.png using Guid(4a03462b147fd6445ae962a2d2bd66ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '330470dbcc6a5eb3cd67e08ece582f3c') in 0.013896 seconds 
+  Import took 0.018775 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/Imports/DizzyMedia/Editor/Resources/HeaderLogo.png
+  artifactKey: Guid(1adf18992b9b62c43bac766d5ca3ead3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/Editor/Resources/HeaderLogo.png using Guid(1adf18992b9b62c43bac766d5ca3ead3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60d8d3b9e88197adb5409bf06284960a') in 0.015785 seconds 
+  Import took 0.020797 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000184 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Groups/BoxesLargeGroup.prefab
+  artifactKey: Guid(f062a8b8424886c45aa026426c252423) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Props/Groups/BoxesLargeGroup.prefab using Guid(f062a8b8424886c45aa026426c252423) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea7b57d11a4ea22cec454c92366304d4') in 0.012586 seconds 
+  Import took 0.017507 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000171 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Jumping.fbx
+  artifactKey: Guid(03ec07e8634f0f64394465b3ef85bebc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Jumping.fbx using Guid(03ec07e8634f0f64394465b3ef85bebc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf9489e2e0e04d2035f0d7f8b9a8fbc1') in 0.015352 seconds 
+  Import took 0.020189 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000187 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/Lightmap-0_comp_light.exr
+  artifactKey: Guid(cd236487e6eac0947ba8ef344e1cb5ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/Lightmap-0_comp_light.exr using Guid(cd236487e6eac0947ba8ef344e1cb5ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '13982241d0fa729669f1001b44d7e622') in 0.015218 seconds 
+  Import took 0.020352 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000277 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Skybox/back.png
+  artifactKey: Guid(94913f06d3c572b4f85c825e0f4b2cd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Skybox/back.png using Guid(94913f06d3c572b4f85c825e0f4b2cd7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b57bfe87b57a2446a07d834bfcbf5fe') in 0.017669 seconds 
+  Import took 0.022450 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000213 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/chapa-giratoria.fbx
+  artifactKey: Guid(e92d4577d8f79c146b5af58f20eb43bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/chapa-giratoria.fbx using Guid(e92d4577d8f79c146b5af58f20eb43bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b43b467caaa9ca2da62f2e1f97537a3') in 0.016441 seconds 
+  Import took 0.021542 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000181 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/esquiva 5.fbx
+  artifactKey: Guid(4bb7b8770330ffc4fbbbc61c017400e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/esquiva 5.fbx using Guid(4bb7b8770330ffc4fbbbc61c017400e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a60592af737874c33a6f18a8d5de90a3') in 0.016500 seconds 
+  Import took 0.021750 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000143 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Ceiling/Ceiling Piece.prefab
+  artifactKey: Guid(4846ba88baadb6b4e90f1edbbc7ae06d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Prefabs/Environment/Pieces/Ceiling/Ceiling Piece.prefab using Guid(4846ba88baadb6b4e90f1edbbc7ae06d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '142ee46bb7820676468c199f2f3ccb94') in 0.018301 seconds 
+  Import took 0.023205 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000209 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Wall Chunk.fbx
+  artifactKey: Guid(df090a721021ede4d9663fe3fc624c90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Models/Environment/Wall Chunk.fbx using Guid(df090a721021ede4d9663fe3fc624c90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad828a70afabec9f5095f5ac5dcbd855') in 0.019742 seconds 
+  Import took 0.024688 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000170 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/capoeira (3).fbx
+  artifactKey: Guid(e4d307323115c5541aba04d712598db3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/capoeira (3).fbx using Guid(e4d307323115c5541aba04d712598db3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9fe5768d25c79d7a50eb823d45283b19') in 0.016615 seconds 
+  Import took 0.021584 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000164 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/Lightmap-1_comp_light.exr
+  artifactKey: Guid(1da6ed66daf65844ba93fedcf0d9db25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/Lightmap-1_comp_light.exr using Guid(1da6ed66daf65844ba93fedcf0d9db25) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d5cc2b7f42b3f2ec981d6feca110097') in 0.013653 seconds 
+  Import took 0.019421 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000178 seconds.
+  path: Assets/Presets/Defaults/DirectionalLight_Default.preset
+  artifactKey: Guid(463065d4f17d1d94d848aa127b94dd43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Presets/Defaults/DirectionalLight_Default.preset using Guid(463065d4f17d1d94d848aa127b94dd43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db64ce19ea3a95fc4ba7b1bbf47efa63') in 0.010373 seconds 
+  Import took 0.015245 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000183 seconds.
+  path: Assets/Prefabs/VR_and_Hands/HandActualR.prefab
+  artifactKey: Guid(c37d87ee5e9681145b5c77ef09db6765) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/VR_and_Hands/HandActualR.prefab using Guid(c37d87ee5e9681145b5c77ef09db6765) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '361e54f1cea402038a54089978227379') in 0.009281 seconds 
+  Import took 0.014182 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000154 seconds.
+  path: Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathRL.prefab
+  artifactKey: Guid(07f0d4055343cf246bd65970ea1de604) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/DeathEffects/HumanoidEnemyDeathEffects/DeathRL.prefab using Guid(07f0d4055343cf246bd65970ea1de604) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3af6b06762745f22ed41bc56b1101de7') in 0.012203 seconds 
+  Import took 0.016999 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000165 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/Lightmap-1_comp_light.exr
+  artifactKey: Guid(523062092f829514d97e929223139a02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/Lightmap-1_comp_light.exr using Guid(523062092f829514d97e929223139a02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f0fdd4bec8ed2f6e44e98fc5c71ed9e6') in 0.012829 seconds 
+  Import took 0.017547 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.257118 seconds.
+  path: Assets/Imports/MixamoAnims/xbot@Standing 1H Magic Attack 01.fbx
+  artifactKey: Guid(9864e9f13db625c49a255b0eeea6bab6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/xbot@Standing 1H Magic Attack 01.fbx using Guid(9864e9f13db625c49a255b0eeea6bab6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3dfa1057faefc160e4097dfa7a175e93') in 0.016166 seconds 
+  Import took 0.021525 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Magic Heal.fbx
+  artifactKey: Guid(2c30b0ed50756a14cbb3da383eb88381) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Magic Heal.fbx using Guid(2c30b0ed50756a14cbb3da383eb88381) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9b04d81402afc82a3124e78828b4a1b') in 0.016438 seconds 
+  Import took 0.021193 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000216 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/throwy 2.fbx
+  artifactKey: Guid(e0b59e5dfd47cbe46a7a95808d29be5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/throwy 2.fbx using Guid(e0b59e5dfd47cbe46a7a95808d29be5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7d884749e8e7b3064418014b5a799694') in 0.016927 seconds 
+  Import took 0.021986 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 28.085272 seconds.
+  path: Assets/Imports/DizzyMedia/Editor/Resources/Asset_Circ.png
+  artifactKey: Guid(05d5b8097f226914abf3cb7ac91c1cbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/Editor/Resources/Asset_Circ.png using Guid(05d5b8097f226914abf3cb7ac91c1cbb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e3127a2bfd9a7f85c841f6094c2c1ff') in 0.029967 seconds 
+  Import took 0.035535 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 3.841336 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Post Processing/LPS_SF_Interior.asset
+  artifactKey: Guid(e8313cb5337c07142ac55fe0e517eefd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Resources/Post Processing/LPS_SF_Interior.asset using Guid(e8313cb5337c07142ac55fe0e517eefd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f542dbc803b4fa3d9f12644f3cb91543') in 0.006267 seconds 
+  Import took 0.011346 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000190 seconds.
+  path: Assets/Imports/MixamoAnims/xbot@Magic Heal.fbx
+  artifactKey: Guid(b191ed4cb4f9f0d4cb38e1f5e5dd11b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/xbot@Magic Heal.fbx using Guid(b191ed4cb4f9f0d4cb38e1f5e5dd11b1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f84e88a8d4e86b8e9fbb7ccd65d9bf8a') in 0.016814 seconds 
+  Import took 0.021787 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000217 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/martelo 2.fbx
+  artifactKey: Guid(646c4f201c3a05f4bb641bb6f6cf465c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/martelo 2.fbx using Guid(646c4f201c3a05f4bb641bb6f6cf465c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fb7bf4ee308c2594909afb7f71e89f1') in 0.016404 seconds 
+  Import took 0.021529 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000223 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/meia lua de compasso back.fbx
+  artifactKey: Guid(95945db4171e4f441aa7ed47589f6582) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/meia lua de compasso back.fbx using Guid(95945db4171e4f441aa7ed47589f6582) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d4eff571fb7fcaafedcc8ee726c1f36') in 0.016008 seconds 
+  Import took 0.020875 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/martelo do chau sem mao.fbx
+  artifactKey: Guid(3f6037dcd0b40094ca7b89d381152aa1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/martelo do chau sem mao.fbx using Guid(3f6037dcd0b40094ca7b89d381152aa1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9807d8e304691a4698e771acc0c556e6') in 0.017063 seconds 
+  Import took 0.022046 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000201 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scripts/Editor/Resources/EditorContent/LPS_SFInt-Logo.png
+  artifactKey: Guid(f1e680345c9b76b4ba65d13740858715) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scripts/Editor/Resources/EditorContent/LPS_SFInt-Logo.png using Guid(f1e680345c9b76b4ba65d13740858715) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76c11ad5e071e0323bf509a71c02b5a2') in 0.014591 seconds 
+  Import took 0.019404 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000189 seconds.
+  path: Assets/Imports/MixamoAnims/ybot@Male Crouch Pose.fbx
+  artifactKey: Guid(4d84ac5fcae7d434888b5ccf82b1409d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/ybot@Male Crouch Pose.fbx using Guid(4d84ac5fcae7d434888b5ccf82b1409d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bcc7e8c7ff470cbd51c8ce8725507882') in 0.023680 seconds 
+  Import took 0.033613 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000311 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/martelo 3.fbx
+  artifactKey: Guid(2d1589242fc037b458e0c390352b309c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/martelo 3.fbx using Guid(2d1589242fc037b458e0c390352b309c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be6149429816dc172be052c454a092fb') in 0.019757 seconds 
+  Import took 0.028261 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000160 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/macaco side.fbx
+  artifactKey: Guid(9f37dcc8eb828c64894108e6b126faad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/macaco side.fbx using Guid(9f37dcc8eb828c64894108e6b126faad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3da8d5987112a60b113793f9852356da') in 0.016179 seconds 
+  Import took 0.021075 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000193 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/martelo do chau.fbx
+  artifactKey: Guid(fc935769c6dd85d4ca57f3aa876c66c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/martelo do chau.fbx using Guid(fc935769c6dd85d4ca57f3aa876c66c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4cc992753fc5f98321fc235f41844b0') in 0.017202 seconds 
+  Import took 0.022272 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.439534 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/meia lua de frente.fbx
+  artifactKey: Guid(782587ccd30de3a4585de27c92fdf6e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/meia lua de frente.fbx using Guid(782587ccd30de3a4585de27c92fdf6e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce05beb7a3bbb73ad026b56bc1d2d18d') in 0.018865 seconds 
+  Import took 0.024647 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/throwy 1.fbx
+  artifactKey: Guid(4c7a206a6ba8ad14c91fadb8bea82845) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/throwy 1.fbx using Guid(4c7a206a6ba8ad14c91fadb8bea82845) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16f81d4e86e4d36492cc5af05e8be4d1') in 0.017536 seconds 
+  Import took 0.022432 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000174 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/troca 1.fbx
+  artifactKey: Guid(c3704e2bfa19eb047b1f3ea770646968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/troca 1.fbx using Guid(c3704e2bfa19eb047b1f3ea770646968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'edea1fc9ff27cd0635cc4df424188864') in 0.016358 seconds 
+  Import took 0.021301 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.921939 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/throw ptl.fbx
+  artifactKey: Guid(28721c7381696d440a135197abeff786) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/throw ptl.fbx using Guid(28721c7381696d440a135197abeff786) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d83db5ac14deba6a126ced42d114afe') in 0.017516 seconds 
+  Import took 0.023329 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000240 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/throwy 3.fbx
+  artifactKey: Guid(019e63e2e3ec8e445aaa630d0656ca53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/throwy 3.fbx using Guid(019e63e2e3ec8e445aaa630d0656ca53) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c03f780be63476bad97cff9cbcbe35fc') in 0.016131 seconds 
+  Import took 0.020763 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000234 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/queshada 2.fbx
+  artifactKey: Guid(23ed872285839ec46ae043a2f32b7ab5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/queshada 2.fbx using Guid(23ed872285839ec46ae043a2f32b7ab5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e83cdef45c11974e4470831cb64da534') in 0.017159 seconds 
+  Import took 0.022346 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000168 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/rasteira 1.fbx
+  artifactKey: Guid(b16e7ddac7f70c84eb71c2cbe99aa620) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/rasteira 1.fbx using Guid(b16e7ddac7f70c84eb71c2cbe99aa620) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90a54a6ca6c450341db96fb8ffe95408') in 0.021371 seconds 
+  Import took 0.026719 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000252 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/pontera.fbx
+  artifactKey: Guid(a4bc9c45115e5ae42961859c8a6f28c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/pontera.fbx using Guid(a4bc9c45115e5ae42961859c8a6f28c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '61348205d5f2df611bcaea0e0f7abd29') in 0.016957 seconds 
+  Import took 0.022217 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000193 seconds.
+  path: Assets/Imports/MixamoAnims/WarDance/queshada 1.fbx
+  artifactKey: Guid(5295ea30bbca1cd45a30cc97186eabec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/MixamoAnims/WarDance/queshada 1.fbx using Guid(5295ea30bbca1cd45a30cc97186eabec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c60b094a1fbf00c80cb953140763da4') in 0.017210 seconds 
+  Import took 0.022224 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.419890 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/OcclusionCullingData.asset
+  artifactKey: Guid(fa87ce7bf850dfa45b02cf44efdec29a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior/OcclusionCullingData.asset using Guid(fa87ce7bf850dfa45b02cf44efdec29a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49de72d84a80444291783c146107e84b') in 0.024762 seconds 
+  Import took 0.029857 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000232 seconds.
+  path: Assets/XR/Settings/Oculus Settings.asset
+  artifactKey: Guid(b84ddba791cd77d498851b6123bca114) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/XR/Settings/Oculus Settings.asset using Guid(b84ddba791cd77d498851b6123bca114) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d5a4659e45bf06f4a648243f3e423b0') in 0.010292 seconds 
+  Import took 0.014774 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000196 seconds.
+  path: Assets/XR/Loaders/Oculus Loader.asset
+  artifactKey: Guid(4a652cc9e552930498a04a79b1e8e1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/XR/Loaders/Oculus Loader.asset using Guid(4a652cc9e552930498a04a79b1e8e1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fafee87850a12f5ee7ef9be81ed4529a') in 0.010035 seconds 
+  Import took 0.014746 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000201 seconds.
+  path: Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/OcclusionCullingData.asset
+  artifactKey: Guid(0701542b1882c124eb305a3c4d029715) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Imports/DizzyMedia/_Assets/LP Sets_Sci-fi Interior/Scenes/LP Sets_Sci-Fi Interior URP/OcclusionCullingData.asset using Guid(0701542b1882c124eb305a3c4d029715) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66e5bc74bfd7791cf7f84ca1e90c2d07') in 0.022113 seconds 
+  Import took 0.026605 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

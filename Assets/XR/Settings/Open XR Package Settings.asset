@@ -338,14 +338,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f0ebc320a151d3408ea1e9fce54d40e, type: 3}
   m_Name: Open XR Package Settings
   m_EditorClassIdentifier: 
-  Keys: 01000000070000000d0000000e0000000400000019000000
+  Keys: 01000000070000000d0000000e000000
   Values:
   - {fileID: -7771389045776277656}
   - {fileID: -3634742418849765424}
   - {fileID: -5385846986044214793}
   - {fileID: 5731942542846198801}
-  - {fileID: 3843874108175870167}
-  - {fileID: 3564835755711843698}
 --- !u!114 &401951860751056663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,21 +405,6 @@ MonoBehaviour:
   priority: 0
   required: 0
   ignoreValidationErrors: 0
---- !u!114 &3564835755711843698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5a1f07dc5afe854f9f12a4194aca3fb, type: 3}
-  m_Name: tvOS
-  m_EditorClassIdentifier: 
-  features: []
-  m_renderMode: 1
-  m_depthSubmissionMode: 0
 --- !u!114 &3680518582008326625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,21 +447,6 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
---- !u!114 &3843874108175870167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5a1f07dc5afe854f9f12a4194aca3fb, type: 3}
-  m_Name: iPhone
-  m_EditorClassIdentifier: 
-  features: []
-  m_renderMode: 1
-  m_depthSubmissionMode: 0
 --- !u!114 &3896256538820081267
 MonoBehaviour:
   m_ObjectHideFlags: 0
