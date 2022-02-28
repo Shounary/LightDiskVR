@@ -32,7 +32,7 @@ public class BaseAccessor : NetworkBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    [ServerRpc(RequireOwnership =false) ]
+    [ServerRpc(RequireOwnership=false)]
     private void UpdatePlayerListTextServerRPC()
     {
         NetworkObject thisObj = GetComponent<NetworkObject>();
@@ -42,10 +42,10 @@ public class BaseAccessor : NetworkBehaviour
             {
                 BaseAccessor acc = c.PlayerObject.GetComponent<BaseAccessor>();
                 string str = "";
-                if (c.ClientId == thisObj.OwnerClientId)
+                /*if (c.ClientId == thisObj.OwnerClientId)
                 {
                     str += "<B>";
-                }
+                }*/
                 str += $"P{c.ClientId}";
                 if (acc.OwnerClientId == NetworkManager.LocalClientId)
                 {
@@ -62,10 +62,10 @@ public class BaseAccessor : NetworkBehaviour
                         str += " Not Ready";
                     }
                 }
-                if (c.ClientId == thisObj.OwnerClientId)
+                /*if (c.ClientId == thisObj.OwnerClientId)
                 {
                     str += "</B>";
-                }
+                }*/
                 str += "\n";
 
                 return str;
