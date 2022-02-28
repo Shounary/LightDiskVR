@@ -139,7 +139,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 1
+  m_ThrowVelocityScale: 4.5
   m_ThrowAngularVelocityScale: 0.2
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
@@ -247,7 +247,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6975627547615817192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.44}
+  m_LocalPosition: {x: 0, y: -1, z: -0.5}
   m_LocalScale: {x: 2, y: 50, z: 2}
   m_Children: []
   m_Father: {fileID: 1490519023632216730}
