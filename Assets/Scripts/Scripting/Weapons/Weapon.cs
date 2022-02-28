@@ -9,4 +9,6 @@ public class Weapon : MonoBehaviour
     public float damage;
     public bool isSummonable;
     public List<string> storableLocations;
+    public string player;
+    public Collider hurtBox; 
 }
