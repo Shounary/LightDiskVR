@@ -3,7 +3,7 @@ using Unity.Netcode;
 
 public struct NetworkString : INetworkSerializable
 {
-    private FixedString32Bytes info;
+    private FixedString128Bytes info;
 
     public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
     {
@@ -16,6 +16,6 @@ public struct NetworkString : INetworkSerializable
     }
 
     public static implicit operator string(NetworkString s) => s.ToString();
-    public static implicit operator NetworkString(string s) => new NetworkString() { info = new FixedString32Bytes(s) };
+    public static implicit operator NetworkString(string s) => new NetworkString() { info = new FixedString128Bytes(s) };
 
 }

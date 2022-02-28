@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using System;
 using System.Linq;
+using System.Text;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -13,10 +14,63 @@ public class BaseAccessor : NetworkBehaviour
 
     public GameStage GameStage => m_GameStage.Value;
 
+    protected NetworkVariable<NetworkString> m_PlayerListText = new NetworkVariable<NetworkString>("Player List");
+
+    public string PlayerListText => m_PlayerListText.Value;
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+        UpdatePlayerListTextServerRPC();
         MatchConfigEntry();
+
+        Lock.OnValueChanged = (prev, next) =>
+        {
+            UpdatePlayerListTextServerRPC();
+        };
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    [ServerRpc(RequireOwnership =false) ]
+    private void UpdatePlayerListTextServerRPC()
+    {
+        NetworkObject thisObj = GetComponent<NetworkObject>();
+        m_PlayerListText.Value = string.Concat(
+            NetworkManager.Singleton.ConnectedClientsList
+            .Select(c =>
+            {
+                BaseAccessor acc = c.PlayerObject.GetComponent<BaseAccessor>();
+                string str = "";
+                if (c.ClientId == thisObj.OwnerClientId)
+                {
+                    str += "<B>";
+                }
+                str += $"P{c.ClientId}";
+                if (acc.OwnerClientId == NetworkManager.LocalClientId)
+                {
+                    str += " (Host)";
+                }
+                else
+                {
+                    if (acc.Lock.Value)
+                    {
+                        str += " Ready";
+                    }
+                    else
+                    {
+                        str += " Not Ready";
+                    }
+                }
+                if (c.ClientId == thisObj.OwnerClientId)
+                {
+                    str += "</B>";
+                }
+                str += "\n";
+
+                return str;
+            }
+            ).DefaultIfEmpty(""));
     }
 
     #region MATCH_CONFIG
@@ -28,33 +82,47 @@ public class BaseAccessor : NetworkBehaviour
 
     public void MatchConfigEntry()
     {
-        Debug.Log("Entering Match Config");
-        StartMenuUIFlat.Instance.StartMenu.SetActive(false);
-        StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(true);
+        PreMatchUIManager.StartMenuObj.SetActive(false);
+        PreMatchUIManager.MatchConfigMenuObj.SetActive(true);
+        PreMatchUIManager.PersistentUIObj.SetActive(true);
 
+        PreMatchUIManager.Persistent.Accessor = this;
         MatchConfigFactory.Instance.ArenaIndex = 0;
         MatchConfig = new MatchConfig(MatchConfigFactory.Instance.Arena);
 
-        if (IsHost)
+        // FIXME:
+        // currently the delay is added because network variables are not initialized upon networkspawn
+        this.DelayLaunch(delegate
         {
-            MatchConfigServerPath();
-        }
-        MatchConfigClientPath();
+            ArenaID.OnValueChanged = null;
+            MaxTeams.OnValueChanged = null;
+            WinConditionIndex.OnValueChanged = null;
+
+            MatchConfigServerRpc();
+            MatchConfigClientPath();
+        }, 0.1f);
     }
 
-    public void MatchConfigServerPath()
+    [ServerRpc(RequireOwnership =false)]
+    public void MatchConfigServerRpc()
     {
-        Debug.Log(string.Format("Host {0} entered match config", NetworkManager.Singleton.LocalClientId));
+        Debug.Log($"Host {NetworkManager.Singleton.LocalClientId} entered match config");
         m_GameStage.Value = GameStage.MatchConfig;
 
         ArenaID.Value = MatchConfig.Arena.BuildIndex;
         MaxTeams.Value = MatchConfig.MaxTeams;
         WinConditionIndex.Value = MatchConfig.WinConditionIndex;
+
+        //ArenaID.OnValueChanged = (prev, next) => { RollCall(acc => acc.ArenaID.Value = next); };
+        //MaxTeams.OnValueChanged = (prev, next) => { RollCall(acc => acc.MaxTeams.Value = next); };
+        //WinConditionIndex.OnValueChanged = (prev, next) => { RollCall(acc => acc.WinConditionIndex.Value = next); };
+
+        SetLockServerRpc(false);
     }
 
     public void MatchConfigClientPath()
     {
-        Debug.Log(string.Format("Client {0} entered match config", NetworkManager.Singleton.LocalClientId));
+        Debug.Log($"Client {NetworkManager.Singleton.LocalClientId} entered match config");
 
         ArenaID.OnValueChanged += delegate
         {
@@ -73,51 +141,55 @@ public class BaseAccessor : NetworkBehaviour
             MatchConfig.WinConditionIndex = MaxTeams.Value;
             // TODO: Update UI
         };
+
+        PreMatchUIManager.MatchConfigMenu.JoinCode.text = RelayManager.Instance.JoinCode;
     }
 
     public void MatchConfigExit()
     {
-        RollCall(c => c.PlayerConfigEnterClientRPC());
+        RollCall(acc => { acc.PlayerConfigEnterClientRPC(); acc.PlayerConfigEnterServerRPC(); });
     }
 
     public void PrintMatchConfig()
     {
         Debug.Log(
-            string.Format(
-                "... Arena: {0}, MaxTeams {1}, WinCondition: {2}",
-                MatchConfig.Arena.name,
-                MatchConfig.MaxTeams,
-                MatchConfig.WinCondition.Item1)
+            $"... Arena: {MatchConfig.Arena.name}, MaxTeams {MatchConfig.MaxTeams}, WinCondition: {MatchConfig.WinCondition.Item1}"
             );
     }
     #endregion
 
     #region PLAYER_CONFIG
     public PlayerConfig PlayerConfig { get; protected set; }
+    NetworkVariable<int> SpawnPoint = new NetworkVariable<int>(0);
 
     public void PrintPlayerConfig()
     {
         Debug.Log(
-            string.Format(
-                "... SpawnPoint: {0} located at {1}",
-                PlayerConfig.SpawnPoint,
-                PlayerConfig.SpawnPosition
-            ));
+            $"... SpawnPoint: {PlayerConfig.SpawnPoint} located at {PlayerConfig.SpawnPosition}"
+            );
     }
 
     [ClientRpc]
     public void PlayerConfigEnterClientRPC()
     {
         PlayerConfig = new PlayerConfig(MatchConfig);
-        PlayerConfig.SpawnPoint = (int) NetworkManager.LocalClientId;
+        PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
+        PreMatchUIManager.PlayerConfigMenuObj.SetActive(true);
+    }
 
-        StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(false);
-        StartMenuUIFlat.Instance.PlayerConfigMenu.SetActive(true);
+    [ServerRpc(RequireOwnership =false)]
+    public void PlayerConfigEnterServerRPC()
+    {
+        m_GameStage.Value = GameStage.PlayerConfig;
+        SpawnPoint.OnValueChanged = (prev, next) => {
+            PlayerConfig.SpawnPoint = SpawnPoint.Value;
+        };
+        SpawnPoint.Value = MathUtils.Mod(Convert.ToInt32(OwnerClientId), MatchConfig.Arena.SpawnPoints.Length);
+        Debug.Log(SpawnPoint.Value + " " + MatchConfig.Arena.SpawnPoints.Length + " " + Convert.ToInt32(NetworkManager.LocalClientId) + " " + NetworkManager.LocalClientId);
     }
 
     public void PlayerConfigExit()
     {
-        RollCall(c => c.EnterMatchClientRPC());
         EnterMatchServerRpc();
     }
     #endregion
@@ -132,19 +204,24 @@ public class BaseAccessor : NetworkBehaviour
     [ServerRpc]
     public void EnterMatchServerRpc()
     {
-        if (!ClientLock(null))
+        (bool, int, int) lpf = GetLock();
+        bool lockState = lpf.Item1;
+        int tNum = lpf.Item2, fNum = lpf.Item3;
+
+        if (!lockState)
         {
-            Debug.Log("Not all clients are ready!");
+            Debug.Log($"{tNum} / {tNum + fNum}");
+
             return;
         }
 
         IEnumerable<int> SpawnPointsList = NetworkManager.Singleton.ConnectedClientsList
-            .Select((client) => client.PlayerObject.GetComponent<BaseAccessor>().PlayerConfig.SpawnPoint);
+            .Select((client) => client.PlayerObject.GetComponent<BaseAccessor>().SpawnPoint.Value);
 
         int j = 0;
         foreach (int i in SpawnPointsList)
         {
-            Debug.Log(string.Format("player {0} chose spawn point {1}", j++, i));
+            Debug.Log($"player {j++} chose spawn point {i}");
         }
 
         HashSet<int> SpawnPointsSet = new HashSet<int>(SpawnPointsList);
@@ -155,7 +232,7 @@ public class BaseAccessor : NetworkBehaviour
             return;
         }
 
-        ClearLock(null);
+        RollCall(c => c.EnterMatchClientRPC());
 
         EnterMatch();
     }
@@ -164,34 +241,28 @@ public class BaseAccessor : NetworkBehaviour
     {
         PrintPlayerConfig();
 
-        StartMenuUIFlat.Instance.MatchConfigMenu.SetActive(false);
+        PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
 
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
-        Debug.Log(
-            string.Format(
-                "Entering the match in {0} at build index {1}",
-                sceneName,
-                MatchConfig.Arena.BuildIndex
-            ));
+        Debug.Log($"Entering the match in {sceneName} at build index {MatchConfig.Arena.BuildIndex}");
+
+        PostEnterMatchServerRpc();
+    } 
+
+    [ServerRpc]
+    public void PostEnterMatchServerRpc()
+    {
+        m_GameStage.Value = GameStage.DuringMatch;
     }
     #endregion
 
     #region ENTER_RESULT
     public virtual void EnterResult()
     {
-        Debug.Log("Going back go common scene");
-
-        NetworkManager.Singleton.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetSceneByBuildIndex(
-                0
-                ).name,
-            UnityEngine.SceneManagement.LoadSceneMode.Single
-            );
+        throw new NotImplementedException();
     }
-
     #endregion
-
 
     #region RPC_COMMONS
     [ServerRpc]
@@ -206,37 +277,43 @@ public class BaseAccessor : NetworkBehaviour
         Debug.Log("Ping client");
     }
 
-    public void RollCall(Action<BaseAccessor> action)
+    public void RollCall(Action<BaseAccessor> action, bool skipHost = false)
     {
         foreach (
             BaseAccessor acc in NetworkManager.ConnectedClientsList
             .Select(c => c.PlayerObject.GetComponent<BaseAccessor>())
-            .Where(a => a != null))
+            .Where(a => a != null)
+            .Where(a => !skipHost || a.OwnerClientId != NetworkManager.ServerClientId))
             action(acc);
     }
     #endregion
 
     #region LOCK
+    public NetworkVariable<bool> Lock = new NetworkVariable<bool>(true);
 
-    private Dictionary<string, bool> Lock;
-    private bool DefaultLock = false;
-
-    bool ClientLock(string lock_id) =>
-        NetworkManager.ConnectedClientsList.Select(c => lock_id == null ? 
-            c.PlayerObject.GetComponent<BaseAccessor>().DefaultLock 
-            : c.PlayerObject.GetComponent<BaseAccessor>().Lock[lock_id])
-        .Contains(false);
-
-    void SetLock(string lock_id, bool val)
+    public (bool, int, int) GetLock()
     {
-        if (lock_id == null) DefaultLock = val;
-        else Lock[lock_id] = val;
+        bool valid = true;
+        int T = 0, F = 0;
+        RollCall(acc => {
+            Debug.Log($"Lock {acc.OwnerClientId} -> {acc.Lock.Value}");
+            valid &= acc.Lock.Value;
+            if (acc.Lock.Value) T++;
+            else F++;
+            }, true);
+        return (valid, T, F);
     }
 
-    void ClearLock(string lock_id)
+    [ServerRpc(RequireOwnership =false)]
+    public void SetLockServerRpc(bool val)
     {
-        foreach (BaseAccessor acc in NetworkManager.ConnectedClientsList.Select(client => client.PlayerObject.GetComponent<BaseAccessor>()))
-            acc.SetLock(lock_id, false);
+        Lock.Value = val;
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void SetAllLocksServerRpc(bool val, bool skipHost = true)
+    {
+        RollCall(acc => acc.SetLockServerRpc(val));
     }
     #endregion
 }
