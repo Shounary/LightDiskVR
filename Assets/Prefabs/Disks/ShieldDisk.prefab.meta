@@ -1,12 +1,6 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:Assets/Scenes/KunalWorkshop.meta
-guid: ebc71c26b890d4a46abba0abb43ac251
-folderAsset: yes
-DefaultImporter:
-=======
 guid: c38512c3620aa9e49ad681b762d53d55
 PrefabImporter:
->>>>>>> pr/16:Assets/Prefabs/Disks/ShieldDisk.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
