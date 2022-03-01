@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public GameObject rightHandPrefab; 
     public float forceMagnitude = 5f;
     //public Rigidbody[] playerDisks;
-    public PlayerStats playerStats;
+    public WeaponInventory weaponInventory;
     public Transform rightHandControllerTransform;
     public Transform leftHandControllerTransform;
 
@@ -59,6 +59,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private Rigidbody GetTargetDisk(Transform controllerTransform, Hand hand) {
-        return playerStats.getActiveWeapon(hand).GetComponent<Rigidbody>();
+        return weaponInventory.getActiveWeapon(hand).GetComponent<Rigidbody>();
     }
 }

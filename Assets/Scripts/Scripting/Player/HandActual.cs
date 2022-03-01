@@ -22,7 +22,7 @@ public class HandActual : MonoBehaviour
     public float stoppingFactorMultiplier = 0.2f;
     
     public Hand hand;
-    public PlayerStats playerStats;
+    public WeaponInventory weaponInventory;
 
     private Animator animator;
     void Start()
@@ -70,7 +70,7 @@ public class HandActual : MonoBehaviour
     }
 
     private Rigidbody GetTargetDisk(Transform controllerTransform) {
-        return playerStats.getActiveWeapon(hand).GetComponent<Rigidbody>();
+        return weaponInventory.getActiveWeapon(hand).GetComponent<Rigidbody>();
     }
 
     private void UpdateAnimation() {
