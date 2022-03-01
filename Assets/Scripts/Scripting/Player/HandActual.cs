@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 
 public enum Hand{
     LEFT,
-    RIGHT
+    RIGHT,
+    NONE
 };
 
 public class HandActual : MonoBehaviour
@@ -23,6 +24,7 @@ public class HandActual : MonoBehaviour
     
     public Hand hand;
     public WeaponInventory weaponInventory;
+    public Weapon weapon;
 
     private Animator animator;
     void Start()
@@ -46,13 +48,14 @@ public class HandActual : MonoBehaviour
     void Update() {
         UpdateAnimation();
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
-            AttractDisk(trigger);
+            weapon.AttractWeapon(trigger, this.transform);
         }
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool pressed) && pressed) {
             LevelManager.instance.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
+/*
     private void AttractDisk(float additionalFactor) {
         Rigidbody targetDisk = GetTargetDisk(transform);
         Vector3 targetDirection = Vector3.Normalize(transform.position - targetDisk.position);
@@ -72,7 +75,7 @@ public class HandActual : MonoBehaviour
     private Rigidbody GetTargetDisk(Transform controllerTransform) {
         return weaponInventory.getActiveWeapon(hand).GetComponent<Rigidbody>();
     }
-
+*/
     private void UpdateAnimation() {
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger)) {
             animator.SetFloat("Trigger", trigger);
