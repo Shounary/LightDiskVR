@@ -5,16 +5,22 @@ using Unity.Netcode;
 
 public class PlayerConfigMenuUIFlat : MonoBehaviour
 {
-    public UnityEngine.UI.Button UseDefault;
+    public UnityEngine.UI.Button ReadyButton;
+    public UnityEngine.UI.Text ReadyText;
 
     private void Start()
     {
         BaseAccessor accessor = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject().GetComponent<BaseAccessor>();
-        UseDefault.enabled = NetworkManager.Singleton.IsHost;
-        UseDefault.onClick.RemoveAllListeners();
-        UseDefault.onClick.AddListener(delegate
+        ReadyButton.onClick.RemoveAllListeners();
+        ReadyButton.onClick.AddListener(delegate
         {
-            accessor.PlayerConfigExit();
+            if (accessor.IsOwner && NetworkManager.Singleton.IsHost)
+            {
+                accessor.PlayerConfigExit();
+            } else
+            {
+                accessor.SetLockServerRpc(!accessor.Lock.Value);
+            }
         });
     }
 }

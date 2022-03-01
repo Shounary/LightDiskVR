@@ -12,6 +12,7 @@ public class RelayManager : MonoBehaviour
 {
     public static RelayManager Instance { get { return _instance; } }
     private static RelayManager _instance;
+    public string JoinCode { get; protected set; }
 
     private void Awake()
     {
@@ -72,6 +73,7 @@ public class RelayManager : MonoBehaviour
 
         //Retrieve the Relay join code for our clients to join our party
         data.JoinCode = await Unity.Services.Relay.Relay.Instance.GetJoinCodeAsync(data.AllocationID);
+        JoinCode = data.JoinCode;
 
         return data;
     }
@@ -108,6 +110,7 @@ public class RelayManager : MonoBehaviour
         };
 
         // Debug.Log($"Client joined with {joinCode}");
+        JoinCode = joinCode;
 
         return data;
     }

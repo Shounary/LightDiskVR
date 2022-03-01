@@ -10,7 +10,6 @@ public class MatchConfigFactory : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("Match Config resources loaded");
         m_Instance = this;
     }
 
