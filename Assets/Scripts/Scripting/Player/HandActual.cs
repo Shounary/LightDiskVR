@@ -5,6 +5,11 @@ using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.SceneManagement;
 
+public enum Hand{
+    LEFT,
+    RIGHT
+};
+
 public class HandActual : MonoBehaviour
 {
     private InputDevice targetDevice;
@@ -15,6 +20,9 @@ public class HandActual : MonoBehaviour
 
     public float diskReturnForceMagnitude = 5f;
     public float stoppingFactorMultiplier = 0.2f;
+    
+    public Hand hand;
+    public PlayerStats playerStats;
 
     private Animator animator;
     void Start()
@@ -62,7 +70,7 @@ public class HandActual : MonoBehaviour
     }
 
     private Rigidbody GetTargetDisk(Transform controllerTransform) {
-        return ArenaInfo.instance.playerDisks[0]; // BETTER version to be implemented
+        return playerStats.getActiveWeapon(hand).GetComponent<Rigidbody>();
     }
 
     private void UpdateAnimation() {
