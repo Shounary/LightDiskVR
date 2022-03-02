@@ -262,7 +262,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8789056984063457271}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
   m_Name: 
@@ -747,7 +747,7 @@ GameObject:
   - component: {fileID: 8789056984369832835}
   - component: {fileID: 8789056984369832834}
   - component: {fileID: 8789056984369832836}
-  - component: {fileID: 8052086055634301753}
+  - component: {fileID: 775180419550013153}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -777,7 +777,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8789056984369832839}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -854,7 +854,7 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
---- !u!114 &8052086055634301753
+--- !u!114 &775180419550013153
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -869,21 +869,37 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_PositionAction:
-    m_Name: 
+    m_Name: Main Camera - TPD - Position
     m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
+    m_ExpectedControlType: Vector3
+    m_Id: 70b856f4-fb72-4d30-9c2c-532bd0025bec
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 46d36df2-4860-4055-87a7-7e149b4df01d
+      m_Path: <XRHMD>/centerEyePosition
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Main Camera - TPD - Position
+      m_Flags: 0
   m_RotationAction:
-    m_Name: 
+    m_Name: Main Camera - TPD - Rotation
     m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 
+    m_ExpectedControlType: Quaternion
+    m_Id: 45e18cfa-9681-4acc-99b1-21301586fe04
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 6942ba32-2b57-45bc-ada4-ea60abf1b58f
+      m_Path: <XRHMD>/centerEyeRotation
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Main Camera - TPD - Rotation
+      m_Flags: 0
 --- !u!1 &8789056985305418207
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +942,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8789056985305418207}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
   m_Name: 
