@@ -17,29 +17,24 @@ public class NetworkVRPlayer : NetworkBehaviour
 
     public void DisableClientInput()
     {
-        if (IsClient && !IsOwner)
+        var clientControllers = GetComponentsInChildren<ActionBasedController>();
+        var clientHead = GetComponentInChildren<TrackedPoseDriver>();
+        var clientCamera = GetComponentInChildren<Camera>();
+
+        clientCamera.enabled = false;
+        clientHead.enabled = false;
+
+        foreach (var controller in clientControllers)
         {
-            var clientControllers = GetComponentsInChildren<ActionBasedController>();
-            var clientHead = GetComponentInChildren<TrackedPoseDriver>();
-            var clientCamera = GetComponentInChildren<Camera>();
-
-            clientCamera.enabled = false;
-            clientHead.enabled = false;
-
-            foreach (var controller in clientControllers) {
-                controller.enableInputActions = false;
-                controller.enableInputTracking = false;
-            }
+            controller.enableInputActions = false;
+            controller.enableInputTracking = false;
         }
     }
 
     private void Start()
     {
-        if (IsClient && IsOwner)
-        {
-            transform.position = new Vector3(Random.RandomRange(placementArea.x, placementArea.y),
+        transform.position = new Vector3(Random.RandomRange(placementArea.x, placementArea.y),
                 transform.position.y, Random.RandomRange(placementArea.x, placementArea.y));
-        }
     }
 
     //public void OnSelectGrabbable(Se)
