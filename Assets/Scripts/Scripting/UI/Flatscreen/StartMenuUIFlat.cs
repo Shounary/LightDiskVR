@@ -12,7 +12,7 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
     [SerializeField]
     private Button startClientButton;
     [SerializeField]
-    private TMP_InputField joinCode;
+    private Text joinCode;
 
     private void Start()
     {
