@@ -10,9 +10,24 @@ public class NetworkVRPlayer : NetworkBehaviour
     [SerializeField]
     private Vector2 placementArea = new Vector2(-10.0f, 10.0f);
 
-    public override void OnNetworkSpawn()
+    public void EnableClientInput()
     {
-        DisableClientInput();
+        if (IsClient && IsOwner)
+        {
+            var clientControllers = GetComponentsInChildren<ActionBasedController>();
+            foreach (var controller in clientControllers)
+            {
+                controller.enableInputActions = true;
+                controller.enableInputTracking = true;
+            }
+
+            var clientCamera = GetComponentInChildren<Camera>();
+            clientCamera.enabled = true;
+
+            var clientHead = GetComponentInChildren<TrackedPoseDriver>();
+            clientHead.enabled = true;
+
+        }
     }
 
     public void DisableClientInput()

@@ -207,7 +207,7 @@ public class BaseAccessor : NetworkBehaviour
     [ClientRpc]
     public void EnterMatchClientRPC()
     {
-        // EnterMatch();
+        SceneManager.activeSceneChanged += EnterMatchSceneClientPath;
     }
 
     [ServerRpc]
@@ -253,7 +253,7 @@ public class BaseAccessor : NetworkBehaviour
         PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
 
         if (IsServer && IsOwner){
-            SceneManager.activeSceneChanged += EnterMatchScene;
+            SceneManager.activeSceneChanged += EnterMatchSceneServerPath;
         }
         
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
@@ -263,11 +263,16 @@ public class BaseAccessor : NetworkBehaviour
         PostEnterMatchServerRpc();
     }
 
-    public void EnterMatchScene(Scene prev, Scene next)
+    public void EnterMatchSceneServerPath(Scene prev, Scene next)
     {
         SpawnXRRigs();
+        SceneManager.activeSceneChanged -= EnterMatchSceneServerPath;
+    }
 
-        SceneManager.activeSceneChanged -= EnterMatchScene;
+    public void EnterMatchSceneClientPath(Scene prev, Scene next)
+    {
+        SpawnXRRigsClientRpc();
+        SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
 
     [ServerRpc]
@@ -316,6 +321,8 @@ public class BaseAccessor : NetworkBehaviour
     #endregion
 
     #region XR_RIG_CONTROL
+    NetworkVRPlayer player;
+
     [ServerRpc(RequireOwnership = false)]
     private void SpawnXRRigServerRpc(ulong client)
     {
@@ -332,6 +339,21 @@ public class BaseAccessor : NetworkBehaviour
         {
             SpawnXRRigServerRpc(id);
         }
+    }
+
+    [ClientRpc]
+    private void SpawnXRRigsClientRpc()
+    {
+        this.DelayLaunch(delegate
+        {
+            player = NetworkManager.LocalClient.OwnedObjects
+                .Select(o => o.GetComponent<NetworkVRPlayer>())
+                .First(p => p != null);
+            if (player)
+            {
+                player.EnableClientInput();
+            }
+        }, 0.5f);
     }
     #endregion
 
