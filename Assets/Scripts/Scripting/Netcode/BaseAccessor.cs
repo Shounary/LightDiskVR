@@ -267,13 +267,13 @@ public class BaseAccessor : NetworkBehaviour
 
     public void EnterMatchSceneServerPath(Scene prev, Scene next)
     {
+        RollCall(acc => acc.m_GameStage.Value = GameStage.DuringMatch);
         SpawnXRRigs();
         SceneManager.activeSceneChanged -= EnterMatchSceneServerPath;
     }
 
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
     {
-        m_GameStage.Value = GameStage.DuringMatch;
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
     #endregion
