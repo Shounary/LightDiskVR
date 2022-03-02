@@ -5722,7 +5722,6 @@ GameObject:
   - component: {fileID: 1952401758}
   - component: {fileID: 1952401757}
   - component: {fileID: 1952401759}
-  - component: {fileID: 1952401760}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -5859,15 +5858,3 @@ MonoBehaviour:
   Arenas:
   - {fileID: 11400000, guid: 4349ac004addb4ab4abd7c7d39d158f6, type: 2}
   - {fileID: 11400000, guid: 94dd5d73cb3cb4d5ca01c40a1015991d, type: 2}
---- !u!114 &1952401760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952401753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c623dd324ffa2fc4f8f888a888100846, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
