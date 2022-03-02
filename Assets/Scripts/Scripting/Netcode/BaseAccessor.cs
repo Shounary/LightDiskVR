@@ -34,9 +34,9 @@ public class BaseAccessor : NetworkBehaviour
 
         AvatarReady.OnValueChanged = (prev, next) =>
         {
-            if (next && GameStage == GameStage.DuringMatch)
+            if (next && GameStage == GameStage.DuringMatch && IsOwner)
             {
-                SpawnXRRigClientRpc();
+                SpawnXRRigClientPath();
             }
         };
 
@@ -340,16 +340,17 @@ public class BaseAccessor : NetworkBehaviour
             SpawnXRRigServerRpc(id);
         }
     }
-
-    [ClientRpc]
-    private void SpawnXRRigClientRpc()
+    
+    private void SpawnXRRigClientPath()
     {
-        player = NetworkManager.LocalClient.OwnedObjects
+        var rig = NetworkManager.LocalClient.OwnedObjects
                 .Select(o => o.GetComponent<NetworkVRPlayer>())
                 .First(p => p != null);
-        if (player)
+
+        if (rig != null)
         {
-            player.EnableClientInput();
+            rig.EnableClientInput();
+            player = rig;
         }
     }
     #endregion
