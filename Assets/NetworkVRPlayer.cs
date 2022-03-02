@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.SpatialTracking;
+using UnityEngine.InputSystem.XR;
 
 public class NetworkVRPlayer : NetworkBehaviour
 {
@@ -24,7 +24,7 @@ public class NetworkVRPlayer : NetworkBehaviour
             var clientCamera = GetComponentInChildren<Camera>();
             clientCamera.enabled = true;
 
-            var clientHead = GetComponentInChildren<TrackedPoseDriver>();
+            var clientHead = clientCamera.gameObject.AddComponent<TrackedPoseDriver>();
             clientHead.enabled = true;
 
         }
