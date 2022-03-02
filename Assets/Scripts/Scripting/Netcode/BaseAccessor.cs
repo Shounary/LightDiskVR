@@ -5,6 +5,7 @@ using Unity.Netcode;
 using System;
 using System.Linq;
 using System.Text;
+using UnityEngine.SceneManagement;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -31,7 +32,7 @@ public class BaseAccessor : NetworkBehaviour
             UpdatePlayerListTextServerRPC();
         };
 
-        SpawnXRRigServerRpc(NetworkManager.Singleton.LocalClientId);
+        //SpawnXRRigServerRpc(NetworkManager.Singleton.LocalClientId);
 
         DontDestroyOnLoad(gameObject);
     }
@@ -40,10 +41,16 @@ public class BaseAccessor : NetworkBehaviour
     private void SpawnXRRigServerRpc(ulong client){
         Debug.Log($"spawning xrrig for client {client}");
         var xRObj = Instantiate(XRRigPrefab);
-        DontDestroyOnLoad(XRRigPrefab);
         var xRObjNet = xRObj.GetComponent<NetworkObject>();
         xRObjNet.Spawn();
         xRObjNet.ChangeOwnership(client);
+        
+        NetworkManager.Singleton.ConnectedClients[client].PlayerObject.GetComponent<BaseAccessor>().OwnXRRigClientRpc();
+    }
+
+    [ClientRpc]
+    private void OwnXRRigClientRpc(){
+
     }
 
     [ServerRpc(RequireOwnership=false)]
@@ -257,12 +264,20 @@ public class BaseAccessor : NetworkBehaviour
 
         PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
 
+        SceneManager.activeSceneChanged += SpawnXRRig;
+
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         Debug.Log($"Entering the match in {sceneName} at build index {MatchConfig.Arena.BuildIndex}");
 
         PostEnterMatchServerRpc();
-    } 
+
+    }
+
+    private void SpawnXRRig(Scene prev, Scene next) {
+        SpawnXRRigServerRpc(NetworkManager.Singleton.LocalClientId);
+        SceneManager.activeSceneChanged -= SpawnXRRig;
+    }
 
     [ServerRpc]
     public void PostEnterMatchServerRpc()
