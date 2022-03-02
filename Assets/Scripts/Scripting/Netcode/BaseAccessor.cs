@@ -31,14 +31,19 @@ public class BaseAccessor : NetworkBehaviour
             UpdatePlayerListTextServerRPC();
         };
 
+        SpawnXRRigServerRpc(NetworkManager.Singleton.LocalClientId);
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    [ServerRpc(RequireOwnership=false)]
+    private void SpawnXRRigServerRpc(ulong client){
+        Debug.Log($"spawning xrrig for client {client}");
         var xRObj = Instantiate(XRRigPrefab);
         DontDestroyOnLoad(XRRigPrefab);
         var xRObjNet = xRObj.GetComponent<NetworkObject>();
         xRObjNet.Spawn();
-        xRObjNet.ChangeOwnership(NetworkManager.Singleton.LocalClientId);
-        xRObj.SetActive(true);
-
-        DontDestroyOnLoad(gameObject);
+        xRObjNet.ChangeOwnership(client);
     }
 
     [ServerRpc(RequireOwnership=false)]
