@@ -32,13 +32,13 @@ public class BaseAccessor : NetworkBehaviour
             UpdatePlayerListTextServerRPC();
         };
 
-        AvatarReady.OnValueChanged = (prev, next) =>
-        {
-            if (next && GameStage == GameStage.DuringMatch && IsOwner)
-            {
-                SpawnXRRigClientPath();
-            }
-        };
+        // AvatarReady.OnValueChanged = (prev, next) =>
+        // {
+        //     if (next && GameStage == GameStage.DuringMatch && IsOwner)
+        //     {
+        //         SpawnXRRigClientPath();
+        //     }
+        // };
 
         DontDestroyOnLoad(gameObject);
         SceneManager.activeSceneChanged += (prev, next) =>
@@ -268,7 +268,7 @@ public class BaseAccessor : NetworkBehaviour
     public void EnterMatchSceneServerPath(Scene prev, Scene next)
     {
         RollCall(acc => acc.m_GameStage.Value = GameStage.DuringMatch);
-        SpawnXRRigs();
+        //SpawnXRRigs();
         SceneManager.activeSceneChanged -= EnterMatchSceneServerPath;
     }
 

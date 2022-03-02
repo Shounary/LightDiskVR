@@ -33,18 +33,20 @@ public class NetworkVRPlayer : NetworkBehaviour
 
     public void DisableClientInput()
     {
-        if (!IsOwner) {
+        if (IsClient && !IsOwner) {
             var clientControllers = GetComponentsInChildren<ActionBasedController>();
+            
             var clientHead = GetComponentInChildren<TrackedPoseDriver>();
             var clientCamera = GetComponentInChildren<Camera>();
 
             clientCamera.enabled = false;
             clientHead.enabled = false;
 
-            foreach (var controller in clientControllers)
+            Debug.Log(clientControllers);
+            foreach (var input in clientControllers)
             {
-                controller.enableInputActions = false;
-                controller.enableInputTracking = false;
+                input.enableInputActions = false;
+                input.enableInputTracking = false;
             }
 
         }
@@ -52,13 +54,12 @@ public class NetworkVRPlayer : NetworkBehaviour
 
     private void Start()
     {
-        DisableClientInput();
-        transform.position = new Vector3(Random.RandomRange(placementArea.x, placementArea.y),
-                transform.position.y, Random.RandomRange(placementArea.x, placementArea.y));
+        if (IsClient && IsOwner)
+        {
+            transform.position = new Vector3(Random.Range(placementArea.x, placementArea.y),
+                transform.position.y, Random.Range(placementArea.x, placementArea.y));
+        }
     }
 
-    public void OnNetworkSpawn() {
-        DisableClientInput();
-    }
-    //public void OnSelectGrabbable(Se)
+    public override void OnNetworkSpawn() => DisableClientInput();
 }
