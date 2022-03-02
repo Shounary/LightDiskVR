@@ -32,7 +32,13 @@ public class BaseAccessor : NetworkBehaviour
             UpdatePlayerListTextServerRPC();
         };
 
-        //SpawnXRRigServerRpc(NetworkManager.Singleton.LocalClientId);
+        AvatarReady.OnValueChanged = (prev, next) =>
+        {
+            if (next && GameStage == GameStage.DuringMatch)
+            {
+                SpawnXRRigClientRpc();
+            }
+        };
 
         DontDestroyOnLoad(gameObject);
         SceneManager.activeSceneChanged += (prev, next) =>
@@ -257,8 +263,6 @@ public class BaseAccessor : NetworkBehaviour
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         Debug.Log($"Entering the match in {sceneName} at build index {MatchConfig.Arena.BuildIndex}");
-
-        PostEnterMatchServerRpc();
     }
 
     public void EnterMatchSceneServerPath(Scene prev, Scene next)
@@ -269,13 +273,8 @@ public class BaseAccessor : NetworkBehaviour
 
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
     {
-        SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
-    }
-
-    [ServerRpc]
-    public void PostEnterMatchServerRpc()
-    {
         m_GameStage.Value = GameStage.DuringMatch;
+        SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
     #endregion
 
@@ -320,6 +319,8 @@ public class BaseAccessor : NetworkBehaviour
     #region XR_RIG_CONTROL
     NetworkVRPlayer player;
 
+    NetworkVariable<bool> AvatarReady = new NetworkVariable<bool>(false);
+
     [ServerRpc(RequireOwnership = false)]
     private void SpawnXRRigServerRpc(ulong client)
     {
@@ -329,14 +330,7 @@ public class BaseAccessor : NetworkBehaviour
         xRObjNet.Spawn();
         xRObjNet.ChangeOwnership(client);
 
-        this.DelayLaunch(delegate
-        {
-            RollCall(delegate
-            {
-                RollCall(acc => acc.SpawnXRRigClientRpc());
-            });
-        }, 1.0f);
-        
+        RollCall(acc => acc.AvatarReady.Value = true);
     }
 
     private void SpawnXRRigs()
