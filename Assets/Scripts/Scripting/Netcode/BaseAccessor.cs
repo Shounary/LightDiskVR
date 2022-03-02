@@ -219,7 +219,7 @@ public class BaseAccessor : NetworkBehaviour
     [ClientRpc]
     public void EnterMatchClientRPC()
     {
-        EnterMatch();
+        // EnterMatch();
     }
 
     [ServerRpc]
@@ -264,7 +264,7 @@ public class BaseAccessor : NetworkBehaviour
 
         PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
 
-        if (IsServer){
+        if (IsServer && IsOwner){
             SceneManager.activeSceneChanged += SpawnXRRigs;
         }
         
@@ -278,7 +278,7 @@ public class BaseAccessor : NetworkBehaviour
     }
 
     private void SpawnXRRigs(Scene prev, Scene next) {
-        foreach(ulong id in NetworkManager.Singleton.ConnectedClientsList.Select(client => client.ClientId)) {
+        foreach(ulong id in NetworkManager.Singleton.ConnectedClientsIds) {
             SpawnXRRigServerRpc(id);
         }
         SceneManager.activeSceneChanged -= SpawnXRRigs;
