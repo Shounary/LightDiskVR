@@ -18,6 +18,8 @@ public class BaseAccessor : NetworkBehaviour
 
     public string PlayerListText => m_PlayerListText.Value;
 
+    [SerializeField] private GameObject XRRigPrefab;
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
@@ -29,13 +31,20 @@ public class BaseAccessor : NetworkBehaviour
             UpdatePlayerListTextServerRPC();
         };
 
+        var xRObj = Instantiate(XRRigPrefab);
+        DontDestroyOnLoad(XRRigPrefab);
+        var xRObjNet = xRObj.GetComponent<NetworkObject>();
+        xRObjNet.Spawn();
+        xRObjNet.ChangeOwnership(NetworkManager.Singleton.LocalClientId);
+        xRObj.SetActive(true);
+
         DontDestroyOnLoad(gameObject);
     }
 
     [ServerRpc(RequireOwnership=false)]
     private void UpdatePlayerListTextServerRPC()
     {
-        NetworkObject thisObj = GetComponent<NetworkObject>();
+        var thisObj = GetComponent<NetworkObject>();
         m_PlayerListText.Value = string.Concat(
             NetworkManager.Singleton.ConnectedClientsList
             .Select(c =>
