@@ -264,7 +264,10 @@ public class BaseAccessor : NetworkBehaviour
 
         PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
 
-        SceneManager.activeSceneChanged += SpawnXRRig;
+        if (IsServer){
+            SceneManager.activeSceneChanged += SpawnXRRigs;
+        }
+        
 
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
@@ -274,9 +277,11 @@ public class BaseAccessor : NetworkBehaviour
 
     }
 
-    private void SpawnXRRig(Scene prev, Scene next) {
-        SpawnXRRigServerRpc(NetworkManager.Singleton.LocalClientId);
-        SceneManager.activeSceneChanged -= SpawnXRRig;
+    private void SpawnXRRigs(Scene prev, Scene next) {
+        foreach(ulong id in NetworkManager.Singleton.ConnectedClientsList.Select(client => client.ClientId)) {
+            SpawnXRRigServerRpc(id);
+        }
+        SceneManager.activeSceneChanged -= SpawnXRRigs;
     }
 
     [ServerRpc]
