@@ -20,7 +20,7 @@ public class PreMatchPersistentUI : MonoBehaviour
             //if (Accessor != null)
             //    Accessor.GetComponent<NetworkObject>().Despawn(true);
             NetworkManager.Singleton.Shutdown();
-            PreMatchUIManager.ResumeStart();
+            PreMatchManager.ResumeStart();
         });
     }
 

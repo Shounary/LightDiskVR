@@ -97,11 +97,11 @@ public class BaseAccessor : NetworkBehaviour
 
     public void MatchConfigEntry()
     {
-        PreMatchUIManager.StartMenuObj.SetActive(false);
-        PreMatchUIManager.MatchConfigMenuObj.SetActive(true);
-        PreMatchUIManager.PersistentUIObj.SetActive(true);
+        PreMatchManager.StartMenuObj.SetActive(false);
+        PreMatchManager.MatchConfigMenuObj.SetActive(true);
+        PreMatchManager.PersistentUIObj.SetActive(true);
 
-        PreMatchUIManager.Persistent.Accessor = this;
+        PreMatchManager.Persistent.Accessor = this;
         MatchConfigFactory.Instance.ArenaIndex = 0;
         MatchConfig = new MatchConfig(MatchConfigFactory.Instance.Arena);
 
@@ -157,7 +157,7 @@ public class BaseAccessor : NetworkBehaviour
             // TODO: Update UI
         };
 
-        PreMatchUIManager.MatchConfigMenu.JoinCode.text = RelayManager.Instance.JoinCode;
+        PreMatchManager.MatchConfigMenu.JoinCode.text = RelayManager.Instance.JoinCode;
     }
 
     public void MatchConfigExit()
@@ -188,8 +188,8 @@ public class BaseAccessor : NetworkBehaviour
     public void PlayerConfigEnterClientRPC()
     {
         PlayerConfig = new PlayerConfig(MatchConfig);
-        PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
-        PreMatchUIManager.PlayerConfigMenuObj.SetActive(true);
+        PreMatchManager.MatchConfigMenuObj.SetActive(false);
+        PreMatchManager.PlayerConfigMenuObj.SetActive(true);
     }
 
     [ServerRpc(RequireOwnership =false)]
