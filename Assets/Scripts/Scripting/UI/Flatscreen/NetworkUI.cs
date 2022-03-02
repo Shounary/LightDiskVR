@@ -108,13 +108,13 @@ public class NetworkUI : MonoBehaviour
             }
         });
 
-        joinCodeButton.onClick.AddListener(delegate
-        {
-            if (sharedJoinCode != null)
-            {
-                SetJoinButtonText(sharedJoinCode);
-            }
-        });
+        //joinCodeButton.onClick.AddListener(delegate
+        //{
+        //    if (sharedJoinCode != null)
+        //    {
+        //        SetJoinButtonText(sharedJoinCode);
+        //    }
+        //});
     }
 
     IEnumerator ResumeText(float time)
