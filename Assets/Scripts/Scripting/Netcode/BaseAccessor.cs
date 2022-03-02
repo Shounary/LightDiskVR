@@ -35,6 +35,10 @@ public class BaseAccessor : NetworkBehaviour
         //SpawnXRRigServerRpc(NetworkManager.Singleton.LocalClientId);
 
         DontDestroyOnLoad(gameObject);
+        SceneManager.activeSceneChanged += (prev, next) =>
+        {
+            DontDestroyOnLoad(gameObject);
+        };
     }
 
     [ServerRpc(RequireOwnership=false)]
@@ -262,7 +266,6 @@ public class BaseAccessor : NetworkBehaviour
     public void EnterMatchScene(Scene prev, Scene next)
     {
         SpawnXRRigs();
-        PersistGameObjectsServerRpc();
 
         SceneManager.activeSceneChanged -= EnterMatchScene;
     }
@@ -306,19 +309,9 @@ public class BaseAccessor : NetworkBehaviour
 
     // for some reason DontDestroyOnLoad's effect is only for one scene
     // so every scene change needs to persist the DontDestroy again
-    [ServerRpc]
-    private void PersistGameObjectsServerRpc()
+    private void PersistGameObjects()
     {
-        RollCall(acc => acc.PersistGameObjectClientRpc());
-    }
-
-    [ClientRpc]
-    private void PersistGameObjectClientRpc()
-    {
-        DontDestroyOnLoad(
-            NetworkManager.LocalClient.OwnedObjects
-            .Where(o => o.GetComponent<BaseAccessor>() != null)
-            .First().gameObject);
+        DontDestroyOnLoad(gameObject);
     }
     #endregion
 
