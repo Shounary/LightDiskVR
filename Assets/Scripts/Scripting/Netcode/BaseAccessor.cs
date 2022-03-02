@@ -329,10 +329,14 @@ public class BaseAccessor : NetworkBehaviour
         xRObjNet.Spawn();
         xRObjNet.ChangeOwnership(client);
 
-        RollCall(delegate
+        this.DelayLaunch(delegate
         {
-            RollCall(acc => acc.SpawnXRRigClientRpc());
-        });
+            RollCall(delegate
+            {
+                RollCall(acc => acc.SpawnXRRigClientRpc());
+            });
+        }, 1.0f);
+        
     }
 
     private void SpawnXRRigs()
