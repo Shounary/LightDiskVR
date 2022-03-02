@@ -38,22 +38,6 @@ public class BaseAccessor : NetworkBehaviour
     }
 
     [ServerRpc(RequireOwnership=false)]
-    private void SpawnXRRigServerRpc(ulong client){
-        Debug.Log($"spawning xrrig for client {client}");
-        var xRObj = Instantiate(XRRigPrefab);
-        var xRObjNet = xRObj.GetComponent<NetworkObject>();
-        xRObjNet.Spawn();
-        xRObjNet.ChangeOwnership(client);
-        
-        NetworkManager.Singleton.ConnectedClients[client].PlayerObject.GetComponent<BaseAccessor>().OwnXRRigClientRpc();
-    }
-
-    [ClientRpc]
-    private void OwnXRRigClientRpc(){
-
-    }
-
-    [ServerRpc(RequireOwnership=false)]
     private void UpdatePlayerListTextServerRPC()
     {
         var thisObj = GetComponent<NetworkObject>();
@@ -265,23 +249,22 @@ public class BaseAccessor : NetworkBehaviour
         PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
 
         if (IsServer && IsOwner){
-            SceneManager.activeSceneChanged += SpawnXRRigs;
+            SceneManager.activeSceneChanged += EnterMatchScene;
         }
         
-
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         Debug.Log($"Entering the match in {sceneName} at build index {MatchConfig.Arena.BuildIndex}");
 
         PostEnterMatchServerRpc();
-
     }
 
-    private void SpawnXRRigs(Scene prev, Scene next) {
-        foreach(ulong id in NetworkManager.Singleton.ConnectedClientsIds) {
-            SpawnXRRigServerRpc(id);
-        }
-        SceneManager.activeSceneChanged -= SpawnXRRigs;
+    public void EnterMatchScene(Scene prev, Scene next)
+    {
+        SpawnXRRigs();
+        PersistGameObjectsServerRpc();
+
+        SceneManager.activeSceneChanged -= EnterMatchScene;
     }
 
     [ServerRpc]
@@ -319,6 +302,43 @@ public class BaseAccessor : NetworkBehaviour
             .Where(a => a != null)
             .Where(a => !skipHost || a.OwnerClientId != NetworkManager.ServerClientId))
             action(acc);
+    }
+
+    // for some reason DontDestroyOnLoad's effect is only for one scene
+    // so every scene change needs to persist the DontDestroy again
+    [ServerRpc]
+    private void PersistGameObjectsServerRpc()
+    {
+        RollCall(acc => acc.PersistGameObjectClientRpc());
+    }
+
+    [ClientRpc]
+    private void PersistGameObjectClientRpc()
+    {
+        DontDestroyOnLoad(
+            NetworkManager.LocalClient.OwnedObjects
+            .Where(o => o.GetComponent<BaseAccessor>() != null)
+            .First().gameObject);
+    }
+    #endregion
+
+    #region XR_RIG_CONTROL
+    [ServerRpc(RequireOwnership = false)]
+    private void SpawnXRRigServerRpc(ulong client)
+    {
+        Debug.Log($"spawning xrrig for client {client}");
+        var xRObj = Instantiate(XRRigPrefab);
+        var xRObjNet = xRObj.GetComponent<NetworkObject>();
+        xRObjNet.Spawn();
+        xRObjNet.ChangeOwnership(client);
+    }
+
+    private void SpawnXRRigs()
+    {
+        foreach (ulong id in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            SpawnXRRigServerRpc(id);
+        }
     }
     #endregion
 
