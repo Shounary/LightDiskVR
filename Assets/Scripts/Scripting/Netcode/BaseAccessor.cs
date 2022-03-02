@@ -250,8 +250,6 @@ public class BaseAccessor : NetworkBehaviour
     {
         PrintPlayerConfig();
 
-        PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
-
         if (IsServer && IsOwner){
             SceneManager.activeSceneChanged += EnterMatchSceneServerPath;
         }
@@ -271,7 +269,6 @@ public class BaseAccessor : NetworkBehaviour
 
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
     {
-        SpawnXRRigsClientRpc();
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
 
@@ -331,6 +328,11 @@ public class BaseAccessor : NetworkBehaviour
         var xRObjNet = xRObj.GetComponent<NetworkObject>();
         xRObjNet.Spawn();
         xRObjNet.ChangeOwnership(client);
+
+        RollCall(delegate
+        {
+            RollCall(acc => acc.SpawnXRRigClientRpc());
+        });
     }
 
     private void SpawnXRRigs()
@@ -342,18 +344,15 @@ public class BaseAccessor : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void SpawnXRRigsClientRpc()
+    private void SpawnXRRigClientRpc()
     {
-        this.DelayLaunch(delegate
-        {
-            player = NetworkManager.LocalClient.OwnedObjects
+        player = NetworkManager.LocalClient.OwnedObjects
                 .Select(o => o.GetComponent<NetworkVRPlayer>())
                 .First(p => p != null);
-            if (player)
-            {
-                player.EnableClientInput();
-            }
-        }, 0.5f);
+        if (player)
+        {
+            player.EnableClientInput();
+        }
     }
     #endregion
 
