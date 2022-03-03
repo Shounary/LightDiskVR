@@ -21,7 +21,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1490519023632216730
 Transform:
   m_ObjectHideFlags: 0
@@ -242,11 +242,12 @@ MonoBehaviour:
   isSummonable: 1
   storableLocations: []
   player: 
-  hand: 0
+  hand: 2
   weaponRB: {fileID: 1916699014}
   weaponTransform: {fileID: 5536113849709299437}
-  weaponTransformLeft: {fileID: 0}
-  weaponTransformRight: {fileID: 0}
+  transforms:
+  - {fileID: 5536113849709299437}
+  - {fileID: 5536113849709299437}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
 --- !u!1 &6975627547615817192

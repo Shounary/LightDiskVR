@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1901580098}
   m_Layer: 0
-  m_Name: left grab transform
+  m_Name: right grab transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901580097}
-  m_LocalRotation: {x: 0, y: -0, z: 0.7660445, w: -0.6427876}
-  m_LocalPosition: {x: 0, y: 30, z: 0.44999993}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: 0, y: 30, z: 0.4499999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1490519023632216730}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!1 &2298005037846391861
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 284548231507432626}
   m_Layer: 0
-  m_Name: right grab transform
+  m_Name: left grab transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,13 +53,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2298005037846391861}
-  m_LocalRotation: {x: 0, y: -0, z: 0.7660445, w: -0.6427876}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
   m_LocalPosition: {x: 0, y: -30, z: 0.4499999}
   m_LocalScale: {x: 2, y: 50, z: 2}
   m_Children: []
   m_Father: {fileID: 1490519023632216730}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!1 &3087088235417820408
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,11 +321,12 @@ MonoBehaviour:
   isSummonable: 1
   storableLocations: []
   player: 
-  hand: 0
+  hand: 2
   weaponRB: {fileID: 1916699014}
   weaponTransform: {fileID: 5536113849709299437}
-  weaponTransformLeft: {fileID: 1901580098}
-  weaponTransformRight: {fileID: 284548231507432626}
+  transforms:
+  - {fileID: 284548231507432626}
+  - {fileID: 1901580098}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
 --- !u!1 &6975627547615817192
@@ -352,8 +353,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6975627547615817192}
   m_LocalRotation: {x: 0, y: -0, z: 0.7660445, w: -0.6427876}
-  m_LocalPosition: {x: 0, y: -30, z: 0.4499999}
-  m_LocalScale: {x: 2, y: 50, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0.4499999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1490519023632216730}
   m_RootOrder: 0
