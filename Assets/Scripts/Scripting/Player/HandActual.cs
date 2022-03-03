@@ -22,6 +22,9 @@ public class HandActual : MonoBehaviour
     public WeaponInventory weaponInventory;
     public Weapon weapon;
 
+    public bool button1Pressed;
+    public bool button2Pressed;
+
     private Animator animator;
     void Start()
     {
@@ -52,8 +55,13 @@ public class HandActual : MonoBehaviour
             weapon.AttractWeapon(trigger, this.transform);
         }
         
-        if( targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed1) && pressed1) {
+        if( targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed1) && pressed1 && !button1Pressed) {
             weapon.MainButtonFunction();
+            button1Pressed = true;
+        }
+        else if (!pressed1 && button1Pressed)
+        {
+            button1Pressed = false;
         }
 
         if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool pressed2) && pressed2) {
