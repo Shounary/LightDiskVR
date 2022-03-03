@@ -19,31 +19,22 @@ public class BaseAccessor : NetworkBehaviour
 
     public string PlayerListText => m_PlayerListText.Value;
 
-    [SerializeField] private GameObject XRRigPrefab;
+    private void Start()
+    {
+        player = GetComponentInChildren<NetworkVRPlayer>();
+    }
 
     public override void OnNetworkSpawn()
     {
-        base.OnNetworkSpawn();
         UpdatePlayerListTextServerRPC();
         MatchConfigEntry();
+
+        DontDestroyOnLoad(gameObject);
+        NetworkManager.SceneManager.OnLoadComplete += PersistGameObject;
 
         Lock.OnValueChanged = (prev, next) =>
         {
             UpdatePlayerListTextServerRPC();
-        };
-
-        // AvatarReady.OnValueChanged = (prev, next) =>
-        // {
-        //     if (next && GameStage == GameStage.DuringMatch && IsOwner)
-        //     {
-        //         SpawnXRRigClientPath();
-        //     }
-        // };
-
-        DontDestroyOnLoad(gameObject);
-        SceneManager.activeSceneChanged += (prev, next) =>
-        {
-            DontDestroyOnLoad(gameObject);
         };
     }
 
@@ -97,11 +88,10 @@ public class BaseAccessor : NetworkBehaviour
 
     public void MatchConfigEntry()
     {
-        PreMatchUIManager.StartMenuObj.SetActive(false);
-        PreMatchUIManager.MatchConfigMenuObj.SetActive(true);
-        PreMatchUIManager.PersistentUIObj.SetActive(true);
-
-        PreMatchUIManager.Persistent.Accessor = this;
+        PreMatchManager.StartMenuObj.SetActive(false);
+        PreMatchManager.MatchConfigMenuObj.SetActive(true);
+        PreMatchManager.PersistentUIObj.SetActive(true);
+        PreMatchManager.Persistent.Accessor = this;
         MatchConfigFactory.Instance.ArenaIndex = 0;
         MatchConfig = new MatchConfig(MatchConfigFactory.Instance.Arena);
 
@@ -157,7 +147,7 @@ public class BaseAccessor : NetworkBehaviour
             // TODO: Update UI
         };
 
-        PreMatchUIManager.MatchConfigMenu.JoinCode.text = RelayManager.Instance.JoinCode;
+        PreMatchManager.MatchConfigMenu.JoinCode.text = RelayManager.Instance.JoinCode;
     }
 
     public void MatchConfigExit()
@@ -188,8 +178,8 @@ public class BaseAccessor : NetworkBehaviour
     public void PlayerConfigEnterClientRPC()
     {
         PlayerConfig = new PlayerConfig(MatchConfig);
-        PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
-        PreMatchUIManager.PlayerConfigMenuObj.SetActive(true);
+        PreMatchManager.MatchConfigMenuObj.SetActive(false);
+        PreMatchManager.PlayerConfigMenuObj.SetActive(true);
     }
 
     [ServerRpc(RequireOwnership =false)]
@@ -308,9 +298,7 @@ public class BaseAccessor : NetworkBehaviour
             action(acc);
     }
 
-    // for some reason DontDestroyOnLoad's effect is only for one scene
-    // so every scene change needs to persist the DontDestroy again
-    private void PersistGameObjects()
+    private void PersistGameObject(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
         DontDestroyOnLoad(gameObject);
     }
@@ -318,41 +306,6 @@ public class BaseAccessor : NetworkBehaviour
 
     #region XR_RIG_CONTROL
     NetworkVRPlayer player;
-
-    NetworkVariable<bool> AvatarReady = new NetworkVariable<bool>(false);
-
-    [ServerRpc(RequireOwnership = false)]
-    private void SpawnXRRigServerRpc(ulong client)
-    {
-        Debug.Log($"spawning xrrig for client {client}");
-        var xRObj = Instantiate(XRRigPrefab);
-        var xRObjNet = xRObj.GetComponent<NetworkObject>();
-        xRObjNet.Spawn();
-        xRObjNet.ChangeOwnership(client);
-
-        RollCall(acc => acc.AvatarReady.Value = true);
-    }
-
-    private void SpawnXRRigs()
-    {
-        foreach (ulong id in NetworkManager.Singleton.ConnectedClientsIds)
-        {
-            SpawnXRRigServerRpc(id);
-        }
-    }
-    
-    private void SpawnXRRigClientPath()
-    {
-        var rig = NetworkManager.LocalClient.OwnedObjects
-                .Select(o => o.GetComponent<NetworkVRPlayer>())
-                .First(p => p != null);
-
-        if (rig != null)
-        {
-            rig.EnableClientInput();
-            player = rig;
-        }
-    }
     #endregion
 
     #region LOCK

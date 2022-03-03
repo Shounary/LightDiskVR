@@ -54,6 +54,7 @@ public class NetworkVRPlayer : NetworkBehaviour
 
     private void Start()
     {
+        // TODO: change to spawn point, and also depending on scene
         if (IsClient && IsOwner)
         {
             transform.position = new Vector3(Random.Range(placementArea.x, placementArea.y),
