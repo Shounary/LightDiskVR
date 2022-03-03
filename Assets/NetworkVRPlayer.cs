@@ -47,6 +47,7 @@ public class NetworkVRPlayer : NetworkBehaviour
             {
                 input.enableInputActions = false;
                 input.enableInputTracking = false;
+                input.enabled = false;
             }
 
         }
