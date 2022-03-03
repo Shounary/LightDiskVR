@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
 
 public class HandActual : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class HandActual : MonoBehaviour
         animator = spawnedModel.GetComponent<Animator>();
     }
 
+    public bool mBPressed_buffer = false;
     void Update() {
         UpdateAnimation();
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
@@ -44,6 +46,17 @@ public class HandActual : MonoBehaviour
         }
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed) && pressed) {
             LevelManager.instance.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        if (TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed_) && pressed_ && !mBPressed_buffer)
+        {
+            mBPressed_buffer = true;
+            try
+            {
+                NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<BaseAccessor>().TogglePause();
+            } catch { }
+        } else
+        {
+            mBPressed_buffer = false;
         }
     }
 
