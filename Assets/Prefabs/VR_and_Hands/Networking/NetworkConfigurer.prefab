@@ -61,7 +61,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec45a83be6cf1a43b67a5315df5191a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  XRRigPrefab: {fileID: 8789056983680727805, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
   Lock:
     m_InternalValue: 1
 --- !u!1001 &3347355411023632618

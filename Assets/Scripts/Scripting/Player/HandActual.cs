@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class HandActual : MonoBehaviour
 {
     private InputDevice targetDevice;
+    // TODO: refactor to... TargetDevice { get; private set; } and remove the lower camel cased duplicate
+    public InputDevice TargetDevice => targetDevice;
     private GameObject spawnedModel;
 
     public GameObject handPrefab;

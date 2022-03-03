@@ -19,11 +19,6 @@ public class BaseAccessor : NetworkBehaviour
 
     public string PlayerListText => m_PlayerListText.Value;
 
-    private void Start()
-    {
-        player = GetComponentInChildren<NetworkVRPlayer>();
-    }
-
     public override void OnNetworkSpawn()
     {
         UpdatePlayerListTextServerRPC();
@@ -301,11 +296,18 @@ public class BaseAccessor : NetworkBehaviour
     private void PersistGameObject(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
         DontDestroyOnLoad(gameObject);
+        Player = GetComponentInChildren<NetworkVRPlayer>();
+        Hands = new List<HandActual>(GetComponentsInChildren<HandActual>());
     }
     #endregion
 
     #region XR_RIG_CONTROL
-    NetworkVRPlayer player;
+    public NetworkVRPlayer Player { get; private set; }
+    public List<HandActual> Hands { get; private set; }
+    [SerializeField]
+    GameObject PauseMenuPrefab;
+
+
     #endregion
 
     #region LOCK
