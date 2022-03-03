@@ -18,10 +18,6 @@ public class HandActual : MonoBehaviour
 
     public GameObject handPrefab;
     public InputDeviceCharacteristics controllerCharacteristics;
-
-    public float diskReturnForceMagnitude = 5f;
-    public float stoppingFactorMultiplier = 0.2f;
-    
     public Hand hand;
     public WeaponInventory weaponInventory;
     public Weapon weapon;
@@ -41,15 +37,29 @@ public class HandActual : MonoBehaviour
             targetDevice = inputDevices[0];
             Instantiate(handPrefab, transform);
         }
-
+        //weaponInventory = GetComponentInParent<WeaponInventory>();
         animator = spawnedModel.GetComponent<Animator>();
     }
 
     void Update() {
+        if(weaponInventory == null)
+        {
+            weaponInventory = GetComponentInParent<WeaponInventory>();
+        }
+        weapon = weaponInventory.getActiveWeapon(hand);
         UpdateAnimation();
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
             weapon.AttractWeapon(trigger, this.transform);
         }
+        
+        if( targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed1) && pressed1) {
+            weapon.MainButtonFunction();
+        }
+
+        if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool pressed2) && pressed2) {
+            weapon.SecondaryButtonFunction();
+        }
+
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool pressed) && pressed) {
             LevelManager.instance.LoadScene(SceneManager.GetActiveScene().name);
         }

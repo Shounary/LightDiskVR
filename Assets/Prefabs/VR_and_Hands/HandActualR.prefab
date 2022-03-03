@@ -45,5 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handPrefab: {fileID: 5686134208185362930, guid: 1fd3a7c43c8190f4d8c167ebde694364, type: 3}
   controllerCharacteristics: 576
-  diskReturnForceMagnitude: 7
-  stoppingFactorMultiplier: 0.5
+  hand: 1
+  weaponInventory: {fileID: 0}
+  weapon: {fileID: 0}

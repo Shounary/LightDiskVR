@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Old/JosephWorkshop.unity
-    guid: 3893c3d8929ba5940817abd884152355
-  - enabled: 1
     path: Assets/Scenes/Dev/Chase/GraphicArena 1.unity
     guid: 1e48094b3e6117e4d96cde1a857cce02
+  - enabled: 0
+    path: Assets/Scenes/Old/JosephWorkshop.unity
+    guid: 3893c3d8929ba5940817abd884152355
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 9beec0e4e0b6c2247a4194526c05c7ca, type: 2}

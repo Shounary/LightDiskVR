@@ -561,6 +561,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87370453}
   m_Mesh: {fileID: 4300002, guid: ab052a62dbb927449b02d208af93fe2f, type: 3}
+--- !u!1 &90216729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3087088235417820408, guid: c38512c3620aa9e49ad681b762d53d55, type: 3}
+  m_PrefabInstance: {fileID: 1975805608}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &90216735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90216729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b793c46e23af46b2c18bfe5fad54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryColor: {r: 0, g: 0, b: 0, a: 0}
+  accentColor: {r: 0, g: 0, b: 0, a: 0}
+  damage: 1
+  isSummonable: 1
+  storableLocations: []
+  player: 
+  hand: 0
+  weaponRB: {fileID: 1975805609}
+  diskReturnForceMagnitude: 5
+  stoppingFactorMultiplier: 0.2
 --- !u!1 &103933201
 GameObject:
   m_ObjectHideFlags: 0
@@ -2732,6 +2759,17 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 6696551533867179805, guid: 8f64fd2971643b841af9ee3aa3a451d1, type: 3}
   m_PrefabInstance: {fileID: 6696551532951322567}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1252992314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6070709432925138090, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+  m_PrefabInstance: {fileID: 1633006881}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b793c46e23af46b2c18bfe5fad54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1262917073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3236,6 +3274,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488217592}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1505104441 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 826765234068177426, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+  m_PrefabInstance: {fileID: 826765235343951703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1505104443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505104441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe01f149ac07ab041869af2d5d7a3bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeWeapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponList:
+  - {fileID: 90216735}
+  - {fileID: 1252992314}
 --- !u!1 &1525067199
 GameObject:
   m_ObjectHideFlags: 0
@@ -3673,7 +3734,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3087088235417820408, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070709432925138090, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+      propertyPath: damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070709432925138090, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+      propertyPath: weaponRB
+      value: 
+      objectReference: {fileID: 1633006882}
+    - target: {fileID: 6070709432925138090, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+      propertyPath: isSummonable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
@@ -4924,6 +4997,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 826765234068177426, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 826765234084480552, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
       propertyPath: m_RootOrder
       value: 4

@@ -6,8 +6,18 @@ public class WeaponInventory : MonoBehaviour
 {
     public List<Weapon> activeWeapons = new List<Weapon>(2); //stores the left hand weapon at index 0 and the right hand weapon at index 1
     public List<Weapon> weaponList; //a list of all weapons
+    /*public HandActual leftHA;
+    public HandActual rightHA;
 
-    
+
+    private void Update() {
+        if(leftHA =)
+    }*/
+
+    private void Start() {
+        activateWeapons();
+    }
+
     public void addWeapon(Weapon weapon)
     {
         weaponList.Add(weapon);
@@ -16,7 +26,9 @@ public class WeaponInventory : MonoBehaviour
     public void activateWeapons()
     {
         activeWeapons[0] = weaponList[0];
+        activeWeapons[0].hand = Hand.LEFT;
         activeWeapons[1] = weaponList[1];
+        activeWeapons[1].hand = Hand.RIGHT;
         //this is good enough for now, as the player only has 2 active weapons
     }
 
