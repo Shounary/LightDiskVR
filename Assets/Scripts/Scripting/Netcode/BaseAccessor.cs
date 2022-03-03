@@ -1,12 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using System;
 using System.Linq;
-using System.Text;
 using UnityEngine.SceneManagement;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.XR;
 
 public class BaseAccessor : NetworkBehaviour
@@ -305,7 +302,8 @@ public class BaseAccessor : NetworkBehaviour
     #region XR_RIG_CONTROL
     public NetworkVRPlayer Player { get; private set; }
     public List<HandActual> Hands { get; private set; }
-    public PauseMenu PauseMenu { get; private set; }
+    [SerializeField]
+    private PauseMenu PauseMenu;
 
     private void Update()
     {
@@ -314,24 +312,34 @@ public class BaseAccessor : NetworkBehaviour
 
     void CheckPause()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+            return;
+        }
         if (IsOwner && GameStage == GameStage.DuringMatch)
         {
             foreach (HandActual ha in Hands)
             {
                 ha.TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
-                if (pressed && !PauseMenu.gameObject.activeSelf)
+                if (pressed)
                 {
-                    PauseMenu.gameObject.SetActive(true);
+                    TogglePause();
+                    return;
                 }
             }
         }
+    }
+
+    void TogglePause()
+    {
+        PauseMenu.gameObject.SetActive(PauseMenu.gameObject.activeSelf);
     }
 
     void UpdateReferences()
     {
         Player = GetComponentInChildren<NetworkVRPlayer>();
         Hands = new List<HandActual>(GetComponentsInChildren<HandActual>());
-        PauseMenu = GetComponentInChildren<PauseMenu>();
     }
     #endregion
 
