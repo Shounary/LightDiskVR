@@ -312,13 +312,13 @@ public class BaseAccessor : NetworkBehaviour
 
     void CheckPause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (IsOwner)
         {
-            TogglePause();
-            return;
-        }
-        if (IsOwner && GameStage == GameStage.DuringMatch)
-        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                TogglePause();
+                return;
+            }
             foreach (HandActual ha in Hands)
             {
                 ha.TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
@@ -333,7 +333,7 @@ public class BaseAccessor : NetworkBehaviour
 
     void TogglePause()
     {
-        PauseMenu.gameObject.SetActive(PauseMenu.gameObject.activeSelf);
+        PauseMenu.gameObject.SetActive(!PauseMenu.gameObject.activeSelf);
     }
 
     void UpdateReferences()
