@@ -5,6 +5,8 @@ using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -295,7 +297,6 @@ public class BaseAccessor : NetworkBehaviour
     private void PersistGameObject(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
         DontDestroyOnLoad(gameObject);
-        UpdateReferences();
     }
 
     [ServerRpc(RequireOwnership =false)]
@@ -307,8 +308,8 @@ public class BaseAccessor : NetworkBehaviour
     #endregion
 
     #region XR_RIG_CONTROL
-    public NetworkVRPlayer Player { get; private set; }
-    public List<HandActual> Hands { get; private set; }
+
+    public NetworkVRPlayer Player;
     [SerializeField]
     private PauseMenu PauseMenu;
 
@@ -327,31 +328,16 @@ public class BaseAccessor : NetworkBehaviour
             TogglePause();
             return;
         }
-        if (Hands == null) return;
-        foreach (HandActual ha in Hands)
-        {
-            ha.TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
-            if (pressed)
-            {
-                TogglePause();
-                return;
-            }
-        }
     }
 
-    void TogglePause()
+    public void TogglePause()
     {
         PauseMenu.gameObject.SetActive(!PauseMenu.gameObject.activeSelf);
-    }
-
-    void UpdateReferences()
-    {
-        Player = GetComponentInChildren<NetworkVRPlayer>();
-        Hands = new List<HandActual>(GetComponentsInChildren<HandActual>());
     }
     #endregion
 
     #region LOCK
+    [NonSerialized]
     public NetworkVariable<bool> Lock = new NetworkVariable<bool>(true);
 
     public (bool, int, int) GetLock()
