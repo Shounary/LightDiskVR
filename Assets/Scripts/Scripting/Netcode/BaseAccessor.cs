@@ -6,6 +6,8 @@ using System;
 using System.Linq;
 using System.Text;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.XR;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -296,18 +298,41 @@ public class BaseAccessor : NetworkBehaviour
     private void PersistGameObject(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
         DontDestroyOnLoad(gameObject);
-        Player = GetComponentInChildren<NetworkVRPlayer>();
-        Hands = new List<HandActual>(GetComponentsInChildren<HandActual>());
+        UpdateReferences();
     }
     #endregion
 
     #region XR_RIG_CONTROL
     public NetworkVRPlayer Player { get; private set; }
     public List<HandActual> Hands { get; private set; }
-    [SerializeField]
-    GameObject PauseMenuPrefab;
+    public PauseMenu PauseMenu { get; private set; }
 
+    private void Update()
+    {
+        CheckPause();
+    }
 
+    void CheckPause()
+    {
+        if (IsOwner && GameStage == GameStage.DuringMatch)
+        {
+            foreach (HandActual ha in Hands)
+            {
+                ha.TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
+                if (pressed && !PauseMenu.gameObject.activeSelf)
+                {
+                    PauseMenu.gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
+    void UpdateReferences()
+    {
+        Player = GetComponentInChildren<NetworkVRPlayer>();
+        Hands = new List<HandActual>(GetComponentsInChildren<HandActual>());
+        PauseMenu = GetComponentInChildren<PauseMenu>();
+    }
     #endregion
 
     #region LOCK
