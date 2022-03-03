@@ -29,8 +29,13 @@ public class PauseMenu : MonoBehaviour
 
     private void Disconnect(Scene prev, Scene next)
     {
-        NetworkManager.Singleton.Shutdown();
         SceneManager.activeSceneChanged -= Disconnect;
+
+        foreach (NetworkObject obj in NetworkManager.Singleton.SpawnManager.SpawnedObjectsList)
+        {
+            Destroy(obj.gameObject);
+        }
+
         gameObject.SetActive(false);
     }
 }

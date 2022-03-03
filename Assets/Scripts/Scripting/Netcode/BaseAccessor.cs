@@ -297,6 +297,13 @@ public class BaseAccessor : NetworkBehaviour
         DontDestroyOnLoad(gameObject);
         UpdateReferences();
     }
+
+    [ServerRpc(RequireOwnership =false)]
+    public void DespawnServerRpc()
+    {
+        NetworkObject.Despawn();
+        Destroy(gameObject);
+    }
     #endregion
 
     #region XR_RIG_CONTROL
@@ -307,26 +314,27 @@ public class BaseAccessor : NetworkBehaviour
 
     private void Update()
     {
-        CheckPause();
+        if (IsSpawned && IsOwner)
+        {
+            CheckPause();
+        }
     }
 
     void CheckPause()
     {
-        if (IsOwner)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            TogglePause();
+            return;
+        }
+        if (Hands == null) return;
+        foreach (HandActual ha in Hands)
+        {
+            ha.TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
+            if (pressed)
             {
                 TogglePause();
                 return;
-            }
-            foreach (HandActual ha in Hands)
-            {
-                ha.TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
-                if (pressed)
-                {
-                    TogglePause();
-                    return;
-                }
             }
         }
     }

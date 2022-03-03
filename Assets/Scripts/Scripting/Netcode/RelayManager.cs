@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Unity.Netcode;
 using System.Threading.Tasks;
@@ -22,6 +23,19 @@ public class RelayManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+
+        foreach(NetworkManager nm in
+            GameObject
+            .FindGameObjectsWithTag("DestroyOnRestart")
+            .Where(go => go != gameObject)
+            .Select(go => go.GetComponent<NetworkManager>())
+            .Where(nm => nm != null))
+        {
+            nm.Shutdown();
+            Destroy(nm.gameObject);
+        }
+
+        gameObject.GetComponent<NetworkManager>().SetSingleton();
     }
 
     // [SerializeField]
