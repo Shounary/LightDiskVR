@@ -17,12 +17,15 @@ public class HandPauseController : MonoBehaviour
     {
         List<InputDevice> inputDevices = new List<InputDevice>();
         InputDevices.GetDevicesWithCharacteristics(controllerCharacteristics, inputDevices);
-        targetDevice = inputDevices[0];
+        if (inputDevices.Count != 0)
+            targetDevice = inputDevices[0];
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (targetDevice == null)
+            return;
         if (targetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed_) && pressed_ && !mBPressed_buffer)
         {
             mBPressed_buffer = true;

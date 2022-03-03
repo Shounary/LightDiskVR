@@ -6,20 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestingGrounds/UnityRelayTest 1.unity
+    path: Assets/Scenes/TestingGrounds/Current/Lobby.unity
     guid: 454b2783f4fff454b889b29ccab18926
   - enabled: 1
-    path: Assets/Scenes/TestingGrounds/FinalVrNetcodeIntegration/FightRoom.unity
-    guid: 3d145aa061990b346a02ddeecb4644ac
-  - enabled: 1
-    path: Assets/Scenes/TestingGrounds/NetcodeVRTest.unity
-    guid: f7beb5bf3196d3147afcdf4db5856bbf
-  - enabled: 1
-    path: Assets/Scenes/Old/OldArena.unity
-    guid: eef06951a815f2148b228c7fcb03533a
-  - enabled: 1
-    path: Assets/Scenes/Old/OldLargeArena.unity
-    guid: 171a8626f85e7d345bb96ee75858aeb4
+    path: Assets/Scenes/TestingGrounds/Current/NetworkArena.unity
+    guid: b4d896b8fac60a74bbcffab9de7f08d1
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: 87060f73e44de4be5869c9944f00e0f6, type: 2}
