@@ -6,6 +6,7 @@ public class WeaponInventory : MonoBehaviour
 {
     public List<Weapon> activeWeapons = new List<Weapon>(2); //stores the left hand weapon at index 0 and the right hand weapon at index 1
     public List<Weapon> weaponList; //a list of all weapons
+
     /*public HandActual leftHA;
     public HandActual rightHA;
 
@@ -23,14 +24,20 @@ public class WeaponInventory : MonoBehaviour
         weaponList.Add(weapon);
     }
 
+
     public void activateWeapons()
     {
-        activeWeapons[0] = weaponList[0];
-        activeWeapons[0].hand = Hand.LEFT;
-        activeWeapons[1] = weaponList[1];
-        activeWeapons[1].hand = Hand.RIGHT;
-        //this is good enough for now, as the player only has 2 active weapons
+        setActiveWeapon(weaponList[0], Hand.LEFT);
+        setActiveWeapon(weaponList[1], Hand.RIGHT);
     }
+
+
+    public void setActiveWeapon(Weapon weapon, Hand h)
+    {
+        activeWeapons[(int) h] = weapon;
+        weapon.setHand(h);
+    }
+
 
     //returns the active weapon in the given hand
     public Weapon getActiveWeapon(Hand h)
@@ -44,7 +51,8 @@ public class WeaponInventory : MonoBehaviour
     {
         if(weaponList.Contains(newWeapon) && activeWeapons.Contains(replaceWeapon))
         {
-            activeWeapons[activeWeapons.IndexOf(replaceWeapon)] = newWeapon;
+            setActiveWeapon(newWeapon, (Hand) activeWeapons.IndexOf(replaceWeapon));
+            //activeWeapons[activeWeapons.IndexOf(replaceWeapon)] = newWeapon;
             return true;
         }
         return false;
@@ -52,14 +60,14 @@ public class WeaponInventory : MonoBehaviour
 
     //places weapon w into the given hand
     //returns if the swap was successful
-    public bool swapActiveWeapon(Hand h, Weapon w)
+   /* public bool swapActiveWeapon(Weapon w, Hand h)
     {
         if(weaponList.Contains(w))
         {
-            activeWeapons[(int) h] = w;
+            setActiveWeapon()
             return true;
         }    
         return false;
-    }
+    }*/
 
 }

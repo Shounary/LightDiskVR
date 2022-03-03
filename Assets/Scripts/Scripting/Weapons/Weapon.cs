@@ -21,7 +21,19 @@ public class Weapon : MonoBehaviour
     public Hand hand;
     public Rigidbody weaponRB;
 
+    public Transform weaponTransform;
+    public Transform weaponTransformLeft;
+    public Transform weaponTransformRight;
+    private List<Transform> transforms = new List<Transform>();
 
+    private void Start() {
+        if(weaponTransformLeft != null && weaponTransformRight != null)
+        {
+            transforms[0] = weaponTransformLeft;
+            transforms[1] = weaponTransformRight;
+        }
+        setHand(hand);
+    }
     
     public float diskReturnForceMagnitude = 5f;
     public float stoppingFactorMultiplier = 0.2f;
@@ -45,5 +57,12 @@ public class Weapon : MonoBehaviour
     public virtual void MainButtonFunction(){}
 
     public virtual void SecondaryButtonFunction(){}
+
+    public void setHand(Hand h)
+    {
+        hand = h;
+        if(transforms.Count > 0)
+            weaponTransform = transforms[(int) h];
+    }
 
 }

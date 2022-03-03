@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7627459852844358272}
   - component: {fileID: 4834287168582458061}
   - component: {fileID: 1916699014}
+  - component: {fileID: 1639440263}
   m_Layer: 7
   m_Name: ShieldDisk
   m_TagString: PlayerDisk
@@ -215,14 +216,36 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3087088235417820408}
   serializedVersion: 2
-  m_Mass: 10
+  m_Mass: 15
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!114 &1639440263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087088235417820408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b793c46e23af46b2c18bfe5fad54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryColor: {r: 0, g: 0, b: 0, a: 0}
+  accentColor: {r: 0, g: 0, b: 0, a: 0}
+  damage: 1
+  isSummonable: 1
+  storableLocations: []
+  player: 
+  hand: 2
+  weaponRB: {fileID: 1916699014}
+  diskReturnForceMagnitude: 5
+  stoppingFactorMultiplier: 0.2
 --- !u!1 &6975627547615817192
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,13 +269,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6975627547615817192}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -0.5}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7660445, w: -0.6427876}
+  m_LocalPosition: {x: 0, y: 29.999998, z: 0.44999993}
   m_LocalScale: {x: 2, y: 50, z: 2}
   m_Children: []
   m_Father: {fileID: 1490519023632216730}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 260}
 --- !u!1001 &248061603
 PrefabInstance:
   m_ObjectHideFlags: 0
