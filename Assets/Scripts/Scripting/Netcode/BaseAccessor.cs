@@ -297,6 +297,13 @@ public class BaseAccessor : NetworkBehaviour
         DontDestroyOnLoad(gameObject);
         UpdateReferences();
     }
+
+    [ServerRpc(RequireOwnership =false)]
+    public void DespawnServerRpc()
+    {
+        NetworkObject.Despawn();
+        Destroy(gameObject);
+    }
     #endregion
 
     #region XR_RIG_CONTROL
@@ -307,7 +314,10 @@ public class BaseAccessor : NetworkBehaviour
 
     private void Update()
     {
-        CheckPause();
+        if (IsSpawned && IsOwner)
+        {
+            CheckPause();
+        }
     }
 
     void CheckPause()
@@ -317,23 +327,21 @@ public class BaseAccessor : NetworkBehaviour
             TogglePause();
             return;
         }
-        if (IsOwner && GameStage == GameStage.DuringMatch)
+        if (Hands == null) return;
+        foreach (HandActual ha in Hands)
         {
-            foreach (HandActual ha in Hands)
+            ha.TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
+            if (pressed)
             {
-                ha.TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
-                if (pressed)
-                {
-                    TogglePause();
-                    return;
-                }
+                TogglePause();
+                return;
             }
         }
     }
 
     void TogglePause()
     {
-        PauseMenu.gameObject.SetActive(PauseMenu.gameObject.activeSelf);
+        PauseMenu.gameObject.SetActive(!PauseMenu.gameObject.activeSelf);
     }
 
     void UpdateReferences()

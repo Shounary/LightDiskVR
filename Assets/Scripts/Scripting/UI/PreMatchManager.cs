@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using UnityEngine.SceneManagement;
 
 public class PreMatchManager : MonoBehaviour
 {
@@ -27,10 +28,27 @@ public class PreMatchManager : MonoBehaviour
 
     public static void ResumeStart()
     {
-        StartMenuObj.SetActive(true);
-        MatchConfigMenuObj.SetActive(false);
-        PlayerConfigMenuObj.SetActive(false);
-        PersistentUIObj.SetActive(false);
+        Instance.ResumeStartEntry();
+    }
+
+    private void ResumeStartEntry()
+    {
+        SceneManager.activeSceneChanged += Disconnect;
+        SceneManager.LoadScene(0);
+    }
+
+    private void Disconnect(Scene prev, Scene next)
+    {
+        SceneManager.activeSceneChanged -= Disconnect;
+
+        foreach (NetworkObject obj in NetworkManager.Singleton.SpawnManager.SpawnedObjectsList)
+        {
+            Destroy(obj.gameObject);
+        }
+
+        var nmHolder = NetworkManager.Singleton.gameObject;
+        NetworkManager.Singleton.Shutdown();
+        Destroy(nmHolder);
     }
 
     private void Awake()

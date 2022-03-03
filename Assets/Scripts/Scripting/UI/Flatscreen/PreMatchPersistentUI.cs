@@ -17,9 +17,6 @@ public class PreMatchPersistentUI : MonoBehaviour
         StartCoroutine(Refresh());
         Quit.onClick.AddListener(delegate
         {
-            //if (Accessor != null)
-            //    Accessor.GetComponent<NetworkObject>().Despawn(true);
-            NetworkManager.Singleton.Shutdown();
             PreMatchManager.ResumeStart();
         });
     }
