@@ -330,6 +330,10 @@ public class BaseAccessor : NetworkBehaviour
         }
     }
 
+    public void ActivatePause() {
+        PauseMenu.gameObject.SetActive(true);
+    }
+
     public void TogglePause()
     {
         PauseMenu.gameObject.SetActive(!PauseMenu.gameObject.activeSelf);

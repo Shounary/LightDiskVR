@@ -31,7 +31,7 @@ RectTransform:
   m_GameObject: {fileID: 348034675}
   m_LocalRotation: {x: 0.032847404, y: -0.43060115, z: 0.22008412, w: 0.87468094}
   m_LocalPosition: {x: 0, y: 0, z: 0.08}
-  m_LocalScale: {x: 0.008, y: 0.008, z: 1}
+  m_LocalScale: {x: 0.004, y: 0.004, z: 1}
   m_Children:
   - {fileID: 1911575966}
   - {fileID: 863456464}
@@ -738,9 +738,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 6750262847135408634}
-  Hands:
-  - {fileID: 6308754454687461146}
-  - {fileID: 6308754453713391922}
   PauseMenu: {fileID: 348034681}
 --- !u!1001 &3347355411023632618
 PrefabInstance:
@@ -819,20 +816,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
---- !u!114 &6308754454687461146 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8789056984063457264, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
-  m_PrefabInstance: {fileID: 3347355411023632618}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6308754454687461150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8789056984063457268, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
+  m_PrefabInstance: {fileID: 3347355411023632618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6308754454687461149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8789056984063457271, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
   m_PrefabInstance: {fileID: 3347355411023632618}
   m_PrefabAsset: {fileID: 0}
 --- !u!20 &6308754453953264489 stripped
@@ -856,14 +847,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8789056983680727800, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
   m_PrefabInstance: {fileID: 3347355411023632618}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6308754453713391922 stripped
+--- !u!114 &1885880421002749889
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8789056985305418200, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
-  m_PrefabInstance: {fileID: 3347355411023632618}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 6308754454687461149}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caff514de9b15ad48ab85dcff5508221, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b78966212470f5459d64971a896512a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerCharacteristics: 320
