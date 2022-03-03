@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using System;
 using System.Linq;
-using System.Text;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -18,11 +17,6 @@ public class BaseAccessor : NetworkBehaviour
     protected NetworkVariable<NetworkString> m_PlayerListText = new NetworkVariable<NetworkString>("Player List");
 
     public string PlayerListText => m_PlayerListText.Value;
-
-    private void Start()
-    {
-        player = GetComponentInChildren<NetworkVRPlayer>();
-    }
 
     public override void OnNetworkSpawn()
     {
@@ -301,11 +295,52 @@ public class BaseAccessor : NetworkBehaviour
     private void PersistGameObject(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
     {
         DontDestroyOnLoad(gameObject);
+        UpdateReferences();
     }
     #endregion
 
     #region XR_RIG_CONTROL
-    NetworkVRPlayer player;
+    public NetworkVRPlayer Player { get; private set; }
+    public List<HandActual> Hands { get; private set; }
+    [SerializeField]
+    private PauseMenu PauseMenu;
+
+    private void Update()
+    {
+        CheckPause();
+    }
+
+    void CheckPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+            return;
+        }
+        if (IsOwner && GameStage == GameStage.DuringMatch)
+        {
+            foreach (HandActual ha in Hands)
+            {
+                ha.TargetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressed);
+                if (pressed)
+                {
+                    TogglePause();
+                    return;
+                }
+            }
+        }
+    }
+
+    void TogglePause()
+    {
+        PauseMenu.gameObject.SetActive(PauseMenu.gameObject.activeSelf);
+    }
+
+    void UpdateReferences()
+    {
+        Player = GetComponentInChildren<NetworkVRPlayer>();
+        Hands = new List<HandActual>(GetComponentsInChildren<HandActual>());
+    }
     #endregion
 
     #region LOCK
