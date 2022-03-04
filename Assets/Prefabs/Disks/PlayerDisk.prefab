@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 4834287168582458061}
   - component: {fileID: 1916699014}
   - component: {fileID: 6070709432925138090}
+  - component: {fileID: 143446536956234287}
+  - component: {fileID: 8484248402038359846}
   m_Layer: 7
   m_Name: PlayerDisk
   m_TagString: PlayerDisk
@@ -31,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 3087088235417820408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.00225, z: 0.3}
+  m_LocalScale: {x: 0.3, y: 0.0225, z: 0.3}
   m_Children:
   - {fileID: 5536113849709299437}
   - {fileID: 5099820278896328384}
@@ -238,7 +240,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryColor: {r: 0, g: 0, b: 0, a: 0}
   accentColor: {r: 0, g: 0, b: 0, a: 0}
-  damage: 1
+  damage: 15
   isSummonable: 1
   storableLocations: []
   player: 
@@ -251,6 +253,45 @@ MonoBehaviour:
   parentGameObject: {fileID: 0}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
+--- !u!114 &143446536956234287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087088235417820408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
+  CanCommitToTransform: 0
+--- !u!114 &8484248402038359846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087088235417820408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6975627547615817192
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061151286709366927, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4504.519
+      value: 450.4519
       objectReference: {fileID: 0}
     - target: {fileID: 1061151286709366927, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_LocalScale.z
