@@ -34,7 +34,8 @@ public class NetworkVRPlayer : NetworkBehaviour
     public void DisableClientInput()
     {
         if (IsClient && !IsOwner) {
-            var clientControllers = GetComponentsInChildren<ActionBasedController>();
+            var clientActionControllers = GetComponentsInChildren<ActionBasedController>();
+            var clientDeviceControllers = GetComponentsInChildren<XRBaseController>();
             
             var clientHead = GetComponentInChildren<TrackedPoseDriver>();
             var clientCamera = GetComponentInChildren<Camera>();
@@ -42,14 +43,16 @@ public class NetworkVRPlayer : NetworkBehaviour
             clientCamera.enabled = false;
             clientHead.enabled = false;
 
-            Debug.Log(clientControllers);
-            foreach (var input in clientControllers)
+            foreach (var input in clientActionControllers)
             {
                 input.enableInputActions = false;
                 input.enableInputTracking = false;
                 input.enabled = false;
             }
 
+            foreach (var DBcontroller in clientDeviceControllers) {
+                DBcontroller.enabled = false;
+            }
         }
     }
 
