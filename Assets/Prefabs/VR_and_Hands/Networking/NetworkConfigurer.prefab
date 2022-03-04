@@ -135,6 +135,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resume: {fileID: 1911575967}
   quit: {fileID: 863456465}
+  panelSound:
+    Guid:
+      Data1: 1465102771
+      Data2: 1200120522
+      Data3: -1575430722
+      Data4: -1275628150
+    Path: event:/UI/Simple_Hover
 --- !u!114 &5632661980023677219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +753,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4242777805388121971}
     m_Modifications:
+    - target: {fileID: 5750073495476766328, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
+      propertyPath: attenuationObject
+      value: 
+      objectReference: {fileID: 6308754453776697154}
     - target: {fileID: 8789056983680727800, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -893,6 +904,11 @@ GameObject:
 --- !u!20 &6308754453953264489 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8789056984369832835, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
+  m_PrefabInstance: {fileID: 3347355411023632618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6308754453776697154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8789056984294727592, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
   m_PrefabInstance: {fileID: 3347355411023632618}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &6750262847135408634 stripped

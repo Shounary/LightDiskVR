@@ -4,11 +4,15 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using FMODUnity;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
     private Button resume, quit;
+
+    [SerializeField]
+    private EventReference panelSound;
 
     void Start()
     {
@@ -19,6 +23,11 @@ public class PauseMenu : MonoBehaviour
 
     void Resume() {
         gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        RuntimeManager.PlayOneShot(panelSound, transform.position);
     }
 
     void Quit()

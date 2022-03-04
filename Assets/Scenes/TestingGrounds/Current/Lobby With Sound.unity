@@ -200,6 +200,13 @@ MonoBehaviour:
   m_PlayerConfigMenuObj: {fileID: 2029910543}
   m_PersistentUIObj: {fileID: 1297313618}
   m_UnNetworkedXRRig: {fileID: 1050259109}
+  panelSound:
+    Guid:
+      Data1: 1465102771
+      Data2: 1200120522
+      Data3: -1575430722
+      Data4: -1275628150
+    Path: event:/UI/Simple_Hover
 --- !u!4 &138478680
 Transform:
   m_ObjectHideFlags: 0
@@ -716,9 +723,9 @@ GameObject:
   m_Component:
   - component: {fileID: 943061702}
   - component: {fileID: 943061701}
-  - component: {fileID: 943061700}
   - component: {fileID: 943061699}
   - component: {fileID: 943061698}
+  - component: {fileID: 943061700}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -805,14 +812,20 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Main Camera - TPD - Rotation
       m_Flags: 0
---- !u!81 &943061700
-AudioListener:
+--- !u!114 &943061700
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 943061697}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 2063382749}
+  ListenerNumber: -1
 --- !u!20 &943061701
 Camera:
   m_ObjectHideFlags: 0

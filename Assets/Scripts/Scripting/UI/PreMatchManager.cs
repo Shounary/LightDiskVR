@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 public class PreMatchManager : MonoBehaviour
 {
@@ -26,6 +27,20 @@ public class PreMatchManager : MonoBehaviour
 
     public static GameObject UnNetworkedXRRig => Instance.m_UnNetworkedXRRig;
 
+    public static List<GameObject> TogglablePanels => new List<GameObject>{
+        Instance.m_PlayerConfigMenuObj,
+        Instance.m_MatchConfigMenuObj,
+        Instance.m_StartMenuObj
+    };
+
+    [SerializeField]
+    private EventReference panelSound;
+
+    private void Start()
+    {
+        UpdatePanelDisplay(null);
+    }
+
     public static void ResumeStart()
     {
         Instance.ResumeStartEntry();
@@ -46,9 +61,50 @@ public class PreMatchManager : MonoBehaviour
             Destroy(obj.gameObject);
         }
 
+        UpdatePanelDisplay(null);
+
         var nmHolder = NetworkManager.Singleton.gameObject;
         NetworkManager.Singleton.Shutdown();
         Destroy(nmHolder);
+    }
+
+    public void UpdatePanelDisplay(GameStage? stage)
+    {
+        GameObject g = stage.HasValue ? m_StartMenuObj : m_PersistentUIObj;
+        if (stage.HasValue)
+        {
+            switch (stage)
+            {
+                case GameStage.MatchConfig:
+                    g = m_MatchConfigMenuObj;
+                    break;
+                case GameStage.PlayerConfig:
+                    g = m_PlayerConfigMenuObj;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        TogglablePanels
+            .Select(go =>
+            {
+                Debug.Log($"found togglable {go}");
+                return go;
+            })
+            .Where(go => go != g)
+            .Select(go => {
+                Debug.Log($"...shutting down {go}");
+                go.SetActive(false);
+                return 0;
+            });
+        g.SetActive(true);
+        PlayPanelSfx(g);
+    }
+
+    private void PlayPanelSfx(GameObject src)
+    {
+        RuntimeManager.PlayOneShot(panelSound, src.transform.position);
     }
 
     private void Awake()

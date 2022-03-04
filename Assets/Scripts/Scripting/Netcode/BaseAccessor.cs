@@ -84,9 +84,7 @@ public class BaseAccessor : NetworkBehaviour
 
     public void MatchConfigEntry()
     {
-        PreMatchManager.StartMenuObj.SetActive(false);
-        PreMatchManager.MatchConfigMenuObj.SetActive(true);
-        PreMatchManager.PersistentUIObj.SetActive(true);
+        PreMatchManager.Instance.UpdatePanelDisplay(GameStage.MatchConfig);
         PreMatchManager.Persistent.Accessor = this;
         MatchConfigFactory.Instance.ArenaIndex = 0;
         MatchConfig = new MatchConfig(MatchConfigFactory.Instance.Arena);
@@ -174,8 +172,7 @@ public class BaseAccessor : NetworkBehaviour
     public void PlayerConfigEnterClientRPC()
     {
         PlayerConfig = new PlayerConfig(MatchConfig);
-        PreMatchManager.MatchConfigMenuObj.SetActive(false);
-        PreMatchManager.PlayerConfigMenuObj.SetActive(true);
+        PreMatchManager.Instance.UpdatePanelDisplay(GameStage.PlayerConfig);
     }
 
     [ServerRpc(RequireOwnership =false)]
