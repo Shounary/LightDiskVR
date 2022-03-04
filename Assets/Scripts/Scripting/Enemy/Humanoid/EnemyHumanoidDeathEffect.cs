@@ -15,11 +15,15 @@ public class EnemyHumanoidDeathEffect : MonoBehaviour
     public Transform referensePointTorso;
     public Transform referensePointRL;
     public Transform referensePointLL;
+    public int health = 100;
 
     public LayerMask toTakeDamageFrom;
-    private void OnTriggerEnter(Collider other) {
+    private async void OnTriggerEnter(Collider other) {
         Debug.Log("hit-----------------------------------------------------------------------------------------------------------------");
-        if (toTakeDamageFrom == (toTakeDamageFrom | (1 << other.gameObject.layer))) {
+        Weapon w = other.gameObject.GetComponent<Weapon>();
+        if(w != null && w.playerName != "Enemy")
+            health -= w.damage;
+        if (health <= 0) {
             Destroy(Instantiate(deathRH, referensePointRH.position, referensePointRH.rotation), 2f);
             Destroy(Instantiate(deathLH, referensePointLH.position, referensePointLH.rotation), 2f);
             Destroy(Instantiate(deathTorso, referensePointTorso.position, referensePointTorso.rotation), 2f);
@@ -31,7 +35,10 @@ public class EnemyHumanoidDeathEffect : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         Debug.Log("hit Oncollition-----------------------------------------------------------------------------------------------------------------");
-        if (toTakeDamageFrom == (toTakeDamageFrom | (1 << collision.collider.gameObject.layer))) {
+        Weapon w = collision.gameObject.GetComponent<Weapon>();
+        if(w != null && w.playerName != "Enemy")
+            health -= w.damage;
+        if (health <= 0) {
             Destroy(Instantiate(deathRH, referensePointRH.position, referensePointRH.rotation), 2f);
             Destroy(Instantiate(deathLH, referensePointLH.position, referensePointLH.rotation), 2f);
             Destroy(Instantiate(deathTorso, referensePointTorso.position, referensePointTorso.rotation), 2f);

@@ -10,7 +10,7 @@ public class SinglePlayerWeaponConfigure : MonoBehaviour
     public GameObject uiHand1;
     public GameObject uiHand2;
     private void Awake() {
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
     // Start is called before the first frame update
     void Start()
