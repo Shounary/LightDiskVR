@@ -1,6 +1,12 @@
 fileFormatVersion: 2
-guid: 7b581c1ae13be6846b0f62b638b615ea
+<<<<<<< HEAD:Assets/Prefabs/test.meta
+guid: e541f7c2a41903d4ab3a7b5db6d8609b
+folderAsset: yes
 DefaultImporter:
+=======
+guid: c6ca93794dce245f488a76107afc2143
+PrefabImporter:
+>>>>>>> upstream/main:Assets/Scenes/KunalWorkshop/SimpleRectangleRoom.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

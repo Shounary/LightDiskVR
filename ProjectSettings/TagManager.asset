@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerDisk
+  - Empty Parent
+  - EnemyDisk
   layers:
   - Default
   - TransparentFX
