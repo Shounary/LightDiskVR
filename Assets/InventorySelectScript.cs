@@ -13,6 +13,7 @@ public class InventorySelectScript : MonoBehaviour
     public Weapon chosenWeapon;
     public string arenaName;
     public TextMeshProUGUI activeWeaponText;
+    public PlayerStats stats;
 
 
     private void Start() {
@@ -31,7 +32,8 @@ public class InventorySelectScript : MonoBehaviour
         {
             chosenWeapon.gameObject.SetActive(true);
             chosenWeapon.gameObject.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
-            weaponInventory.activeWeapons[(int) hand] = chosenWeapon;
+            weaponInventory.setActiveWeapon(chosenWeapon, hand);
+            stats.playerName = weaponInventory.playerName;
         }
     }
 

@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
     public int damage;
     public bool isSummonable;
     public List<string> storableLocations;
-    public string player;
+    public string playerName;
     //public Collider hurtBox; 
     public Hand hand;
     public Rigidbody weaponRB;
