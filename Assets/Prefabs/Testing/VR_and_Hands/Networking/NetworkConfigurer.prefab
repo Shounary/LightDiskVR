@@ -1237,7 +1237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8789056983680727803, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
       propertyPath: m_CameraYOffset
-      value: 0.93
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8789056983680727803, guid: bcf321e95f5f7aa49aac4ac43da44dcb, type: 3}
       propertyPath: m_RequestedTrackingOriginMode
