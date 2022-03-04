@@ -34,11 +34,11 @@ public class HandActual : MonoBehaviour
         Debug.Log("devices: " + inputDevices.Count);
         if (inputDevices.Count > 0) {
             targetDevice = inputDevices[0];
-            spawnedModel = Instantiate(handPrefab, transform);
+            //spawnedModel = Instantiate(handPrefab, transform);
         } else {
             Debug.LogWarning("Controller not found!");
             targetDevice = inputDevices[0];
-            Instantiate(handPrefab, transform);
+            //Instantiate(handPrefab, transform);
         }
         //weaponInventory = GetComponentInParent<WeaponInventory>();
         //animator = spawnedModel.GetComponent<Animator>();
