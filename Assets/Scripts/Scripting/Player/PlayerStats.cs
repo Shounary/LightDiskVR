@@ -25,11 +25,14 @@ public class PlayerStats : MonoBehaviour
         timeSinceHit += Time.deltaTime;
     }
 
-    public static void takeDamage(float damage) {
+    public void takeDamage(int damage) {
         if (timeSinceHit >= invincibilityTime) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
-            health -= (int) damage;
+            health -= damage;
             timeSinceHit = 0.0f;
+            if(health <0)
+                health = 0;
         }
+        healthBar.displayHealth(health);
         if (health <= 0) {
             PauseController.instance.DeathMenu();
         }

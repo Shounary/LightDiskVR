@@ -21,7 +21,7 @@ public class WeaponInventory : MonoBehaviour
     private void Start() {
         //activateWeapons();
         playerName = generateRandomName();
-        activateWeapons();
+        //activateWeapons
     }
 
     public void addWeapon(Weapon weapon)
@@ -39,9 +39,12 @@ public class WeaponInventory : MonoBehaviour
 
     public void setActiveWeapon(Weapon weapon, Hand h)
     {
-        activeWeapons[(int) h] = weapon;
-        weapon.setHand(h);
-        weapon.playerName = playerName;
+        Debug.Log((int) h);
+        Debug.Log(activeWeapons);
+        //Debug.Log(activeWeapons[0]);
+        //activeWeapons[(int) h] = weapon;
+        //weapon.setHand(h);
+        //weapon.playerName = playerName;
     }
 
     public void CallGrabEventOnActiveWeapon(int h)
