@@ -2,32 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
     public int startHealth;
-    public static float health;
+    public int health;
+    public string playerName;
 
+    public HealthBar healthBar;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
+    private void Start() {
         health = startHealth;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-
-
-    public static void takeDamage(float damage) {
+    public void takeDamage(int damage) {
         health -= damage;
-        if (health <= 0) {
+        if(health < 0)
+            health = 0;
+        healthBar.displayHealth(health);
+        if (health == 0) 
             PauseController.instance.DeathMenu();
-        }
     }
 }

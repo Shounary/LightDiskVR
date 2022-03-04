@@ -52,7 +52,7 @@ public class HandActual : MonoBehaviour
         weapon = weaponInventory.getActiveWeapon(hand);
         UpdateAnimation();
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
-            weapon.AttractWeapon(trigger, this.transform);
+            weapon.TriggerFunction(trigger, this.transform);
         }
         
         if( targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed1) && pressed1 && !button1Pressed) {

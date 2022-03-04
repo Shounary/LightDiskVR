@@ -248,6 +248,7 @@ MonoBehaviour:
   transforms:
   - {fileID: 5536113849709299437}
   - {fileID: 5536113849709299437}
+  parentGameObject: {fileID: 0}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
 --- !u!1 &6975627547615817192
@@ -431,7 +432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7421614764131762856, guid: 5dfd6ab9dc5e8b745accdec848d88a3f, type: 3}
       propertyPath: m_Intensity
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8075121881027119028, guid: 5dfd6ab9dc5e8b745accdec848d88a3f, type: 3}
       propertyPath: m_Name

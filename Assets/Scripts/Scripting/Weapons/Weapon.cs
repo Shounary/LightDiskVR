@@ -13,7 +13,7 @@ public class Weapon : MonoBehaviour
     public Color accentColor;
 
 
-    public float damage;
+    public int damage;
     public bool isSummonable;
     public List<string> storableLocations;
     public string player;
@@ -26,17 +26,21 @@ public class Weapon : MonoBehaviour
     //public Transform weaponTransformRight;
     public List<Transform> transforms = new List<Transform>();
 
-    /*private void Start() {
-        if(weaponTransformLeft != null && weaponTransformRight != null)
-        {
-            transforms[0] = weaponTransformLeft;
-            transforms[1] = weaponTransformRight;
-        }
-        //setHand(hand);
-    }*/
+    public GameObject parentGameObject; //an empty gameobject with uniform scaling that serves as the default parent
+
+    private void Start() {
+        parentGameObject = GameObject.FindGameObjectsWithTag("Empty Parent")[0];
+        this.gameObject.transform.SetParent(parentGameObject.transform);
+    }
     
     public float diskReturnForceMagnitude = 5f;
     public float stoppingFactorMultiplier = 0.2f;
+
+
+    public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
+    {
+        AttractWeapon(additionalFactor, targetTransform);
+    }
 
     //when called, the weapon will be attracted to the target transfrom
     public void AttractWeapon(float additionalFactor, Transform targetTransform) {
