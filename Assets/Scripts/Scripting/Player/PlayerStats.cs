@@ -11,17 +11,26 @@ public class PlayerStats : MonoBehaviour
     public string playerName;
 
     public HealthBar healthBar;
+    private static float timeSinceHit = 10.0f;
+    public static float invincibilityTime = 2.0f;
+
 
     private void Start() {
         health = startHealth;
     }
 
-    public void takeDamage(int damage) {
-        health -= damage;
-        if(health < 0)
-            health = 0;
-        healthBar.displayHealth(health);
-        if (health == 0) 
+    // Update is called once per frame
+    void Update()
+    {
+        timeSinceHit += Time.deltaTime;
+    }
+
+    public static void takeDamage(float damage) {
+        if (timeSinceHit >= invincibilityTime) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
+            health -= damage;
+            timeSinceHit = 0.0f;
+        }
+        if (health <= 0) {
             PauseController.instance.DeathMenu();
     }
 }
