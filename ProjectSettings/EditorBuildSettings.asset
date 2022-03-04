@@ -5,12 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestingGrounds/Current/Lobby.unity
     guid: 454b2783f4fff454b889b29ccab18926
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestingGrounds/Current/NetworkArena.unity
     guid: b4d896b8fac60a74bbcffab9de7f08d1
+  - enabled: 1
+    path: Assets/Scenes/TestingGrounds/Current/Lobby With Sound.unity
+    guid: 98844832355474c9e9616a0cf5f68551
+  - enabled: 1
+    path: Assets/Scenes/TestingGrounds/Current/Network Arena With Sound.unity
+    guid: 5588c926ab0764d8188a6f10a7da7c9b
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 9beec0e4e0b6c2247a4194526c05c7ca, type: 2}

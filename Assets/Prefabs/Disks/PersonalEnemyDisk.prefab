@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 3938629660835468712}
   - component: {fileID: 2045806365538719205}
   - component: {fileID: 6877837334377893550}
+  - component: {fileID: 2587482787081110871}
   m_Layer: 8
   m_Name: PersonalEnemyDisk
   m_TagString: Untagged
@@ -146,6 +147,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &2587482787081110871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8477312686200247248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 458886035
+      Data2: 1259603289
+      Data3: -234646910
+      Data4: -1880751789
+    Path: event:/Combat/Simple_Hit_3D
+  Event: 
+  PlayEvent: 7
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &3393976486590360655
 PrefabInstance:
   m_ObjectHideFlags: 0
