@@ -64,8 +64,8 @@ public class NetworkVRPlayer : NetworkBehaviour
         if (IsClient && IsOwner)
         {
             NetworkObject networkObjectSelected = eventArgs.interactable.transform.GetComponent<NetworkObject>();
-            //Rigidbody weaponRB = eventArgs.interactable.transform.GetComponent<Rigidbody>();
-            //weaponRB.isKinematic = false;
+            Rigidbody weaponRB = eventArgs.interactable.transform.GetComponent<Rigidbody>();
+            weaponRB.isKinematic = false;
             if (networkObjectSelected != null)
                 RequestGrabbableOwnershipServerRpc(OwnerClientId, networkObjectSelected);
         }
@@ -75,8 +75,8 @@ public class NetworkVRPlayer : NetworkBehaviour
         if (IsClient && IsOwner)
         {
             NetworkObject networkObjectSelected = eventArgs.interactable.transform.GetComponent<NetworkObject>();
-            //Rigidbody weaponRB = eventArgs.interactable.transform.GetComponent<Rigidbody>();
-            //weaponRB.isKinematic = false;
+            Rigidbody weaponRB = eventArgs.interactable.transform.GetComponent<Rigidbody>();
+            weaponRB.isKinematic = false;
             //if (networkObjectSelected != null)
             //    RequestGrabbableOwnershipServerRpc(NetworkManager.ServerClientId, networkObjectSelected);
         }
