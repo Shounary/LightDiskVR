@@ -7,6 +7,8 @@ public class SinglePlayerWeaponConfigure : MonoBehaviour
     public InventorySelectScript s1;
    // public InventorySelectScript s2;
     public GameObject button; 
+    public GameObject uiHand1;
+    public GameObject uiHand2;
     private void Awake() {
         Time.timeScale = 0;
     }
@@ -26,6 +28,11 @@ public class SinglePlayerWeaponConfigure : MonoBehaviour
     {
         Time.timeScale = 1;
         s1.SpawnWeapons();
+        s1.gameObject.transform.localScale = Vector3.zero;
+        button.SetActive(false);
+        button.transform.localScale = Vector3.zero;
+        Destroy(uiHand1);
+        Destroy(uiHand2);
         DestroyImmediate(button);
         gameObject.SetActive(false);
     }
