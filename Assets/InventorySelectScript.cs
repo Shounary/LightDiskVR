@@ -13,6 +13,8 @@ public class InventorySelectScript : MonoBehaviour
     public Weapon chosenWeapon;
     public string arenaName;
     public TextMeshProUGUI activeWeaponText;
+    public PlayerStats stats;
+    public Canvas canvas;
 
 
     private void Start() {
@@ -29,10 +31,18 @@ public class InventorySelectScript : MonoBehaviour
     {
         if(next.name.Equals(arenaName))
         {
-            chosenWeapon.gameObject.SetActive(true);
-            chosenWeapon.gameObject.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
-            weaponInventory.activeWeapons[(int) hand] = chosenWeapon;
+           SpawnWeapons();
         }
+    }
+
+    public void SpawnWeapons()
+    {
+        chosenWeapon.gameObject.SetActive(true);
+        chosenWeapon.gameObject.transform.SetPositionAndRotation(this.transform.position, Quaternion.identity);
+        weaponInventory.setActiveWeapon(chosenWeapon, hand);
+        stats.playerName = weaponInventory.playerName;
+        //canvas.gameObject.SetActive(false);
+        Destroy(canvas.gameObject);
     }
 
     public void amogus()

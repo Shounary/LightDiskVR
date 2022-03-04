@@ -6,6 +6,9 @@ public class WeaponInventory : MonoBehaviour
 {
     public List<Weapon> activeWeapons = new List<Weapon>(2); //stores the left hand weapon at index 0 and the right hand weapon at index 1
     public List<Weapon> weaponList; //a list of all weapons
+    public string playerName;
+
+    const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
 
     /*public HandActual leftHA;
     public HandActual rightHA;
@@ -16,6 +19,8 @@ public class WeaponInventory : MonoBehaviour
     }*/
 
     private void Start() {
+        //activateWeapons();
+        playerName = generateRandomName();
         activateWeapons();
     }
 
@@ -36,6 +41,7 @@ public class WeaponInventory : MonoBehaviour
     {
         activeWeapons[(int) h] = weapon;
         weapon.setHand(h);
+        weapon.playerName = playerName;
     }
 
     public void CallGrabEventOnActiveWeapon(int h)
@@ -78,5 +84,16 @@ public class WeaponInventory : MonoBehaviour
         }    
         return false;
     }*/
+
+    public string generateRandomName()
+    {
+        string s = "";
+        for(int i=0; i<10; i++)
+        {
+            s += glyphs[Random.Range(0, glyphs.Length)];
+        }
+        return s;
+
+    }
 
 }

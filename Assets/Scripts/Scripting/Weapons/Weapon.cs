@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
     public int damage;
     public bool isSummonable;
     public List<string> storableLocations;
-    public string player;
+    public string playerName;
     //public Collider hurtBox; 
     public Hand hand;
     public Rigidbody weaponRB;
@@ -26,7 +26,7 @@ public class Weapon : MonoBehaviour
     //public Transform weaponTransformRight;
     public List<Transform> transforms = new List<Transform>();
 
-    private bool isHeld;
+    public bool isHeld;
 
     public GameObject parentGameObject; //an empty gameobject with uniform scaling that serves as the default parent
 
