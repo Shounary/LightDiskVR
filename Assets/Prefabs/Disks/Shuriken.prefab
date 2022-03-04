@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 577126318431853272}
   - component: {fileID: 5410102731996152211}
   - component: {fileID: 7044476037423635692}
+  - component: {fileID: 3767167766982108595}
+  - component: {fileID: 6200600484467940339}
   m_Layer: 7
   m_Name: Shuriken
   m_TagString: PlayerDisk
@@ -61,7 +63,7 @@ Transform:
   m_GameObject: {fileID: 7044476037423635693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.41, y: -0.21320605, z: 0.311}
-  m_LocalScale: {x: 0.15, y: 0.001125, z: 0.15}
+  m_LocalScale: {x: 0.15, y: 0.01125, z: 0.15}
   m_Children:
   - {fileID: 558642014673291000}
   - {fileID: 996061066256203477}
@@ -268,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryColor: {r: 0, g: 0, b: 0, a: 0}
   accentColor: {r: 0, g: 0, b: 0, a: 0}
-  damage: 0
+  damage: 5
   isSummonable: 0
   storableLocations: []
   player: 
@@ -285,6 +287,45 @@ MonoBehaviour:
   - PlayerDisk
   - EnemyDisk
   hasCollided: 1
+--- !u!114 &3767167766982108595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7044476037423635693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
+  CanCommitToTransform: 0
+--- !u!114 &6200600484467940339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7044476037423635693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2900151053745742731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -314,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1061151286709366927, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 4504.519
+      value: 450.4519
       objectReference: {fileID: 0}
     - target: {fileID: 1061151286709366927, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_LocalScale.z
