@@ -38,6 +38,15 @@ public class WeaponInventory : MonoBehaviour
         weapon.setHand(h);
     }
 
+    public void CallGrabEventOnActiveWeapon(int h)
+    {
+        activeWeapons[(int) h].OnGrabFunction();
+    }
+
+    public void CallReleaseEventOnActiveWeapon(int h)
+    {
+        activeWeapons[(int) h].OnReleaseFunction();
+    }
 
     //returns the active weapon in the given hand
     public Weapon getActiveWeapon(Hand h)

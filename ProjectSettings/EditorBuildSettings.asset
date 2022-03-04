@@ -6,11 +6,17 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TestingGrounds/Current/Main Menu.unity
+    guid: 6e49dacb998fcab40ad0ce0d704500b7
+  - enabled: 0
     path: Assets/Scenes/TestingGrounds/Current/Lobby.unity
     guid: 454b2783f4fff454b889b29ccab18926
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestingGrounds/Current/NetworkArena.unity
     guid: b4d896b8fac60a74bbcffab9de7f08d1
+  - enabled: 1
+    path: Assets/Scenes/Dev/Chase/GraphicArena 1.unity
+    guid: 89690738eb95ae14b9919a5bdb51d7b7
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 9beec0e4e0b6c2247a4194526c05c7ca, type: 2}
