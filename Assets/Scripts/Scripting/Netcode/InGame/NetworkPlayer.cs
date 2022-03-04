@@ -36,8 +36,8 @@ public class NetworkPlayer : NetworkBehaviour
     {
         if (IsClient && IsOwner)
         {
-            transform.position = new Vector3(Random.RandomRange(placementArea.x, placementArea.y),
-                transform.position.y, Random.RandomRange(placementArea.x, placementArea.y));
+            transform.position = new Vector3(Random.Range(placementArea.x, placementArea.y),
+                transform.position.y, Random.Range(placementArea.x, placementArea.y));
         }
     }
 }

@@ -11,9 +11,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField]
     private Button resume, quit;
 
-    [SerializeField]
-    private EventReference panelSound;
-
     void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -27,7 +24,7 @@ public class PauseMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        RuntimeManager.PlayOneShot(panelSound, transform.position);
+        RuntimeManager.PlayOneShot("event:/UI/Simple_Hover", transform.position);
     }
 
     void Quit()

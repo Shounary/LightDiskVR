@@ -27,15 +27,6 @@ public class PreMatchManager : MonoBehaviour
 
     public static GameObject UnNetworkedXRRig => Instance.m_UnNetworkedXRRig;
 
-    public static List<GameObject> TogglablePanels => new List<GameObject>{
-        Instance.m_PlayerConfigMenuObj,
-        Instance.m_MatchConfigMenuObj,
-        Instance.m_StartMenuObj
-    };
-
-    [SerializeField]
-    private EventReference panelSound;
-
     private void Start()
     {
         UpdatePanelDisplay(null);
@@ -70,7 +61,8 @@ public class PreMatchManager : MonoBehaviour
 
     public void UpdatePanelDisplay(GameStage? stage)
     {
-        GameObject g = stage.HasValue ? m_StartMenuObj : m_PersistentUIObj;
+        Debug.Log("updating panel display");
+        GameObject g = stage.HasValue ? m_PersistentUIObj : m_StartMenuObj;
         if (stage.HasValue)
         {
             switch (stage)
@@ -86,25 +78,21 @@ public class PreMatchManager : MonoBehaviour
             }
         }
 
-        TogglablePanels
-            .Select(go =>
-            {
-                Debug.Log($"found togglable {go}");
-                return go;
+        foreach (GameObject go in new GameObject[]{
+                m_PlayerConfigMenuObj,
+                m_MatchConfigMenuObj,
+                m_StartMenuObj
             })
-            .Where(go => go != g)
-            .Select(go => {
-                Debug.Log($"...shutting down {go}");
-                go.SetActive(false);
-                return 0;
-            });
+        {
+            go.SetActive(go == g);
+        }
         g.SetActive(true);
         PlayPanelSfx(g);
     }
 
     private void PlayPanelSfx(GameObject src)
     {
-        RuntimeManager.PlayOneShot(panelSound, src.transform.position);
+        RuntimeManager.PlayOneShot("event:/UI/Simple_Hover", src.transform.position);
     }
 
     private void Awake()
