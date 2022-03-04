@@ -11,30 +11,17 @@ public class NetworkVRPlayer : NetworkBehaviour
     private Vector2 placementArea = new Vector2(-10.0f, 10.0f);
 
 
+
     public void EnableClientInput()
     {
-        if (IsClient && IsOwner)
-        {
-            // var clientControllers = GetComponentsInChildren<ActionBasedController>();
-            // foreach (var controller in clientControllers)
-            // {
-            //     controller.enableInputActions = true;
-            //     controller.enableInputTracking = true;
-            // }
 
-            // var clientCamera = GetComponentInChildren<Camera>();
-            // clientCamera.enabled = true;
-
-            //var clientHead = clientCamera.gameObject.AddComponent<TrackedPoseDriver>();
-            //clientHead.enabled = true;
-
-        }
     }
 
     public void DisableClientInput()
     {
         if (IsClient && !IsOwner) {
-            var clientControllers = GetComponentsInChildren<ActionBasedController>();
+            var clientActionControllers = GetComponentsInChildren<ActionBasedController>();
+            var clientDeviceControllers = GetComponentsInChildren<XRBaseController>();
             
             var clientHead = GetComponentInChildren<TrackedPoseDriver>();
             var clientCamera = GetComponentInChildren<Camera>();
@@ -42,14 +29,16 @@ public class NetworkVRPlayer : NetworkBehaviour
             clientCamera.enabled = false;
             clientHead.enabled = false;
 
-            Debug.Log(clientControllers);
-            foreach (var input in clientControllers)
+            foreach (var input in clientActionControllers)
             {
                 input.enableInputActions = false;
                 input.enableInputTracking = false;
                 input.enabled = false;
             }
 
+            foreach (var DBcontroller in clientDeviceControllers) {
+                DBcontroller.enabled = false;
+            }
         }
     }
 
@@ -64,4 +53,36 @@ public class NetworkVRPlayer : NetworkBehaviour
     }
 
     public override void OnNetworkSpawn() => DisableClientInput();
+
+    public void OnSelectGrabbable(SelectEnterEventArgs eventArgs)
+    {
+        if (IsClient && IsOwner)
+        {
+            NetworkObject networkObjectSelected = eventArgs.interactable.transform.GetComponent<NetworkObject>();
+            Rigidbody weaponRB = eventArgs.interactable.transform.GetComponent<Rigidbody>();
+            weaponRB.isKinematic = true;
+            if (networkObjectSelected != null)
+                RequestGrabbableOwnershipServerRpc(OwnerClientId, networkObjectSelected);
+        }
+    }
+
+    public void OnReleaseGrabbable(SelectEnterEventArgs eventArgs) {
+        if (IsClient && IsOwner)
+        {
+            NetworkObject networkObjectSelected = eventArgs.interactable.transform.GetComponent<NetworkObject>();
+            Rigidbody weaponRB = eventArgs.interactable.transform.GetComponent<Rigidbody>();
+            weaponRB.isKinematic = true;
+            if (networkObjectSelected != null)
+                RequestGrabbableOwnershipServerRpc(NetworkManager.ServerClientId, networkObjectSelected);
+        }
+    }
+
+    [ServerRpc]
+    public void RequestGrabbableOwnershipServerRpc(ulong newOwnerClientId, NetworkObjectReference networkObjectReference)
+    {
+        if (networkObjectReference.TryGet(out NetworkObject networkObject))
+        {
+            networkObject.ChangeOwnership(newOwnerClientId);
+        }
+    }
 }

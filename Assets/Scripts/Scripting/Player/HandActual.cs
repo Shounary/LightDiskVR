@@ -41,7 +41,7 @@ public class HandActual : MonoBehaviour
             Instantiate(handPrefab, transform);
         }
         //weaponInventory = GetComponentInParent<WeaponInventory>();
-        animator = spawnedModel.GetComponent<Animator>();
+        //animator = spawnedModel.GetComponent<Animator>();
     }
 
     void Update() {
@@ -50,7 +50,7 @@ public class HandActual : MonoBehaviour
             weaponInventory = GetComponentInParent<WeaponInventory>();
         }
         weapon = weaponInventory.getActiveWeapon(hand);
-        UpdateAnimation();
+        //UpdateAnimation();
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
             weapon.TriggerFunction(trigger, this.transform);
         }
