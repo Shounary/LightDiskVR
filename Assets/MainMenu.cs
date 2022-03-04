@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("GraphicArena 1");
+        SceneManager.LoadScene("Lobby");
     }
 
     public void Quit()
