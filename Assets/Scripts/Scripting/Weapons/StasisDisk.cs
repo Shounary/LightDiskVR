@@ -15,7 +15,7 @@ public class StasisDisk : Weapon
     public float velocityDivisor = 5;
     private Vector3 storedVelocity;
     private bool inStasis;
-    private bool isHeld;
+    //private bool isHeld;
     
 
     // Start is called before the first frame update

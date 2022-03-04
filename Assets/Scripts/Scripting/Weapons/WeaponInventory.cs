@@ -21,6 +21,7 @@ public class WeaponInventory : MonoBehaviour
     private void Start() {
         //activateWeapons();
         playerName = generateRandomName();
+        activateWeapons();
     }
 
     public void addWeapon(Weapon weapon)

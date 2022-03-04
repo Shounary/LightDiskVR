@@ -20,6 +20,11 @@ public class MainMenu : MonoBehaviour
         
     }
 
+    public void startSinglePlayer()
+    {
+        SceneManager.LoadScene("GraphicArena 1");
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("Lobby");
