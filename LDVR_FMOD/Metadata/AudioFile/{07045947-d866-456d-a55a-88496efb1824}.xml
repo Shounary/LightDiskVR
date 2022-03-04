@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{07045947-d866-456d-a55a-88496efb1824}">
+		<property name="assetPath">
+			<value>33480__hiccupvirus__stereo-tron-bike-engine.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>18.630975056689344</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b27e10a1-18e9-464a-943c-fe7b838c8cd3}</destination>
+		</relationship>
+	</object>
+</objects>

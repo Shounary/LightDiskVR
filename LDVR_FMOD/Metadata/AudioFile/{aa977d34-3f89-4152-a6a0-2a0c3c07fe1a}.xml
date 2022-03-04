@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{aa977d34-3f89-4152-a6a0-2a0c3c07fe1a}">
+		<property name="assetPath">
+			<value>469592__bolobal__timpani.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>3.4046258503401359</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b27e10a1-18e9-464a-943c-fe7b838c8cd3}</destination>
+		</relationship>
+	</object>
+</objects>

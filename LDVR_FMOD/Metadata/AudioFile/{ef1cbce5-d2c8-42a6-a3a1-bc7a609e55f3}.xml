@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{ef1cbce5-d2c8-42a6-a3a1-bc7a609e55f3}">
+		<property name="assetPath">
+			<value>568056__bzakirasantjago__cyber-jammer.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>45.768000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b27e10a1-18e9-464a-943c-fe7b838c8cd3}</destination>
+		</relationship>
+	</object>
+</objects>
