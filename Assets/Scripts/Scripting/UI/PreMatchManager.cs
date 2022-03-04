@@ -61,7 +61,6 @@ public class PreMatchManager : MonoBehaviour
 
     public void UpdatePanelDisplay(GameStage? stage)
     {
-        Debug.Log("updating panel display");
         GameObject g = stage.HasValue ? m_PersistentUIObj : m_StartMenuObj;
         if (stage.HasValue)
         {

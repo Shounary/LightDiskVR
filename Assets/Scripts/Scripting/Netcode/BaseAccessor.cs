@@ -4,9 +4,6 @@ using Unity.Netcode;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class BaseAccessor : NetworkBehaviour
 {

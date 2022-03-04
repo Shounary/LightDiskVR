@@ -135,13 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resume: {fileID: 1911575967}
   quit: {fileID: 863456465}
-  panelSound:
-    Guid:
-      Data1: 1465102771
-      Data2: 1200120522
-      Data3: -1575430722
-      Data4: -1275628150
-    Path: event:/UI/Simple_Hover
 --- !u!114 &5632661980023677219
 MonoBehaviour:
   m_ObjectHideFlags: 0
