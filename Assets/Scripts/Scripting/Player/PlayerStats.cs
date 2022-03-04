@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     public int startHealth;
-    public int health;
+    public static int health;
     public string playerName;
 
     public HealthBar healthBar;
@@ -27,10 +27,11 @@ public class PlayerStats : MonoBehaviour
 
     public static void takeDamage(float damage) {
         if (timeSinceHit >= invincibilityTime) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
-            health -= damage;
+            health -= (int) damage;
             timeSinceHit = 0.0f;
         }
         if (health <= 0) {
             PauseController.instance.DeathMenu();
+        }
     }
 }

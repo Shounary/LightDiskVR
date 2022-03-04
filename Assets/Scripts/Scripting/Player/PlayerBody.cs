@@ -21,7 +21,7 @@ public class PlayerBody : MonoBehaviour
     private async void OnTriggerEnter(Collider other) {
         Weapon w = other.gameObject.GetComponent<Weapon>();
         if(w != null && w.playerName != ps.playerName)
-            ps.takeDamage(w.damage);
+            PlayerStats.takeDamage(w.damage);
     }
 
 }
