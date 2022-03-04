@@ -26,6 +26,8 @@ public class Weapon : MonoBehaviour
     //public Transform weaponTransformRight;
     public List<Transform> transforms = new List<Transform>();
 
+    private bool isHeld;
+
     public GameObject parentGameObject; //an empty gameobject with uniform scaling that serves as the default parent
 
     private void Start() {
@@ -70,6 +72,16 @@ public class Weapon : MonoBehaviour
             weaponTransform.position = transforms[(int) h].position;
             weaponTransform.rotation = transforms[(int) h].rotation;
         }
+    }
+
+    public virtual void OnGrabFunction()
+    {
+        isHeld = true;
+    }
+
+    public virtual void OnReleaseFunction()
+    {
+        isHeld = false;
     }
 
 }

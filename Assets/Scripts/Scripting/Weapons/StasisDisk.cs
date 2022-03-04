@@ -21,30 +21,10 @@ public class StasisDisk : Weapon
     // Start is called before the first frame update
     void Start()
     {
-        // Set up hands
-        /*List<InputDevice> inputDevices = new List<InputDevice>();
-        InputDevices.GetDevicesWithCharacteristics(controllerCharacteristics, inputDevices);
-        if (inputDevices.Count > 0) {
-            targetDevice = inputDevices[0];
-        }*/
-
         // Set up Stasis checks and physics stuff
         inStasis = false;
         isHeld = false;
-        //body = GetComponent<Rigidbody>();
     }
-
-    // Update is called once per frame
-    /*void Update()
-    {
-        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool trigger)) {
-            if (!inStasis && stasisCount < maxStasis && !isHeld) {
-                startStasis();
-            }
-        } else if (inStasis) {
-            endStasis();
-        }
-    }*/
 
     public override void MainButtonFunction()
     {
@@ -66,5 +46,11 @@ public class StasisDisk : Weapon
         inStasis = false;
         weaponRB.velocity = storedVelocity;
         weaponRB.isKinematic = false;
+    }
+
+    public override void OnReleaseFunction()
+    {
+        base.OnReleaseFunction();
+        stasisCount = 0;
     }
 }
