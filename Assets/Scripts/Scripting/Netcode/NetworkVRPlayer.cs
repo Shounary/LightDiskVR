@@ -82,7 +82,7 @@ public class NetworkVRPlayer : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership = false)]
+    [ServerRpc]
     public void RequestGrabbableOwnershipServerRpc(ulong newOwnerClientId, NetworkObjectReference networkObjectReference)
     {
         if (networkObjectReference.TryGet(out NetworkObject networkObject))

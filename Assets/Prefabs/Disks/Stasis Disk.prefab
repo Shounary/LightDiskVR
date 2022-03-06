@@ -47,6 +47,8 @@ GameObject:
   - component: {fileID: 1580291483175143636}
   - component: {fileID: 689123957993318407}
   - component: {fileID: 2500092940408265145}
+  - component: {fileID: 4061568237708312067}
+  - component: {fileID: 8176999599226907996}
   m_Layer: 7
   m_Name: Stasis Disk
   m_TagString: PlayerDisk
@@ -273,13 +275,14 @@ MonoBehaviour:
   damage: 10
   isSummonable: 1
   storableLocations: []
-  player: 
+  playerName: 
   hand: 2
   weaponRB: {fileID: 5944087046148625973}
   weaponTransform: {fileID: 2209465980676280670}
   transforms:
   - {fileID: 2209465980676280670}
   - {fileID: 2209465980676280670}
+  isHeld: 0
   parentGameObject: {fileID: 0}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
@@ -322,6 +325,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4061568237708312067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694807970901642059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 951099334
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &8176999599226907996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694807970901642059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd99ead27abf79a428aab0393dbee0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2816170657387129445
