@@ -12,7 +12,7 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
     [SerializeField]
     private Button startClientButton;
     [SerializeField]
-    private TMP_InputField joinCode;
+    private Text joinCode;
 
     private void Start()
     {
@@ -37,6 +37,7 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
 
             if (successful)
             {
+                PreMatchManager.UnNetworkedXRRig.SetActive(false);
                 Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
             } else
             {
@@ -66,6 +67,7 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
 
             if (successful)
             {
+                PreMatchManager.UnNetworkedXRRig.SetActive(false);
                 Debug.Log("Client connected to " + joinData.IPv4Address + ":" + joinData.Port + " under join code " + joinCode.text);
 
                 joinCode.text = null;

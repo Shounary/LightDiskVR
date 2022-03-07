@@ -26,10 +26,10 @@ namespace Unity.Netcode.Samples
 
         protected override void Update()
         {
-            CanCommitToTransform = IsOwner;
             base.Update();
             if (NetworkManager.Singleton != null && (NetworkManager.Singleton.IsConnectedClient || NetworkManager.Singleton.IsListening))
             {
+                CanCommitToTransform = IsOwner;
                 if (CanCommitToTransform)
                 {
                     TryCommitTransformToServer(transform, NetworkManager.LocalTime.Time);

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerBody : MonoBehaviour
 {
-    public float damageTakePerDiskHit = 100;
+    public PlayerStats ps;
+    //public float damageTakePerDiskHit = 100;
     public LayerMask toTakeDamageFrom;
     void Start()
     {
@@ -17,10 +18,10 @@ public class PlayerBody : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if (toTakeDamageFrom == (toTakeDamageFrom | (1 << other.gameObject.layer))) {
-            PlayerStats.takeDamage(damageTakePerDiskHit);
-        }
+    private async void OnTriggerEnter(Collider other) {
+        Weapon w = other.gameObject.GetComponent<Weapon>();
+        if(w != null && w.playerName != ps.playerName && other.gameObject.layer == 8)
+            ps.takeDamage(w.damage);
     }
 
 }

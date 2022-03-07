@@ -1,10 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using System;
 using System.Linq;
-using System.Text;
+using UnityEngine.SceneManagement;
+using UnityEngine.XR;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -20,22 +22,22 @@ public class BaseAccessor : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-        base.OnNetworkSpawn();
         UpdatePlayerListTextServerRPC();
         MatchConfigEntry();
+
+        DontDestroyOnLoad(gameObject);
+        NetworkManager.SceneManager.OnLoadComplete += PersistGameObject;
 
         Lock.OnValueChanged = (prev, next) =>
         {
             UpdatePlayerListTextServerRPC();
         };
-
-        DontDestroyOnLoad(gameObject);
     }
 
     [ServerRpc(RequireOwnership=false)]
     private void UpdatePlayerListTextServerRPC()
     {
-        NetworkObject thisObj = GetComponent<NetworkObject>();
+        var thisObj = GetComponent<NetworkObject>();
         m_PlayerListText.Value = string.Concat(
             NetworkManager.Singleton.ConnectedClientsList
             .Select(c =>
@@ -82,11 +84,10 @@ public class BaseAccessor : NetworkBehaviour
 
     public void MatchConfigEntry()
     {
-        PreMatchUIManager.StartMenuObj.SetActive(false);
-        PreMatchUIManager.MatchConfigMenuObj.SetActive(true);
-        PreMatchUIManager.PersistentUIObj.SetActive(true);
-
-        PreMatchUIManager.Persistent.Accessor = this;
+        PreMatchManager.StartMenuObj.SetActive(false);
+        PreMatchManager.MatchConfigMenuObj.SetActive(true);
+        PreMatchManager.PersistentUIObj.SetActive(true);
+        PreMatchManager.Persistent.Accessor = this;
         MatchConfigFactory.Instance.ArenaIndex = 0;
         MatchConfig = new MatchConfig(MatchConfigFactory.Instance.Arena);
 
@@ -142,7 +143,7 @@ public class BaseAccessor : NetworkBehaviour
             // TODO: Update UI
         };
 
-        PreMatchUIManager.MatchConfigMenu.JoinCode.text = RelayManager.Instance.JoinCode;
+        PreMatchManager.MatchConfigMenu.JoinCode.text = RelayManager.Instance.JoinCode;
     }
 
     public void MatchConfigExit()
@@ -173,8 +174,8 @@ public class BaseAccessor : NetworkBehaviour
     public void PlayerConfigEnterClientRPC()
     {
         PlayerConfig = new PlayerConfig(MatchConfig);
-        PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
-        PreMatchUIManager.PlayerConfigMenuObj.SetActive(true);
+        PreMatchManager.MatchConfigMenuObj.SetActive(false);
+        PreMatchManager.PlayerConfigMenuObj.SetActive(true);
     }
 
     [ServerRpc(RequireOwnership =false)]
@@ -198,7 +199,7 @@ public class BaseAccessor : NetworkBehaviour
     [ClientRpc]
     public void EnterMatchClientRPC()
     {
-        EnterMatch();
+        SceneManager.activeSceneChanged += EnterMatchSceneClientPath;
     }
 
     [ServerRpc]
@@ -241,19 +242,25 @@ public class BaseAccessor : NetworkBehaviour
     {
         PrintPlayerConfig();
 
-        PreMatchUIManager.MatchConfigMenuObj.SetActive(false);
-
+        if (IsServer && IsOwner){
+            SceneManager.activeSceneChanged += EnterMatchSceneServerPath;
+        }
+        
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         Debug.Log($"Entering the match in {sceneName} at build index {MatchConfig.Arena.BuildIndex}");
+    }
 
-        PostEnterMatchServerRpc();
-    } 
-
-    [ServerRpc]
-    public void PostEnterMatchServerRpc()
+    public void EnterMatchSceneServerPath(Scene prev, Scene next)
     {
-        m_GameStage.Value = GameStage.DuringMatch;
+        RollCall(acc => acc.m_GameStage.Value = GameStage.DuringMatch);
+        //SpawnXRRigs();
+        SceneManager.activeSceneChanged -= EnterMatchSceneServerPath;
+    }
+
+    public void EnterMatchSceneClientPath(Scene prev, Scene next)
+    {
+        SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
     #endregion
 
@@ -286,9 +293,55 @@ public class BaseAccessor : NetworkBehaviour
             .Where(a => !skipHost || a.OwnerClientId != NetworkManager.ServerClientId))
             action(acc);
     }
+
+    private void PersistGameObject(ulong clientId, string sceneName, LoadSceneMode loadSceneMode)
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
+    [ServerRpc(RequireOwnership =false)]
+    public void DespawnServerRpc()
+    {
+        NetworkObject.Despawn();
+        Destroy(gameObject);
+    }
+    #endregion
+
+    #region XR_RIG_CONTROL
+
+    public NetworkVRPlayer Player;
+    [SerializeField]
+    private PauseMenu PauseMenu;
+
+    private void Update()
+    {
+        if (IsSpawned && IsOwner)
+        {
+            CheckPause();
+        }
+    }
+
+    void CheckPause()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
+            return;
+        }
+    }
+
+    public void ActivatePause() {
+        PauseMenu.gameObject.SetActive(true);
+    }
+
+    public void TogglePause()
+    {
+        PauseMenu.gameObject.SetActive(!PauseMenu.gameObject.activeSelf);
+    }
     #endregion
 
     #region LOCK
+    [NonSerialized]
     public NetworkVariable<bool> Lock = new NetworkVariable<bool>(true);
 
     public (bool, int, int) GetLock()

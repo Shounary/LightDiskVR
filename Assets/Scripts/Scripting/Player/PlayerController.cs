@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject rightHandPrefab; 
     public float forceMagnitude = 5f;
-    public Rigidbody[] playerDisks;
+    //public Rigidbody[] playerDisks;
+    public WeaponInventory weaponInventory;
     public Transform rightHandControllerTransform;
     public Transform leftHandControllerTransform;
 
@@ -46,18 +47,18 @@ public class PlayerController : MonoBehaviour
     }
 
     private void RightHandAttractDisk(float additionalFactor) {
-        Rigidbody targetDisk = GetTargetDisk(rightHandControllerTransform);
+        Rigidbody targetDisk = GetTargetDisk(rightHandControllerTransform, Hand.RIGHT);
         Vector3 attractionDirection = additionalFactor * forceMagnitude * Time.deltaTime * Vector3.Normalize(rightHandControllerTransform.position - targetDisk.position);
         targetDisk.AddForce(attractionDirection, ForceMode.VelocityChange);
     }
 
     private void LeftHandAttractDisk(float additionalFactor) {
-        Rigidbody targetDisk = GetTargetDisk(leftHandControllerTransform);
+        Rigidbody targetDisk = GetTargetDisk(leftHandControllerTransform, Hand.LEFT);
         Vector3 attractionDirection = additionalFactor * forceMagnitude * Time.deltaTime * Vector3.Normalize(leftHandControllerTransform.position - targetDisk.position);
         targetDisk.AddForce(attractionDirection, ForceMode.VelocityChange);
     }
 
-    private Rigidbody GetTargetDisk(Transform controllerTransform) {
-        return playerDisks[0]; // BETTER version to be implemented
+    private Rigidbody GetTargetDisk(Transform controllerTransform, Hand hand) {
+        return weaponInventory.getActiveWeapon(hand).GetComponent<Rigidbody>();
     }
 }

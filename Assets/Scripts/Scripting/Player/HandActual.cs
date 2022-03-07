@@ -5,6 +5,12 @@ using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.SceneManagement;
 
+public enum Hand{
+    LEFT,
+    RIGHT,
+    NONE
+};
+
 public class HandActual : MonoBehaviour
 {
     private InputDevice targetDevice;
@@ -12,9 +18,12 @@ public class HandActual : MonoBehaviour
 
     public GameObject handPrefab;
     public InputDeviceCharacteristics controllerCharacteristics;
+    public Hand hand;
+    public WeaponInventory weaponInventory;
+    public Weapon weapon;
 
-    public float diskReturnForceMagnitude = 5f;
-    public float stoppingFactorMultiplier = 0.2f;
+    public bool button1Pressed;
+    public bool button2Pressed;
 
     private Animator animator;
     void Start()
@@ -25,26 +34,46 @@ public class HandActual : MonoBehaviour
         Debug.Log("devices: " + inputDevices.Count);
         if (inputDevices.Count > 0) {
             targetDevice = inputDevices[0];
-            spawnedModel = Instantiate(handPrefab, transform);
+            //spawnedModel = Instantiate(handPrefab, transform);
         } else {
             Debug.LogWarning("Controller not found!");
             targetDevice = inputDevices[0];
-            Instantiate(handPrefab, transform);
+            //Instantiate(handPrefab, transform);
         }
-
-        animator = spawnedModel.GetComponent<Animator>();
+        //weaponInventory = GetComponentInParent<WeaponInventory>();
+        //animator = spawnedModel.GetComponent<Animator>();
     }
 
     void Update() {
-        UpdateAnimation();
-        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
-            AttractDisk(trigger);
+        if(weaponInventory == null)
+        {
+            weaponInventory = GetComponentInParent<WeaponInventory>();
         }
-        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed) && pressed) {
+        weapon = weaponInventory.getActiveWeapon(hand);
+        //UpdateAnimation();
+        if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
+            weapon.TriggerFunction(trigger, this.transform);
+        }
+        
+        if( targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed1) && pressed1 && !button1Pressed) {
+            weapon.MainButtonFunction();
+            button1Pressed = true;
+        }
+        else if (!pressed1 && button1Pressed)
+        {
+            button1Pressed = false;
+        }
+
+        if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool pressed2) && pressed2) {
+            weapon.SecondaryButtonFunction();
+        }
+
+        if (targetDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool pressed) && pressed) {
             LevelManager.instance.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
+/*
     private void AttractDisk(float additionalFactor) {
         Rigidbody targetDisk = GetTargetDisk(transform);
         Vector3 targetDirection = Vector3.Normalize(transform.position - targetDisk.position);
@@ -62,9 +91,9 @@ public class HandActual : MonoBehaviour
     }
 
     private Rigidbody GetTargetDisk(Transform controllerTransform) {
-        return ArenaInfo.instance.playerDisks[0]; // BETTER version to be implemented
+        return weaponInventory.getActiveWeapon(hand).GetComponent<Rigidbody>();
     }
-
+*/
     private void UpdateAnimation() {
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger)) {
             animator.SetFloat("Trigger", trigger);
