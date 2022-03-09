@@ -6,7 +6,8 @@ using TMPro;
 
 public class ShootingRangeModeManager : MonoBehaviour
 {
-    public TextMeshProUGUI textMesh;
+    public TextMeshProUGUI playerScoreTMP;
+    public TextMeshProUGUI playerTimeTMP;
     public int playerScore = 0;
     public float playerTimer = 20.0f;
 
@@ -22,6 +23,7 @@ public class ShootingRangeModeManager : MonoBehaviour
             playerTimer -= Time.deltaTime;
         else
             playerTimer = 0;
+        UpdatePlayerTimer();
     }
 
     public void increaseScoreIfGameNotOver(int playerScore) {
@@ -32,6 +34,10 @@ public class ShootingRangeModeManager : MonoBehaviour
     }
 
     public void UpdatePlayerTextScore() {
-        textMesh.text = playerScore.ToString();
+        playerScoreTMP.text = playerScore.ToString();
+    }
+
+    public void UpdatePlayerTimer() {
+        playerTimeTMP.text = System.Math.Round(playerTimer, 1).ToString();
     }
 }

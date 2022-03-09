@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 151298540517896767}
   - component: {fileID: 1932389602066504785}
   m_Layer: 0
-  m_Name: TargetDestructionEvent
+  m_Name: TargetDestructionEventBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4816,7 +4816,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ca102b2f5773e0d4cbb3a0206296af7f, type: 2}
+  - {fileID: 2100000, guid: 9bdb73f14578d96499ba74e1d3a3f4d7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
