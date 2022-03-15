@@ -43,7 +43,7 @@ public class NetworkDisk : NetworkBehaviour
 
         // since the client is always authorized to move the ClientNetworkTransform,
         // this movement will be synced
-        if (OwnerClientId == 0)
+        if (IsOwnedByServer)
         {
             transform.position += 0.5f * Vector3.right;
         }
@@ -52,11 +52,12 @@ public class NetworkDisk : NetworkBehaviour
             transform.position -= 0.5f * Vector3.left;
         }
 
-        if (OwnerClientId == 0)
+        // update local features that are NOT guaranteed to sync
+        if (IsOwnedByServer)
         {
             ServerOwnsDisk();
         }
-        else if (OwnerClientId == 1)
+        else
         {
             ClientOwnsDiskServerRpc();
         }
@@ -72,11 +73,12 @@ public class NetworkDisk : NetworkBehaviour
     [ClientRpc]
     void PropagateServerOwnDiskClientRpc()
     {
+        Logger.Log("Server Own Disk Propagated");
         // light color is a non-network property
         CenterGlow.color = Color.red;
     }
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     void ClientOwnsDiskServerRpc()
     {
 
@@ -90,6 +92,7 @@ public class NetworkDisk : NetworkBehaviour
     [ClientRpc]
     void PropagateClientOwnDiskClientRpc()
     {
+        Logger.Log("Client Own Disk Propagated");
         // light color is a non-network property
         CenterGlow.color = Color.green;
     }

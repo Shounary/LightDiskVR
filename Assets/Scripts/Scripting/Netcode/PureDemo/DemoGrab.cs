@@ -28,27 +28,29 @@ public class DemoGrab : NetworkBehaviour
             NetworkManager.SpawnManager.SpawnedObjectsList
             .Select(obj => (obj, obj.GetComponent<NetworkDisk>())) // tuple: NetworkObjct - NetworkDisk
             .Where(d => d.Item1 != null && d.Item2 != null
-            // uncomment this line to match id
-            // && d.Item1.NetworkObjectId == objId
             ).FirstOrDefault();
-        
-        if (!objDiskPair.Equals(
-            default(
-            (NetworkObject, NetworkDisk)
-            )))
+
+        // use this for grab with id
+        // var obj = NetworkManager.SpawnManager.SpawnedObjects[objId];
+        // var disk = obj.GetComponent<NetworkDisk>();
+
+
+        if (!objDiskPair.Equals(default))
         {
             var obj = objDiskPair.Item1;
             var disk = objDiskPair.Item2;
             var oldOwnerId = obj.OwnerClientId;
+
             obj.ChangeOwnership(OwnerClientId);
+            Debug.Log($"change ownership {oldOwnerId} => {obj.OwnerClientId}");
 
             // force call if already owner
             if (oldOwnerId == obj.OwnerClientId)
             {
+                var owner = NetworkManager.ConnectedClients[oldOwnerId];
                 disk.OnGainedOwnership();
             }
 
-            Debug.Log($"change ownership {oldOwnerId} => {obj.OwnerClientId}");
         } else
         {
             Debug.Log("no valid disk in scene");

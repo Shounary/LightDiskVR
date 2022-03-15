@@ -10,10 +10,10 @@ public class Logger : MonoBehaviour
     {
         if (Application.isEditor)
         {
-            Debug.Log(str);
+            Debug.Log(str.Color("green"));
         } else
         {
-            Debug.LogError(str);
+            Debug.LogError(str.Color("green"));
         }
     }
 }

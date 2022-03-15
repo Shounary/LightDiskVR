@@ -15,6 +15,9 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
     [SerializeField]
     private Text joinCode;
 
+    [SerializeField]
+    GameObject GrabDemoDiskPrototype;
+
     private void Start()
     {
         startHostButton.onClick.AddListener(async delegate
@@ -41,10 +44,14 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
                 try
                 {
                     PreMatchManager.UnNetworkedXRRig.SetActive(false);
-                } catch (Exception)
+                }
+                catch (Exception)
                 {
                     Debug.LogError("No XR Rig Attached");
                 }
+                var disk = Instantiate(GrabDemoDiskPrototype, new Vector3(0f, 0.5f, 3f), Quaternion.identity);
+                disk.GetComponent<NetworkObject>().Spawn(); //.SpawnWithOwnership
+
                 Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
             } else
             {
@@ -74,7 +81,14 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
 
             if (successful)
             {
-                PreMatchManager.UnNetworkedXRRig.SetActive(false);
+                try
+                {
+                    PreMatchManager.UnNetworkedXRRig.SetActive(false);
+                }
+                catch (Exception)
+                {
+                    Debug.LogError("No XR Rig Attached");
+                }
                 Debug.Log("Client connected to " + joinData.IPv4Address + ":" + joinData.Port + " under join code " + joinCode.text);
 
                 joinCode.text = null;
