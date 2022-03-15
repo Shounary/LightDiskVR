@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponInventory : MonoBehaviour
 {
     public List<Weapon> activeWeapons = new List<Weapon>(2); //stores the left hand weapon at index 0 and the right hand weapon at index 1
-    public List<Weapon> weaponList; //a list of all weapons
+    public List<Weapon> weaponList = new List<Weapon>(4); //a list of all weapons in this player's inventory
     public string playerName;
 
     const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -49,12 +49,12 @@ public class WeaponInventory : MonoBehaviour
 
     public void CallGrabEventOnActiveWeapon(int h)
     {
-        activeWeapons[(int) h].OnGrabFunction();
+        activeWeapons[h].OnGrabFunction();
     }
 
     public void CallReleaseEventOnActiveWeapon(int h)
     {
-        activeWeapons[(int) h].OnReleaseFunction();
+        activeWeapons[h].OnReleaseFunction();
     }
 
     //returns the active weapon in the given hand

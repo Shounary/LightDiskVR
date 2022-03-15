@@ -28,6 +28,8 @@ public class Weapon : MonoBehaviour
 
     public bool isHeld;
 
+    public bool isWeaponEnabled = true; //set this to false to disable the weapon (ie for tutorial or lobby)
+
     public GameObject parentGameObject; //an empty gameobject with uniform scaling that serves as the default parent
 
     private void Start() {
