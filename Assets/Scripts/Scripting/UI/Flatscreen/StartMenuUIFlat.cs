@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
 using TMPro;
+using System;
 
 public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
 {
@@ -37,7 +38,13 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
 
             if (successful)
             {
-                PreMatchManager.UnNetworkedXRRig.SetActive(false);
+                try
+                {
+                    PreMatchManager.UnNetworkedXRRig.SetActive(false);
+                } catch (Exception)
+                {
+                    Debug.LogError("No XR Rig Attached");
+                }
                 Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
             } else
             {

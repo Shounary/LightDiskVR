@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TestingGrounds/Current/Grab.unity
+    guid: a657549cab2a0a045b71315c6be58e65
+  - enabled: 1
     path: Assets/Scenes/TestingGrounds/Current/Main Menu.unity
     guid: 6e49dacb998fcab40ad0ce0d704500b7
   - enabled: 1
