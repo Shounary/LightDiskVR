@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using Unity.Netcode.Samples;
+using Unity.Netcode.Components;
 
 public class NetworkDisk : NetworkBehaviour
 {
@@ -23,12 +24,13 @@ public class NetworkDisk : NetworkBehaviour
 
     private void Awake()
     {
-        Debug.Log("Disk Await Called");
+        GetComponent<ClientNetworkTransform>().enabled = false;
     }
 
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+        GetComponent<ClientNetworkTransform>().enabled = true;
         Logger.Log($"Disk {NetworkObjectId} is now spawned");
     }
 
@@ -43,11 +45,11 @@ public class NetworkDisk : NetworkBehaviour
         // this movement will be synced
         if (OwnerClientId == 0)
         {
-            transform.position += Vector3.right;
+            transform.position += 0.5f * Vector3.right;
         }
         else
         {
-            transform.position -= Vector3.left;
+            transform.position -= 0.5f * Vector3.left;
         }
 
         if (OwnerClientId == 0)

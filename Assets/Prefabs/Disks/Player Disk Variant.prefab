@@ -67,6 +67,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Disk
       objectReference: {fileID: 0}
+    - target: {fileID: 6070709432925138090, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6965101714780381766, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -78,6 +82,10 @@ PrefabInstance:
     - target: {fileID: 7394468089134127977, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 951099334
+      objectReference: {fileID: 0}
+    - target: {fileID: 7394468089134127977, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+      propertyPath: AutoObjectParentSync
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7627459852844358272, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
       propertyPath: m_Enabled
@@ -97,7 +105,7 @@ Light:
   m_CorrespondingSourceObject: {fileID: 1411439400723709822, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
   m_PrefabInstance: {fileID: 4696210021493776396}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8488875529222779099
+--- !u!114 &7588250600755533524
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,7 +114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7781024191710100724}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 54c9647dc784a46bca664910f182491e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SyncPositionX: 1

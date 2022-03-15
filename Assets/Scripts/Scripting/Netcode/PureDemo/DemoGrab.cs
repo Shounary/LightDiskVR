@@ -32,14 +32,23 @@ public class DemoGrab : NetworkBehaviour
             // && d.Item1.NetworkObjectId == objId
             ).FirstOrDefault();
         
-        if (objDiskPair.Equals(
+        if (!objDiskPair.Equals(
             default(
             (NetworkObject, NetworkDisk)
             )))
         {
             var obj = objDiskPair.Item1;
             var disk = objDiskPair.Item2;
+            var oldOwnerId = obj.OwnerClientId;
             obj.ChangeOwnership(OwnerClientId);
+
+            // force call if already owner
+            if (oldOwnerId == obj.OwnerClientId)
+            {
+                disk.OnGainedOwnership();
+            }
+
+            Debug.Log($"change ownership {oldOwnerId} => {obj.OwnerClientId}");
         } else
         {
             Debug.Log("no valid disk in scene");
