@@ -6,23 +6,24 @@ using Unity.Netcode;
 
 public class DemoGrab : NetworkBehaviour
 {
-    private void Start()
+    public override void OnNetworkSpawn()
     {
         if (IsOwner)
         {
             var match = FindObjectOfType<MatchConfigMenuUIFlat>().gameObject;
             match.transform.GetChild(0).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(delegate
             {
-                // get the synced id of the disk's network behaviour using NetworkBehaviour.NetworkObject.NetworkObjectId
-                // then pass that hash to the RPC
-                GrabDiskServerRpc(0);
+                GrabDisk();
             });
         }
     }
 
-    [ServerRpc]
-    private void GrabDiskServerRpc(ulong objId) // add a hash parameter here
+    private void GrabDisk()
     {
+        // this section is purely for selecting disk
+        // if you already know which disk to change owner to, just skip this section
+        // and directly pass the known disk through the parameter
+        // objectDiskPair is a tuple ( NetworkObject of the disk, NetworkDisk component of the disk)
         // get all disks in the scene, this part should be edited according to the comments
         var objDiskPair = 
             NetworkManager.SpawnManager.SpawnedObjectsList
@@ -30,6 +31,7 @@ public class DemoGrab : NetworkBehaviour
             .Where(d => d.Item1 != null && d.Item2 != null
             ).FirstOrDefault();
 
+        // another way is to pass the networkobject's global id, and then relevant components here
         // use this for grab with id
         // var obj = NetworkManager.SpawnManager.SpawnedObjects[objId];
         // var disk = obj.GetComponent<NetworkDisk>();
@@ -41,14 +43,15 @@ public class DemoGrab : NetworkBehaviour
             var disk = objDiskPair.Item2;
             var oldOwnerId = obj.OwnerClientId;
 
-            obj.ChangeOwnership(OwnerClientId);
-            Debug.Log($"change ownership {oldOwnerId} => {obj.OwnerClientId}");
-
-            // force call if already owner
-            if (oldOwnerId == obj.OwnerClientId)
+            // technically there is no need to split between these two calls
+            // this is just for demo purposes
+            if (IsServer)
             {
-                var owner = NetworkManager.ConnectedClients[oldOwnerId];
-                disk.OnGainedOwnership();
+                disk.ServerOwnsDisk();
+            }
+            else
+            {
+                disk.ClientOwnsDiskServerRpc(NetworkManager.LocalClientId);
             }
 
         } else

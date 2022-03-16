@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class MathUtils
+public static class MathUtils
 {
     public static int Mod(int x, int m)
     {
