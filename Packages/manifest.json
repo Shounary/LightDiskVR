@@ -18,7 +18,7 @@
     "com.unity.toolchain.win-x86_64-linux-x86_64": "1.0.0",
     "com.unity.ugui": "1.0.0",
     "com.unity.vectorgraphics": "2.0.0-preview.18",
-    "com.unity.xr.interaction.toolkit": "1.0.0-pre.6",
+    "com.unity.xr.interaction.toolkit": "2.0.1",
     "com.unity.xr.management": "4.0.7",
     "com.unity.xr.oculus": "1.11.0",
     "com.unity.xr.openxr": "1.3.1",
