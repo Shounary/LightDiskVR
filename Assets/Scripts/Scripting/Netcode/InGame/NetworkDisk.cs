@@ -6,6 +6,7 @@ using Unity.Netcode.Samples;
 using Unity.Netcode.Components;
 
 [RequireComponent(typeof(ClientNetworkTransform))]
+[RequireComponent(typeof(Rigidbody))]
 public class NetworkDisk : NetworkBehaviour
 {
 
@@ -15,62 +16,24 @@ public class NetworkDisk : NetworkBehaviour
 
     [SerializeField] private Light CenterGlow;
 
-    private void Awake()
-    {
-        var t = GetComponent<ClientNetworkTransform>();
-
-        // currently there are no reasons to sync scale
-        t.SyncScaleX = false;
-        t.SyncScaleY = false;
-        t.SyncScaleZ = false;
-
-        // until connect, do not activate
-        t.enabled = false;
-    }
+    ClientNetworkTransform cnt;
+    Rigidbody rb;
 
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
-
-        var t = GetComponent<ClientNetworkTransform>();
-        t.enabled = true;
-        t.CanCommitToTransform = IsOwner && IsClient;
-    }
-
-    // called when LOCAL client gains ownership
-    public override void OnGainedOwnership()
-    {
-        base.OnGainedOwnership();
-        Logger.Log($"Local client gains ownership of disk {NetworkObjectId}");
-    }
-
-    public override void OnLostOwnership()
-    {
-        base.OnLostOwnership();
-    }
-
-    public void ServerOwnsDisk()
-    {
-        NetworkObject.ChangeOwnership(NetworkManager.LocalClientId);
-        // other local variables need to be set on the client side by themselves
-        // to notify this action, call client rpc
-        PropagateServerOwnDiskClientRpc();
-    }
-
-    [ClientRpc(Delivery = RpcDelivery.Reliable)] // force secure delivery
-    void PropagateServerOwnDiskClientRpc()
-    {
-        Logger.Log("Server Own Disk Propagated");
-        // light color is a non-network property
-        CenterGlow.color = Color.red;
-
-        GetComponent<ClientNetworkTransform>().CanCommitToTransform = IsOwner;
+        cnt = GetComponent<ClientNetworkTransform>();
+        rb = GetComponent<Rigidbody>();
+        cnt.enabled = true;
     }
 
     [ServerRpc(Delivery = RpcDelivery.Reliable, RequireOwnership = false)] // force secure delivery
     public void ClientOwnsDiskServerRpc(ulong newOwner)
     {
         NetworkObject.ChangeOwnership(newOwner);
+        transform.parent = NetworkManager.ConnectedClients[newOwner].PlayerObject.transform;
+        cnt.InLocalSpace = true;
+
         // even though the initiater of the server rpc is a client, this does not mean
         // it is doing a "client rpc". those changes only have effect on local.
         // instead, call server rpc first, and use that to call client rpc, this way
@@ -78,38 +41,45 @@ public class NetworkDisk : NetworkBehaviour
         PropagateClientOwnDiskClientRpc();
     }
 
+    Color[] col_arr = {
+        Color.blue,
+        Color.cyan,
+        Color.red,
+        Color.green,
+        Color.yellow
+    };
+
     [ClientRpc(Delivery = RpcDelivery.Reliable)]
     void PropagateClientOwnDiskClientRpc()
     {
-
-        Logger.Log("Client Own Disk Propagated");
+        Logger.Log($"Propagated to local client, cnt commit now set to {cnt.CanCommitToTransform}");
         // light color is a non-network property
-        CenterGlow.color = Color.green;
-
-        GetComponent<ClientNetworkTransform>().CanCommitToTransform = IsOwner;
+        CenterGlow.color = col_arr[OwnerClientId % (ulong) col_arr.Length];
+        rb.isKinematic = true;
     }
 
     // this is just for demo
     // server moves the disk right
     // client moves the  disk left
-    private void Update()
+    private void FixedUpdate()
     {
         if (!IsOwner) return;
 
-        if (IsOwnedByServer)
+        var p = transform.localPosition;
+
+        if (OwnerClientId % 2 == 0)
         {
-            transform.position += Vector3.right * 0.01f;
+            p += Vector3.right * 0.01f;
         }
         else
         {
-            transform.position += Vector3.left * 0.01f;
+            p += Vector3.left * 0.01f;
         }
 
-        if (Mathf.Abs(transform.position.x) > 1)
-        {
-            var p = transform.position;
-            p.x = Mathf.Sign(p.x);
-            transform.position = p;
-        }
+        p.x = Mathf.Abs(p.x) > 1 ? Mathf.Sign(p.x) : p.x;
+        p.y = 0;
+        // p.z = 1;
+
+        transform.localPosition = p;
     }
 }

@@ -101,18 +101,18 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.netcode.adapter.utp": {
-      "version": "1.0.0-pre.5",
+      "version": "1.0.0-pre.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.netcode.gameobjects": "1.0.0-pre.5",
-        "com.unity.transport": "1.0.0-pre.12"
+        "com.unity.netcode.gameobjects": "1.0.0-pre.6",
+        "com.unity.transport": "1.0.0-pre.14"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.netcode.gameobjects": {
-      "version": "1.0.0-pre.5",
-      "depth": 0,
+      "version": "1.0.0-pre.6",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.animation": "1.0.0",
@@ -321,7 +321,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.transport": {
-      "version": "1.0.0-pre.12",
+      "version": "1.0.0-pre.14",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -386,7 +386,7 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.subsystemregistration": "1.0.6"
+        "com.unity.subsystemregistration": "1.0.5"
       },
       "url": "https://packages.unity.com"
     },
