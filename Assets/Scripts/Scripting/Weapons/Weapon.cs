@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.XR;
 
@@ -31,8 +32,11 @@ public class Weapon : MonoBehaviour
     public GameObject parentGameObject; //an empty gameobject with uniform scaling that serves as the default parent
 
     private void Start() {
-        parentGameObject = GameObject.FindGameObjectsWithTag("Empty Parent")[0];
-        this.gameObject.transform.SetParent(parentGameObject.transform);
+        var eP = GameObject.FindGameObjectsWithTag("Empty Parent");
+        if (eP.Any()) {
+            parentGameObject = eP.First();
+            gameObject.transform.SetParent(parentGameObject.transform);
+        }
     }
     
     public float diskReturnForceMagnitude = 5f;
