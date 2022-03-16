@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Unity.Netcode;
@@ -13,6 +11,7 @@ public class DemoGrab : NetworkBehaviour
             var match = FindObjectOfType<MatchConfigMenuUIFlat>().gameObject;
             match.transform.GetChild(0).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(delegate
             {
+                Logger.Log($"Local Client attempts to call Grab Disk");
                 GrabDisk();
             });
         }
@@ -36,6 +35,8 @@ public class DemoGrab : NetworkBehaviour
         // var obj = NetworkManager.SpawnManager.SpawnedObjects[objId];
         // var disk = obj.GetComponent<NetworkDisk>();
 
+        Logger.Log($"Grab Disk called by client { NetworkManager.LocalClientId } on { objDiskPair.obj.NetworkObjectId }");
+
 
         if (!objDiskPair.Equals(default))
         {
@@ -43,16 +44,7 @@ public class DemoGrab : NetworkBehaviour
             var disk = objDiskPair.Item2;
             var oldOwnerId = obj.OwnerClientId;
 
-            // technically there is no need to split between these two calls
-            // this is just for demo purposes
-            if (IsServer)
-            {
-                disk.ServerOwnsDisk();
-            }
-            else
-            {
-                disk.ClientOwnsDiskServerRpc(NetworkManager.LocalClientId);
-            }
+            disk.ClientOwnsDiskServerRpc(NetworkManager.LocalClientId);
 
         } else
         {
