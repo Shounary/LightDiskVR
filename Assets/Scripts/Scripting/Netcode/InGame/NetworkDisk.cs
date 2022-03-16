@@ -61,7 +61,7 @@ public class NetworkDisk : NetworkBehaviour
     // this is just for demo
     // server moves the disk right
     // client moves the  disk left
-    private void Update()
+    private void FixedUpdate()
     {
         if (!IsOwner) return;
 
@@ -76,7 +76,7 @@ public class NetworkDisk : NetworkBehaviour
             p += Vector3.left * 0.01f;
         }
 
-        p.x = Mathf.Sign(p.x);
+        p.x = Mathf.Abs(p.x) > 1 ? Mathf.Sign(p.x) : p.x;
         p.y = 0;
         // p.z = 1;
 

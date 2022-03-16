@@ -51,4 +51,9 @@ public class DemoGrab : NetworkBehaviour
             Debug.Log("no valid disk in scene");
         }
     }
+
+    private void FixedUpdate()
+    {
+        transform.position += 0.1f * Vector3.right * Input.GetAxis("Horizontal");
+    }
 }
