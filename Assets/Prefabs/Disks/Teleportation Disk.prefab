@@ -46,7 +46,6 @@ GameObject:
   - component: {fileID: 5944087046148625973}
   - component: {fileID: 689123957993318407}
   - component: {fileID: 2500092940408265145}
-  - component: {fileID: 1851389401707988554}
   m_Layer: 7
   m_Name: Teleportation Disk
   m_TagString: PlayerDisk
@@ -88,6 +87,9 @@ MonoBehaviour:
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 1
+  m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
     m_PersistentCalls:
@@ -99,6 +101,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
     m_PersistentCalls:
       m_Calls: []
   m_SelectEntered:
@@ -295,34 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1851389401707988554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8694807970901642059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c352e4fd2ec268b4087ea23262e225e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryColor: {r: 0, g: 0, b: 0, a: 0}
-  accentColor: {r: 0, g: 0, b: 0, a: 0}
-  damage: 0
-  isSummonable: 1
-  storableLocations: []
-  playerName: 
-  hand: 0
-  weaponRB: {fileID: 5944087046148625973}
-  weaponTransform: {fileID: 2209465980676280670}
-  transforms:
-  - {fileID: 2209465980676280670}
-  isHeld: 0
-  parentGameObject: {fileID: 0}
-  diskReturnForceMagnitude: 5
-  stoppingFactorMultiplier: 0.2
-  playerTransform: {fileID: 0}
 --- !u!1001 &2816170657387129445
 PrefabInstance:
   m_ObjectHideFlags: 0
