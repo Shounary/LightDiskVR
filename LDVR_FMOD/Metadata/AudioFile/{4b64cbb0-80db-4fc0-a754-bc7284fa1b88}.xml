@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{4b64cbb0-80db-4fc0-a754-bc7284fa1b88}">
+		<property name="assetPath">
+			<value>219586__qubodup__cyber-off.flac</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b27e10a1-18e9-464a-943c-fe7b838c8cd3}</destination>
+		</relationship>
+	</object>
+</objects>

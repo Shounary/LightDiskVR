@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{2f3c1ec8-d13f-489c-b8fc-edf5ae0e32d3}">
+		<property name="assetPath">
+			<value>448213__florianreichelt__white-noise.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>26.367999999999999</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b27e10a1-18e9-464a-943c-fe7b838c8cd3}</destination>
+		</relationship>
+	</object>
+</objects>
