@@ -121,6 +121,11 @@ public class Weapon : MonoBehaviour
     //gameobjects would be a pain to deal with. Instead, the weapon is disabled, and then can
     //be re-enabled later 
     public void DestroyWeapon()
+    public virtual void MainButtonReleaseFunction(){}
+
+    public virtual void SecondaryButtonFunction(){}
+
+    public void setHand(Hand h)
     {
         //play disintegration animation (implement later)
         this.gameObject.SetActive(false);

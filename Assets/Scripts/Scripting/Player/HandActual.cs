@@ -75,6 +75,7 @@ public class HandActual : MonoBehaviour
         }
         else if (!pressed1 && button1Pressed)
         {
+            weapon.MainButtonReleaseFunction();
             button1Pressed = false;
         }
         if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool pressed2) && pressed2) {
