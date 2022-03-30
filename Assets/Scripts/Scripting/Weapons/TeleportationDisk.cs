@@ -16,8 +16,8 @@ public class TeleportationDisk : Weapon
         teleported = false;
     }
 
-    public override void OnGrabFunction() {
-        base.OnGrabFunction();
+    public override void OnGrabFunction(int h) {
+        base.OnGrabFunction(h);
         teleported = false;
     }
 

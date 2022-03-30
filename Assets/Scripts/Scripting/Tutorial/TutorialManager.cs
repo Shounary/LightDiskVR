@@ -33,7 +33,7 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         completionConditions.Add("External", false); //used when completions are controlled by something else, such as UI
-        completionConditions.Add("False", true); //used when a segment has no completion condition
+        completionConditions.Add("None", true); //used when a segment has no completion condition
     }
 
     // Update is called once per frame
@@ -54,7 +54,7 @@ public class TutorialManager : MonoBehaviour
         {
             StartNextSegment();
         }
-        if(completionConditions[currentClearCon])
+        if(completionConditions[currentClearCon] || (currentSegment.useWaitTime && currentSegment.waitTime < 0.0f))
         {
             EndCurrentSegment();
         }

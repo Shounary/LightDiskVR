@@ -43,9 +43,9 @@ public class StasisDisk : Weapon
         weaponRB.isKinematic = false;
     }
 
-    public override void OnReleaseFunction()
+    public override void OnReleaseFunction(int h)
     {
-        base.OnReleaseFunction();
+        base.OnReleaseFunction(h);
         stasisCount = 0;
     }
 }

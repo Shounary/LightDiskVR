@@ -52,21 +52,33 @@ public class HandActual : MonoBehaviour
         weapon = weaponInventory.getActiveWeapon(hand);
         //UpdateAnimation();
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
-            weapon.TriggerFunction(trigger, this.transform);
+            if(weapon != null)
+            {
+                weapon.TriggerFunction(trigger, this.transform);
+            }
         }
         
         if( targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed1) && pressed1 && !button1Pressed) {
-            weapon.MainButtonFunction();
+            Debug.Log("Hello");
+            //weapon.MainButtonFunction();
+            if(weapon != null && weapon.isHeld) {
+                weaponInventory.ToggleSelectUI(hand);
+            }
             button1Pressed = true;
         }
         else if (!pressed1 && button1Pressed)
         {
             button1Pressed = false;
         }
-
         if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool pressed2) && pressed2) {
-            weapon.SecondaryButtonFunction();
+            if(weapon != null) {
+                weapon.SecondaryButtonFunction();
+            }
         }
+
+        
+
+        
 
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool pressed) && pressed) {
             LevelManager.instance.LoadScene(SceneManager.GetActiveScene().name);

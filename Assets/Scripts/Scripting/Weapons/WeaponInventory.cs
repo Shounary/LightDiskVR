@@ -6,9 +6,14 @@ public class WeaponInventory : MonoBehaviour
 {
     public List<Weapon> activeWeapons = new List<Weapon>(2); //stores the left hand weapon at index 0 and the right hand weapon at index 1
     public List<Weapon> weaponList = new List<Weapon>(4); //a list of all weapons in this player's inventory
+
     public string playerName;
 
     const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    public List<GameObject> weaponSelectScreens = new List<GameObject>();
+    public List<WeaponSelectUiController> selectScripts = new List<WeaponSelectUiController>();
+    public bool[] isSelectMenuEnabled = {false, false};
 
     /*public HandActual leftHA;
     public HandActual rightHA;
@@ -21,7 +26,39 @@ public class WeaponInventory : MonoBehaviour
     private void Start() {
         //activateWeapons();
         playerName = generateRandomName();
+        selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
+        selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
         //activateWeapons
+    }
+
+    public void ToggleSelectUI(Hand h)
+    {
+        if (isSelectMenuEnabled[(int) h])
+        {
+            closeSelectUI(h, true);
+        }
+        else
+        {
+            //show menu
+            isSelectMenuEnabled[(int) h] = true;
+            weaponSelectScreens[(int) h].SetActive(true);
+        }
+    }
+
+    //seperate because letting go of the weapon will also close the select UI
+    //set replace to true to attempt to replace the weapon, false to not
+    public void closeSelectUI(Hand h, bool tryReplace)
+    {
+        //swap active weapon if held
+        if (tryReplace && activeWeapons[(int) h].isHeld) 
+        {
+            Debug.Log("Amogus");
+            //swapActiveWeapon(activeWeapons[(int) h], selectScripts[(int) h].selectedWeapon);
+        }
+            
+        //and close menu
+        isSelectMenuEnabled[(int) h] = false;
+        weaponSelectScreens[(int) h].SetActive(false);
     }
 
     public void addWeapon(Weapon weapon)
@@ -43,18 +80,18 @@ public class WeaponInventory : MonoBehaviour
         Debug.Log(activeWeapons);
         //Debug.Log(activeWeapons[0]);
         //activeWeapons[(int) h] = weapon;
-        //weapon.setHand(h);
+        weapon.setHand(h);
         //weapon.playerName = playerName;
     }
 
     public void CallGrabEventOnActiveWeapon(int h)
     {
-        activeWeapons[h].OnGrabFunction();
+        activeWeapons[h].OnGrabFunction(h);
     }
 
     public void CallReleaseEventOnActiveWeapon(int h)
     {
-        activeWeapons[h].OnReleaseFunction();
+        activeWeapons[h].OnReleaseFunction(h);
     }
 
     //returns the active weapon in the given hand

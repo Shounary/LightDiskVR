@@ -14,6 +14,8 @@ public class TutorialSegment : MonoBehaviour
     public string mainText;
     public string highlightText;
     public string clearCon;
+    public bool useWaitTime; //
+    public float waitTime; //the time to wait before advancing to the next segment.
 
     public GameObject segmentDisplay; // a display including text, images, gifs, etc
 
@@ -27,17 +29,8 @@ public class TutorialSegment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(useWaitTime)
+            waitTime -= Time.deltaTime;
         
-    }
-
-    
-    public void OnSegmentStart() 
-    {
-
-    }
-
-    public void OnSegmentEnd()
-    {
-
     }
 }

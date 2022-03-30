@@ -35,6 +35,7 @@ public class Weapon : MonoBehaviour
     public float stoppingFactorMultiplier = 0.2f;
 
     private Transform startLoc;
+    public WeaponInventory weaponInventory;
 
     private void Start() {
         parentGameObject = GameObject.FindGameObjectsWithTag("Empty Parent")[0];
@@ -53,6 +54,12 @@ public class Weapon : MonoBehaviour
 
     public virtual void SecondaryButtonFunction(){}
 
+
+    public void setHand(int h)
+    {
+        setHand((Hand) h);
+    }
+
     public void setHand(Hand h)
     {
         hand = h;
@@ -63,14 +70,16 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public virtual void OnGrabFunction()
+    public virtual void OnGrabFunction(int h)
     {
         isHeld = true;
+        setHand((Hand) h);
     }
 
-    public virtual void OnReleaseFunction()
+    public virtual void OnReleaseFunction(int h)
     {
         isHeld = false;
+        weaponInventory.closeSelectUI(hand, false);
     }
 
     
