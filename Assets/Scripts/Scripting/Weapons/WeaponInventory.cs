@@ -125,6 +125,13 @@ public class WeaponInventory : MonoBehaviour
         return false;
     }*/
 
+
+    //for swapping UI
+    public void cycleWeaponList(Hand h, int dir)
+    {
+        Debug.Log(dir);
+    }
+
     public string generateRandomName()
     {
         string s = "";
@@ -135,5 +142,7 @@ public class WeaponInventory : MonoBehaviour
         return s;
 
     }
+
+
 
 }

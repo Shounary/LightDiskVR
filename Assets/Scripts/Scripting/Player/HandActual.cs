@@ -76,12 +76,12 @@ public class HandActual : MonoBehaviour
             }
         }
 
-        
-
-        
-
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool pressed) && pressed) {
             LevelManager.instance.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 joystick) && Mathf.Abs(joystick.x) > 0.5) {
+            weaponInventory.cycleWeaponList(hand, joystick.x > 0 ? 1: -1);
         }
     }
 
