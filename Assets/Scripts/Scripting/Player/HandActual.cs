@@ -82,8 +82,8 @@ public class HandActual : MonoBehaviour
         }
 
         if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 joystick) && Mathf.Abs(joystick.x) > 0.5 && !stickDelay) {
-            weaponInventory.cycleWeaponList(hand, joystick.x > 0 ? 1: -1);
             stickDelay = true;
+            weaponInventory.cycleWeaponList(hand, joystick.x > 0 ? 1: -1);
             StartCoroutine(JoystickTimerCoroutine());
         }
     }

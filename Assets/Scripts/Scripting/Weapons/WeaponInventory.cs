@@ -13,7 +13,7 @@ public class WeaponInventory : MonoBehaviour
 
     public List<GameObject> weaponSelectScreens = new List<GameObject>(2);
     public List<WeaponSelectUiController> selectScripts = new List<WeaponSelectUiController>(2);
-    public List<List<Weapon>> weaponSwapList = new List<List<Weapon>>(2);
+    public List<Weapon>weaponSwapList = new List<Weapon>();
     public bool[] isSelectMenuEnabled = {false, false};
 
     /*public HandActual leftHA;
@@ -55,7 +55,7 @@ public class WeaponInventory : MonoBehaviour
 
     public void openSelectUI(Hand h)
     {
-        weaponSwapList[(int) h] = getSwapWeapons(h);
+        weaponSwapList = getSwapWeapons(h);
         isSelectMenuEnabled[(int) h] = true;
         weaponSelectScreens[(int) h].SetActive(true);
     }
@@ -75,8 +75,8 @@ public class WeaponInventory : MonoBehaviour
         //and close menu
         isSelectMenuEnabled[(int) h] = false;
         weaponSelectScreens[(int) h].SetActive(false);
-        //if(weaponSwapList[(int) h] != null){}
-            //weaponSwapList[(int) h] = null;
+        if(weaponSwapList.Count > 0) 
+            weaponSwapList.Clear();
     }
 
     public void addWeapon(Weapon weapon)
@@ -146,8 +146,8 @@ public class WeaponInventory : MonoBehaviour
 
     public List<Weapon> getSwapWeapons(Hand h)
     {
-        if(weaponSwapList[(int) h] != null)
-            return weaponSwapList[(int) h];
+        if(weaponSwapList.Count > 0)
+            return weaponSwapList;
         List<Weapon> swapableWeapons = weaponList;
         foreach(Weapon w in activeWeapons) {
             swapableWeapons.Remove(w);
@@ -163,12 +163,15 @@ public class WeaponInventory : MonoBehaviour
     //for swapping UI
     public List<Weapon> cycleWeaponList(Hand h, int dir, List<Weapon> cycleList)
     {
-        List<Weapon> newSwapList = new List<Weapon>();
+        Debug.Log("Cycle Count " + cycleList.Count);
+        List<Weapon> newSwapList = new List<Weapon>(3);
         for(int i = 0; i < cycleList.Count; i++)
         {
-            newSwapList[i] = cycleList[mod((i + dir),3)];
+            Debug.Log("i " + i + " dir " + dir + " i + dir mod 3 " + mod((i + dir),3));
+            newSwapList.Add(cycleList[mod((i - dir),3)]);
         }
         selectScripts[(int) h].UpdateWeaponDisplay(newSwapList);
+        weaponSwapList = newSwapList;
         return newSwapList;
     }
 
