@@ -27,10 +27,12 @@ public class WeaponInventory : MonoBehaviour
     private void Start() {
         //activateWeapons();
         playerName = generateRandomName();
-        selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
-        selectScripts.Add(weaponSelectScreens[1].GetComponent<WeaponSelectUiController>());
-        Debug.Log("-1 % 3" + mod(-1, 3));
-        //activateWeapons
+        if(weaponSelectScreens.Count > 0) 
+        {
+            selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
+            selectScripts.Add(weaponSelectScreens[1].GetComponent<WeaponSelectUiController>());
+        }
+                //activateWeapons
     }
 
     private int mod(int num1, int num2)

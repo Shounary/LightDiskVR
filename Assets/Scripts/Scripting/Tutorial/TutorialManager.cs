@@ -20,14 +20,12 @@ public class TutorialManager : MonoBehaviour
     public Dictionary<string, bool> completionConditions = new Dictionary<string, bool>(); 
 
 
-    List<TutorialSegment> segmentList = new List<TutorialSegment>(); //a list of all tutorial segments in order
+    public List<TutorialSegment> segmentList = new List<TutorialSegment>(); //a list of all tutorial segments in order
     TutorialSegment currentSegment;
 
-    public TextMeshProUGUI mainTutorialText;
-    public TextMeshProUGUI highlightTutorialText;
-    string currentClearCon;
+    public string currentClearCon;
 
-    string tutorialLobbyScene;
+    public string tutorialLobbyScene;
 
     public static TutorialManager instance;
 
@@ -53,16 +51,12 @@ public class TutorialManager : MonoBehaviour
 
 
 
-        //Move to next segment
-        if(segmentList.Count == 0 && currentSegment == null) //tutorial complete
-        {
-            SceneManager.LoadScene(tutorialLobbyScene);
-        }
+        
         if(currentSegment == null) //if there is no active segment, move to the next one
         {
             StartNextSegment();
         }
-        if(completionConditions[currentClearCon])
+        else if(completionConditions[currentClearCon])
         {
             EndCurrentSegment();
         }
@@ -73,7 +67,7 @@ public class TutorialManager : MonoBehaviour
     public void StartNextSegment() //gets and starts the next segment
     {
         currentSegment = segmentList[0];
-        segmentList.RemoveAt(0);
+        currentSegment.enabled = true;
         currentSegment.OnSegmentStart();
         //currentSegment.segmentDisplay.SetActive(true);
         currentClearCon = currentSegment.clearCon;
@@ -82,10 +76,15 @@ public class TutorialManager : MonoBehaviour
     public void EndCurrentSegment() //ends the current segment
     {
         currentSegment.segmentDisplay.SetActive(false);
-        if(currentClearCon.Equals("Wait"))
-            completionConditions["Wait"] = false;
+        completionConditions["Wait"] = false;
         currentClearCon = "";
+        currentSegment.enabled = false;
         currentSegment = null;
+        segmentList.RemoveAt(0);
+        if(segmentList.Count == 0)
+        {
+            SceneManager.LoadScene(tutorialLobbyScene);
+        }
     }
 
     public void OnGrabFunction()

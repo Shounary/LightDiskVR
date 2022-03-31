@@ -48,7 +48,8 @@ public class Weapon : MonoBehaviour
     
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
     {
-        AttractWeapon(additionalFactor, targetTransform);
+        if(isSummonable)
+            AttractWeapon(additionalFactor, targetTransform);
     }
 
     public virtual void MainButtonFunction(){
@@ -82,7 +83,8 @@ public class Weapon : MonoBehaviour
     public virtual void OnReleaseFunction(int h)
     {
         isHeld = false;
-        weaponInventory.closeSelectUI(hand, false);
+        if(weaponInventory != null)
+            weaponInventory.closeSelectUI(hand, false);
     }
 
     

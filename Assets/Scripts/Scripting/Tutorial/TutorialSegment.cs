@@ -32,10 +32,14 @@ public class TutorialSegment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(useWaitTime)
+        if(useWaitTime && enabled)
             waitTime -= Time.deltaTime;
         if(waitTime <= 0.0)
+        {
             TutorialManager.instance.completionConditions["Wait"] = true;
+            useWaitTime = false;
+            waitTime = 1.0f;
+        }
         
     }
 
