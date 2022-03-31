@@ -18,7 +18,6 @@ public class ThrowingKnife : Weapon
         GameObject otherGO = other.gameObject;
         if(!noStickTags.Contains(otherGO.tag))
         {
-            thrown = false;
             weaponRB.velocity = Vector3.zero;
             weaponRB.isKinematic = true;
         }
@@ -26,12 +25,7 @@ public class ThrowingKnife : Weapon
     }
 
     public override void TriggerFunction(float additionalFactor, Transform targetTransform) {
-        if (thrown) {
-            if (Time.fixedUnscaledTime - currCoolDownTime >= coolDownTime) {
-                Instantiate(transform, targetTransform.position, targetTransform.rotation);
-                Destroy(gameObject);
-            }
-        } else if (!isHeld) {
+        if ((thrown && Time.fixedUnscaledTime - currCoolDownTime >= coolDownTime) || !isHeld) {
             transform.position = targetTransform.position;
             transform.rotation = targetTransform.rotation;
         }
