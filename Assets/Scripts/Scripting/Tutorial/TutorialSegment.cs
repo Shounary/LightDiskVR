@@ -47,6 +47,7 @@ public class TutorialSegment : MonoBehaviour
     public void OnSegmentStart() {
         foreach(TutorialObject o in segmentUpdateObjects)
             o.OnSegmentStart(this);
-        segmentDisplay.SetActive(true);
+        if(segmentDisplay != null)
+            segmentDisplay.SetActive(true);
     }
 }

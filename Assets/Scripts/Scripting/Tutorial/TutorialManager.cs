@@ -40,6 +40,7 @@ public class TutorialManager : MonoBehaviour
         completionConditions.Add("None", true); //used when a segment has no completion condition
         completionConditions.Add("Wait", false); //wait some alloted time
         completionConditions.Add("IsHeld", false); //is something being held?
+        completionConditions.Add("IsHandEmpty", true); //is the hand empty?
     }
 
     // Update is called once per frame
@@ -75,7 +76,8 @@ public class TutorialManager : MonoBehaviour
 
     public void EndCurrentSegment() //ends the current segment
     {
-        currentSegment.segmentDisplay.SetActive(false);
+        if(currentSegment.segmentDisplay != null)
+            currentSegment.segmentDisplay.SetActive(false);
         completionConditions["Wait"] = false;
         currentClearCon = "";
         currentSegment.enabled = false;
@@ -90,11 +92,13 @@ public class TutorialManager : MonoBehaviour
     public void OnGrabFunction()
     {
         completionConditions["IsHeld"] = true;
+        completionConditions["IsHandEmpty"] = false;
     }
 
     public void OnReleaseFunction()
     {
         completionConditions["IsHeld"] = false;
+        completionConditions["IsHandEmpty"] = true;
     }
 
     
