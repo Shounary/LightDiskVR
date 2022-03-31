@@ -6,7 +6,6 @@ public class TutorialObject : MonoBehaviour
 {
     public TutorialSegment segment; //the current segment
     public Weapon weapon;
-    public PlayerStats playerStats;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +20,7 @@ public class TutorialObject : MonoBehaviour
     }
 
     //this is horrible and awful and I hate it, but I can't think of anything much better 
-    public void OnSegmentStart(TutorialSegment seg)
+    public virtual void OnSegmentStart(TutorialSegment seg)
     {
         segment = seg;
         switch(seg.segmentID) {
@@ -38,9 +37,6 @@ public class TutorialObject : MonoBehaviour
                 break;
             case 109:
                 weapon.EnableWeapon(seg.spawnPoint);
-                break;
-            case 111:
-                playerStats.invincible = false;
                 break;
 
         }

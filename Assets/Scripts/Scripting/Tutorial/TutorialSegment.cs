@@ -22,6 +22,10 @@ public class TutorialSegment : MonoBehaviour
     public List<TutorialObject> segmentUpdateObjects;
     public Transform spawnPoint;
 
+    public PlayerStats playerStats;
+    public GameObject healthBar;
+    public List<GameObject> clearList; //sets clear condition to true once this list is empty
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,14 +44,33 @@ public class TutorialSegment : MonoBehaviour
             useWaitTime = false;
             waitTime = 1.0f;
         }
+        for(int i = 0; i < clearList.Count; i++)
+        {
+            GameObject o = clearList[i];
+            if(o == null){
+                clearList.Remove(o);
+                i--;
+            }
+        }
+        if(clearCon.Equals("EmptyList") && clearList.Count == 0)
+        {
+            TutorialManager.instance.completionConditions["EmptyList"] = true;
+        }
         
     }
-
+  
     //used for changing properties of objects which exist across multiple segments
     public void OnSegmentStart() {
         foreach(TutorialObject o in segmentUpdateObjects)
             o.OnSegmentStart(this);
         if(segmentDisplay != null)
             segmentDisplay.SetActive(true);
+        switch(segmentID) {
+            case 111:
+                playerStats.invincible = false;
+                healthBar.SetActive(true);
+                break;
+
+        }
     }
 }

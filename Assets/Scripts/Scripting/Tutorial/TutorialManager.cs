@@ -41,6 +41,8 @@ public class TutorialManager : MonoBehaviour
         completionConditions.Add("Wait", false); //wait some alloted time
         completionConditions.Add("IsHeld", false); //is something being held?
         completionConditions.Add("IsHandEmpty", true); //is the hand empty?
+        completionConditions.Add("EmptyList", false); //is a list of gameobjects empty (those objects have been destroyed)
+        completionConditions.Add("", false); //prevents exceptions
     }
 
     // Update is called once per frame
