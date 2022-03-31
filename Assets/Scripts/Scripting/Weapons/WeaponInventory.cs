@@ -28,7 +28,7 @@ public class WeaponInventory : MonoBehaviour
         //activateWeapons();
         playerName = generateRandomName();
         selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
-        selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
+        selectScripts.Add(weaponSelectScreens[1].GetComponent<WeaponSelectUiController>());
         Debug.Log("-1 % 3" + mod(-1, 3));
         //activateWeapons
     }

@@ -73,7 +73,8 @@ public class HandActual : MonoBehaviour
         }
         if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool pressed2) && pressed2) {
             if(weapon != null) {
-                weapon.SecondaryButtonFunction();
+                weapon.MainButtonFunction();
+               // weapon.SecondaryButtonFunction();
             }
         }
 

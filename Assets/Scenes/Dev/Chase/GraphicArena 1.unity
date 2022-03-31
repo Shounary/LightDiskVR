@@ -9722,6 +9722,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5957854654311612481, guid: b3dfb37ea13e0ff459fd8e149ef39ac1, type: 3}
+      propertyPath: weaponName
+      value: Teleportation\nDisk
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957854654311612481, guid: b3dfb37ea13e0ff459fd8e149ef39ac1, type: 3}
       propertyPath: playerTransform
       value: 
       objectReference: {fileID: 1505104442}
@@ -10558,6 +10562,18 @@ PrefabInstance:
     - target: {fileID: 1901580097, guid: c38512c3620aa9e49ad681b762d53d55, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901580098, guid: c38512c3620aa9e49ad681b762d53d55, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1901580098, guid: c38512c3620aa9e49ad681b762d53d55, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4499999
+      objectReference: {fileID: 0}
+    - target: {fileID: 284548231507432626, guid: c38512c3620aa9e49ad681b762d53d55, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 1490519023632216730, guid: c38512c3620aa9e49ad681b762d53d55, type: 3}
       propertyPath: m_RootOrder
