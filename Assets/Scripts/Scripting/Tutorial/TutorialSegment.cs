@@ -20,6 +20,7 @@ public class TutorialSegment : MonoBehaviour
 
     public GameObject segmentDisplay; // a display including text, images, gifs, etc
     public List<TutorialObject> segmentUpdateObjects;
+    public Transform spawnPoint;
 
 
     // Start is called before the first frame update
