@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
     public int startHealth;
     public static int health;
     public string playerName;
+    public bool invincible = false; //set to true to make the player not take damage
 
     public HealthBar healthBar;
     private static float timeSinceHit = 10.0f;
@@ -26,7 +27,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void takeDamage(int damage) {
-        if (timeSinceHit >= invincibilityTime) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
+        if (timeSinceHit >= invincibilityTime && !invincible) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
             health -= damage;
             timeSinceHit = 0.0f;
             if(health <0)

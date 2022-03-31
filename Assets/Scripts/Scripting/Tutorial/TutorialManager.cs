@@ -29,11 +29,19 @@ public class TutorialManager : MonoBehaviour
 
     string tutorialLobbyScene;
 
+    public static TutorialManager instance;
+
+    void Awake() {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         completionConditions.Add("External", false); //used when completions are controlled by something else, such as UI
         completionConditions.Add("None", true); //used when a segment has no completion condition
+        completionConditions.Add("Wait", false); //wait some alloted time
+        completionConditions.Add("IsHeld", false); //is something being held?
     }
 
     // Update is called once per frame
@@ -54,7 +62,7 @@ public class TutorialManager : MonoBehaviour
         {
             StartNextSegment();
         }
-        if(completionConditions[currentClearCon] || (currentSegment.useWaitTime && currentSegment.waitTime < 0.0f))
+        if(completionConditions[currentClearCon])
         {
             EndCurrentSegment();
         }
@@ -66,19 +74,28 @@ public class TutorialManager : MonoBehaviour
     {
         currentSegment = segmentList[0];
         segmentList.RemoveAt(0);
-        currentSegment.segmentDisplay.SetActive(true);
-       // mainTutorialText.text = currentSegment.mainText;
-        //highlightTutorialText.text = currentSegment.highlightText;
+        currentSegment.OnSegmentStart();
+        //currentSegment.segmentDisplay.SetActive(true);
         currentClearCon = currentSegment.clearCon;
     }
 
     public void EndCurrentSegment() //ends the current segment
     {
-        //mainTutorialText.text = "";
-       // highlightTutorialText.text = "";
         currentSegment.segmentDisplay.SetActive(false);
+        if(currentClearCon.Equals("Wait"))
+            completionConditions["Wait"] = false;
         currentClearCon = "";
         currentSegment = null;
+    }
+
+    public void OnGrabFunction()
+    {
+        completionConditions["IsHeld"] = true;
+    }
+
+    public void OnReleaseFunction()
+    {
+        completionConditions["IsHeld"] = false;
     }
 
     
