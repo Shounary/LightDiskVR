@@ -44,7 +44,7 @@ public class WeaponInventory : MonoBehaviour
     {
         if (isSelectMenuEnabled[(int) h])
         {
-            closeSelectUI(h, false);
+            closeSelectUI(h, true);
         }
         //makes sure you can only have one UI open at a time or else bad things might happen
         else if (!isSelectMenuEnabled[((int) h + 1) % 2])
@@ -69,7 +69,7 @@ public class WeaponInventory : MonoBehaviour
         {
             Debug.Log("Amogus");
             //swapActiveWeapon(activeWeapons[(int) h], selectScripts[(int) h].selectedWeapon);
-           // swapActiveWeapon(activeWeapons[(int) h], weaponSwapList[(int) h][1]);
+            swapActiveWeapon(activeWeapons[(int) h], weaponSwapList[1]);
         }
             
         //and close menu
@@ -123,26 +123,17 @@ public class WeaponInventory : MonoBehaviour
     //returns if the swap was successful
     public bool swapActiveWeapon(Weapon replaceWeapon, Weapon newWeapon)
     {
+        if(replaceWeapon == newWeapon)
+            return false;
         if(weaponList.Contains(newWeapon) && activeWeapons.Contains(replaceWeapon))
         {
+            replaceWeapon.DeactivateWeapon();
             setActiveWeapon(newWeapon, (Hand) activeWeapons.IndexOf(replaceWeapon));
             //activeWeapons[activeWeapons.IndexOf(replaceWeapon)] = newWeapon;
             return true;
         }
         return false;
     }
-
-    //places weapon w into the given hand
-    //returns if the swap was successful
-   /* public bool swapActiveWeapon(Weapon w, Hand h)
-    {
-        if(weaponList.Contains(w))
-        {
-            setActiveWeapon()
-            return true;
-        }    
-        return false;
-    }*/
 
     public List<Weapon> getSwapWeapons(Hand h)
     {
@@ -153,7 +144,7 @@ public class WeaponInventory : MonoBehaviour
             swapableWeapons.Remove(w);
         }
         swapableWeapons.Add(activeWeapons[(int) h]);
-        return cycleWeaponList(h, -1, swapableWeapons);
+        return cycleWeaponList(h, 1, swapableWeapons);
     }
 
     public List<Weapon> cycleWeaponList(Hand h, int dir)
@@ -168,7 +159,7 @@ public class WeaponInventory : MonoBehaviour
         for(int i = 0; i < cycleList.Count; i++)
         {
             Debug.Log("i " + i + " dir " + dir + " i + dir mod 3 " + mod((i + dir),3));
-            newSwapList.Add(cycleList[mod((i - dir),3)]);
+            newSwapList.Add(cycleList[mod((i + dir),3)]);
         }
         selectScripts[(int) h].UpdateWeaponDisplay(newSwapList);
         weaponSwapList = newSwapList;

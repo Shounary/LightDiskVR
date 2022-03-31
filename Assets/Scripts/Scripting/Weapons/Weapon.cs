@@ -113,6 +113,13 @@ public class Weapon : MonoBehaviour
         weaponRB.velocity = Vector3.zero;
     }
 
+
+    //when a weapon is disabled by being swapped with a different weapon
+    public void DeactivateWeapon()
+    {
+        DestroyWeapon();
+    }
+
     //enabled the weapon and moves it to the given postiion
     public void EnableWeapon(Transform t)
     {
