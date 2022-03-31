@@ -16,8 +16,8 @@ public class TeleportationDisk : Weapon
         teleported = false;
     }
 
-    public override void OnGrabFunction() {
-        base.OnGrabFunction();
+    public override void OnGrabFunction(int h) {
+        base.OnGrabFunction(h);
         teleported = false;
     }
 
@@ -34,7 +34,8 @@ public class TeleportationDisk : Weapon
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity)) {
-            playerTransform.position = hit.point;
+            playerTransform.position = new Vector3(hit.point.x, playerTransform.position.y, hit.point.z);
+
             // Move it up by 1 just to make sure that the player doesn't enter the floor
         }
     }

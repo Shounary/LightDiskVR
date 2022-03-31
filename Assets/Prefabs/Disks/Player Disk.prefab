@@ -58,6 +58,9 @@ MonoBehaviour:
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 1
+  m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
     m_PersistentCalls:
@@ -69,6 +72,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
     m_PersistentCalls:
       m_Calls: []
   m_SelectEntered:
@@ -240,19 +249,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryColor: {r: 0, g: 0, b: 0, a: 0}
   accentColor: {r: 0, g: 0, b: 0, a: 0}
+  weaponImage: {fileID: 4137875614871368674, guid: 34a47a601b237984f85c74dfa6a3ae6d, type: 3}
+  weaponName: Basic Disk
+  weaponDescription: 
   damage: 15
   isSummonable: 1
   storableLocations: []
-  player: 
+  playerName: 
   hand: 2
   weaponRB: {fileID: 1916699014}
   weaponTransform: {fileID: 5536113849709299437}
   transforms:
   - {fileID: 5536113849709299437}
   - {fileID: 5536113849709299437}
+  isHeld: 0
+  isWeaponEnabled: 1
   parentGameObject: {fileID: 0}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
+  weaponInventory: {fileID: 0}
 --- !u!114 &143446536956234287
 MonoBehaviour:
   m_ObjectHideFlags: 0

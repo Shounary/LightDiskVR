@@ -1,15 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class StasisDisk : Weapon
 {
-    // This stuff probably needs to be changed to make compatible with more than one player
-    // Sorry Chase
-    
-    public int maxStasis = 1;
+    public int maxStasis = 1; //the number of times stasis can be used before 
     private int stasisCount = 0;
 
     public float velocityDivisor = 5;
@@ -48,9 +43,9 @@ public class StasisDisk : Weapon
         weaponRB.isKinematic = false;
     }
 
-    public override void OnReleaseFunction()
+    public override void OnReleaseFunction(int h)
     {
-        base.OnReleaseFunction();
+        base.OnReleaseFunction(h);
         stasisCount = 0;
     }
 }
