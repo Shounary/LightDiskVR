@@ -120,9 +120,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5524612939369469399}
-  - component: {fileID: 1397062276534088856}
   - component: {fileID: 3133851579371228116}
   - component: {fileID: 6824980084548829440}
+  - component: {fileID: 3423614798134097503}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -148,34 +148,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1397062276534088856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5179296380834058093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e8b793c46e23af46b2c18bfe5fad54d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primaryColor: {r: 0, g: 0, b: 0, a: 0}
-  accentColor: {r: 0, g: 0, b: 0, a: 0}
-  damage: 0
-  isSummonable: 0
-  storableLocations: []
-  playerName: 
-  hand: 0
-  weaponRB: {fileID: 3133851579371228116}
-  weaponTransform: {fileID: 3805234410388865297}
-  transforms:
-  - {fileID: 3805234410388865297}
-  - {fileID: 3805234410388865297}
-  isHeld: 0
-  parentGameObject: {fileID: 0}
-  diskReturnForceMagnitude: 5
-  stoppingFactorMultiplier: 0.2
 --- !u!54 &3133851579371228116
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -209,6 +181,9 @@ MonoBehaviour:
   m_InteractionLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  m_InteractionLayers:
+    m_Bits: 1
+  m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
     m_PersistentCalls:
@@ -220,6 +195,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_HoverExited:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FirstSelectEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  m_LastSelectExited:
     m_PersistentCalls:
       m_Calls: []
   m_SelectEntered:
@@ -298,6 +279,37 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+--- !u!114 &3423614798134097503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5179296380834058093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de526d319241512459a0def368155e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryColor: {r: 0, g: 0, b: 0, a: 0}
+  accentColor: {r: 0, g: 0, b: 0, a: 0}
+  weaponImage: {fileID: 7265211444120722394, guid: 8252342426312b245b3b44bf95c03bc7, type: 3}
+  weaponName: Sword
+  weaponDescription: 
+  damage: 0
+  isSummonable: 0
+  storableLocations: []
+  playerName: 
+  hand: 0
+  weaponRB: {fileID: 3133851579371228116}
+  weaponTransform: {fileID: 3805234410388865297}
+  transforms: []
+  isHeld: 0
+  isWeaponEnabled: 1
+  parentGameObject: {fileID: 0}
+  diskReturnForceMagnitude: 5
+  stoppingFactorMultiplier: 0.2
+  weaponInventory: {fileID: 0}
 --- !u!1 &6518523906841342422
 GameObject:
   m_ObjectHideFlags: 0

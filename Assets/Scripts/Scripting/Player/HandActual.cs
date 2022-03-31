@@ -24,6 +24,7 @@ public class HandActual : MonoBehaviour
 
     public bool button1Pressed;
     public bool button2Pressed;
+    public bool stickDelay;
 
     private Animator animator;
     void Start()
@@ -59,12 +60,12 @@ public class HandActual : MonoBehaviour
         }
         
         if( targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed1) && pressed1 && !button1Pressed) {
+            button1Pressed = true;
             Debug.Log("Hello");
             //weapon.MainButtonFunction();
             if(weapon != null && weapon.isHeld) {
-                weaponInventory.ToggleSelectUI(hand);
+            weaponInventory.ToggleSelectUI(hand);
             }
-            button1Pressed = true;
         }
         else if (!pressed1 && button1Pressed)
         {
@@ -80,9 +81,17 @@ public class HandActual : MonoBehaviour
             LevelManager.instance.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 joystick) && Mathf.Abs(joystick.x) > 0.5) {
+        if (targetDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 joystick) && Mathf.Abs(joystick.x) > 0.5 && !stickDelay) {
             weaponInventory.cycleWeaponList(hand, joystick.x > 0 ? 1: -1);
+            stickDelay = true;
+            StartCoroutine(JoystickTimerCoroutine());
         }
+    }
+
+    IEnumerator JoystickTimerCoroutine()
+    {
+        yield return new WaitForSeconds(0.35f);
+        stickDelay = false;
     }
 
 /*

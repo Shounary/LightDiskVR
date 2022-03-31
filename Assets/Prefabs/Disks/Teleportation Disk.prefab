@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 5944087046148625973}
   - component: {fileID: 689123957993318407}
   - component: {fileID: 2500092940408265145}
+  - component: {fileID: 5957854654311612481}
   m_Layer: 7
   m_Name: Teleportation Disk
   m_TagString: PlayerDisk
@@ -303,6 +304,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5957854654311612481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8694807970901642059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c352e4fd2ec268b4087ea23262e225e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryColor: {r: 0, g: 0, b: 0, a: 0}
+  accentColor: {r: 0, g: 0, b: 0, a: 0}
+  weaponImage: {fileID: -4580073576422207378, guid: 76fbf6f42e7c99a4da2403d63fd368a2, type: 3}
+  weaponName: Teleportation Disk
+  weaponDescription: 
+  damage: 0
+  isSummonable: 0
+  storableLocations: []
+  playerName: 
+  hand: 2
+  weaponRB: {fileID: 5944087046148625973}
+  weaponTransform: {fileID: 2209465980676280670}
+  transforms: []
+  isHeld: 0
+  isWeaponEnabled: 1
+  parentGameObject: {fileID: 0}
+  diskReturnForceMagnitude: 5
+  stoppingFactorMultiplier: 0.2
+  weaponInventory: {fileID: 0}
+  playerTransform: {fileID: 0}
 --- !u!1001 &2816170657387129445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -411,11 +444,11 @@ PrefabInstance:
     - target: {fileID: 502613559154615481, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 29ebe2a287991794cb3627beff5b0884, type: 2}
+      objectReference: {fileID: 2100000, guid: 6634eecba0150f54c9315f6881e5c751, type: 2}
     - target: {fileID: 937148360917975785, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 29ebe2a287991794cb3627beff5b0884, type: 2}
+      objectReference: {fileID: 2100000, guid: 6634eecba0150f54c9315f6881e5c751, type: 2}
     - target: {fileID: 1061151286709366927, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -475,15 +508,15 @@ PrefabInstance:
     - target: {fileID: 2863332903310476370, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 29ebe2a287991794cb3627beff5b0884, type: 2}
+      objectReference: {fileID: 2100000, guid: 6634eecba0150f54c9315f6881e5c751, type: 2}
     - target: {fileID: 3848182583574224459, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 29ebe2a287991794cb3627beff5b0884, type: 2}
+      objectReference: {fileID: 2100000, guid: 6634eecba0150f54c9315f6881e5c751, type: 2}
     - target: {fileID: 6432325636437280682, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 29ebe2a287991794cb3627beff5b0884, type: 2}
+      objectReference: {fileID: 2100000, guid: 6634eecba0150f54c9315f6881e5c751, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 072db4c4642d0614695b7435ed87daf3, type: 3}
 --- !u!4 &6576537292090209092 stripped

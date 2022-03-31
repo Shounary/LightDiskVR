@@ -11,8 +11,9 @@ public class WeaponInventory : MonoBehaviour
 
     const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
 
-    public List<GameObject> weaponSelectScreens = new List<GameObject>();
-    public List<WeaponSelectUiController> selectScripts = new List<WeaponSelectUiController>();
+    public List<GameObject> weaponSelectScreens = new List<GameObject>(2);
+    public List<WeaponSelectUiController> selectScripts = new List<WeaponSelectUiController>(2);
+    public List<List<Weapon>> weaponSwapList = new List<List<Weapon>>(2);
     public bool[] isSelectMenuEnabled = {false, false};
 
     /*public HandActual leftHA;
@@ -28,21 +29,35 @@ public class WeaponInventory : MonoBehaviour
         playerName = generateRandomName();
         selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
         selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
+        Debug.Log("-1 % 3" + mod(-1, 3));
         //activateWeapons
+    }
+
+    private int mod(int num1, int num2)
+    {
+        if(num1 < 0)
+            num1 += num2;
+        return num1 % num2;
     }
 
     public void ToggleSelectUI(Hand h)
     {
         if (isSelectMenuEnabled[(int) h])
         {
-            closeSelectUI(h, true);
+            closeSelectUI(h, false);
         }
-        else
+        //makes sure you can only have one UI open at a time or else bad things might happen
+        else if (!isSelectMenuEnabled[((int) h + 1) % 2])
         {
-            //show menu
-            isSelectMenuEnabled[(int) h] = true;
-            weaponSelectScreens[(int) h].SetActive(true);
+            openSelectUI(h);
         }
+    }
+
+    public void openSelectUI(Hand h)
+    {
+        weaponSwapList[(int) h] = getSwapWeapons(h);
+        isSelectMenuEnabled[(int) h] = true;
+        weaponSelectScreens[(int) h].SetActive(true);
     }
 
     //seperate because letting go of the weapon will also close the select UI
@@ -54,11 +69,14 @@ public class WeaponInventory : MonoBehaviour
         {
             Debug.Log("Amogus");
             //swapActiveWeapon(activeWeapons[(int) h], selectScripts[(int) h].selectedWeapon);
+           // swapActiveWeapon(activeWeapons[(int) h], weaponSwapList[(int) h][1]);
         }
             
         //and close menu
         isSelectMenuEnabled[(int) h] = false;
         weaponSelectScreens[(int) h].SetActive(false);
+        //if(weaponSwapList[(int) h] != null){}
+            //weaponSwapList[(int) h] = null;
     }
 
     public void addWeapon(Weapon weapon)
@@ -79,8 +97,9 @@ public class WeaponInventory : MonoBehaviour
         Debug.Log((int) h);
         Debug.Log(activeWeapons);
         //Debug.Log(activeWeapons[0]);
-        //activeWeapons[(int) h] = weapon;
+        activeWeapons[(int) h] = weapon;
         weapon.setHand(h);
+        weapon.EnableWeapon(weaponSelectScreens[(int) h].transform);
         //weapon.playerName = playerName;
     }
 
@@ -125,11 +144,32 @@ public class WeaponInventory : MonoBehaviour
         return false;
     }*/
 
-
-    //for swapping UI
-    public void cycleWeaponList(Hand h, int dir)
+    public List<Weapon> getSwapWeapons(Hand h)
     {
-        Debug.Log(dir);
+        if(weaponSwapList[(int) h] != null)
+            return weaponSwapList[(int) h];
+        List<Weapon> swapableWeapons = weaponList;
+        foreach(Weapon w in activeWeapons) {
+            swapableWeapons.Remove(w);
+        }
+        swapableWeapons.Add(activeWeapons[(int) h]);
+        return cycleWeaponList(h, -1, swapableWeapons);
+    }
+
+    public List<Weapon> cycleWeaponList(Hand h, int dir)
+    {
+        return cycleWeaponList(h, dir, getSwapWeapons(h));
+    }
+    //for swapping UI
+    public List<Weapon> cycleWeaponList(Hand h, int dir, List<Weapon> cycleList)
+    {
+        List<Weapon> newSwapList = new List<Weapon>();
+        for(int i = 0; i < cycleList.Count; i++)
+        {
+            newSwapList[i] = cycleList[mod((i + dir),3)];
+        }
+        selectScripts[(int) h].UpdateWeaponDisplay(newSwapList);
+        return newSwapList;
     }
 
     public string generateRandomName()

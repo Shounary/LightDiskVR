@@ -11,6 +11,9 @@ public class Weapon : MonoBehaviour
     public Color primaryColor;
     public Color accentColor;
 
+    public Sprite weaponImage;
+    public string weaponName;
+    public string weaponDescription;
 
     public int damage;
     public bool isSummonable;

@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class WeaponSelectUiController : MonoBehaviour
 {
-    public Weapon selectedWeapon;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<TextMeshProUGUI> descriptions;
+    public List<Image> images;
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateWeaponDisplay(List<Weapon> weaponList)
     {
-        
+        for(int i=0; i < weaponList.Count; i++)
+        {
+            descriptions[i].text = weaponList[i].weaponName;
+            images[i].sprite = weaponList[i].weaponImage;
+        }
     }
 }
