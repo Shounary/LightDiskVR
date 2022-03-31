@@ -26,9 +26,14 @@ public class ThrowingKnife : Weapon
     }
 
     public override void TriggerFunction(float additionalFactor, Transform targetTransform) {
-        if (thrown && Time.fixedUnscaledTime - currCoolDownTime >= coolDownTime) {
-            Instantiate(transform, targetTransform.position, targetTransform.rotation);
-            Destroy(gameObject);
+        if (thrown) {
+            if (Time.fixedUnscaledTime - currCoolDownTime >= coolDownTime) {
+                Instantiate(transform, targetTransform.position, targetTransform.rotation);
+                Destroy(gameObject);
+            }
+        } else if (!isHeld) {
+            transform.position = targetTransform.position;
+            transform.rotation = targetTransform.rotation;
         }
     }
 

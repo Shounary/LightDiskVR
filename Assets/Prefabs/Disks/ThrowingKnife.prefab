@@ -259,7 +259,9 @@ MonoBehaviour:
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
   rotateTransform: {fileID: 3991085152093469403}
-  noStickTags: []
+  noStickTags:
+  - PlayerDisk
+  - EnemyDisk
   rotateRate: 5
   coolDownTime: 3
 --- !u!1001 &3490443167421877499
