@@ -851,6 +851,7 @@ MonoBehaviour:
   waitTime: 5
   segmentDisplay: {fileID: 48872269}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -1534,7 +1535,7 @@ Transform:
   - {fileID: 2117870524}
   - {fileID: 1971438979}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &125347741
 GameObject:
@@ -2002,6 +2003,7 @@ MonoBehaviour:
   waitTime: 5
   segmentDisplay: {fileID: 226656647}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -2078,7 +2080,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &254681830
 GameObject:
@@ -3337,7 +3339,7 @@ RectTransform:
   - {fileID: 1608921168}
   - {fileID: 1023299819}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3698,6 +3700,7 @@ MonoBehaviour:
   segmentDisplay: {fileID: 543000540}
   segmentUpdateObjects:
   - {fileID: 254994334}
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -3734,7 +3737,7 @@ Transform:
   - {fileID: 353342501936498088}
   - {fileID: 530461430}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &572546659
 MonoBehaviour:
@@ -4302,7 +4305,7 @@ Transform:
   m_Children:
   - {fileID: 1851770762849026165}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &677751073
 GameObject:
@@ -4691,6 +4694,7 @@ MonoBehaviour:
   waitTime: 5
   segmentDisplay: {fileID: 716286843}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -4751,6 +4755,7 @@ MonoBehaviour:
   waitTime: 5
   segmentDisplay: {fileID: 721801764}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -4990,6 +4995,91 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 771722094}
   m_CullTransparentMesh: 1
+--- !u!1001 &773926572
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3419437769555080578, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_Name
+      value: EnemyDrone
+      objectReference: {fileID: 0}
+    - target: {fileID: 3419437769555080578, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.6650361
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3659174
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 5.0366573
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.074893415
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.07492649
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.96066844
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.25669682
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 28.815
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -167.987
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902277229282780281, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 12.016
+      objectReference: {fileID: 0}
+    - target: {fileID: 7744415175859090418, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+      propertyPath: playerTarget
+      value: 
+      objectReference: {fileID: 909934000}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+--- !u!1 &773926573 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3419437769555080578, guid: 49ca87c443267dc4199b7b49f647038d, type: 3}
+  m_PrefabInstance: {fileID: 773926572}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &773926574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773926573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645557c530c49ba4b80978d3ee1b63e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segment: {fileID: 0}
+  objects:
+  - {fileID: 773926573}
 --- !u!1001 &812360881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5202,6 +5292,7 @@ MonoBehaviour:
   segmentDisplay: {fileID: 905423314}
   segmentUpdateObjects:
   - {fileID: 328095808}
+  segmentDisableObjects: []
   spawnPoint: {fileID: 1231981166}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -5288,6 +5379,7 @@ MonoBehaviour:
   waitTime: 5
   segmentDisplay: {fileID: 915462785}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -5678,7 +5770,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &956430576
 MonoBehaviour:
@@ -5903,7 +5995,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deflecting not yet implemented
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 375a8a32d9cc3df439da84ff6d7572b8, type: 2}
   m_sharedMaterial: {fileID: -8392449251738244147, guid: 375a8a32d9cc3df439da84ff6d7572b8, type: 2}
@@ -6036,6 +6128,7 @@ MonoBehaviour:
   waitTime: 0
   segmentDisplay: {fileID: 0}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -6490,6 +6583,7 @@ MonoBehaviour:
   waitTime: 0
   segmentDisplay: {fileID: 1092402603}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -6954,6 +7048,7 @@ MonoBehaviour:
   segmentDisplay: {fileID: 1163512507}
   segmentUpdateObjects:
   - {fileID: 328095808}
+  segmentDisableObjects: []
   spawnPoint: {fileID: 1231981166}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -7067,7 +7162,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1229807417 stripped
 GameObject:
@@ -7239,6 +7334,7 @@ MonoBehaviour:
   waitTime: 2
   segmentDisplay: {fileID: 1273159920}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -7306,7 +7402,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1273641125
 MonoBehaviour:
@@ -7912,7 +8008,7 @@ Transform:
   - {fileID: 1749137039}
   - {fileID: 403975962}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1357129083
 GameObject:
@@ -10171,6 +10267,7 @@ MonoBehaviour:
   waitTime: 2
   segmentDisplay: {fileID: 1608921167}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -10435,7 +10532,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1683416085
 GameObject:
@@ -10623,11 +10720,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segmentID: 110
-  clearCon: Wait
-  useWaitTime: 1
+  clearCon: Deflect
+  useWaitTime: 0
   waitTime: 5
   segmentDisplay: {fileID: 1695976003}
-  segmentUpdateObjects: []
+  segmentUpdateObjects:
+  - {fileID: 773926574}
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -10694,6 +10793,7 @@ MonoBehaviour:
   segmentDisplay: {fileID: 1710135735}
   segmentUpdateObjects:
   - {fileID: 328095808}
+  segmentDisableObjects: []
   spawnPoint: {fileID: 1231981166}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -11375,7 +11475,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1836284640
 PrefabInstance:
@@ -11767,7 +11867,7 @@ Transform:
   m_Children:
   - {fileID: 1231981166}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1922527470
 MonoBehaviour:
@@ -12455,6 +12555,7 @@ MonoBehaviour:
   waitTime: 5
   segmentDisplay: {fileID: 1996108907}
   segmentUpdateObjects: []
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -12650,6 +12751,7 @@ MonoBehaviour:
   segmentDisplay: {fileID: 2037537987}
   segmentUpdateObjects:
   - {fileID: 328095808}
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
@@ -12700,7 +12802,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2049822543
 GameObject:
@@ -12758,6 +12860,8 @@ MonoBehaviour:
   waitTime: 5
   segmentDisplay: {fileID: 2049822543}
   segmentUpdateObjects: []
+  segmentDisableObjects:
+  - {fileID: 773926573}
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 826765235343951706}
   healthBar: {fileID: 1422625465}
@@ -13211,6 +13315,7 @@ MonoBehaviour:
   segmentDisplay: {fileID: 2104094917}
   segmentUpdateObjects:
   - {fileID: 572546659}
+  segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}

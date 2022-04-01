@@ -20,6 +20,7 @@ public class TutorialSegment : MonoBehaviour
 
     public GameObject segmentDisplay; // a display including text, images, gifs, etc
     public List<TutorialObject> segmentUpdateObjects;
+    public List<GameObject> segmentDisableObjects;
     public Transform spawnPoint;
 
     public PlayerStats playerStats;
@@ -73,5 +74,7 @@ public class TutorialSegment : MonoBehaviour
                 break;
 
         }
+        foreach(GameObject o in segmentDisableObjects)
+            o.SetActive(false);
     }
 }

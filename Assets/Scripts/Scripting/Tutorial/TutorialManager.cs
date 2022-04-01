@@ -43,6 +43,7 @@ public class TutorialManager : MonoBehaviour
         completionConditions.Add("IsHandEmpty", true); //is the hand empty?
         completionConditions.Add("EmptyList", false); //is a list of gameobjects empty (those objects have been destroyed)
         completionConditions.Add("", false); //prevents exceptions
+        completionConditions.Add("Deflect", false); //have 3 disks been deflected?
     }
 
     // Update is called once per frame
@@ -82,6 +83,7 @@ public class TutorialManager : MonoBehaviour
             currentSegment.segmentDisplay.SetActive(false);
         completionConditions["Wait"] = false;
         completionConditions["EmptyList"] = false;
+        completionConditions["Deflect"] = false;
         currentClearCon = "";
         currentSegment.enabled = false;
         currentSegment = null;
