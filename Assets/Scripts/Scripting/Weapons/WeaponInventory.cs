@@ -23,10 +23,11 @@ public class WeaponInventory : MonoBehaviour
     private void Update() {
         if(leftHA =)
     }*/
-
+    private void Awake() {
+        playerName = generateRandomName();
+    }
     private void Start() {
         //activateWeapons();
-        playerName = generateRandomName();
         if(weaponSelectScreens.Count > 0) 
         {
             selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
