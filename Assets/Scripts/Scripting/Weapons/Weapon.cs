@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
     public float diskReturnForceMagnitude = 5f;
     public float stoppingFactorMultiplier = 0.2f;
 
-    public Transform startLoc;
+    public Vector3 startLoc;
     public WeaponInventory weaponInventory;
     
 
@@ -43,7 +43,7 @@ public class Weapon : MonoBehaviour
         parentGameObject = GameObject.FindGameObjectsWithTag("Empty Parent")[0];
         this.gameObject.transform.SetParent(parentGameObject.transform);
         if (startLoc == null)
-            startLoc = this.gameObject.transform;
+            startLoc = this.gameObject.transform.position;
     }
 
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
@@ -127,9 +127,9 @@ public class Weapon : MonoBehaviour
     }
 
     //enabled the weapon and moves it to the given postiion
-    public void EnableWeapon(Transform t)
+    public void EnableWeapon(Vector3 t)
     {
-        this.gameObject.transform.position = t.position;
+        this.gameObject.transform.position = t;
         this.gameObject.SetActive(true);
         //play spawning animation (implement later)
     }
