@@ -7,22 +7,29 @@ using UnityEngine.InputSystem.XR;
 
 public class OnGrabWeaponAssigner : MonoBehaviour
 {
+    public int weaponsMapped;
+
+    private void Start() {
+        weaponsMapped = 0;
+    }
+
     public void OnSelectGrabbable(SelectEnterEventArgs eventArgs)
     {
         Weapon weapon = eventArgs.interactable.transform.GetComponent<Weapon>();
         WeaponInventory weaponInventory = eventArgs.interactor.transform.GetComponentInParent<WeaponInventory>();
-        Transform xrRigTransform = eventArgs.interactor.transform.GetComponentInParent<NetworkVRPlayer>().transform;
+        //Transform xrRigTransform = eventArgs.interactor.transform.GetComponentInParent<VRRig>().transform;
         if (weapon == null || weaponInventory == null)
             return;
-        if (weaponInventory.weaponList.Count < 2) {
-            weaponInventory.addWeapon(weapon);
+        if (weaponsMapped < 2) {
+            weaponInventory.weaponList[weaponsMapped] = weapon;
+            weaponsMapped++;
 
             TeleportationDisk teleportationDisk = eventArgs.interactable.transform.GetComponent<TeleportationDisk>();
             if (teleportationDisk != null) {
-                teleportationDisk.playerTransform = xrRigTransform;
+                //teleportationDisk.playerTransform = xrRigTransform;
             }
         }
-        if (weaponInventory.weaponList.Count >= 2) {
+        if (weaponsMapped >= 2) {
             weaponInventory.activateWeapons();
         }
     }
