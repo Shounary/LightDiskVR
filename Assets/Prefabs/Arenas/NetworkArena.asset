@@ -15,4 +15,4 @@ MonoBehaviour:
   BuildIndex: 2
   _spawnPoints:
   - {x: 0, y: 1, z: 0}
-  - {x: 10, y: 1, z: 0}
+  - {x: 0, y: 1, z: 0}
