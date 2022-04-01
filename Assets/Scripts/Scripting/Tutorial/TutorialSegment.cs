@@ -26,6 +26,7 @@ public class TutorialSegment : MonoBehaviour
     public PlayerStats playerStats;
     public GameObject healthBar;
     public List<GameObject> clearList; //sets clear condition to true once this list is empty
+    public TutorialSegment deathSegment; //the segment to go to after death
 
 
     // Start is called before the first frame update
@@ -78,6 +79,14 @@ public class TutorialSegment : MonoBehaviour
             case 111:
                 playerStats.invincible = false;
                 healthBar.SetActive(true);
+                break;
+            case 113:
+                healthBar.SetActive(true);
+                playerStats.healthBar.displayHealth(playerStats.health);
+                break;
+            case 114:
+                healthBar.SetActive(false);
+                playerStats.health = 100;
                 break;
 
         }

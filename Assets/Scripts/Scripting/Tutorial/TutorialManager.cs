@@ -106,5 +106,14 @@ public class TutorialManager : MonoBehaviour
         completionConditions["IsHandEmpty"] = true;
     }
 
+    public void onPlayerDeath()
+    {
+        //segmentList.Insert(1, currentSegment.copy);
+        segmentList.Insert(0, currentSegment.deathSegment);
+        currentClearCon = "";
+        currentSegment.enabled = false;
+        currentSegment = null;
+    }
+
     
 }

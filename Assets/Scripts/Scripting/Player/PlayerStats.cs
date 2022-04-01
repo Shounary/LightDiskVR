@@ -36,7 +36,10 @@ public class PlayerStats : MonoBehaviour
         }
         healthBar.displayHealth(health);
         if (health <= 0) {
-            PauseController.instance.DeathMenu();
+            if(TutorialManager.instance == null)
+                PauseController.instance.DeathMenu();
+            else
+                TutorialManager.instance.onPlayerDeath();
         }
     }
 }

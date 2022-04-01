@@ -23,5 +23,7 @@ public class TutorialObject : MonoBehaviour
     {
         foreach (GameObject o in objects)
             o.SetActive(true);
+        if(this.GetComponent<EnemyHumanoidDeathEffect>() != null)
+            this.GetComponent<EnemyHumanoidDeathEffect>().health = 50;
     }
 }

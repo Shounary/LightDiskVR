@@ -856,6 +856,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1001 &65567773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2008,6 +2009,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &240810465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,6 +2328,7 @@ MonoBehaviour:
   segment: {fileID: 0}
   objects:
   - {fileID: 254994333}
+  - {fileID: 254994335}
 --- !u!1 &254994335 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4734255798362077536, guid: 4ceb2126c89f11048b9d671001878028, type: 3}
@@ -3704,9 +3707,10 @@ MonoBehaviour:
   segmentDisableObjects: []
   spawnPoint: {fileID: 0}
   playerStats: {fileID: 0}
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1422625465}
   clearList:
   - {fileID: 254994333}
+  deathSegment: {fileID: 716286845}
 --- !u!1 &572546657
 GameObject:
   m_ObjectHideFlags: 0
@@ -4689,17 +4693,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30142483d67dcf44595ce378e74ad542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  segmentID: 105
+  segmentID: 114
   clearCon: Wait
   useWaitTime: 1
   waitTime: 5
   segmentDisplay: {fileID: 716286843}
   segmentUpdateObjects: []
-  segmentDisableObjects: []
+  segmentDisableObjects:
+  - {fileID: 1422625465}
   spawnPoint: {fileID: 0}
-  playerStats: {fileID: 0}
-  healthBar: {fileID: 0}
+  playerStats: {fileID: 826765235343951706}
+  healthBar: {fileID: 1422625465}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &721801764
 GameObject:
   m_ObjectHideFlags: 0
@@ -4716,7 +4722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &721801765
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4762,6 +4768,7 @@ MonoBehaviour:
   playerStats: {fileID: 826765235343951706}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &721836102
 GameObject:
   m_ObjectHideFlags: 0
@@ -5299,6 +5306,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!114 &909933997 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 826765235043826426, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
@@ -5386,6 +5394,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &916738426
 GameObject:
   m_ObjectHideFlags: 0
@@ -6135,6 +6144,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1001 &1041234811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6590,6 +6600,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &1133578325
 GameObject:
   m_ObjectHideFlags: 0
@@ -7056,6 +7067,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &1189257279
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,6 +7354,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!224 &1273159922
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10275,6 +10288,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &1624947090
 GameObject:
   m_ObjectHideFlags: 0
@@ -10735,6 +10749,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!4 &1708148838 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5103353031920018729, guid: f6a97f4d67f4b6b4cb1109bce8d51272, type: 3}
@@ -10802,6 +10817,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1001 &1728155432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11916,7 +11932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2406264439261056973, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2406264439261057008, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
       propertyPath: m_Camera
@@ -12010,33 +12026,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2406264439438194699, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.6352003
-      objectReference: {fileID: 0}
-    - target: {fileID: 2406264439438194699, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.6352003
-      objectReference: {fileID: 0}
-    - target: {fileID: 2406264439438194699, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.6352003
-      objectReference: {fileID: 0}
-    - target: {fileID: 2406264439438194699, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2406264439438194699, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 192
-      objectReference: {fileID: 0}
     - target: {fileID: 2406264439469296987, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2406264439469296987, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7be81cdec0646c7419684af394e07eac, type: 3}
@@ -12588,6 +12584,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &1998483427
 GameObject:
   m_ObjectHideFlags: 0
@@ -12784,6 +12781,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   healthBar: {fileID: 0}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &2047410579
 GameObject:
   m_ObjectHideFlags: 0
@@ -12894,6 +12892,7 @@ MonoBehaviour:
   playerStats: {fileID: 826765235343951706}
   healthBar: {fileID: 1422625465}
   clearList: []
+  deathSegment: {fileID: 0}
 --- !u!1 &2080602203
 GameObject:
   m_ObjectHideFlags: 0
@@ -12951,7 +12950,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Let\u2019s practice aiming with a few targets"
+  m_text: Let's Try that again
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 375a8a32d9cc3df439da84ff6d7572b8, type: 2}
   m_sharedMaterial: {fileID: -8392449251738244147, guid: 375a8a32d9cc3df439da84ff6d7572b8, type: 2}
@@ -13350,6 +13349,7 @@ MonoBehaviour:
   clearList:
   - {fileID: 353342501936498089}
   - {fileID: 5999358830953597662}
+  deathSegment: {fileID: 0}
 --- !u!1 &2117870523
 GameObject:
   m_ObjectHideFlags: 0
