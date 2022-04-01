@@ -58,6 +58,10 @@ public class TutorialSegment : MonoBehaviour
         {
             TutorialManager.instance.completionConditions["EmptyList"] = true;
         }
+        if(segmentID == 108 && playerStats.timeSinceHit > 15.0f)
+        {
+            TutorialManager.instance.EndCurrentSegment();
+        }
         
     }
   
@@ -68,6 +72,9 @@ public class TutorialSegment : MonoBehaviour
         if(segmentDisplay != null)
             segmentDisplay.SetActive(true);
         switch(segmentID) {
+            case 108:
+                playerStats.timeSinceHit = 0.0f;
+                break;
             case 111:
                 playerStats.invincible = false;
                 healthBar.SetActive(true);
