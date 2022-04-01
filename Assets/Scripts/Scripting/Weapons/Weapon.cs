@@ -38,6 +38,9 @@ public class Weapon : MonoBehaviour
     public Vector3 startLoc;
     public WeaponInventory weaponInventory;
     
+    private void Awake() {
+        this.enabled = false;
+    }
 
     private void Start() {
         parentGameObject = GameObject.FindGameObjectsWithTag("Empty Parent")[0];

@@ -2353,7 +2353,6 @@ MonoBehaviour:
   weaponDescription: 
   damage: 10
   isSummonable: 0
-  storableLocations: []
   playerName: Enemy
   hand: 0
   weaponRB: {fileID: 0}
@@ -2364,6 +2363,7 @@ MonoBehaviour:
   parentGameObject: {fileID: 0}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
+  startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
 --- !u!1 &278010029
 GameObject:
@@ -3706,7 +3706,7 @@ MonoBehaviour:
   - {fileID: 254994334}
   segmentDisableObjects: []
   spawnPoint: {fileID: 0}
-  playerStats: {fileID: 0}
+  playerStats: {fileID: 826765235343951706}
   healthBar: {fileID: 1422625465}
   clearList:
   - {fileID: 254994333}
@@ -12883,7 +12883,7 @@ MonoBehaviour:
   segmentID: 111
   clearCon: Wait
   useWaitTime: 1
-  waitTime: 5
+  waitTime: 7
   segmentDisplay: {fileID: 2049822543}
   segmentUpdateObjects: []
   segmentDisableObjects:

@@ -54,7 +54,7 @@ public class EnemyDiskDroneFiring : MonoBehaviour
     public void FireDiskStraight(Transform target) {
         enemyDisk = Instantiate(enemyDiskPrefab, firePoint.position, firePoint.rotation);
         enemyDisk.GetComponent<Rigidbody>().velocity = initialDiskSpeed * Vector3.Normalize(target.position - firePoint.position - new Vector3(0, -Random.Range(-0.5f * target.position.y, -0.15f * target.position.y), 0));
-        Destroy(enemyDisk, 5f);
+        Destroy(enemyDisk, 2f);
     }
 
     private void OnTriggerEnter(Collider other) {
