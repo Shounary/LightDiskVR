@@ -16,6 +16,8 @@ public class PauseController : MonoBehaviour
     public Transform deathEffectPoint;
 
     public static PauseController instance;
+    public bool isDead;
+    public List<GameObject> disableOnDeath = new List<GameObject>();
 
     private void Awake() {
         instance = this;
@@ -33,13 +35,16 @@ public class PauseController : MonoBehaviour
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         cameraRigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
         deathMenuCanvas.SetActive(true);
-        cameraDriver.enabled = false;
-        cameraRigidBody.isKinematic = false;
+        //cameraDriver.enabled = false;
+        //cameraRigidBody.isKinematic = false;
         lRayInteractor.SetActive(true);
         rRayInteractor.SetActive(true);
         cameraPhysicsCollider.enabled = true;
         StartCoroutine("FreezeGame");
         Destroy(Instantiate(playerDeathEffect, deathEffectPoint.position, deathEffectPoint.rotation), 2.0f);
+        foreach(GameObject o in disableOnDeath)
+            o.SetActive(false);
+        isDead = true;
 
     }
 
