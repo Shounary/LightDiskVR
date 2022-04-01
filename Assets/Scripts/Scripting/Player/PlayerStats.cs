@@ -7,13 +7,13 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     public int startHealth;
-    public static int health;
+    public int health;
     public string playerName;
     public bool invincible = false; //set to true to make the player not take damage
 
     public HealthBar healthBar;
-    private static float timeSinceHit = 10.0f;
-    public static float invincibilityTime = 2.0f;
+    public float timeSinceHit = 10.0f;
+    public float invincibilityTime = 2.0f;
 
 
     private void Start() {
@@ -27,15 +27,19 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void takeDamage(int damage) {
-        if (timeSinceHit >= invincibilityTime && !invincible) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
-            health -= damage;
+        if (timeSinceHit >= invincibilityTime ) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
             timeSinceHit = 0.0f;
+            if(!invincible)
+                health -= damage;
             if(health <0)
                 health = 0;
         }
         healthBar.displayHealth(health);
         if (health <= 0) {
-            PauseController.instance.DeathMenu();
+            if(TutorialManager.instance == null)
+                PauseController.instance.DeathMenu();
+            else
+                TutorialManager.instance.onPlayerDeath();
         }
     }
 }

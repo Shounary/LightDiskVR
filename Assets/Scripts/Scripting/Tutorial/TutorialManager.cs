@@ -20,14 +20,12 @@ public class TutorialManager : MonoBehaviour
     public Dictionary<string, bool> completionConditions = new Dictionary<string, bool>(); 
 
 
-    List<TutorialSegment> segmentList = new List<TutorialSegment>(); //a list of all tutorial segments in order
+    public List<TutorialSegment> segmentList = new List<TutorialSegment>(); //a list of all tutorial segments in order
     TutorialSegment currentSegment;
 
-    public TextMeshProUGUI mainTutorialText;
-    public TextMeshProUGUI highlightTutorialText;
-    string currentClearCon;
+    public string currentClearCon;
 
-    string tutorialLobbyScene;
+    public string tutorialLobbyScene;
 
     public static TutorialManager instance;
 
@@ -42,6 +40,10 @@ public class TutorialManager : MonoBehaviour
         completionConditions.Add("None", true); //used when a segment has no completion condition
         completionConditions.Add("Wait", false); //wait some alloted time
         completionConditions.Add("IsHeld", false); //is something being held?
+        completionConditions.Add("IsHandEmpty", true); //is the hand empty?
+        completionConditions.Add("EmptyList", false); //is a list of gameobjects empty (those objects have been destroyed)
+        completionConditions.Add("", false); //prevents exceptions
+        completionConditions.Add("Deflect", false); //have 3 disks been deflected?
     }
 
     // Update is called once per frame
@@ -53,16 +55,12 @@ public class TutorialManager : MonoBehaviour
 
 
 
-        //Move to next segment
-        if(segmentList.Count == 0 && currentSegment == null) //tutorial complete
-        {
-            SceneManager.LoadScene(tutorialLobbyScene);
-        }
+        
         if(currentSegment == null) //if there is no active segment, move to the next one
         {
             StartNextSegment();
         }
-        if(completionConditions[currentClearCon])
+        else if(completionConditions[currentClearCon])
         {
             EndCurrentSegment();
         }
@@ -73,7 +71,7 @@ public class TutorialManager : MonoBehaviour
     public void StartNextSegment() //gets and starts the next segment
     {
         currentSegment = segmentList[0];
-        segmentList.RemoveAt(0);
+        currentSegment.enabled = true;
         currentSegment.OnSegmentStart();
         //currentSegment.segmentDisplay.SetActive(true);
         currentClearCon = currentSegment.clearCon;
@@ -81,21 +79,40 @@ public class TutorialManager : MonoBehaviour
 
     public void EndCurrentSegment() //ends the current segment
     {
-        currentSegment.segmentDisplay.SetActive(false);
-        if(currentClearCon.Equals("Wait"))
-            completionConditions["Wait"] = false;
+        if(currentSegment.segmentDisplay != null)
+            currentSegment.segmentDisplay.SetActive(false);
+        completionConditions["Wait"] = false;
+        completionConditions["EmptyList"] = false;
+        completionConditions["Deflect"] = false;
         currentClearCon = "";
+        currentSegment.enabled = false;
         currentSegment = null;
+        segmentList.RemoveAt(0);
+        if(segmentList.Count == 0)
+        {
+            SceneManager.LoadScene(tutorialLobbyScene);
+        }
     }
 
     public void OnGrabFunction()
     {
         completionConditions["IsHeld"] = true;
+        completionConditions["IsHandEmpty"] = false;
     }
 
     public void OnReleaseFunction()
     {
         completionConditions["IsHeld"] = false;
+        completionConditions["IsHandEmpty"] = true;
+    }
+
+    public void onPlayerDeath()
+    {
+        //segmentList.Insert(1, currentSegment.copy);
+        segmentList.Insert(0, currentSegment.deathSegment);
+        currentClearCon = "";
+        currentSegment.enabled = false;
+        currentSegment = null;
     }
 
     
