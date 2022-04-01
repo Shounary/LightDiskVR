@@ -14,7 +14,25 @@ public class PlayerStats : MonoBehaviour
     public HealthBar healthBar;
     public float timeSinceHit = 10.0f;
     public float invincibilityTime = 2.0f;
+    public WeaponInventory weaponInventory;
 
+    const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
+
+    private void Awake() {
+        playerName = generateRandomName();
+        weaponInventory.playerName = playerName;
+    }
+
+     public string generateRandomName()
+    {
+        string s = "";
+        for(int i=0; i<10; i++)
+        {
+            s += glyphs[Random.Range(0, glyphs.Length)];
+        }
+        return s;
+
+    }
 
     private void Start() {
         health = startHealth;

@@ -39,7 +39,7 @@ public class Weapon : MonoBehaviour
     public WeaponInventory weaponInventory;
     
     private void Awake() {
-        this.enabled = false;
+        //this.enabled = false;
     }
 
     private void Start() {
@@ -47,6 +47,8 @@ public class Weapon : MonoBehaviour
         this.gameObject.transform.SetParent(parentGameObject.transform);
         if (startLoc == null)
             startLoc = this.gameObject.transform.position;
+        if(weaponInventory != null)
+            playerName = weaponInventory.playerName;
     }
 
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
@@ -134,6 +136,8 @@ public class Weapon : MonoBehaviour
     {
         this.gameObject.transform.position = t;
         this.gameObject.SetActive(true);
+        if(weaponInventory != null)
+            playerName = weaponInventory.playerName;
         //play spawning animation (implement later)
     }
 
