@@ -38,7 +38,7 @@ public class HandActual : MonoBehaviour
             //spawnedModel = Instantiate(handPrefab, transform);
         } else {
             Debug.LogWarning("Controller not found!");
-            targetDevice = inputDevices[0];
+            //targetDevice = inputDevices[0];
             //Instantiate(handPrefab, transform);
         }
         //weaponInventory = GetComponentInParent<WeaponInventory>();
