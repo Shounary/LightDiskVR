@@ -23,7 +23,7 @@ public class NetworkVRPlayer : NetworkBehaviour
         if (IsClient && !IsOwner) {
             var clientActionControllers = GetComponentsInChildren<ActionBasedController>();
             var clientDeviceControllers = GetComponentsInChildren<XRBaseController>();
-            var directInteractors = GetComponentsInChildren<XRDirectInteractor>();
+            //var directInteractors = GetComponentsInChildren<XRDirectInteractor>();
 
             var clientHead = GetComponentInChildren<TrackedPoseDriver>();
             var clientCamera = GetComponentInChildren<Camera>();
@@ -39,12 +39,14 @@ public class NetworkVRPlayer : NetworkBehaviour
             }
 
             foreach (var DBcontroller in clientDeviceControllers) {
-                DBcontroller.enabled = false;
+                DBcontroller.enableInputActions = false;
+                DBcontroller.enableInputTracking = false;
+                //DBcontroller.enabled = false;
             }
 
-            foreach (var directIteractor in directInteractors) {
-                directIteractor.enabled = false;
-            }
+            //foreach (var directIteractor in directInteractors) {
+            //    directIteractor.enabled = false;
+            //}
         }
     }
 
