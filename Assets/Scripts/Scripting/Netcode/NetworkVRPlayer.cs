@@ -79,8 +79,8 @@ public class NetworkVRPlayer : NetworkBehaviour
             NetworkObject networkObjectSelected = eventArgs.interactable.transform.GetComponent<NetworkObject>();
             Rigidbody weaponRB = eventArgs.interactable.transform.GetComponent<Rigidbody>();
             weaponRB.isKinematic = false;
-            if (networkObjectSelected != null)
-                RequestGrabbableOwnershipServerRpc(NetworkManager.ServerClientId, networkObjectSelected);
+            //if (networkObjectSelected != null)
+            //    RequestGrabbableOwnershipServerRpc(NetworkManager.ServerClientId, networkObjectSelected);
         }
     }
 
