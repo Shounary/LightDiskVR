@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8216137475533484800}
   - component: {fileID: 4043139931638727917}
   - component: {fileID: 7593942223588010033}
-  - component: {fileID: 3569333319871398952}
   m_Layer: 0
   m_Name: DeviceBasedControllereR
   m_TagString: Untagged
@@ -204,18 +203,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3569333319871398952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2073096844939038044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ebe6dad629f2f24d919d5439c7f121c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3010501446671481284
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +214,7 @@ GameObject:
   - component: {fileID: 4242777805388121971}
   - component: {fileID: 2856175343976050675}
   - component: {fileID: 1575403254528347129}
+  - component: {fileID: 546116502444508489}
   m_Layer: 0
   m_Name: NetworkConfigurer
   m_TagString: Untagged
@@ -279,6 +267,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   PauseMenu: {fileID: 3347355411370282643}
+--- !u!114 &546116502444508489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3010501446671481284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c9647dc784a46bca664910f182491e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
+  CanCommitToTransform: 0
 --- !u!1 &3347355409680420215
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +985,6 @@ GameObject:
   - component: {fileID: 6308754453713391927}
   - component: {fileID: 8866538277716216376}
   - component: {fileID: 3974793345211970878}
-  - component: {fileID: 1658072243225189523}
   m_Layer: 0
   m_Name: RightHand Controller
   m_TagString: Untagged
@@ -1458,18 +1472,6 @@ MonoBehaviour:
   weapon: {fileID: 0}
   button1Pressed: 0
   button2Pressed: 0
---- !u!114 &1658072243225189523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6308754453713391925}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb48ac38b86eb9f47901f9215d619424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6308754453776697154
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,7 +1715,6 @@ GameObject:
   - component: {fileID: 6308754454687461151}
   - component: {fileID: 8624876713077380028}
   - component: {fileID: 3773959599379463979}
-  - component: {fileID: 3855468972570233040}
   - component: {fileID: 8375591372741515237}
   m_Layer: 0
   m_Name: LeftHand Controller
@@ -2197,18 +2198,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controllerCharacteristics: 320
---- !u!114 &3855468972570233040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6308754454687461149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb48ac38b86eb9f47901f9215d619424, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8375591372741515237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2354,7 +2343,6 @@ GameObject:
   - component: {fileID: 7120056896535915540}
   - component: {fileID: 6254994881239854983}
   - component: {fileID: 8388267182034223725}
-  - component: {fileID: 4866692357840924849}
   m_Layer: 0
   m_Name: DeviceBasedControllerL
   m_TagString: Untagged
@@ -2545,18 +2533,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4866692357840924849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8978311411986549310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ebe6dad629f2f24d919d5439c7f121c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &652121356962502573
 PrefabInstance:
   m_ObjectHideFlags: 0
