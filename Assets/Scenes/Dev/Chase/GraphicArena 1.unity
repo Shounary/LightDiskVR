@@ -3201,7 +3201,7 @@ PrefabInstance:
       objectReference: {fileID: 758081332}
     - target: {fileID: 1450319756, guid: 4ceb2126c89f11048b9d671001878028, type: 3}
       propertyPath: m_Mass
-      value: 0.1
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 3712847168521986467, guid: 4ceb2126c89f11048b9d671001878028, type: 3}
       propertyPath: target
@@ -6482,6 +6482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  health: 0
   playerName: 
   invincible: 0
   healthBar: {fileID: 0}
@@ -7794,6 +7795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  health: 0
   playerName: 
   invincible: 0
   healthBar: {fileID: 1940583581}
@@ -7811,8 +7813,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 826765235343951706}
   toTakeDamageFrom:
-    serializedVersion: 2
-    m_Bits: 256
+  - serializedVersion: 2
+    m_Bits: 0
+  - serializedVersion: 2
+    m_Bits: 0
+  intMaskList: 
 --- !u!114 &2087303942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8326,8 +8331,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 956430576}
+    - target: {fileID: 826765235043826405, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 826765235043826425, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
       propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 826765235043826427, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 826765235043826428, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
@@ -8354,7 +8367,8 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 826765235043826428, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
 --- !u!20 &826765235343951704 stripped
 Camera:
@@ -8379,6 +8393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  health: 0
   playerName: Player
   invincible: 0
   healthBar: {fileID: 1940583581}
@@ -8401,8 +8416,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 826765235343951706}
   toTakeDamageFrom:
-    serializedVersion: 2
+  - serializedVersion: 2
+    m_Bits: 128
+  - serializedVersion: 2
     m_Bits: 256
+  intMaskList: 
 --- !u!1 &859385090578672326 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7329612331886821534, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerStats : MonoBehaviour
 {
     public int startHealth;
-    public static int health;
+    public int health;
     public string playerName;
     public bool invincible = false; //set to true to make the player not take damage
 
