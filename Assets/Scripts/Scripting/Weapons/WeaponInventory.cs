@@ -101,7 +101,7 @@ public class WeaponInventory : MonoBehaviour
         //Debug.Log(activeWeapons[0]);
         activeWeapons[(int) h] = weapon;
         weapon.setHand(h);
-        weapon.EnableWeapon(weaponSelectScreens[(int) h].transform);
+        weapon.EnableWeapon(weaponSelectScreens[(int) h].transform.position);
         //weapon.playerName = playerName;
     }
 

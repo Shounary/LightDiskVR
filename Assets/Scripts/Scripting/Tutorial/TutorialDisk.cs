@@ -14,7 +14,7 @@ public class TutorialDisk : TutorialObject
         switch(seg.segmentID) {
             case 102:
                 weapon.isSummonable = false;
-                weapon.EnableWeapon(seg.spawnPoint);
+                weapon.EnableWeapon(seg.spawnPoint.position);
                 break;
             case 104:
                 weapon.isSummonable = true;
@@ -23,7 +23,7 @@ public class TutorialDisk : TutorialObject
                 weapon.DeactivateWeapon();
                 break;
             case 109:
-                weapon.EnableWeapon(seg.spawnPoint);
+                weapon.EnableWeapon(seg.spawnPoint.position);
                 break;
 
         }

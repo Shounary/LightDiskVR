@@ -17,9 +17,7 @@ public class Weapon : MonoBehaviour
 
     public int damage;
     public bool isSummonable;
-    public List<string> storableLocations;
     public string playerName;
-    //public Collider hurtBox; 
     public Hand hand;
     public Rigidbody weaponRB;
 
@@ -37,15 +35,20 @@ public class Weapon : MonoBehaviour
     public float diskReturnForceMagnitude = 5f;
     public float stoppingFactorMultiplier = 0.2f;
 
-    private Transform startLoc;
+    public Vector3 startLoc;
     public WeaponInventory weaponInventory;
+    
+    private void Awake() {
+        this.enabled = false;
+    }
 
     private void Start() {
         parentGameObject = GameObject.FindGameObjectsWithTag("Empty Parent")[0];
         this.gameObject.transform.SetParent(parentGameObject.transform);
-        startLoc = this.gameObject.transform;
+        if (startLoc == null)
+            startLoc = this.gameObject.transform.position;
     }
-    
+
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
     {
         if(isSummonable)
@@ -122,10 +125,14 @@ public class Weapon : MonoBehaviour
         DestroyWeapon();
     }
 
+    public void EnableWeapon() {
+        EnableWeapon(startLoc);
+    }
+
     //enabled the weapon and moves it to the given postiion
-    public void EnableWeapon(Transform t)
+    public void EnableWeapon(Vector3 t)
     {
-        this.gameObject.transform.position = t.position;
+        this.gameObject.transform.position = t;
         this.gameObject.SetActive(true);
         //play spawning animation (implement later)
     }
