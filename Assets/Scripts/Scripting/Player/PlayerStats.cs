@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour
     public float invincibilityTime = 2.0f;
     public WeaponInventory weaponInventory;
 
+
     const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
 
     private void Awake() {

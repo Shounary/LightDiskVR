@@ -14,6 +14,7 @@ public class TeleportationDisk : Weapon
     {
         isHeld = false;
         teleported = false;
+        weaponName = "Teleportation\ndisk";
     }
 
     public override void OnGrabFunction(int h) {
