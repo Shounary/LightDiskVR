@@ -33,6 +33,8 @@ public class WeaponInventory : MonoBehaviour
             selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
             selectScripts.Add(weaponSelectScreens[1].GetComponent<WeaponSelectUiController>());
         }
+        foreach (Weapon w in weaponList)
+            w.onAddToInventory(this);
                 //activateWeapons
     }
 
@@ -85,6 +87,7 @@ public class WeaponInventory : MonoBehaviour
     public void addWeapon(Weapon weapon)
     {
         weaponList.Add(weapon);
+        weapon.onAddToInventory(this);
     }
 
 

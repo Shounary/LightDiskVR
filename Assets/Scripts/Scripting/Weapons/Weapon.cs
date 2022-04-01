@@ -48,13 +48,20 @@ public class Weapon : MonoBehaviour
         if (startLoc == null)
             startLoc = this.gameObject.transform.position;
         if(weaponInventory != null)
-            playerName = weaponInventory.playerName;
+           playerName = weaponInventory.playerName;
     }
 
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
     {
         if(isSummonable)
             AttractWeapon(additionalFactor, targetTransform);
+    }
+
+    public void onAddToInventory(WeaponInventory wi)
+    {
+        weaponInventory = wi;
+        weaponName = weaponName.Replace('_','\n');
+        playerName = wi.playerName;
     }
 
     public virtual void MainButtonFunction(){
