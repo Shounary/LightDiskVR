@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6082812415636480527}
   m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: -1.5114, y: 1.8681468, z: -6.235324}
-  m_LocalScale: {x: 69.478, y: 35.492588, z: 4.892836}
+  m_LocalScale: {x: 70.18, y: 30.7, z: 13.24}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,8 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3888f3288361c634e89f0e04cd4dea6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryInput: {fileID: 0}
-  secondaryInput: {fileID: 0}
+  inputFields: []
   shader: {fileID: -6465566751694194690, guid: 439b2b89a4a681748a82ac2beacc437b, type: 3}
-  primaryMatIndex: 1
-  secondaryMatIndex: 2
+  materials: []
