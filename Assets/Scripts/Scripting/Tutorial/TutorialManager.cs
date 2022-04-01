@@ -81,6 +81,7 @@ public class TutorialManager : MonoBehaviour
         if(currentSegment.segmentDisplay != null)
             currentSegment.segmentDisplay.SetActive(false);
         completionConditions["Wait"] = false;
+        completionConditions["EmptyList"] = false;
         currentClearCon = "";
         currentSegment.enabled = false;
         currentSegment = null;

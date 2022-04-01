@@ -6,7 +6,7 @@ public class PlayerBody : MonoBehaviour
 {
     public PlayerStats ps;
     //public float damageTakePerDiskHit = 100;
-    public LayerMask toTakeDamageFrom;
+    public List<LayerMask> toTakeDamageFrom;
     void Start()
     {
         
@@ -18,9 +18,9 @@ public class PlayerBody : MonoBehaviour
         
     }
 
-    private async void OnTriggerEnter(Collider other) {
+    private void OnTriggerEnter(Collider other) {
         Weapon w = other.gameObject.GetComponent<Weapon>();
-        if(w != null && w.playerName != ps.playerName && other.gameObject.layer == 8)
+        if(w != null && w.playerName != ps.playerName && toTakeDamageFrom.Contains((LayerMask) other.gameObject.layer))
             ps.takeDamage(w.damage);
     }
 

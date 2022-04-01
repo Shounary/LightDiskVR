@@ -40,7 +40,8 @@ public class TutorialSegment : MonoBehaviour
             waitTime -= Time.deltaTime;
         if(waitTime <= 0.0)
         {
-            TutorialManager.instance.completionConditions["Wait"] = true;
+            if (clearCon.Equals("Wait"))
+                TutorialManager.instance.completionConditions["Wait"] = true;
             useWaitTime = false;
             waitTime = 1.0f;
         }

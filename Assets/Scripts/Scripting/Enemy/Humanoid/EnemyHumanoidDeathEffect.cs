@@ -37,7 +37,25 @@ public class EnemyHumanoidDeathEffect : MonoBehaviour
         Debug.Log("hit Oncollition-----------------------------------------------------------------------------------------------------------------");
         Weapon w = collision.gameObject.GetComponent<Weapon>();
         if(w != null && w.playerName != "Enemy")
-            health -= w.damage;
+            takeDamage(w.damage);
+        
+    }
+
+    private float timeSinceHit = 10.0f;
+    public float invincibilityTime = 2.0f;
+
+    void Update()
+    {
+        timeSinceHit += Time.deltaTime;
+    }
+
+    public void takeDamage(int damage) {
+        if (timeSinceHit >= invincibilityTime) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
+            health -= damage;
+            timeSinceHit = 0.0f;
+            if(health <0)
+                health = 0;
+        }
         if (health <= 0) {
             Destroy(Instantiate(deathRH, referensePointRH.position, referensePointRH.rotation), 2f);
             Destroy(Instantiate(deathLH, referensePointLH.position, referensePointLH.rotation), 2f);

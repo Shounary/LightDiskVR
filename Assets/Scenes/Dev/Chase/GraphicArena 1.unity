@@ -3300,7 +3300,7 @@ MonoBehaviour:
   storableLocations: []
   playerName: Enemy
   hand: 0
-  weaponRB: {fileID: 0}
+  weaponRB: {fileID: 687732435}
   weaponTransform: {fileID: 0}
   transforms: []
   isHeld: 0
@@ -3309,6 +3309,11 @@ MonoBehaviour:
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
   weaponInventory: {fileID: 0}
+--- !u!54 &687732435 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 7738590385489257502, guid: 4ceb2126c89f11048b9d671001878028, type: 3}
+  m_PrefabInstance: {fileID: 687732432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &702150637
 PrefabInstance:
   m_ObjectHideFlags: 0
