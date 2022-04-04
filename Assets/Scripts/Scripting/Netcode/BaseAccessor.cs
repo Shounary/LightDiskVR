@@ -162,6 +162,7 @@ public class BaseAccessor : NetworkBehaviour
     #region PLAYER_CONFIG
     public PlayerConfig PlayerConfig { get; protected set; }
     NetworkVariable<int> SpawnPoint = new NetworkVariable<int>(0);
+    NetworkVariable<int> WeaponIndex = new NetworkVariable<int>(0);
 
     public void PrintPlayerConfig()
     {
@@ -185,8 +186,19 @@ public class BaseAccessor : NetworkBehaviour
         SpawnPoint.OnValueChanged = (prev, next) => {
             PlayerConfig.SpawnPoint = SpawnPoint.Value;
         };
-        SpawnPoint.Value = MathUtils.Mod(Convert.ToInt32(OwnerClientId), MatchConfig.Arena.SpawnPoints.Length);
-        Debug.Log(SpawnPoint.Value + " " + MatchConfig.Arena.SpawnPoints.Length + " " + Convert.ToInt32(NetworkManager.LocalClientId) + " " + NetworkManager.LocalClientId);
+        WeaponIndex.OnValueChanged = (prev, next) =>
+        {
+            PlayerConfig.WeaponIndex = WeaponIndex.Value;
+        };
+        SpawnPoint.Value = MathUtils.Mod(Convert.ToInt32(OwnerClientId), MatchConfig.Arena.SpawnPoints.Length); // by default, random per user
+        WeaponIndex.Value = 0; // by default, select first weapon
+        // Debug.Log(SpawnPoint.Value + " " + MatchConfig.Arena.SpawnPoints.Length + " " + Convert.ToInt32(NetworkManager.LocalClientId) + " " + NetworkManager.LocalClientId);
+    }
+
+    [ServerRpc]
+    public void SetWeaponIndexServerRpc(int idx)
+    {
+        WeaponIndex.Value = idx;
     }
 
     public void PlayerConfigExit()
@@ -260,6 +272,9 @@ public class BaseAccessor : NetworkBehaviour
 
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
     {
+        transform.position = PlayerConfig.SpawnPosition.Value;
+        Debug.Log($"SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
+        Debug.Log($"PLEASE ADD CODE TO SPAWN {PlayerConfig.InitialWeapon.name}");
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
     #endregion

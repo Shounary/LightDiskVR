@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ec45a83be6cf1a43b67a5315df5191a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 3172250533663331974}
   PauseMenu: {fileID: 3347355411370282643}
 --- !u!114 &546116502444508489
 MonoBehaviour:

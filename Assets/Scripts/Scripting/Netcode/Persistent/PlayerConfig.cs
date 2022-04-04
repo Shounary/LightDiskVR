@@ -26,4 +26,7 @@ public class PlayerConfig
     }
 
     public Vector3? SpawnPosition => MatchConfig.Arena?.SpawnPoints[m_SpawnPoint];
+
+    public int WeaponIndex;
+    public GameObject InitialWeapon;
 }

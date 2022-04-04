@@ -7,8 +7,8 @@ using UnityEngine.InputSystem.XR;
 
 public class NetworkVRPlayer : NetworkBehaviour
 {
-    [SerializeField]
-    private Vector2 placementArea = new Vector2(-10.0f, 10.0f);
+    //[SerializeField]
+    //private Vector2 placementArea = new Vector2(-10.0f, 10.0f);
 
     public override void OnNetworkSpawn() => DisableClientInput();
     
@@ -52,12 +52,12 @@ public class NetworkVRPlayer : NetworkBehaviour
 
     private void Start()
     {
-        // TODO: change to spawn point, and also depending on scene
-        if (IsClient && IsOwner)
-        {
-            transform.position = new Vector3(Random.Range(placementArea.x, placementArea.y),
-                transform.position.y, Random.Range(placementArea.x, placementArea.y));
-        }
+        //// TODO: change to spawn point, and also depending on scene
+        //if (IsClient && IsOwner)
+        //{
+        //    transform.position = new Vector3(Random.Range(placementArea.x, placementArea.y),
+        //        transform.position.y, Random.Range(placementArea.x, placementArea.y));
+        //}
     }
 
 
@@ -65,8 +65,8 @@ public class NetworkVRPlayer : NetworkBehaviour
     {
         if (IsClient && IsOwner)
         {
-            NetworkObject networkObjectSelected = eventArgs.interactable.transform.GetComponent<NetworkObject>();
-            Rigidbody weaponRB = eventArgs.interactable.transform.GetComponent<Rigidbody>();
+            var networkObjectSelected = eventArgs.interactableObject.transform.GetComponent<NetworkObject>();
+            var weaponRB = eventArgs.interactableObject.transform.GetComponent<Rigidbody>();
             weaponRB.isKinematic = false;
             if (networkObjectSelected != null)
                 RequestGrabbableOwnershipServerRpc(OwnerClientId, networkObjectSelected);
@@ -76,8 +76,8 @@ public class NetworkVRPlayer : NetworkBehaviour
     public void OnReleaseGrabbable(SelectExitEventArgs eventArgs) {
         if (IsClient && IsOwner)
         {
-            NetworkObject networkObjectSelected = eventArgs.interactable.transform.GetComponent<NetworkObject>();
-            Rigidbody weaponRB = eventArgs.interactable.transform.GetComponent<Rigidbody>();
+            var networkObjectSelected = eventArgs.interactableObject.transform.GetComponent<NetworkObject>();
+            var weaponRB = eventArgs.interactableObject.transform.GetComponent<Rigidbody>();
             weaponRB.isKinematic = false;
             //if (networkObjectSelected != null)
             //    RequestGrabbableOwnershipServerRpc(NetworkManager.ServerClientId, networkObjectSelected);
