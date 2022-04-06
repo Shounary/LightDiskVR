@@ -9,15 +9,15 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
 {
     public Button ReadyButton;
     public Text ReadyText;
-    public Button WeaponLeft;
-    public Button WeaponRight;
-    [SerializeField] Text m_Weapon;
+    [SerializeField] Button WeaponLeft1, WeaponLeft2, WeaponRight1, WeaponRight2;
+    [SerializeField] Text m_Weapon1, m_Weapon2;
 
     public GameObject[] AvailableWeapons;
 
     public static PlayerConfigMenuUIFlat Instance;
 
-    public static Text Weapon => Instance.m_Weapon;
+    public static Text Weapon1 => Instance.m_Weapon1;
+    public static Text Weapon2 => Instance.m_Weapon1;
 
     BaseAccessor owner;
 
@@ -47,19 +47,32 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
             {
                 accessor.SetLockServerRpc(!accessor.Lock.Value);
             }
-            accessor.PlayerConfig.InitialWeapon = AvailableWeapons[accessor.PlayerConfig.WeaponIndex];
+            accessor.PlayerConfig.InitialWeapon1 = AvailableWeapons[accessor.PlayerConfig.WeaponIndex1];
+            accessor.PlayerConfig.InitialWeapon2 = AvailableWeapons[accessor.PlayerConfig.WeaponIndex2];
         });
 
-        WeaponLeft.onClick.RemoveAllListeners();
-        WeaponLeft.onClick.AddListener(delegate
+        WeaponLeft1.onClick.RemoveAllListeners();
+        WeaponLeft1.onClick.AddListener(delegate
         {
-            accessor.SetWeaponIndexServerRpc(MathUtils.Mod(accessor.PlayerConfig.WeaponIndex - 1, AvailableWeapons.Length));
+            accessor.SetWeapon1IndexServerRpc(MathUtils.Mod(accessor.PlayerConfig.WeaponIndex1 - 1, AvailableWeapons.Length));
         });
 
-        WeaponRight.onClick.RemoveAllListeners();
-        WeaponRight.onClick.AddListener(delegate
+        WeaponRight1.onClick.RemoveAllListeners();
+        WeaponRight1.onClick.AddListener(delegate
         {
-            accessor.SetWeaponIndexServerRpc(MathUtils.Mod(accessor.PlayerConfig.WeaponIndex + 1, AvailableWeapons.Length));
+            accessor.SetWeapon1IndexServerRpc(MathUtils.Mod(accessor.PlayerConfig.WeaponIndex1 + 1, AvailableWeapons.Length));
+        });
+
+        WeaponLeft2.onClick.RemoveAllListeners();
+        WeaponLeft2.onClick.AddListener(delegate
+        {
+            accessor.SetWeapon2IndexServerRpc(MathUtils.Mod(accessor.PlayerConfig.WeaponIndex2 - 1, AvailableWeapons.Length));
+        });
+
+        WeaponRight2.onClick.RemoveAllListeners();
+        WeaponRight2.onClick.AddListener(delegate
+        {
+            accessor.SetWeapon2IndexServerRpc(MathUtils.Mod(accessor.PlayerConfig.WeaponIndex2 + 1, AvailableWeapons.Length));
         });
 
         owner = accessor;
@@ -67,6 +80,7 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
 
     private void Update()
     {
-        m_Weapon.text = AvailableWeapons[owner.PlayerConfig.WeaponIndex].GetComponent<Weapon>().weaponName;
+        m_Weapon1.text = AvailableWeapons[owner.PlayerConfig.WeaponIndex1].GetComponent<Weapon>().weaponName;
+        m_Weapon2.text = AvailableWeapons[owner.PlayerConfig.WeaponIndex2].GetComponent<Weapon>().weaponName;
     }
 }

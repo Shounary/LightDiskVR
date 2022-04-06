@@ -162,7 +162,8 @@ public class BaseAccessor : NetworkBehaviour
     #region PLAYER_CONFIG
     public PlayerConfig PlayerConfig { get; protected set; }
     NetworkVariable<int> SpawnPoint = new NetworkVariable<int>(0);
-    NetworkVariable<int> WeaponIndex = new NetworkVariable<int>(0);
+    NetworkVariable<int> WeaponIndex1 = new NetworkVariable<int>(0);
+    NetworkVariable<int> WeaponIndex2 = new NetworkVariable<int>(0);
 
     public void PrintPlayerConfig()
     {
@@ -183,22 +184,36 @@ public class BaseAccessor : NetworkBehaviour
     public void PlayerConfigEnterServerRPC()
     {
         m_GameStage.Value = GameStage.PlayerConfig;
+
         SpawnPoint.OnValueChanged = (prev, next) => {
             PlayerConfig.SpawnPoint = SpawnPoint.Value;
         };
-        WeaponIndex.OnValueChanged = (prev, next) =>
+
+        WeaponIndex1.OnValueChanged = (prev, next) =>
         {
-            PlayerConfig.WeaponIndex = WeaponIndex.Value;
+            PlayerConfig.WeaponIndex1 = WeaponIndex1.Value;
         };
         SpawnPoint.Value = MathUtils.Mod(Convert.ToInt32(OwnerClientId), MatchConfig.Arena.SpawnPoints.Length); // by default, random per user
-        WeaponIndex.Value = 0; // by default, select first weapon
+        WeaponIndex1.Value = 0; // by default, select first weapon
+
+        WeaponIndex2.OnValueChanged = (prev, next) =>
+        {
+            PlayerConfig.WeaponIndex2 = WeaponIndex2.Value;
+        };
+
         // Debug.Log(SpawnPoint.Value + " " + MatchConfig.Arena.SpawnPoints.Length + " " + Convert.ToInt32(NetworkManager.LocalClientId) + " " + NetworkManager.LocalClientId);
     }
 
     [ServerRpc]
-    public void SetWeaponIndexServerRpc(int idx)
+    public void SetWeapon1IndexServerRpc(int idx)
     {
-        WeaponIndex.Value = idx;
+        WeaponIndex1.Value = idx;
+    }
+
+    [ServerRpc]
+    public void SetWeapon2IndexServerRpc(int idx)
+    {
+        WeaponIndex2.Value = idx;
     }
 
     public void PlayerConfigExit()
@@ -274,7 +289,7 @@ public class BaseAccessor : NetworkBehaviour
     {
         transform.position = PlayerConfig.SpawnPosition.Value;
         Debug.Log($"SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
-        Debug.Log($"PLEASE ADD CODE TO SPAWN {PlayerConfig.InitialWeapon.name}");
+        Debug.Log($"PLEASE ADD CODE TO SPAWN {PlayerConfig.InitialWeapon1.name} AND {PlayerConfig.InitialWeapon2.name}");
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
     #endregion
