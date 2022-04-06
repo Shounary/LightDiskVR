@@ -29,6 +29,8 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
     private void Start()
     {
         BaseAccessor accessor = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject().GetComponent<BaseAccessor>();
+        print(accessor);
+
         if (NetworkManager.Singleton.IsHost)
         {
             ReadyText.text = "I'm Ready";

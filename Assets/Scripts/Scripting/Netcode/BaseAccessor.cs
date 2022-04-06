@@ -4,9 +4,6 @@ using Unity.Netcode;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.XR.Interaction.Toolkit;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -178,12 +175,6 @@ public class BaseAccessor : NetworkBehaviour
         PlayerConfig = new PlayerConfig(MatchConfig);
         PreMatchManager.MatchConfigMenuObj.SetActive(false);
         PreMatchManager.PlayerConfigMenuObj.SetActive(true);
-    }
-
-    [ServerRpc(RequireOwnership =false)]
-    public void PlayerConfigEnterServerRPC()
-    {
-        m_GameStage.Value = GameStage.PlayerConfig;
 
         SpawnPoint.OnValueChanged = (prev, next) => {
             PlayerConfig.SpawnPoint = SpawnPoint.Value;
@@ -193,13 +184,23 @@ public class BaseAccessor : NetworkBehaviour
         {
             PlayerConfig.WeaponIndex1 = WeaponIndex1.Value;
         };
-        SpawnPoint.Value = MathUtils.Mod(Convert.ToInt32(OwnerClientId), MatchConfig.Arena.SpawnPoints.Length); // by default, random per user
-        WeaponIndex1.Value = 0; // by default, select first weapon
 
         WeaponIndex2.OnValueChanged = (prev, next) =>
         {
             PlayerConfig.WeaponIndex2 = WeaponIndex2.Value;
         };
+    }
+
+    [ServerRpc(RequireOwnership =false)]
+    public void PlayerConfigEnterServerRPC()
+    {
+        m_GameStage.Value = GameStage.PlayerConfig;
+
+        SpawnPoint.Value = MathUtils.Mod(Convert.ToInt32(OwnerClientId), MatchConfig.Arena.SpawnPoints.Length); // by default, random per user
+
+        WeaponIndex1.Value = 0; // by default, select first weapon
+
+        WeaponIndex2.Value = 0;
 
         // Debug.Log(SpawnPoint.Value + " " + MatchConfig.Arena.SpawnPoints.Length + " " + Convert.ToInt32(NetworkManager.LocalClientId) + " " + NetworkManager.LocalClientId);
     }
