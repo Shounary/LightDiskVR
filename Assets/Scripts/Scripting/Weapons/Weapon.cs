@@ -120,6 +120,9 @@ public class Weapon : MonoBehaviour
     //because weapon references are stored in the inventory script, actually destorying the weapon
     //gameobjects would be a pain to deal with. Instead, the weapon is disabled, and then can
     //be re-enabled later 
+    //because weapon references are stored in the inventory script, actually destorying the weapon
+    //gameobjects would be a pain to deal with. Instead, the weapon is disabled, and then can
+    //be re-enabled later 
     public void DestroyWeapon()
     {
         //play disintegration animation (implement later)
@@ -127,6 +130,7 @@ public class Weapon : MonoBehaviour
         weaponRB.velocity = Vector3.zero;
     }
 
+    public virtual void MainButtonReleaseFunction(){}
 
     //when a weapon is disabled by being swapped with a different weapon
     public void DeactivateWeapon()
