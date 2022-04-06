@@ -52,12 +52,16 @@ public class NetworkVRPlayer : NetworkBehaviour
 
     private void Start()
     {
-        //// TODO: change to spawn point, and also depending on scene
         //if (IsClient && IsOwner)
         //{
         //    transform.position = new Vector3(Random.Range(placementArea.x, placementArea.y),
         //        transform.position.y, Random.Range(placementArea.x, placementArea.y));
         //}
+        transform.position = new Vector3(
+            Random.value * 5 * Mathf.Sign(Random.value - .5f),
+            transform.position.y,
+            transform.position.z
+            );
     }
 
 
