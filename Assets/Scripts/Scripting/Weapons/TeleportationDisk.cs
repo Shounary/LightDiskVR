@@ -5,6 +5,9 @@ using UnityEngine;
 public class TeleportationDisk : Weapon
 {
     public Transform playerTransform;
+    public float velocityDivisor = 5f;
+
+    private bool teleportWaiting;
 
     // Here so that the player can only teleport once per disk throw
     private bool teleported;
@@ -14,6 +17,7 @@ public class TeleportationDisk : Weapon
     {
         isHeld = false;
         teleported = false;
+        teleportWaiting = false;
         weaponName = "Teleportation\ndisk";
     }
 
@@ -25,19 +29,24 @@ public class TeleportationDisk : Weapon
     public override void MainButtonFunction()
     {
         if (!isHeld && !teleported) {
+            teleportWaiting = true;
+            weaponRB.velocity /= velocityDivisor;
+        }
+    }
+
+    public override void MainButtonReleaseFunction() {
+        if (teleportWaiting) {
+            teleportWaiting = false;
+            teleported = true;
             Teleport();
         }
     }
 
     private void Teleport()
     {
-        teleported = true;
-
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity)) {
             playerTransform.position = new Vector3(hit.point.x, playerTransform.position.y, hit.point.z);
-
-            // Move it up by 1 just to make sure that the player doesn't enter the floor
         }
     }
 
