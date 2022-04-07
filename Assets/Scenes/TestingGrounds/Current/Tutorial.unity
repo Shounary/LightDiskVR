@@ -3031,6 +3031,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6281439123657216807, guid: c6f998153aabca34dadfd52f0b70cf7a, type: 3}
   m_PrefabInstance: {fileID: 358915744}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &362028850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8694807970901642059, guid: f6a97f4d67f4b6b4cb1109bce8d51272, type: 3}
+  m_PrefabInstance: {fileID: 4606899562514056808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &362028851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362028850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c9647dc784a46bca664910f182491e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
+  CanCommitToTransform: 0
 --- !u!4 &403975962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1490519023632216730, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
@@ -5815,6 +5847,8 @@ MonoBehaviour:
   rRayInteractor: {fileID: 1229807417}
   playerDeathEffect: {fileID: 1300411056466267811, guid: d4690983375d9784084b82184d16a9e6, type: 3}
   deathEffectPoint: {fileID: 768929532}
+  isDead: 0
+  disableOnDeath: []
 --- !u!1 &960606709
 GameObject:
   m_ObjectHideFlags: 0
@@ -13914,7 +13948,8 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 826765235043826428, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
 --- !u!20 &826765235343951704 stripped
 Camera:
@@ -13945,6 +13980,7 @@ MonoBehaviour:
   healthBar: {fileID: 1394747283}
   timeSinceHit: 10
   invincibilityTime: 2
+  weaponInventory: {fileID: 1505104443}
 --- !u!4 &826765235343951707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 826765234446945161, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
@@ -14480,7 +14516,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1580291483175143636, guid: f6a97f4d67f4b6b4cb1109bce8d51272, type: 3}
   m_PrefabInstance: {fileID: 4606899562514056808}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 362028850}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50a6ee4839b83a641a36e852f56227a2, type: 3}
