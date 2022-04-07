@@ -92,8 +92,8 @@ public class NetworkVRPlayer : NetworkBehaviour
             var networkObjectSelected = eventArgs.interactableObject.transform.GetComponent<NetworkObject>();
             var weaponRB = eventArgs.interactableObject.transform.GetComponent<Rigidbody>();
             var weapon = eventArgs.interactableObject.transform.GetComponent<Weapon>();
-            var wCompV = weapon.ComputedVelocity;
-            var wCompAV = weapon.ComputedAngularVelocity;
+            var wCompV = weapon.ComputedReleaseVelocity;
+            var wCompAV = weapon.ComputedReleaseAngularVelocity;
 
             if (weaponRB.isKinematic)
             {

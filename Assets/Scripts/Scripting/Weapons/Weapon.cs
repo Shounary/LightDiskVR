@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-
+using UnityEngine.XR.Interaction.Toolkit;
 
 
 public class Weapon : MonoBehaviour
@@ -53,6 +53,7 @@ public class Weapon : MonoBehaviour
         p_prev = weaponRB.position;
         r_prev = weaponRB.rotation;
 
+        interactable = GetComponent<XRGrabInteractable>();
     }
 
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
@@ -159,8 +160,14 @@ public class Weapon : MonoBehaviour
     public Vector3 ComputedVelocity { get; private set; }
     public Vector3 ComputedAngularVelocity { get; private set; }
 
+    public Vector3 ComputedReleaseVelocity => ComputedVelocity * interactable.throwVelocityScale;
+    public Vector3 ComputedReleaseAngularVelocity => ComputedAngularVelocity * interactable.throwAngularVelocityScale;
+
     Vector3 p_prev;
     Quaternion r_prev;
+
+    XRGrabInteractable interactable;
+
     private void FixedUpdate()
     {
         var p = weaponRB.position;
