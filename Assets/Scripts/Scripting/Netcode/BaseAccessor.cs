@@ -294,7 +294,7 @@ public class BaseAccessor : NetworkBehaviour
     {
         transform.position = PlayerConfig.SpawnPosition.Value;
         Debug.Log($"SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
-        Debug.Log($"PLEASE ADD CODE TO SPAWN {PlayerConfig.InitialWeapon1.name} AND {PlayerConfig.InitialWeapon2.name}");
+        Debug.Log($"PLEASE ADD CODE TO SPAWN {PlayerConfig.InitialWeapon1} AND {PlayerConfig.InitialWeapon2}");
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
 

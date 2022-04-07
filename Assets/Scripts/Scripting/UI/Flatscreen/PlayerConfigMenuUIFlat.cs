@@ -33,10 +33,10 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
 
         if (NetworkManager.Singleton.IsHost)
         {
-            ReadyText.text = "I'm Ready";
+            ReadyText.text = "Start Match";
         } else
         {
-            ReadyText.text = "Start Match";
+            ReadyText.text = "I'm Ready";
         }
 
         ReadyButton.onClick.RemoveAllListeners();
@@ -51,6 +51,9 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
             }
             accessor.PlayerConfig.InitialWeapon1 = AvailableWeapons[accessor.PlayerConfig.WeaponIndex1];
             accessor.PlayerConfig.InitialWeapon2 = AvailableWeapons[accessor.PlayerConfig.WeaponIndex2];
+
+            print(accessor.PlayerConfig.InitialWeapon1);
+            print(accessor.PlayerConfig.InitialWeapon2);
         });
 
         WeaponLeft1.onClick.RemoveAllListeners();
