@@ -91,6 +91,15 @@ public class NetworkVRPlayer : NetworkBehaviour
         {
             var networkObjectSelected = eventArgs.interactableObject.transform.GetComponent<NetworkObject>();
             var weaponRB = eventArgs.interactableObject.transform.GetComponent<Rigidbody>();
+
+            if (weaponRB.isKinematic)
+            {
+                PrintDebugServerRpc(0);
+            } else
+            {
+                PrintDebugServerRpc(1);
+            }
+
             weaponRB.isKinematic = false;
             if (networkObjectSelected != null)
                 RequestGrabbableOwnershipServerRpc(
@@ -126,8 +135,6 @@ public class NetworkVRPlayer : NetworkBehaviour
             var nt = networkObject.GetComponent<ClientNetworkTransform>();
             var r = networkObject.GetComponent<Rigidbody>();
 
-            PrintDebugServerRpc(0);
-
             StartCoroutine(WaitUntilEditable(nt, () => {
                 r.position = p;
                 r.velocity = v;
@@ -138,15 +145,13 @@ public class NetworkVRPlayer : NetworkBehaviour
     }
 
     IEnumerator WaitUntilEditable(ClientNetworkTransform nt, Action f) {
-        PrintDebugServerRpc(1);
         while (IsClient && !nt.CanCommitToTransform) yield return null;
-        PrintDebugServerRpc(2);
         if (IsClient) f();
     }
 
     Dictionary<int, string> logBook = new Dictionary<int, string>();
 
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     public void PrintDebugServerRpc(int id)
     {
         Debug.Log(logBook.ContainsKey(id) ? logBook[id] : $"log message {id}");
