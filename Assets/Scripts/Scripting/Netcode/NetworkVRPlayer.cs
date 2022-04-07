@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem.XR;
+using System.Linq;
 
 public class NetworkVRPlayer : NetworkBehaviour
 {
@@ -68,7 +69,12 @@ public class NetworkVRPlayer : NetworkBehaviour
             var weaponRB = eventArgs.interactableObject.transform.GetComponent<Rigidbody>();
             weaponRB.isKinematic = false;
             if (networkObjectSelected != null)
-                RequestGrabbableOwnershipServerRpc(OwnerClientId, networkObjectSelected);
+                RequestGrabbableOwnershipServerRpc(
+                    OwnerClientId,
+                    networkObjectSelected,
+                    weaponRB.velocity,
+                    weaponRB.angularVelocity,
+                    weaponRB.position);
         }
     }
 
@@ -78,21 +84,40 @@ public class NetworkVRPlayer : NetworkBehaviour
             var networkObjectSelected = eventArgs.interactableObject.transform.GetComponent<NetworkObject>();
             var weaponRB = eventArgs.interactableObject.transform.GetComponent<Rigidbody>();
             weaponRB.isKinematic = false;
-            //if (networkObjectSelected != null)
-            //    RequestGrabbableOwnershipServerRpc(NetworkManager.ServerClientId, networkObjectSelected);
+            if (networkObjectSelected != null)
+                RequestGrabbableOwnershipServerRpc(
+                    NetworkManager.ServerClientId,
+                    networkObjectSelected,
+                    weaponRB.velocity,
+                    weaponRB.angularVelocity,
+                    weaponRB.position);
         }
-    }
+    } 
 
     [ServerRpc(RequireOwnership = false)]
-    public void RequestGrabbableOwnershipServerRpc(ulong newOwnerClientId, NetworkObjectReference networkObjectReference)
+    public void RequestGrabbableOwnershipServerRpc(
+        ulong newOwnerClientId, NetworkObjectReference networkObjectReference,
+        Vector3 v, Vector3 av, Vector3 p)
     {
         if (networkObjectReference.TryGet(out NetworkObject networkObject))
         {
             networkObject.ChangeOwnership(newOwnerClientId);
+            var acc = NetworkManager.ConnectedClients[newOwnerClientId].PlayerObject.GetComponent<BaseAccessor>();
+            acc.Player.RequestGrabbableOwnershipClientRpc(networkObjectReference, v, av, p);
         }
     }
 
-    public override void OnGainedOwnership() {
-
+    [ClientRpc]
+    public void RequestGrabbableOwnershipClientRpc(
+        NetworkObjectReference networkObjectReference,
+        Vector3 v, Vector3 av, Vector3 p)
+    {
+        if (networkObjectReference.TryGet(out NetworkObject networkObject))
+        {
+            var r = networkObject.GetComponent<Rigidbody>();
+            r.position = p;
+            r.velocity = v;
+            r.angularVelocity = av;
+        }
     }
 }
