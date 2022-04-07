@@ -6,28 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public Button startButton;
-    public Button settingsButton;
-    public Button quitButton;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public List<GameObject> menus = new List<GameObject>();
+    public GameObject activeMenu;
+
+    private void Start() {
+        activeMenu = menus[0];
     }
 
-    // Update is called once per frame
-    void Update()
+    public void goToScene(string sceneName)
     {
-        
-    }
-
-    public void startSinglePlayer()
-    {
-        SceneManager.LoadScene("GraphicArena 1");
-    }
-
-    public void StartGame()
-    {
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene(sceneName);
     }
 
     public void Quit()
@@ -35,8 +23,13 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void startTutorial()
+    public void openSubMenu(int index)
     {
-        SceneManager.LoadScene("Tutorial");
+        if(menus[index].Equals(activeMenu))
+            return;
+        activeMenu.SetActive(false);
+        menus[index].SetActive(true);
+        activeMenu = menus[index];
     }
+
 }
