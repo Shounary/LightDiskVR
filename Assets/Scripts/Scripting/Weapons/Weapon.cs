@@ -37,7 +37,7 @@ public class Weapon : MonoBehaviour
 
     public Vector3 startLoc;
     public WeaponInventory weaponInventory;
-    
+
     private void Awake() {
         //this.enabled = false;
     }
@@ -47,59 +47,63 @@ public class Weapon : MonoBehaviour
         this.gameObject.transform.SetParent(parentGameObject.transform);
         if (startLoc == null)
             startLoc = this.gameObject.transform.position;
-        if(weaponInventory != null)
-           playerName = weaponInventory.playerName;
+        if (weaponInventory != null)
+            playerName = weaponInventory.playerName;
+
+        p_prev = weaponRB.position;
+        r_prev = weaponRB.rotation;
+
     }
 
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
     {
-        if(isSummonable)
+        if (isSummonable)
             AttractWeapon(additionalFactor, targetTransform);
     }
 
     public void onAddToInventory(WeaponInventory wi)
     {
         weaponInventory = wi;
-        weaponName = weaponName.Replace('_','\n');
+        weaponName = weaponName.Replace('_', '\n');
         playerName = wi.playerName;
     }
 
-    public virtual void MainButtonFunction(){
+    public virtual void MainButtonFunction() {
         EnableWeapon(startLoc);
     }
 
-    public virtual void SecondaryButtonFunction(){}
+    public virtual void SecondaryButtonFunction() { }
 
 
     public void setHand(int h)
     {
-        setHand((Hand) h);
+        setHand((Hand)h);
     }
 
     public void setHand(Hand h)
     {
         hand = h;
-        if(transforms.Count > 0)
+        if (transforms.Count > 0)
         {
-            weaponTransform.position = transforms[(int) h].position;
-            weaponTransform.rotation = transforms[(int) h].rotation;
+            weaponTransform.position = transforms[(int)h].position;
+            weaponTransform.rotation = transforms[(int)h].rotation;
         }
     }
 
     public virtual void OnGrabFunction(int h)
     {
         isHeld = true;
-        setHand((Hand) h);
+        setHand((Hand)h);
     }
 
     public virtual void OnReleaseFunction(int h)
     {
         isHeld = false;
-        if(weaponInventory != null)
+        if (weaponInventory != null)
             weaponInventory.closeSelectUI(hand, false);
     }
 
-    
+
     //when called, the weapon will be attracted to the target transfrom
     public void AttractWeapon(float additionalFactor, Transform targetTransform) {
         Vector3 targetDirection = Vector3.Normalize(targetTransform.position - weaponRB.position);
@@ -130,7 +134,7 @@ public class Weapon : MonoBehaviour
         weaponRB.velocity = Vector3.zero;
     }
 
-    public virtual void MainButtonReleaseFunction(){}
+    public virtual void MainButtonReleaseFunction() { }
 
     //when a weapon is disabled by being swapped with a different weapon
     public void DeactivateWeapon()
@@ -147,9 +151,26 @@ public class Weapon : MonoBehaviour
     {
         this.gameObject.transform.position = t;
         this.gameObject.SetActive(true);
-        if(weaponInventory != null)
+        if (weaponInventory != null)
             playerName = weaponInventory.playerName;
         //play spawning animation (implement later)
+    }
+
+    public Vector3 ComputedVelocity { get; private set; }
+    public Vector3 ComputedAngularVelocity { get; private set; }
+
+    Vector3 p_prev;
+    Quaternion r_prev;
+    private void FixedUpdate()
+    {
+        var p = weaponRB.position;
+        var r = weaponRB.rotation;
+
+        ComputedVelocity = (p - p_prev) / Time.fixedDeltaTime;
+        ComputedAngularVelocity = (r.eulerAngles - r_prev.eulerAngles) / Time.fixedDeltaTime;
+
+        p_prev = p;
+        r_prev = r;
     }
 
 }
