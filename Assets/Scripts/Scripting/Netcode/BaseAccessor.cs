@@ -4,6 +4,7 @@ using Unity.Netcode;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -284,6 +285,9 @@ public class BaseAccessor : NetworkBehaviour
         RollCall(acc => acc.m_GameStage.Value = GameStage.DuringMatch);
         //SpawnXRRigs();
         SceneManager.activeSceneChanged -= EnterMatchSceneServerPath;
+
+        // game ending rule
+        StartCoroutine(CheckMatchTerminate(MatchConfig.WinCondition));
     }
 
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
@@ -293,13 +297,40 @@ public class BaseAccessor : NetworkBehaviour
         Debug.Log($"PLEASE ADD CODE TO SPAWN {PlayerConfig.InitialWeapon1.name} AND {PlayerConfig.InitialWeapon2.name}");
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
+
+    IEnumerator CheckMatchTerminate((string, Func<bool>, Func<ulong, bool>) check)
+    {
+        var cFunc = check.Item2;
+        Dictionary<ulong, bool> personalResults = new Dictionary<ulong, bool>(NetworkManager.Singleton.ConnectedClients.Count);
+        while(IsClient && isActiveAndEnabled)
+        {
+            if (cFunc())
+            {
+
+            }
+            yield return new WaitForSeconds(1);
+        }
+        Debug.Log($"Match won under {check.Item1} mode");
+        StopCoroutine("CheckMatchTerminate");
+        EnterResultServerPath(personalResults);
+    }
+
+
     #endregion
 
     #region ENTER_RESULT
-    public virtual void EnterResult()
+    public void EnterResultServerPath(Dictionary<ulong, bool> personalResults)
     {
+        RollCall(c => c.EnterResultClientRpc(personalResults[c.OwnerClientId]));
+    }
+
+    [ClientRpc]
+    public void EnterResultClientRpc(bool won)
+    {
+        Debug.Log(won ? "You won" : "You lost");
         throw new NotImplementedException();
     }
+
     #endregion
 
     #region RPC_COMMONS

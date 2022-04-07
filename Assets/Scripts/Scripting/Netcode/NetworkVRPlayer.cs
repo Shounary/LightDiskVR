@@ -12,7 +12,8 @@ public class NetworkVRPlayer : NetworkBehaviour
     //private Vector2 placementArea = new Vector2(-10.0f, 10.0f);
 
     public override void OnNetworkSpawn() => DisableClientInput();
-    
+
+    public NetworkVariable<int> health = new NetworkVariable<int>(100);
 
     public void EnableClientInput()
     {

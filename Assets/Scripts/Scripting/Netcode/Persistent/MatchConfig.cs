@@ -1,6 +1,8 @@
 using UnityEngine;
 using Unity.Netcode;
 using System;
+using Unity.Networking;
+using System.Linq;
 
 [Serializable]
 public class MatchConfig
@@ -31,15 +33,16 @@ public class MatchConfig
     /// </summary>
     public string GetMaxTeamDescription => MaxTeams > 1 ? "NO TEAM" : string.Format("{0} TEAMS", MaxTeams);
 
-    public (string, Func<bool>) WinCondition => WinConditions[WinConditionIndex];
+    public (string, Func<bool>, Func<ulong, bool>) WinCondition => WinConditions[WinConditionIndex];
 
-    private static (string, Func<bool>)[] WinConditions =
+    private static (string, Func<bool>, Func<ulong, bool>)[] WinConditions =
     {
-        // NO EXIT! >:]
-        ("NO WIN", () => false),
-
-        // INSTANT EXIT! ]:<
-        ("INSTANT WIN", () => true)
+        ("Last Survivor", () => {
+            return NetworkManager.Singleton.ConnectedClientsList
+                .Count(client => client.PlayerObject.GetComponent<BaseAccessor>().Player.health.Value > 0) > 1;
+        }, (ulong id) => {
+            return NetworkManager.Singleton.ConnectedClients[id].PlayerObject.GetComponent<BaseAccessor>().Player.health.Value > 0;
+        })
     };
 
     public int WinConditionIndex
