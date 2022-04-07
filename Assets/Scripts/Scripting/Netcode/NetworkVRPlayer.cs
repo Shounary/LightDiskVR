@@ -5,6 +5,8 @@ using Unity.Netcode;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem.XR;
 using System.Linq;
+using Unity.Netcode.Samples;
+using System;
 
 public class NetworkVRPlayer : NetworkBehaviour
 {
@@ -115,10 +117,22 @@ public class NetworkVRPlayer : NetworkBehaviour
     {
         if (networkObjectReference.TryGet(out NetworkObject networkObject))
         {
+            var nt = networkObject.GetComponent<ClientNetworkTransform>();
             var r = networkObject.GetComponent<Rigidbody>();
-            r.position = p;
-            r.velocity = v;
-            r.angularVelocity = av;
+
+            StartCoroutine(WaitUntilEditable(nt, () => {
+                r.position = p;
+                r.velocity = v;
+                r.angularVelocity = av;
+            }));
+
         }
     }
+
+    IEnumerator WaitUntilEditable(ClientNetworkTransform nt, Action f) {
+        while (IsClient && !nt.CanCommitToTransform) yield return null;
+        Logger.Log("Client can edit");
+        if (IsClient) f();
+    }
+
 }
