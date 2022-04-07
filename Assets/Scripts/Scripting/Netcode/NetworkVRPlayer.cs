@@ -61,6 +61,11 @@ public class NetworkVRPlayer : NetworkBehaviour
         //    transform.position = new Vector3(Random.Range(placementArea.x, placementArea.y),
         //        transform.position.y, Random.Range(placementArea.x, placementArea.y));
         //}
+        transform.position = new Vector3(
+            transform.position.x - OwnerClientId,
+            transform.position.y,
+            transform.position.z
+            );
     }
 
 
@@ -107,6 +112,7 @@ public class NetworkVRPlayer : NetworkBehaviour
             networkObject.ChangeOwnership(newOwnerClientId);
             var acc = NetworkManager.ConnectedClients[newOwnerClientId].PlayerObject.GetComponent<BaseAccessor>();
             acc.Player.RequestGrabbableOwnershipClientRpc(networkObjectReference, v, av, p);
+            Debug.Log($"ownership transfer to {acc.OwnerClientId} with {v} {av} {p}");
         }
     }
 
@@ -120,6 +126,8 @@ public class NetworkVRPlayer : NetworkBehaviour
             var nt = networkObject.GetComponent<ClientNetworkTransform>();
             var r = networkObject.GetComponent<Rigidbody>();
 
+            PrintDebugServerRpc(0);
+
             StartCoroutine(WaitUntilEditable(nt, () => {
                 r.position = p;
                 r.velocity = v;
@@ -130,9 +138,18 @@ public class NetworkVRPlayer : NetworkBehaviour
     }
 
     IEnumerator WaitUntilEditable(ClientNetworkTransform nt, Action f) {
+        PrintDebugServerRpc(1);
         while (IsClient && !nt.CanCommitToTransform) yield return null;
-        Logger.Log("Client can edit");
+        PrintDebugServerRpc(2);
         if (IsClient) f();
+    }
+
+    Dictionary<int, string> logBook = new Dictionary<int, string>();
+
+    [ServerRpc]
+    public void PrintDebugServerRpc(int id)
+    {
+        Debug.Log(logBook.ContainsKey(id) ? logBook[id] : $"log message {id}");
     }
 
 }

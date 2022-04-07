@@ -295,6 +295,14 @@ public class BaseAccessor : NetworkBehaviour
         transform.position = PlayerConfig.SpawnPosition.Value;
         Debug.Log($"SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
         Debug.Log($"PLEASE ADD CODE TO SPAWN {PlayerConfig.InitialWeapon1} AND {PlayerConfig.InitialWeapon2}");
+        var inv = Player.GetComponent<WeaponInventory>();
+        if (inv != null)
+        {
+            inv.weaponList = new GameObject[] { PlayerConfig.InitialWeapon1, PlayerConfig.InitialWeapon2 }
+            .Select(pf => pf.GetComponent<Weapon>()).ToList();
+            inv.activeWeapons = inv.weaponList;
+            inv.activateWeapons();
+        }
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
 
