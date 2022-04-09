@@ -74,6 +74,7 @@ public class NetworkVRPlayer : NetworkBehaviour
     {
         if (IsClient && IsOwner)
         {
+            var t0 = (float) NetworkManager.NetworkTimeSystem.ServerTime;
             var networkObjectSelected = eventArgs.interactableObject.transform.GetComponent<NetworkObject>();
             var weaponRB = eventArgs.interactableObject.transform.GetComponent<Rigidbody>();
             weaponRB.isKinematic = false;
@@ -86,13 +87,14 @@ public class NetworkVRPlayer : NetworkBehaviour
                     weaponRB.position,
                     weaponRB.rotation,
                     weaponRB.transform.localScale,
-                    NetworkManager.NetworkTimeSystem.ServerTime);
+                    t0);
         }
     }
 
     public void OnReleaseGrabbable(SelectExitEventArgs eventArgs) {
         if (IsClient && IsOwner)
         {
+            var t0 = (float) NetworkManager.NetworkTimeSystem.ServerTime;
             // get disk references
             var weaponTr = eventArgs.interactableObject.transform;
             var networkObjectSelected = weaponTr.GetComponent<NetworkObject>();
@@ -144,14 +146,14 @@ public class NetworkVRPlayer : NetworkBehaviour
                     weaponRB.position,
                     weaponRB.rotation,
                     weaponTr.localScale,
-                    NetworkManager.NetworkTimeSystem.ServerTime);
+                    t0);
         }
     } 
 
     [ServerRpc(RequireOwnership = false)]
     public void RequestGrabbableOwnershipServerRpc(
         ulong newOwnerClientId, NetworkObjectReference networkObjectReference,
-        Vector3 v, Vector3 av, Vector3 p, Quaternion r, Vector3 s, double t0)
+        Vector3 v, Vector3 av, Vector3 p, Quaternion r, Vector3 s, float t0)
     {
         if (networkObjectReference.TryGet(out NetworkObject networkObject))
         {
@@ -165,7 +167,7 @@ public class NetworkVRPlayer : NetworkBehaviour
     [ClientRpc]
     public void RequestGrabbableOwnershipClientRpc(
         NetworkObjectReference networkObjectReference,
-        Vector3 v, Vector3 av, Vector3 p, Quaternion r, Vector3 s, double t0)
+        Vector3 v, Vector3 av, Vector3 p, Quaternion r, Vector3 s, float t0)
     {
         if (networkObjectReference.TryGet(out NetworkObject networkObject))
         {
@@ -178,7 +180,7 @@ public class NetworkVRPlayer : NetworkBehaviour
 
             StartCoroutine(WaitUntilEditable(nt, () => {
                 var prediction = 1.25f;
-                var deltaT = (float) (NetworkManager.NetworkTimeSystem.ServerTime - t0);
+                var deltaT = (float) NetworkManager.NetworkTimeSystem.ServerTime - t0;
                 nt.Teleport(p + prediction * deltaT * v, r * Quaternion.Euler(prediction * deltaT * av.x, prediction * deltaT * av.y, prediction * deltaT * av.z), s);
                 rb.velocity = v;
                 rb.angularVelocity = av;
@@ -212,6 +214,12 @@ public class NetworkVRPlayer : NetworkBehaviour
     public void PrintLocalTimeServerRpc(double t)
     {
         Debug.Log($"log local time (sec) {t}");
+    }
+
+    [ServerRpc]
+    public void SetHealthServerRpc(int health)
+    {
+        this.health.Value = health;
     }
 
 }
