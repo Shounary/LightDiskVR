@@ -160,4 +160,15 @@ public class NetworkVRPlayer : NetworkBehaviour
         Debug.Log(logBook.ContainsKey(id) ? logBook[id] : $"log message {id}");
     }
 
+    [ServerRpc(Delivery = RpcDelivery.Reliable)]
+    public void TakeDamageServerRpc(int damage)
+    {
+        health.Value = Mathf.Max(0, health.Value - damage);
+    }
+
+    [ServerRpc(Delivery = RpcDelivery.Reliable)]
+    public void SetHealthServerRpc(int health)
+    {
+        this.health.Value = health;
+    }
 }
