@@ -1180,7 +1180,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2268963779527358198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1232,6 +1232,7 @@ MonoBehaviour:
   startHostButton: {fileID: 1824188146}
   startClientButton: {fileID: 158250868}
   joinCode: {fileID: 2268963780105166429}
+  GrabDemoDiskPrototype: {fileID: 0}
 --- !u!1 &2268963780105166431
 GameObject:
   m_ObjectHideFlags: 0
@@ -2227,7 +2228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7755001623900247386, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
       propertyPath: m_text
-      value: <--
+      value: <
       objectReference: {fileID: 0}
     - target: {fileID: 8761384231892457627, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -3084,9 +3085,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7755001623900247386, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
       propertyPath: m_text
-      value: '2
-
-'
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
@@ -4270,9 +4269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7755001623900247386, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
       propertyPath: m_text
-      value: '4
-
-'
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
@@ -4390,9 +4387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7755001623900247386, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
       propertyPath: m_text
-      value: 'E
-
-'
+      value: E
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
@@ -4624,9 +4619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7755001623900247386, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
       propertyPath: m_text
-      value: 'R
-
-'
+      value: R
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a524531d8ef651c4b83adf0964b1ddf2, type: 3}
