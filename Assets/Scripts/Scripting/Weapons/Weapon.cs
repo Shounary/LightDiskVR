@@ -49,10 +49,6 @@ public class Weapon : MonoBehaviour
             startLoc = this.gameObject.transform.position;
         if (weaponInventory != null)
             playerName = weaponInventory.playerName;
-
-        p_prev = weaponRB.position;
-        r_prev = weaponRB.rotation;
-
     }
 
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
@@ -155,22 +151,4 @@ public class Weapon : MonoBehaviour
             playerName = weaponInventory.playerName;
         //play spawning animation (implement later)
     }
-
-    public Vector3 ComputedVelocity { get; private set; }
-    public Vector3 ComputedAngularVelocity { get; private set; }
-
-    Vector3 p_prev;
-    Quaternion r_prev;
-    private void FixedUpdate()
-    {
-        var p = weaponRB.position;
-        var r = weaponRB.rotation;
-
-        ComputedVelocity = (p - p_prev) / Time.fixedDeltaTime;
-        ComputedAngularVelocity = (r.eulerAngles - r_prev.eulerAngles) / Time.fixedDeltaTime;
-
-        p_prev = p;
-        r_prev = r;
-    }
-
 }

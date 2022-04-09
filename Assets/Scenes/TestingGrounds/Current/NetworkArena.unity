@@ -5540,6 +5540,7 @@ GameObject:
   - component: {fileID: 1789475351}
   - component: {fileID: 1789475353}
   - component: {fileID: 1789475352}
+  - component: {fileID: 1789475354}
   m_Layer: 7
   m_Name: SpawablePlayerDisk
   m_TagString: PlayerDisk
@@ -5600,8 +5601,21 @@ MonoBehaviour:
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
-  Interpolate: 1
+  Interpolate: 0
   CanCommitToTransform: 0
+--- !u!114 &1789475354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789475350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7130c5f20549cd540b7391a591b56db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponCNT: {fileID: 1789475353}
 --- !u!1 &1789475378
 GameObject:
   m_ObjectHideFlags: 0
@@ -6149,6 +6163,7 @@ GameObject:
   - component: {fileID: 1859263108}
   - component: {fileID: 1859263116}
   - component: {fileID: 1859263109}
+  - component: {fileID: 1859263117}
   m_Layer: 7
   m_Name: Teleportation Disk P1
   m_TagString: PlayerDisk
@@ -6188,6 +6203,7 @@ MonoBehaviour:
   startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
   playerTransform: {fileID: 0}
+  velocityDivisor: 5
 --- !u!114 &1859263108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6453,8 +6469,21 @@ MonoBehaviour:
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
-  Interpolate: 1
+  Interpolate: 0
   CanCommitToTransform: 0
+--- !u!114 &1859263117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859263106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7130c5f20549cd540b7391a591b56db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponCNT: {fileID: 1789475353}
 --- !u!1 &1868721851
 GameObject:
   m_ObjectHideFlags: 0
@@ -7759,6 +7788,7 @@ GameObject:
   - component: {fileID: 515803606435867804}
   - component: {fileID: 515803606435867806}
   - component: {fileID: 515803606435867805}
+  - component: {fileID: 515803606435867807}
   m_Layer: 7
   m_Name: Teleportation Disk P2
   m_TagString: PlayerDisk
@@ -7819,8 +7849,21 @@ MonoBehaviour:
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
-  Interpolate: 1
+  Interpolate: 0
   CanCommitToTransform: 0
+--- !u!114 &515803606435867807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 515803606435867803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7130c5f20549cd540b7391a591b56db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponCNT: {fileID: 1789475353}
 --- !u!33 &547923876926808742
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8363,6 +8406,7 @@ GameObject:
   - component: {fileID: 1627788076510170514}
   - component: {fileID: 1627788076510170516}
   - component: {fileID: 1627788076510170515}
+  - component: {fileID: 1627788076510170517}
   m_Layer: 7
   m_Name: Player Disk P1
   m_TagString: PlayerDisk
@@ -8423,8 +8467,21 @@ MonoBehaviour:
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
-  Interpolate: 1
+  Interpolate: 0
   CanCommitToTransform: 0
+--- !u!114 &1627788076510170517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627788076510170513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7130c5f20549cd540b7391a591b56db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponCNT: {fileID: 1789475353}
 --- !u!1 &1636808062914135334
 GameObject:
   m_ObjectHideFlags: 0
@@ -9676,6 +9733,7 @@ MonoBehaviour:
   startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
   playerTransform: {fileID: 0}
+  velocityDivisor: 5
 --- !u!23 &3264737012429077371
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10673,6 +10731,7 @@ GameObject:
   - component: {fileID: 5038142568339768685}
   - component: {fileID: 5038142568339768687}
   - component: {fileID: 5038142568339768686}
+  - component: {fileID: 5038142568339768688}
   m_Layer: 7
   m_Name: Player Disk P2
   m_TagString: PlayerDisk
@@ -10733,8 +10792,21 @@ MonoBehaviour:
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
-  Interpolate: 1
+  Interpolate: 0
   CanCommitToTransform: 0
+--- !u!114 &5038142568339768688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5038142568339768684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7130c5f20549cd540b7391a591b56db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponCNT: {fileID: 1789475353}
 --- !u!23 &5049908182749466071
 MeshRenderer:
   m_ObjectHideFlags: 0
