@@ -177,7 +177,9 @@ public class NetworkVRPlayer : NetworkBehaviour
             // rb.angularVelocity = av;
 
             StartCoroutine(WaitUntilEditable(nt, () => {
-                nt.Teleport(p + v * (float) (NetworkManager.NetworkTimeSystem.ServerTime - t0), r, s);
+                var prediction = 1.25f;
+                var deltaT = (float) (NetworkManager.NetworkTimeSystem.ServerTime - t0);
+                nt.Teleport(p + prediction * deltaT * v, r * Quaternion.Euler(prediction * deltaT * av.x, prediction * deltaT * av.y, prediction * deltaT * av.z), s);
                 rb.velocity = v;
                 rb.angularVelocity = av;
             }));
