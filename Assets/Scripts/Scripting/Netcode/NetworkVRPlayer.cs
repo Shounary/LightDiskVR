@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.XR;
 using System.Linq;
 using Unity.Netcode.Samples;
 using System;
@@ -82,68 +83,109 @@ public class NetworkVRPlayer : NetworkBehaviour
                     networkObjectSelected,
                     weaponRB.velocity,
                     weaponRB.angularVelocity,
-                    weaponRB.position);
+                    weaponRB.position,
+                    weaponRB.rotation,
+                    weaponRB.transform.localScale,
+                    NetworkManager.NetworkTimeSystem.ServerTime);
         }
     }
 
     public void OnReleaseGrabbable(SelectExitEventArgs eventArgs) {
         if (IsClient && IsOwner)
         {
-            var networkObjectSelected = eventArgs.interactableObject.transform.GetComponent<NetworkObject>();
-            var weaponRB = eventArgs.interactableObject.transform.GetComponent<Rigidbody>();
-            var weapon = eventArgs.interactableObject.transform.GetComponent<Weapon>();
-            var wCompV = weapon.ComputedReleaseVelocity;
-            var wCompAV = weapon.ComputedReleaseAngularVelocity;
+            // get disk references
+            var weaponTr = eventArgs.interactableObject.transform;
+            var networkObjectSelected = weaponTr.GetComponent<NetworkObject>();
+            var weaponRB = weaponTr.GetComponent<Rigidbody>();
+            var weapon = weaponTr.GetComponent<Weapon>();
+            var weaponCNT = weaponTr.GetComponent<ClientNetworkTransform>();
 
-            if (weaponRB.isKinematic)
-            {
-                PrintDebugServerRpc(0);
-            } else
-            {
-                PrintDebugServerRpc(1);
-            }
+            // get disk kinematic state
+            var wCompV = new Vector3();
+            var wCompAV = new Vector3();
 
-            weaponRB.isKinematic = false;
+            //weaponCNT.Interpolate = false;
+            //weaponCNT.SyncPositionX = false;
+            //weaponCNT.SyncPositionY = false;
+            //weaponCNT.SyncPositionZ = false;
+
+
+            // obtain controller velocity----
+            InputDevice targetDevice;
+
+            List<InputDevice> inputDevices = new List<InputDevice>();
+            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right, inputDevices);
+
+            targetDevice = inputDevices[0];
+
+            if (targetDevice.TryGetFeatureValue(CommonUsages.deviceVelocity, out var rightControllerVel))
+                wCompV = rightControllerVel;
+
+            if (targetDevice.TryGetFeatureValue(CommonUsages.deviceAngularVelocity, out var rightControllerAngVel))
+                wCompAV = rightControllerAngVel;
+            //----
+            
+            // if (weaponRB.isKinematic)
+            // {
+            //     PrintDebugServerRpc(0);
+            // } else
+            // {
+            //     PrintDebugServerRpc(1);
+            // }
+
+            // weaponRB.isKinematic = false;
+
             if (networkObjectSelected != null)
                 RequestGrabbableOwnershipServerRpc(
                     NetworkManager.ServerClientId,
                     networkObjectSelected,
                     wCompV,
                     wCompAV,
-                    weaponRB.position);
+                    weaponRB.position,
+                    weaponRB.rotation,
+                    weaponTr.localScale,
+                    NetworkManager.NetworkTimeSystem.ServerTime);
         }
     } 
 
     [ServerRpc(RequireOwnership = false)]
     public void RequestGrabbableOwnershipServerRpc(
         ulong newOwnerClientId, NetworkObjectReference networkObjectReference,
-        Vector3 v, Vector3 av, Vector3 p)
+        Vector3 v, Vector3 av, Vector3 p, Quaternion r, Vector3 s, double t0)
     {
         if (networkObjectReference.TryGet(out NetworkObject networkObject))
         {
             networkObject.ChangeOwnership(newOwnerClientId);
             var acc = NetworkManager.ConnectedClients[newOwnerClientId].PlayerObject.GetComponent<BaseAccessor>();
-            acc.Player.RequestGrabbableOwnershipClientRpc(networkObjectReference, v, av, p);
-            Debug.Log($"ownership transfer to {acc.OwnerClientId} with {v} {av} {p}");
+            acc.Player.RequestGrabbableOwnershipClientRpc(networkObjectReference, v, av, p, r, s, t0);
+            Debug.Log($"ownership transfer to {acc.OwnerClientId} with {v} {av} {p} {r} {s}");
         }
     }
 
     [ClientRpc]
     public void RequestGrabbableOwnershipClientRpc(
         NetworkObjectReference networkObjectReference,
-        Vector3 v, Vector3 av, Vector3 p)
+        Vector3 v, Vector3 av, Vector3 p, Quaternion r, Vector3 s, double t0)
     {
         if (networkObjectReference.TryGet(out NetworkObject networkObject))
         {
             var nt = networkObject.GetComponent<ClientNetworkTransform>();
-            var r = networkObject.GetComponent<Rigidbody>();
+            var rb = networkObject.GetComponent<Rigidbody>();
+
+            // nt.Teleport(p, r, s);
+            // rb.velocity = v;
+            // rb.angularVelocity = av;
 
             StartCoroutine(WaitUntilEditable(nt, () => {
-                r.position = p;
-                r.velocity = v;
-                r.angularVelocity = av;
+                var prediction = 1.25f;
+                var deltaT = (float) (NetworkManager.NetworkTimeSystem.ServerTime - t0);
+                nt.Teleport(p + prediction * deltaT * v, r * Quaternion.Euler(prediction * deltaT * av.x, prediction * deltaT * av.y, prediction * deltaT * av.z), s);
+                rb.velocity = v;
+                rb.angularVelocity = av;
             }));
 
+            // record time delta between release and receive
+            PrintServerTimeServerRpc(NetworkManager.NetworkTimeSystem.ServerTime - t0);
         }
     }
 
@@ -160,15 +202,16 @@ public class NetworkVRPlayer : NetworkBehaviour
         Debug.Log(logBook.ContainsKey(id) ? logBook[id] : $"log message {id}");
     }
 
-    [ServerRpc(Delivery = RpcDelivery.Reliable)]
-    public void TakeDamageServerRpc(int damage)
+    [ServerRpc(RequireOwnership = false)]
+    public void PrintServerTimeServerRpc(double t)
     {
-        health.Value = Mathf.Max(0, health.Value - damage);
+        Debug.Log($"log server time (sec) {t}");
     }
 
-    [ServerRpc(Delivery = RpcDelivery.Reliable)]
-    public void SetHealthServerRpc(int health)
+    [ServerRpc(RequireOwnership = false)]
+    public void PrintLocalTimeServerRpc(double t)
     {
-        this.health.Value = health;
+        Debug.Log($"log local time (sec) {t}");
     }
+
 }
