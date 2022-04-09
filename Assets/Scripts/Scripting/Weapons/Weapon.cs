@@ -67,6 +67,12 @@ public class Weapon : NetworkBehaviour
             playerName = weaponInventory.playerName;
     }
 
+    public override void OnGainedOwnership()
+    {
+        base.OnGainedOwnership();
+        lastOwner.Value = NetworkManager.LocalClientId;
+    }
+
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
     {
         if (NetUtils.IsUnderNetwork && lastOwner.Value == NetworkManager.LocalClientId)
