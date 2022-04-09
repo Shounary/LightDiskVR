@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3172250533663331974}
         m_TargetAssemblyTypeName: NetworkVRPlayer, Assembly-CSharp
-        m_MethodName: OnReleaseGrabbable
+        m_MethodName: OnReleaseGrabbableRight
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2654,7 +2654,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3172250533663331974}
         m_TargetAssemblyTypeName: NetworkVRPlayer, Assembly-CSharp
-        m_MethodName: OnReleaseGrabbable
+        m_MethodName: OnReleaseGrabbableLeft
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

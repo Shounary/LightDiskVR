@@ -18,6 +18,9 @@ public class NetworkVRPlayer : NetworkBehaviour
 
     public NetworkVariable<int> health = new NetworkVariable<int>(100);
 
+    private InputDevice targetDeviceRight;
+    private InputDevice targetDeviceLeft;
+
     public void EnableClientInput()
     {
 
@@ -46,22 +49,22 @@ public class NetworkVRPlayer : NetworkBehaviour
             foreach (var DBcontroller in clientDeviceControllers) {
                 DBcontroller.enableInputActions = false;
                 DBcontroller.enableInputTracking = false;
-                //DBcontroller.enabled = false;
             }
-
-            //foreach (var directIteractor in directInteractors) {
-            //    directIteractor.enabled = false;
-            //}
         }
     }
 
     private void Start()
     {
-        //if (IsClient && IsOwner)
-        //{
-        //    transform.position = new Vector3(Random.Range(placementArea.x, placementArea.y),
-        //        transform.position.y, Random.Range(placementArea.x, placementArea.y));
-        //}
+        List<InputDevice> inputDevicesRight = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right, inputDevicesRight);
+
+        targetDeviceRight = inputDevicesRight[0];
+
+        List<InputDevice> inputDevicesLeft = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Left, inputDevicesLeft);
+
+        targetDeviceLeft = inputDevicesLeft[0];
+        
         transform.position = new Vector3(
             transform.position.x - OwnerClientId,
             transform.position.y,
@@ -91,7 +94,7 @@ public class NetworkVRPlayer : NetworkBehaviour
         }
     }
 
-    public void OnReleaseGrabbable(SelectExitEventArgs eventArgs) {
+    public void OnReleaseGrabbableRight(SelectExitEventArgs eventArgs) {
         if (IsClient && IsOwner)
         {
             var t0 = (float) NetworkManager.NetworkTimeSystem.ServerTime;
@@ -106,24 +109,11 @@ public class NetworkVRPlayer : NetworkBehaviour
             var wCompV = new Vector3();
             var wCompAV = new Vector3();
 
-            //weaponCNT.Interpolate = false;
-            //weaponCNT.SyncPositionX = false;
-            //weaponCNT.SyncPositionY = false;
-            //weaponCNT.SyncPositionZ = false;
-
-
             // obtain controller velocity----
-            InputDevice targetDevice;
-
-            List<InputDevice> inputDevices = new List<InputDevice>();
-            InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Right, inputDevices);
-
-            targetDevice = inputDevices[0];
-
-            if (targetDevice.TryGetFeatureValue(CommonUsages.deviceVelocity, out var rightControllerVel))
+            if (targetDeviceRight.TryGetFeatureValue(CommonUsages.deviceVelocity, out var rightControllerVel))
                 wCompV = rightControllerVel;
 
-            if (targetDevice.TryGetFeatureValue(CommonUsages.deviceAngularVelocity, out var rightControllerAngVel))
+            if (targetDeviceRight.TryGetFeatureValue(CommonUsages.deviceAngularVelocity, out var rightControllerAngVel))
                 wCompAV = rightControllerAngVel;
             //----
             
@@ -134,8 +124,6 @@ public class NetworkVRPlayer : NetworkBehaviour
             // {
             //     PrintDebugServerRpc(1);
             // }
-
-            // weaponRB.isKinematic = false;
 
             if (networkObjectSelected != null)
                 RequestGrabbableOwnershipServerRpc(
@@ -148,7 +136,51 @@ public class NetworkVRPlayer : NetworkBehaviour
                     weaponTr.localScale,
                     t0);
         }
-    } 
+    }
+
+    public void OnReleaseGrabbableLeft(SelectExitEventArgs eventArgs) {
+        if (IsClient && IsOwner)
+        {
+            var t0 = (float) NetworkManager.NetworkTimeSystem.ServerTime;
+            // get disk references
+            var weaponTr = eventArgs.interactableObject.transform;
+            var networkObjectSelected = weaponTr.GetComponent<NetworkObject>();
+            var weaponRB = weaponTr.GetComponent<Rigidbody>();
+            var weapon = weaponTr.GetComponent<Weapon>();
+            var weaponCNT = weaponTr.GetComponent<ClientNetworkTransform>();
+
+            // get disk kinematic state
+            var wCompV = new Vector3();
+            var wCompAV = new Vector3();
+
+            // obtain controller velocity----
+            if (targetDeviceLeft.TryGetFeatureValue(CommonUsages.deviceVelocity, out var leftControllerVel))
+                wCompV = leftControllerVel;
+
+            if (targetDeviceLeft.TryGetFeatureValue(CommonUsages.deviceAngularVelocity, out var leftControllerAngVel))
+                wCompAV = leftControllerAngVel;
+            //----
+            
+            // if (weaponRB.isKinematic)
+            // {
+            //     PrintDebugServerRpc(0);
+            // } else
+            // {
+            //     PrintDebugServerRpc(1);
+            // }
+
+            if (networkObjectSelected != null)
+                RequestGrabbableOwnershipServerRpc(
+                    NetworkManager.ServerClientId,
+                    networkObjectSelected,
+                    wCompV,
+                    wCompAV,
+                    weaponRB.position,
+                    weaponRB.rotation,
+                    weaponTr.localScale,
+                    t0);
+        }
+    }
 
     [ServerRpc(RequireOwnership = false)]
     public void RequestGrabbableOwnershipServerRpc(
