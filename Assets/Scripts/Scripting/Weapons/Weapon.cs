@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using Unity.Netcode;
 
 
-
-public class Weapon : MonoBehaviour
+public class Weapon : NetworkBehaviour
 {
     //Visuals
     public Color primaryColor;
@@ -16,7 +16,23 @@ public class Weapon : MonoBehaviour
     public string weaponDescription;
 
     public int damage;
-    public bool isSummonable;
+    public bool IsSummonable
+    {
+        get
+        {
+            if (NetUtils.IsUnderNetwork) return m_isSummonable;
+            else return n_isSummonable.Value;
+        } set
+        {
+            if (NetUtils.IsUnderNetwork) m_isSummonable = value;
+            else n_isSummonable.Value = value;
+        }
+    }
+    public NetworkVariable<bool> n_isSummonable;
+    private bool m_isSummonable;
+
+    public NetworkVariable<ulong> lastOwner = new NetworkVariable<ulong>(ulong.MaxValue);
+
     public string playerName;
     public Hand hand;
     public Rigidbody weaponRB;
@@ -53,8 +69,16 @@ public class Weapon : MonoBehaviour
 
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
     {
-        if (isSummonable)
-            AttractWeapon(additionalFactor, targetTransform);
+        if (NetUtils.IsUnderNetwork && lastOwner.Value == NetworkManager.LocalClientId)
+        {
+            if (IsSummonable)
+                AttractWeapon(additionalFactor, targetTransform);
+        }
+        else
+        {
+            if (IsSummonable)
+                AttractWeapon(additionalFactor, targetTransform);
+        }
     }
 
     public void onAddToInventory(WeaponInventory wi)
@@ -109,13 +133,22 @@ public class Weapon : MonoBehaviour
         Vector3 normal = additionalFactor * stoppingFactorMultiplier * diskReturnForceMagnitude * Time.deltaTime * (-1) * Vector3.Magnitude(weaponRB.velocity) * Mathf.Abs(Mathf.Sin(Mathf.Abs(angle))) * initialDirection;
         Vector3 parallel = additionalFactor * diskReturnForceMagnitude * Time.deltaTime * targetDirection;
 
-        if (angle > 5) {
-            weaponRB.AddForce(normal, ForceMode.VelocityChange);
+        Vector3 force = parallel;
+        if (angle > 5) force += normal;
+        if (NetUtils.IsUnderNetwork)
+        {
+            AttractWeaponServerRpc(force);
         }
-
-        weaponRB.AddForce(parallel, ForceMode.VelocityChange);
+        else {
+            weaponRB.AddForce(force, ForceMode.VelocityChange);
+        }
     }
 
+    [ServerRpc]
+    public void AttractWeaponServerRpc(Vector3 f)
+    {
+        weaponRB.AddForce(f, ForceMode.VelocityChange);
+    }
 
     //because weapon references are stored in the inventory script, actually destorying the weapon
     //gameobjects would be a pain to deal with. Instead, the weapon is disabled, and then can
