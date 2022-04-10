@@ -371,5 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0596e7445aa2b4e81dd660cbfc1380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 5999358830440986661}
+  t: 0
   pointReward: 325
   destructionEffect: {fileID: 4015009708438205680, guid: 95df8ce0d30d3f24298d657a1edf4864, type: 3}
