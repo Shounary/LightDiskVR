@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class ShootingRangeTarget : MonoBehaviour
 {
-    public Rigidbody rb;
-    public float t;
+    [Header("Parameters")]
     public int pointReward;
+    public float maxSpeed = 1f;
+    public float timeOffset = 0f;
+    public float period = 1f;
+
+    public Rigidbody rb;
     public GameObject destructionEffect;
+
+    private float t;
 
     private void OnCollisionEnter(Collision collision) {
         if (ShootingRangeModeManager.instance != null)
@@ -17,12 +23,12 @@ public class ShootingRangeTarget : MonoBehaviour
     }
 
     private void Start() {
-        t = 0.0f;
+        t = 0.0f + timeOffset;
     }
 
     // makes the target ocsilate
     private void Update() {
-        rb.velocity = new Vector3(0f, 0.25f * Mathf.Sin(2 * t), 0f);
+        rb.velocity = new Vector3(0f, maxSpeed * Mathf.Sin(2 * t / period), 0f);
         t += Time.deltaTime;
     }
 }

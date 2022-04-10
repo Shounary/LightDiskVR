@@ -290,9 +290,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0596e7445aa2b4e81dd660cbfc1380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 2021288729621853802}
-  t: 0
   pointReward: 150
+  maxSpeed: 0.25
+  timeOffset: 0.5
+  period: 0.75
+  rb: {fileID: 2021288729621853802}
   destructionEffect: {fileID: 4015009708438205680, guid: cff5b15aae8d64145b0103ee4e49976b, type: 3}
 --- !u!1 &8342618868674706353
 GameObject:
