@@ -15,20 +15,20 @@ public class ThrowingKnife : Weapon
     private float currCoolDownTime;
 
     private void OnCollisionEnter(Collision other) {
-        GameObject otherGO = other.gameObject;
-        if(!noStickTags.Contains(otherGO.tag))
-        {
-            weaponRB.velocity = Vector3.zero;
-            weaponRB.isKinematic = true;
-        }
+        // GameObject otherGO = other.gameObject;
+        // if(!noStickTags.Contains(otherGO.tag))
+        // {
+        //     weaponRB.velocity = Vector3.zero;
+        //     weaponRB.isKinematic = true;
+        // }
         
     }
 
     public override void TriggerFunction(float additionalFactor, Transform targetTransform) {
-        if ((thrown && Time.fixedUnscaledTime - currCoolDownTime >= coolDownTime) || !isHeld) {
-            transform.position = targetTransform.position;
-            transform.rotation = targetTransform.rotation;
-        }
+        // if ((thrown && Time.fixedUnscaledTime - currCoolDownTime >= coolDownTime) || !isHeld) {
+        //     transform.position = targetTransform.position;
+        //     transform.rotation = targetTransform.rotation;
+        // }
     }
 
     // Start is called before the first frame update
@@ -41,17 +41,17 @@ public class ThrowingKnife : Weapon
     // Update is called once per frame
     void Update()
     {
-        if (!isHeld && isHeldLag) {
-            thrown = true;
-            currCoolDownTime = Time.fixedUnscaledTime;
-        }
-        isHeldLag = isHeld;
+        // if (!isHeld && isHeldLag) {
+        //     thrown = true;
+        //     currCoolDownTime = Time.fixedUnscaledTime;
+        // }
+        // isHeldLag = isHeld;
     }
 
     void FixedUpdate() {
-        if (thrown) {
-            rotateTransform.Rotate(0f, 0f, rotateRate);
-        }
+        // if (thrown) {
+        //     rotateTransform.Rotate(0f, 0f, rotateRate);
+        // }
     }
 
 }

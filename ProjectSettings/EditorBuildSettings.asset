@@ -17,9 +17,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Dev/Chase/GraphicArena 1.unity
     guid: 89690738eb95ae14b9919a5bdb51d7b7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dev/Mikhail/ShootingRange70sec.unity
     guid: ff027b6f419a893408c5ed35013528cb
+  - enabled: 1
+    path: Assets/Scenes/Dev/Mikhail/ThrowingKnife.unity
+    guid: c2871a85a2368594ab1520f3e5f0ae0e
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 9beec0e4e0b6c2247a4194526c05c7ca, type: 2}
