@@ -58,6 +58,14 @@ public class HandActual : MonoBehaviour
                 weapon.TriggerFunction(trigger, this.transform);
             }
         }
+
+        // Grip/Summon
+        if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float grip) && grip > 0.5) {
+            if(weapon != null)
+            {
+                weapon.GrabHeldFunction(grip, this.transform);
+            }
+        }
         
         if( targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed1) && pressed1 && !button1Pressed) {
             if(PauseController.instance.isDead)
@@ -75,6 +83,7 @@ public class HandActual : MonoBehaviour
         }
         else if (!pressed1 && button1Pressed)
         {
+            weapon.MainButtonReleaseFunction();
             button1Pressed = false;
         }
         if (targetDevice.TryGetFeatureValue(CommonUsages.secondaryButton, out bool pressed2) && pressed2) {

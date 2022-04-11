@@ -4,9 +4,7 @@ using Unity.Netcode;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR;
-using UnityEngine.InputSystem.XR;
-using UnityEngine.XR.Interaction.Toolkit;
+using System.Collections;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -162,6 +160,8 @@ public class BaseAccessor : NetworkBehaviour
     #region PLAYER_CONFIG
     public PlayerConfig PlayerConfig { get; protected set; }
     NetworkVariable<int> SpawnPoint = new NetworkVariable<int>(0);
+    NetworkVariable<int> WeaponIndex1 = new NetworkVariable<int>(0);
+    NetworkVariable<int> WeaponIndex2 = new NetworkVariable<int>(0);
 
     public void PrintPlayerConfig()
     {
@@ -176,17 +176,46 @@ public class BaseAccessor : NetworkBehaviour
         PlayerConfig = new PlayerConfig(MatchConfig);
         PreMatchManager.MatchConfigMenuObj.SetActive(false);
         PreMatchManager.PlayerConfigMenuObj.SetActive(true);
+
+        SpawnPoint.OnValueChanged = (prev, next) => {
+            PlayerConfig.SpawnPoint = SpawnPoint.Value;
+        };
+
+        WeaponIndex1.OnValueChanged = (prev, next) =>
+        {
+            PlayerConfig.WeaponIndex1 = WeaponIndex1.Value;
+        };
+
+        WeaponIndex2.OnValueChanged = (prev, next) =>
+        {
+            PlayerConfig.WeaponIndex2 = WeaponIndex2.Value;
+        };
     }
 
     [ServerRpc(RequireOwnership =false)]
     public void PlayerConfigEnterServerRPC()
     {
         m_GameStage.Value = GameStage.PlayerConfig;
-        SpawnPoint.OnValueChanged = (prev, next) => {
-            PlayerConfig.SpawnPoint = SpawnPoint.Value;
-        };
-        SpawnPoint.Value = MathUtils.Mod(Convert.ToInt32(OwnerClientId), MatchConfig.Arena.SpawnPoints.Length);
-        Debug.Log(SpawnPoint.Value + " " + MatchConfig.Arena.SpawnPoints.Length + " " + Convert.ToInt32(NetworkManager.LocalClientId) + " " + NetworkManager.LocalClientId);
+
+        SpawnPoint.Value = MathUtils.Mod(Convert.ToInt32(OwnerClientId), MatchConfig.Arena.SpawnPoints.Length); // by default, random per user
+
+        WeaponIndex1.Value = 0; // by default, select first weapon
+
+        WeaponIndex2.Value = 0;
+
+        // Debug.Log(SpawnPoint.Value + " " + MatchConfig.Arena.SpawnPoints.Length + " " + Convert.ToInt32(NetworkManager.LocalClientId) + " " + NetworkManager.LocalClientId);
+    }
+
+    [ServerRpc]
+    public void SetWeapon1IndexServerRpc(int idx)
+    {
+        WeaponIndex1.Value = idx;
+    }
+
+    [ServerRpc]
+    public void SetWeapon2IndexServerRpc(int idx)
+    {
+        WeaponIndex2.Value = idx;
     }
 
     public void PlayerConfigExit()
@@ -256,19 +285,60 @@ public class BaseAccessor : NetworkBehaviour
         RollCall(acc => acc.m_GameStage.Value = GameStage.DuringMatch);
         //SpawnXRRigs();
         SceneManager.activeSceneChanged -= EnterMatchSceneServerPath;
+
+        // game ending rule
+        StartCoroutine(CheckMatchTerminate(MatchConfig.WinCondition));
     }
 
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
     {
+        transform.position = PlayerConfig.SpawnPosition.Value;
+        Debug.Log($"SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
+        Debug.Log($"PLEASE ADD CODE TO SPAWN {PlayerConfig.InitialWeapon1} AND {PlayerConfig.InitialWeapon2}");
+        var inv = Player.GetComponent<WeaponInventory>();
+        if (inv != null)
+        {
+            inv.weaponList = new GameObject[] { PlayerConfig.InitialWeapon1, PlayerConfig.InitialWeapon2 }
+            .Select(pf => pf.GetComponent<Weapon>()).ToList();
+            inv.activeWeapons = inv.weaponList;
+            inv.activateWeapons();
+        }
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
+
+    IEnumerator CheckMatchTerminate((string, Func<bool>, Func<ulong, bool>) check)
+    {
+        var cFunc = check.Item2;
+        Dictionary<ulong, bool> personalResults = new Dictionary<ulong, bool>(NetworkManager.Singleton.ConnectedClients.Count);
+        while(IsClient && isActiveAndEnabled)
+        {
+            if (cFunc())
+            {
+
+            }
+            yield return new WaitForSeconds(1);
+        }
+        Debug.Log($"Match won under {check.Item1} mode");
+        StopCoroutine("CheckMatchTerminate");
+        EnterResultServerPath(personalResults);
+    }
+
+
     #endregion
 
     #region ENTER_RESULT
-    public virtual void EnterResult()
+    public void EnterResultServerPath(Dictionary<ulong, bool> personalResults)
     {
+        RollCall(c => c.EnterResultClientRpc(personalResults[c.OwnerClientId]));
+    }
+
+    [ClientRpc]
+    public void EnterResultClientRpc(bool won)
+    {
+        Debug.Log(won ? "You won" : "You lost");
         throw new NotImplementedException();
     }
+
     #endregion
 
     #region RPC_COMMONS
