@@ -371,7 +371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0596e7445aa2b4e81dd660cbfc1380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointReward: 325
+  pointReward: 225
   maxSpeed: 0.5
   timeOffset: 0.2
   period: 1.5

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TargetSequence : MonoBehaviour
 {
+    public int maxWaves = 2;
     [Header("Blue Target")]
     public GameObject blueTargetModel;
     public GameObject spawnBlueTargetEffect;
@@ -40,11 +41,11 @@ public class TargetSequence : MonoBehaviour
 
     void Update()
     {
+        if (currentWave >= maxWaves)
+            return;
         if (currentWave >= timeBetweenWaves.Length - 1) {
-            Debug.Log("LOLLLLLLLLLLLLLLLLLLLLLLLLL");
             return;
         }
-        Debug.Log("WTFFFFFFFFFFFFFFFFFFFFF");
         waveTimer -= Time.deltaTime;
         spawnTimer -= Time.deltaTime;
         Debug.Log("wave timer: " + waveTimer);
@@ -64,25 +65,39 @@ public class TargetSequence : MonoBehaviour
     }
 
     void InstantiateSpawnEffects(int waveNum) {
-        foreach(Transform blueSpawnPt in blueSpawnPoints) {
-            Destroy(Instantiate(spawnBlueTargetEffect, blueSpawnPt.position, Quaternion.identity), objectSpawnTime[waveNum]);
+        for (int i = 5 * waveNum; i < 5 * waveNum + 5; i++)
+        {
+            if (blueSpawnPoints[i] == null)
+                continue;
+            Destroy(Instantiate(spawnBlueTargetEffect, blueSpawnPoints[i].position, Quaternion.identity), objectSpawnTime[waveNum]);
         }
-        foreach(Transform orangeSpawnPt in orangeSpawnPoints) {
-            Destroy(Instantiate(spawnOrangeTargetEffect, orangeSpawnPt.position, Quaternion.identity), objectSpawnTime[waveNum]);
+
+        for (int i = 5 * waveNum; i < 5 * waveNum + 5; i++)
+        {
+            if (orangeSpawnPoints[i] == null)
+                continue;
+            Destroy(Instantiate(spawnOrangeTargetEffect, orangeSpawnPoints[i].position, Quaternion.identity), objectSpawnTime[waveNum]);
         }
+
         waveTimer = objectSpawnTime[waveNum];
         spawnTimer = objectSpawnTime[waveNum];
     }
 
     void SpawnBlueTargets(int waveNum) {
-        foreach (Transform blueSpawnPt in blueSpawnPoints) {
-            activeBlueObjects.Add((GameObject) Instantiate(blueTargetModel, blueSpawnPt.position, Quaternion.identity));
+        for (int i = 5 * waveNum; i < 5 * waveNum + 5; i++)
+        {
+            if (blueSpawnPoints[i] == null)
+                continue;
+            activeBlueObjects.Add((GameObject) Instantiate(blueTargetModel, blueSpawnPoints[i].position, Quaternion.identity));
         }
     }
 
     void SpawnOrangeTargets(int waveNum) {
-        foreach (Transform orangeSpawnPt in orangeSpawnPoints) {
-            GameObject targetGO = (GameObject) Instantiate(orangeTargetModel, orangeSpawnPt.position, Quaternion.identity);
+        for (int i = 5 * waveNum; i < 5 * waveNum + 5; i++)
+        {
+            if (orangeSpawnPoints[i] == null)
+                continue;
+            GameObject targetGO = (GameObject) Instantiate(orangeTargetModel, orangeSpawnPoints[i].position, Quaternion.identity);
             activeOrangeObjects.Add(targetGO);
         }
     }
