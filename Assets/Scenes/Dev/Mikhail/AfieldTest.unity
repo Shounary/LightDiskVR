@@ -192,9 +192,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1629408064}
     m_Modifications:
+    - target: {fileID: 4016258340515331807, guid: 1b4a2d34eac14a1498256aedd7ed4b9f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4016258341164835939, guid: 1b4a2d34eac14a1498256aedd7ed4b9f, type: 3}
       propertyPath: m_Name
       value: Pause Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016258341164835939, guid: 1b4a2d34eac14a1498256aedd7ed4b9f, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4016258341164835939, guid: 1b4a2d34eac14a1498256aedd7ed4b9f, type: 3}
       propertyPath: m_IsActive
@@ -283,6 +291,18 @@ PrefabInstance:
     - target: {fileID: 4016258341164835944, guid: 1b4a2d34eac14a1498256aedd7ed4b9f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 21.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016258341274183280, guid: 1b4a2d34eac14a1498256aedd7ed4b9f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016258341614036877, guid: 1b4a2d34eac14a1498256aedd7ed4b9f, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4016258341824416492, guid: 1b4a2d34eac14a1498256aedd7ed4b9f, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b4a2d34eac14a1498256aedd7ed4b9f, type: 3}
@@ -796,7 +816,7 @@ Transform:
   - {fileID: 2117870524}
   - {fileID: 1971438979}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &125347741
 GameObject:
@@ -1032,7 +1052,7 @@ GameObject:
   - component: {fileID: 183001906}
   - component: {fileID: 183001905}
   - component: {fileID: 183001904}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DeathMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1383,6 +1403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon Select Menu R
       objectReference: {fileID: 0}
+    - target: {fileID: 7468135576075180170, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7468135576075180171, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1470,6 +1494,42 @@ PrefabInstance:
     - target: {fileID: 7468135576075180175, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
       propertyPath: m_Camera
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468135576577753430, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468135576856496921, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468135576966959874, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468135577288030951, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468135577321637168, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468135577326883523, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468135577416507876, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468135577582029569, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468135577596918045, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e25d87a6d39a56d49956a39a3f3ca003, type: 3}
@@ -1801,7 +1861,7 @@ GameObject:
   - component: {fileID: 474070809}
   - component: {fileID: 474070811}
   - component: {fileID: 474070810}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1971,7 +2031,7 @@ GameObject:
   - component: {fileID: 612178149}
   - component: {fileID: 612178151}
   - component: {fileID: 612178150}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LRayInterractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2139,7 +2199,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 181585404792478586, guid: a4e56d4593d50b84691a70b43be87c6e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 181585404792478586, guid: a4e56d4593d50b84691a70b43be87c6e, type: 3}
       propertyPath: m_LocalScale.x
@@ -2380,7 +2440,7 @@ GameObject:
   - component: {fileID: 682792825}
   - component: {fileID: 682792827}
   - component: {fileID: 682792826}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2781,7 +2841,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 768929532}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DeathEffectPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3000,7 +3060,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2583188924188439037, guid: df28ddef3f526204cb105090ed3b820c, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2583188924188439037, guid: df28ddef3f526204cb105090ed3b820c, type: 3}
       propertyPath: m_LocalScale.x
@@ -3077,7 +3137,7 @@ GameObject:
   - component: {fileID: 909933995}
   - component: {fileID: 909934001}
   - component: {fileID: 909934002}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Main Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3141,8 +3201,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 0}
   toTakeDamageFrom:
-    serializedVersion: 2
-    m_Bits: 256
+  - serializedVersion: 2
+    m_Bits: 0
+  - serializedVersion: 2
+    m_Bits: 0
+  intMaskList: 
 --- !u!136 &909933996
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3549,6 +3612,8 @@ MonoBehaviour:
   rRayInteractor: {fileID: 0}
   playerDeathEffect: {fileID: 1300411056466267811, guid: d4690983375d9784084b82184d16a9e6, type: 3}
   deathEffectPoint: {fileID: 768929532}
+  isDead: 0
+  disableOnDeath: []
 --- !u!1001 &1041234811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3765,7 +3830,7 @@ GameObject:
   - component: {fileID: 1205876837}
   - component: {fileID: 1205876839}
   - component: {fileID: 1205876838}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4385,7 +4450,7 @@ GameObject:
   - component: {fileID: 1533880408}
   - component: {fileID: 1533880407}
   - component: {fileID: 1533880406}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4662,7 +4727,7 @@ GameObject:
   - component: {fileID: 1576783629}
   - component: {fileID: 1576783628}
   - component: {fileID: 1576783627}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5060,7 +5125,7 @@ GameObject:
   - component: {fileID: 1629408067}
   - component: {fileID: 1629408066}
   - component: {fileID: 1629408065}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5320,7 +5385,7 @@ GameObject:
   - component: {fileID: 1633178636}
   - component: {fileID: 1633178638}
   - component: {fileID: 1633178637}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RRayInterractor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5605,9 +5670,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
+  health: 0
   playerName: 
   invincible: 0
   healthBar: {fileID: 0}
+  timeSinceHit: 10
+  invincibilityTime: 2
+  weaponInventory: {fileID: 0}
 --- !u!114 &1668806278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5634,7 +5703,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1730799454
 PrefabInstance:
@@ -5796,6 +5865,46 @@ PrefabInstance:
     - target: {fileID: 7329612331886821534, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
       propertyPath: m_Name
       value: Weapon Select Menu L
+      objectReference: {fileID: 0}
+    - target: {fileID: 7329612331886821534, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950302202682153414, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950302202767408351, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950302202833091118, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950302202858080311, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950302202941962799, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950302203106401443, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950302203714685002, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950302203959871935, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950302204094193914, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2eb2ec21adf68943b704a4ecd02a8cd, type: 3}
@@ -6378,7 +6487,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2081899846}
   - component: {fileID: 786669721}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Camera Offset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6631,7 +6740,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2137915775}
   - component: {fileID: 2137915776}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: XR Rig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6646,12 +6755,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137915774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.842, z: -2.532}
+  m_LocalPosition: {x: -1.4, y: -0.842, z: -1.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2081899846}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2137915776
 MonoBehaviour:
@@ -7264,7 +7373,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5206597693357550593, guid: 8f64fd2971643b841af9ee3aa3a451d1, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5206597693357550593, guid: 8f64fd2971643b841af9ee3aa3a451d1, type: 3}
       propertyPath: m_LocalPosition.x
