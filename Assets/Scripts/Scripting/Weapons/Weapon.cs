@@ -53,8 +53,8 @@ public class Weapon : MonoBehaviour
 
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
     {
-        if (isSummonable)
-            AttractWeapon(additionalFactor, targetTransform);
+        // if (isSummonable)
+        //     AttractWeapon(additionalFactor, targetTransform);
     }
 
     public void onAddToInventory(WeaponInventory wi)
@@ -90,6 +90,11 @@ public class Weapon : MonoBehaviour
     {
         isHeld = true;
         setHand((Hand)h);
+    }
+
+    public virtual void GrabHeldFunction(float additionalFactor, Transform targetTransform) {
+        if (isSummonable)
+            AttractWeapon(additionalFactor, targetTransform);
     }
 
     public virtual void OnReleaseFunction(int h)
