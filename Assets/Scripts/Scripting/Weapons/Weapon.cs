@@ -7,9 +7,6 @@ using UnityEngine.XR;
 
 public class Weapon : MonoBehaviour
 {
-    //Visuals
-    public Color primaryColor;
-    public Color accentColor;
 
     public Sprite weaponImage;
     public string weaponName;
@@ -22,15 +19,10 @@ public class Weapon : MonoBehaviour
     public Rigidbody weaponRB;
 
     public Transform weaponTransform;
-    //public Transform weaponTransformLeft;
-    //public Transform weaponTransformRight;
     public List<Transform> transforms = new List<Transform>();
-
     public bool isHeld;
 
     public bool isWeaponEnabled = true; //set this to false to disable the weapon (ie for tutorial or lobby)
-
-    public GameObject parentGameObject; //an empty gameobject with uniform scaling that serves as the default parent
 
     public float diskReturnForceMagnitude = 5f;
     public float stoppingFactorMultiplier = 0.2f;
@@ -38,13 +30,7 @@ public class Weapon : MonoBehaviour
     public Vector3 startLoc;
     public WeaponInventory weaponInventory;
 
-    private void Awake() {
-        //this.enabled = false;
-    }
-
     private void Start() {
-        parentGameObject = GameObject.FindGameObjectsWithTag("Empty Parent")[0];
-        this.gameObject.transform.SetParent(parentGameObject.transform);
         if (startLoc == null)
             startLoc = this.gameObject.transform.position;
         if (weaponInventory != null)
@@ -122,9 +108,6 @@ public class Weapon : MonoBehaviour
     }
 
 
-    //because weapon references are stored in the inventory script, actually destorying the weapon
-    //gameobjects would be a pain to deal with. Instead, the weapon is disabled, and then can
-    //be re-enabled later 
     //because weapon references are stored in the inventory script, actually destorying the weapon
     //gameobjects would be a pain to deal with. Instead, the weapon is disabled, and then can
     //be re-enabled later 
