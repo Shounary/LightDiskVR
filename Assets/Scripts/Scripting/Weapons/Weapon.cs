@@ -100,7 +100,7 @@ public class Weapon : MonoBehaviour
     public virtual void OnReleaseFunction(int h)
     {
         isHeld = false;
-        if (weaponInventory != null)
+        if(weaponInventory.weaponSelectScreens.Count > 0 && weaponInventory != null)
             weaponInventory.closeSelectUI(hand, false);
     }
 
