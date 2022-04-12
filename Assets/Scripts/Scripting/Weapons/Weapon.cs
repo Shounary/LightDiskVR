@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
 
     public bool isWeaponEnabled = true; //set this to false to disable the weapon (ie for tutorial or lobby)
 
-    public float diskReturnForceMagnitude = 5f;
+    public float diskReturnForceMagnitude = 10f;
     public float stoppingFactorMultiplier = 0.2f;
 
     public Vector3 startLoc;
@@ -37,11 +37,7 @@ public class Weapon : MonoBehaviour
             playerName = weaponInventory.playerName;
     }
 
-    public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
-    {
-        // if (isSummonable)
-        //     AttractWeapon(additionalFactor, targetTransform);
-    }
+    public virtual void TriggerFunction(float additionalFactor, Transform targetTransform) { }
 
     public void onAddToInventory(WeaponInventory wi)
     {

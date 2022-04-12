@@ -8,9 +8,6 @@ using Unity.Netcode;
 
 public class NetworkWeapon : NetworkBehaviour
 {
-    //Visuals
-    public Color primaryColor;
-    public Color accentColor;
 
     public Sprite weaponImage;
     public string weaponName;
@@ -23,48 +20,33 @@ public class NetworkWeapon : NetworkBehaviour
     public Rigidbody weaponRB;
 
     public Transform weaponTransform;
-    //public Transform weaponTransformLeft;
-    //public Transform weaponTransformRight;
     public List<Transform> transforms = new List<Transform>();
-
     public bool isHeld;
 
     public bool isWeaponEnabled = true; //set this to false to disable the weapon (ie for tutorial or lobby)
 
-    public GameObject parentGameObject; //an empty gameobject with uniform scaling that serves as the default parent
-
-    public float diskReturnForceMagnitude = 5f;
+    public float diskReturnForceMagnitude = 10f;
     public float stoppingFactorMultiplier = 0.2f;
 
     public Vector3 startLoc;
     public WeaponInventory weaponInventory;
 
-    private void Awake() {
-        //this.enabled = false;
-    }
-
     private void Start() {
         if (IsClient && !IsOwner) {
             this.enabled = false;
         } else {
-            Setup();
+            SetUp();
         }
     }
 
-    private void Setup() {
-        parentGameObject = GameObject.FindGameObjectsWithTag("Empty Parent")[0];
-        this.gameObject.transform.SetParent(parentGameObject.transform);
+    private void SetUp() {
         if (startLoc == null)
             startLoc = this.gameObject.transform.position;
         if (weaponInventory != null)
             playerName = weaponInventory.playerName;
     }
 
-    public virtual void TriggerFunction(float additionalFactor, Transform targetTransform)
-    {
-        // if (isSummonable)
-        //     AttractWeapon(additionalFactor, targetTransform);
-    }
+    public virtual void TriggerFunction(float additionalFactor, Transform targetTransform) { }
 
     public void onAddToInventory(WeaponInventory wi)
     {
@@ -137,9 +119,6 @@ public class NetworkWeapon : NetworkBehaviour
     }
 
 
-    //because weapon references are stored in the inventory script, actually destorying the weapon
-    //gameobjects would be a pain to deal with. Instead, the weapon is disabled, and then can
-    //be re-enabled later 
     //because weapon references are stored in the inventory script, actually destorying the weapon
     //gameobjects would be a pain to deal with. Instead, the weapon is disabled, and then can
     //be re-enabled later 
