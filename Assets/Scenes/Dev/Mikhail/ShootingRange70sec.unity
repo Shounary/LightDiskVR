@@ -9988,6 +9988,14 @@ PrefabInstance:
       propertyPath: damageTakePerDiskHit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 826765235518563429, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 826765235518563450, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 826765235675215950, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
