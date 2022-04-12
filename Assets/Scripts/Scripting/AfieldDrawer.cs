@@ -7,6 +7,8 @@ using UnityEngine.InputSystem.XR;
 
 public class AfieldDrawer : Weapon
 {
+    public float[] teleportBoundsX = {-5f, 5f};
+    public float[] teleportBoundsZ = {-6.5f, 19.5f};
     public GameObject aFieldLineRendererGO;
     public float timeBeforeButtonReleaseRegisters = 0.3f;
     public float sphereColliderRadius = 0.18f;
@@ -90,6 +92,7 @@ public class AfieldDrawer : Weapon
     public void CreateAFieldFromDrawing() {
         AccelerationField accelerationField = lineRendererGOPointer.GetComponent<AccelerationField>();
         accelerationField.SetForceVector(CalculateForceVector());
+        accelerationField.SetBounds(teleportBoundsX, teleportBoundsZ);
 
         Vector3[] fieldPoints = new Vector3[lineRend.positionCount];
         lineRend.GetPositions(fieldPoints);
