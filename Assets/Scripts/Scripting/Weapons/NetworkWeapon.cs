@@ -124,10 +124,10 @@ public class NetworkWeapon : NetworkBehaviour
         Vector3 parallel = additionalFactor * diskReturnForceMagnitude * Time.deltaTime * targetDirection;
 
         if (angle > 5) {
-            weaponRB.AttractWeaponServerRpc(normal);
+            AttractWeaponServerRpc(normal);
         }
 
-        weaponRB.AttractWeaponServerRpc(parallel);
+        AttractWeaponServerRpc(parallel);
     }
 
     [ServerRpc]
