@@ -15,8 +15,8 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
     [SerializeField]
     private Text joinCode;
 
-    [SerializeField]
-    GameObject GrabDemoDiskPrototype;
+    // [SerializeField]
+    // GameObject GrabDemoDiskPrototype;
 
     private void Start()
     {
@@ -49,8 +49,9 @@ public class StartMenuUIFlat : Singleton<StartMenuUIFlat>
                 {
                     Debug.LogError("No XR Rig Attached");
                 }
-                var disk = Instantiate(GrabDemoDiskPrototype, new Vector3(0f, 0.5f, 3f), Quaternion.identity);
-                disk.GetComponent<NetworkObject>().Spawn(); //.SpawnWithOwnership
+               
+                // var disk = Instantiate(GrabDemoDiskPrototype, new Vector3(0f, 0.5f, 3f), Quaternion.identity);
+                // disk.GetComponent<NetworkObject>().Spawn(); //.SpawnWithOwnership
 
                 Debug.Log("Host started at " + hostData.IPv4Address + ":" + hostData.Port + " with join code " + hostData.JoinCode);
             } else

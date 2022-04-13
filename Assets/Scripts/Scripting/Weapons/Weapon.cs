@@ -32,7 +32,7 @@ public class Weapon : MonoBehaviour
 
     public bool FirstWeaponSummon;
 
-    private void Start() {
+    protected void Start() {
         if (startLoc == null)
             startLoc = this.gameObject.transform.position;
         if (weaponInventory != null)
