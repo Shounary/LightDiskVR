@@ -30,6 +30,8 @@ public class Weapon : MonoBehaviour
     public Vector3 startLoc;
     public WeaponInventory weaponInventory;
 
+    public bool FirstWeaponSummon;
+
     private void Start() {
         if (startLoc == null)
             startLoc = this.gameObject.transform.position;
@@ -89,6 +91,10 @@ public class Weapon : MonoBehaviour
 
     //when called, the weapon will be attracted to the target transfrom
     public void AttractWeapon(float additionalFactor, Transform targetTransform) {
+        if (!FirstWeaponSummon) {
+            EnableWeapon(targetTransform.position);
+            FirstWeaponSummon = true;
+        }
         Vector3 targetDirection = Vector3.Normalize(targetTransform.position - weaponRB.position);
         Vector3 initialDirection = Vector3.Normalize(weaponRB.velocity);
         float angle = Vector3.Angle(targetDirection, initialDirection);
