@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class BaseAccessor : NetworkBehaviour
 {
@@ -32,7 +33,7 @@ public class BaseAccessor : NetworkBehaviour
         };
     }
 
-    [ServerRpc(RequireOwnership=false)]
+    [ServerRpc(RequireOwnership = false)]
     private void UpdatePlayerListTextServerRPC()
     {
         var thisObj = GetComponent<NetworkObject>();
@@ -74,9 +75,9 @@ public class BaseAccessor : NetworkBehaviour
     }
 
     #region MATCH_CONFIG
-    protected NetworkVariable<int> 
-        ArenaID = new NetworkVariable<int>(0), 
-        MaxTeams = new NetworkVariable<int>(1), 
+    protected NetworkVariable<int>
+        ArenaID = new NetworkVariable<int>(0),
+        MaxTeams = new NetworkVariable<int>(1),
         WinConditionIndex = new NetworkVariable<int>(0);
     public MatchConfig MatchConfig { get; protected set; }
 
@@ -102,7 +103,7 @@ public class BaseAccessor : NetworkBehaviour
         }, 0.1f);
     }
 
-    [ServerRpc(RequireOwnership =false)]
+    [ServerRpc(RequireOwnership = false)]
     public void MatchConfigServerRpc()
     {
         Debug.Log($"Host {NetworkManager.Singleton.LocalClientId} entered match config");
@@ -192,7 +193,7 @@ public class BaseAccessor : NetworkBehaviour
         };
     }
 
-    [ServerRpc(RequireOwnership =false)]
+    [ServerRpc(RequireOwnership = false)]
     public void PlayerConfigEnterServerRPC()
     {
         m_GameStage.Value = GameStage.PlayerConfig;
@@ -271,10 +272,10 @@ public class BaseAccessor : NetworkBehaviour
     {
         PrintPlayerConfig();
 
-        if (IsServer && IsOwner){
+        if (IsServer && IsOwner) {
             SceneManager.activeSceneChanged += EnterMatchSceneServerPath;
         }
-        
+
         string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
         NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         Debug.Log($"Entering the match in {sceneName} at build index {MatchConfig.Arena.BuildIndex}");
@@ -286,23 +287,38 @@ public class BaseAccessor : NetworkBehaviour
         //SpawnXRRigs();
         SceneManager.activeSceneChanged -= EnterMatchSceneServerPath;
 
+        // spawn all weapons
+        foreach (var c in NetworkManager.ConnectedClientsList)
+        {
+            Debug.Log($"Spawning weapons for {c.ClientId}");
+
+            var acc = c.PlayerObject.GetComponent<BaseAccessor>();
+
+            SpawnWeapon(acc.PlayerConfig.WeaponIndex1, acc.transform);
+            SpawnWeapon(acc.PlayerConfig.WeaponIndex2, acc.transform);
+        }
+
         // game ending rule
         StartCoroutine(CheckMatchTerminate(MatchConfig.WinCondition));
+    }
+
+    void SpawnWeapon(int index, Transform t)
+    {
+        if (index != 0)
+        {
+            var w = PlayerConfig.Weapons[index];
+            var obj = Instantiate(w, t.position + t.forward * 0.5f + Random.Range(-1, 1) * t.right - t.up * 0.3f, t.rotation);
+            obj.GetComponent<NetworkObject>().Spawn();
+
+            // TODO: is there anything to set up?
+            // var ww = obj.GetComponent<Weapon>();
+        }
     }
 
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
     {
         transform.position = PlayerConfig.SpawnPosition.Value;
-        Debug.Log($"SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
-        Debug.Log($"PLEASE ADD CODE TO SPAWN {PlayerConfig.InitialWeapon1} AND {PlayerConfig.InitialWeapon2}");
-        var inv = Player.GetComponent<WeaponInventory>();
-        if (inv != null)
-        {
-            inv.weaponList = new GameObject[] { PlayerConfig.InitialWeapon1, PlayerConfig.InitialWeapon2 }
-            .Select(pf => pf.GetComponent<Weapon>()).ToList();
-            inv.activeWeapons = inv.weaponList;
-            inv.activateWeapons();
-        }
+        Debug.Log($"PLAYER {NetworkManager.LocalClientId} SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
 

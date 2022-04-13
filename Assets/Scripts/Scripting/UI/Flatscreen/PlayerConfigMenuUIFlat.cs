@@ -39,6 +39,8 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
             ReadyText.text = "I'm Ready";
         }
 
+        PlayerConfig.Weapons =AvailableWeapons;
+
         ReadyButton.onClick.RemoveAllListeners();
         ReadyButton.onClick.AddListener(delegate
         {
@@ -49,11 +51,6 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
             {
                 accessor.SetLockServerRpc(!accessor.Lock.Value);
             }
-            accessor.PlayerConfig.InitialWeapon1 = AvailableWeapons[accessor.PlayerConfig.WeaponIndex1];
-            accessor.PlayerConfig.InitialWeapon2 = AvailableWeapons[accessor.PlayerConfig.WeaponIndex2];
-
-            print(accessor.PlayerConfig.InitialWeapon1);
-            print(accessor.PlayerConfig.InitialWeapon2);
         });
 
         WeaponLeft1.onClick.RemoveAllListeners();
@@ -85,7 +82,9 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
 
     private void Update()
     {
-        m_Weapon1.text = AvailableWeapons[owner.PlayerConfig.WeaponIndex1].GetComponent<Weapon>().weaponName;
-        m_Weapon2.text = AvailableWeapons[owner.PlayerConfig.WeaponIndex2].GetComponent<Weapon>().weaponName;
+        var w1 = AvailableWeapons[owner.PlayerConfig.WeaponIndex1];
+        var w2 = AvailableWeapons[owner.PlayerConfig.WeaponIndex2];
+        m_Weapon1.text = w1 == null ? "None" : w1.GetComponent<Weapon>().weaponName;
+        m_Weapon2.text = w2 == null ? "None" : w2.GetComponent<Weapon>().weaponName;
     }
 }

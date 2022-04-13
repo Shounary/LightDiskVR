@@ -29,5 +29,6 @@ public class PlayerConfig
 
     public int WeaponIndex1;
     public int WeaponIndex2;
-    public GameObject InitialWeapon1, InitialWeapon2;
+
+    public static GameObject[] Weapons;
 }

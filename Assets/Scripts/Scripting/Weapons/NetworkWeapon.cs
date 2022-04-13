@@ -3,71 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using Unity.Netcode;
+using Unity.Netcode.Samples;
 
-
-
-public class NetworkWeapon : NetworkBehaviour
+public class NetworkWeapon : Weapon
 {
+    NetworkObject NetworkObject;
+    ClientNetworkTransform WeaponCNT;
 
-    public Sprite weaponImage;
-    public string weaponName;
-    public string weaponDescription;
+    protected new void Start()
+    {
+        NetworkObject = GetComponent<NetworkObject>();
+        WeaponCNT = GetComponent<ClientNetworkTransform>();
 
-    public int damage;
-    public bool isSummonable;
-    public string playerName;
-    public Hand hand;
-    public Rigidbody weaponRB;
-
-    public Transform weaponTransform;
-    public List<Transform> transforms = new List<Transform>();
-    public bool isHeld;
-
-    public bool isWeaponEnabled = true; //set this to false to disable the weapon (ie for tutorial or lobby)
-
-    public float diskReturnForceMagnitude = 10f;
-    public float stoppingFactorMultiplier = 0.2f;
-
-    public Vector3 startLoc;
-    public WeaponInventory weaponInventory;
-
-    private void Start() {
-        if (IsClient && !IsOwner) {
+        if (!NetworkObject.IsOwner) {
             this.enabled = false;
         } else {
-            SetUp();
+            base.Start();
         }
     }
 
-    private void SetUp() {
-        if (startLoc == null)
-            startLoc = this.gameObject.transform.position;
-        if (weaponInventory != null)
-            playerName = weaponInventory.playerName;
-    }
+    public override void TriggerFunction(float additionalFactor, Transform targetTransform) { }
 
-    public virtual void TriggerFunction(float additionalFactor, Transform targetTransform) { }
-
-    public void onAddToInventory(WeaponInventory wi)
+    public new void onAddToInventory(WeaponInventory wi)
     {
         weaponInventory = wi;
         weaponName = weaponName.Replace('_', '\n');
         playerName = wi.playerName;
     }
 
-    public virtual void MainButtonFunction() {
+    public override void MainButtonFunction() {
         EnableWeapon(startLoc);
     }
 
-    public virtual void SecondaryButtonFunction() { }
+    public override void SecondaryButtonFunction() { }
 
-
-    public void setHand(int h)
+    public new void setHand(int h)
     {
         setHand((Hand)h);
     }
 
-    public void setHand(Hand h)
+    public new void setHand(Hand h)
     {
         hand = h;
         if (transforms.Count > 0)
@@ -77,18 +52,18 @@ public class NetworkWeapon : NetworkBehaviour
         }
     }
 
-    public virtual void OnGrabFunction(int h)
+    public override void OnGrabFunction(int h)
     {
         isHeld = true;
         setHand((Hand)h);
     }
 
-    public virtual void GrabHeldFunction(float additionalFactor, Transform targetTransform) {
+    public override void GrabHeldFunction(float additionalFactor, Transform targetTransform) {
         if (isSummonable)
             AttractWeapon(additionalFactor, targetTransform);
     }
 
-    public virtual void OnReleaseFunction(int h)
+    public override void OnReleaseFunction(int h)
     {
         isHeld = false;
         if(weaponInventory.weaponSelectScreens.Count > 0 && weaponInventory != null)
@@ -97,7 +72,12 @@ public class NetworkWeapon : NetworkBehaviour
 
 
     //when called, the weapon will be attracted to the target transfrom
-    public void AttractWeapon(float additionalFactor, Transform targetTransform) {
+    public new void AttractWeapon(float additionalFactor, Transform targetTransform) {
+        if (!FirstWeaponSummon)
+        {
+            EnableWeapon(targetTransform.position);
+            FirstWeaponSummon = true;
+        }
         Vector3 targetDirection = Vector3.Normalize(targetTransform.position - weaponRB.position);
         Vector3 initialDirection = Vector3.Normalize(weaponRB.velocity);
         float angle = Vector3.Angle(targetDirection, initialDirection);
@@ -105,7 +85,8 @@ public class NetworkWeapon : NetworkBehaviour
         Vector3 normal = additionalFactor * stoppingFactorMultiplier * diskReturnForceMagnitude * Time.deltaTime * (-1) * Vector3.Magnitude(weaponRB.velocity) * Mathf.Abs(Mathf.Sin(Mathf.Abs(angle))) * initialDirection;
         Vector3 parallel = additionalFactor * diskReturnForceMagnitude * Time.deltaTime * targetDirection;
 
-        if (angle > 5) {
+        if (angle > 5)
+        {
             AttractWeaponServerRpc(normal);
         }
 
@@ -118,31 +99,33 @@ public class NetworkWeapon : NetworkBehaviour
         weaponRB.AddForce(f, ForceMode.VelocityChange);
     }
 
-
     //because weapon references are stored in the inventory script, actually destorying the weapon
     //gameobjects would be a pain to deal with. Instead, the weapon is disabled, and then can
     //be re-enabled later 
-    public void DestroyWeapon()
+    public new void DestroyWeapon()
     {
         //play disintegration animation (implement later)
         this.gameObject.SetActive(false);
         weaponRB.velocity = Vector3.zero;
+        DestroyWeaponServerRpc();
     }
 
-    public virtual void MainButtonReleaseFunction() { }
+    [ServerRpc]
+    void DestroyWeaponServerRpc()
+    {
+        NetworkObject.Despawn(true);
+    }
+
+    public override void MainButtonReleaseFunction() { }
 
     //when a weapon is disabled by being swapped with a different weapon
-    public void DeactivateWeapon()
+    public new void DeactivateWeapon()
     {
         DestroyWeapon();
     }
 
-    public void EnableWeapon() {
-        EnableWeapon(startLoc);
-    }
-
     //enabled the weapon and moves it to the given postiion
-    public void EnableWeapon(Vector3 t)
+    public new void EnableWeapon(Vector3 t)
     {
         this.gameObject.transform.position = t;
         this.gameObject.SetActive(true);

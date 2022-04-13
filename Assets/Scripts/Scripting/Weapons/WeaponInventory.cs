@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class WeaponInventory : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class WeaponInventory : MonoBehaviour
             selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
             selectScripts.Add(weaponSelectScreens[1].GetComponent<WeaponSelectUiController>());
         }
-        foreach (Weapon w in weaponList)
+        foreach (var w in weaponList.Where(x => x != null))
             w.onAddToInventory(this);
     }
 
