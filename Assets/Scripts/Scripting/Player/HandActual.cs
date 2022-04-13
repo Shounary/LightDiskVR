@@ -41,16 +41,15 @@ public class HandActual : MonoBehaviour
             //targetDevice = inputDevices[0];
             //Instantiate(handPrefab, transform);
         }
-        weaponInventory = GetComponentInParent<WeaponInventory>();
         //animator = spawnedModel.GetComponent<Animator>();
-        weaponInventory.setActiveWeapon(weaponInventory.weaponList[(int) hand], hand, this.gameObject.transform.position);
     }
 
     void Update() {
-        /*if(weaponInventory == null)
+        if(weaponInventory == null)
         {
             weaponInventory = GetComponentInParent<WeaponInventory>();
-        }*/
+           // weaponInventory.weaponList[(int) hand].EnableWeapon(this.gameObject.transform.position);
+        }
         weapon = weaponInventory.getActiveWeapon(hand);
         //UpdateAnimation();
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
