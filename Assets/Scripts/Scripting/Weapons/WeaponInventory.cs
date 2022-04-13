@@ -16,18 +16,8 @@ public class WeaponInventory : MonoBehaviour
     public List<Weapon>weaponSwapList = new List<Weapon>();
     public bool[] isSelectMenuEnabled = {false, false};
 
-    /*public HandActual leftHA;
-    public HandActual rightHA;
-
-
-    private void Update() {
-        if(leftHA =)
-    }*/
     private void Awake() {
         playerName = generateRandomName();
-    }
-    private void Start() {
-        //activateWeapons();
         if(weaponSelectScreens.Count > 0) 
         {
             selectScripts.Add(weaponSelectScreens[0].GetComponent<WeaponSelectUiController>());
@@ -35,7 +25,6 @@ public class WeaponInventory : MonoBehaviour
         }
         foreach (Weapon w in weaponList)
             w.onAddToInventory(this);
-                //activateWeapons
     }
 
     private int mod(int num1, int num2)
@@ -72,8 +61,6 @@ public class WeaponInventory : MonoBehaviour
         //swap active weapon if held
         if (tryReplace && activeWeapons[(int) h].isHeld) 
         {
-            Debug.Log("Amogus");
-            //swapActiveWeapon(activeWeapons[(int) h], selectScripts[(int) h].selectedWeapon);
             swapActiveWeapon(activeWeapons[(int) h], weaponSwapList[1]);
         }
             
@@ -97,16 +84,17 @@ public class WeaponInventory : MonoBehaviour
         setActiveWeapon(weaponList[1], Hand.RIGHT);
     }
 
-
-    public void setActiveWeapon(Weapon weapon, Hand h)
-    {
-        Debug.Log((int) h);
-        Debug.Log(activeWeapons);
-        //Debug.Log(activeWeapons[0]);
+    public void setActiveWeapon (Weapon weapon, Hand h, Vector3 activeLoc) {
         activeWeapons[(int) h] = weapon;
         weapon.setHand(h);
-        weapon.EnableWeapon(weaponSelectScreens[(int) h].transform.position);
-        //weapon.playerName = playerName;
+        weapon.EnableWeapon(activeLoc);
+    }
+    public void setActiveWeapon(Weapon weapon, Hand h)
+    {
+        if(weaponSelectScreens.Count > 0)
+            setActiveWeapon(weapon, h, weaponSelectScreens[(int) h].transform.position);
+        else
+            Debug.Log("must have swap inventory enabled to call setActiveWeapon with no location");
     }
 
     public void CallGrabEventOnActiveWeapon(int h)
