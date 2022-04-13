@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using Unity.Netcode;
 
 
 
-public class Weapon : MonoBehaviour
+public class NetworkWeapon : NetworkBehaviour
 {
 
     public Sprite weaponImage;
@@ -31,6 +32,14 @@ public class Weapon : MonoBehaviour
     public WeaponInventory weaponInventory;
 
     private void Start() {
+        if (IsClient && !IsOwner) {
+            this.enabled = false;
+        } else {
+            SetUp();
+        }
+    }
+
+    private void SetUp() {
         if (startLoc == null)
             startLoc = this.gameObject.transform.position;
         if (weaponInventory != null)
@@ -97,10 +106,16 @@ public class Weapon : MonoBehaviour
         Vector3 parallel = additionalFactor * diskReturnForceMagnitude * Time.deltaTime * targetDirection;
 
         if (angle > 5) {
-            weaponRB.AddForce(normal, ForceMode.VelocityChange);
+            AttractWeaponServerRpc(normal);
         }
 
-        weaponRB.AddForce(parallel, ForceMode.VelocityChange);
+        AttractWeaponServerRpc(parallel);
+    }
+
+    [ServerRpc]
+    public void AttractWeaponServerRpc(Vector3 f)
+    {
+        weaponRB.AddForce(f, ForceMode.VelocityChange);
     }
 
 
