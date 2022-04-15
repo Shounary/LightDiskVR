@@ -350,7 +350,6 @@ public class BaseAccessor : NetworkBehaviour
         Dictionary<ulong, bool> personalResults = new Dictionary<ulong, bool>(NetworkManager.Singleton.ConnectedClients.Count);
         while(IsClient && isActiveAndEnabled)
         {
-            Debug.Log("Checking for win condition");
             if (cFunc()) // check overall game result
             {
                 // assign personal results
