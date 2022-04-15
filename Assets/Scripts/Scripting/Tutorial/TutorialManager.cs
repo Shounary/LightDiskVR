@@ -49,13 +49,7 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Get controller input
-
-
-
-
-
-        
+        if(Time.timeScale == 0) return;
         if(currentSegment == null) //if there is no active segment, move to the next one
         {
             StartNextSegment();

@@ -38,6 +38,7 @@ public class TutorialSegment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Time.timeScale == 0) return;
         if(useWaitTime && enabled)
             waitTime -= Time.deltaTime;
         if(waitTime <= 0.0)

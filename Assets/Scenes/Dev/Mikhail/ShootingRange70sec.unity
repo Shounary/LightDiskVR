@@ -5541,6 +5541,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304310559}
   m_Mesh: {fileID: 4300002, guid: ab052a62dbb927449b02d208af93fe2f, type: 3}
+--- !u!114 &1334008100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5848024665461165938, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+  m_PrefabInstance: {fileID: 826765235343951703}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1338566798
 GameObject:
   m_ObjectHideFlags: 0
@@ -9913,7 +9924,7 @@ PrefabInstance:
     - target: {fileID: 2536606962890955415, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 826765235343951705}
+      objectReference: {fileID: 1334008100}
     - target: {fileID: 2536606962890955415, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
       propertyPath: cameraRigidBody
       value: 
@@ -9933,17 +9944,6 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 826765235043826429, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
   m_PrefabInstance: {fileID: 826765235343951703}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &826765235343951705 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5848024665461165938, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
-  m_PrefabInstance: {fileID: 826765235343951703}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &826765235343951706 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1368997399688829897, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
