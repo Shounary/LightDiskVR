@@ -75,6 +75,11 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 1916699014, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
   m_PrefabInstance: {fileID: 3917178230228151466}
   m_PrefabAsset: {fileID: 0}
+--- !u!108 &2723248892635517908 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 1411439400723709822, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+  m_PrefabInstance: {fileID: 3917178230228151466}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &-7317799844147977136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd99ead27abf79a428aab0393dbee0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CenterGlow: {fileID: 0}
+  CenterGlow: {fileID: 2723248892635517908}
 --- !u!114 &5815914746614232698
 MonoBehaviour:
   m_ObjectHideFlags: 0
