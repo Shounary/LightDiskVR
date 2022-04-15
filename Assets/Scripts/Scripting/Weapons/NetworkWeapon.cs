@@ -14,10 +14,12 @@ public class NetworkWeapon : Weapon
 
     private new void Start()
     {
-        base.Start();
         if (!NetworkObject.IsOwner)
         {
             this.enabled = false;
+        } else
+        {
+            base.Start();
         }
     }
 
@@ -34,17 +36,6 @@ public class NetworkWeapon : Weapon
 
     public override void SecondaryButtonFunction() { }
 
-    public override void OnGrabFunction(int h)
-    {
-        isHeld = true;
-        setHand((Hand)h);
-    }
-
-    public override void GrabHeldFunction(float additionalFactor, Transform targetTransform) {
-        if (isSummonable)
-            AttractWeapon(additionalFactor, targetTransform);
-    }
-
     public override void OnReleaseFunction(int h)
     {
         isHeld = false;
@@ -52,14 +43,9 @@ public class NetworkWeapon : Weapon
             weaponInventory.closeSelectUI(hand, false);
     }
 
-
     //when called, the weapon will be attracted to the target transfrom
     public new void AttractWeapon(float additionalFactor, Transform targetTransform) {
-        if (!FirstWeaponSummon)
-        {
-            EnableWeapon(targetTransform.position);
-            FirstWeaponSummon = true;
-        }
+
         Vector3 targetDirection = Vector3.Normalize(targetTransform.position - weaponRB.position);
         Vector3 initialDirection = Vector3.Normalize(weaponRB.velocity);
         float angle = Vector3.Angle(targetDirection, initialDirection);
@@ -86,9 +72,7 @@ public class NetworkWeapon : Weapon
     //be re-enabled later 
     public new void DestroyWeapon()
     {
-        //play disintegration animation (implement later)
-        this.gameObject.SetActive(false);
-        weaponRB.velocity = Vector3.zero;
+        base.DestroyWeapon();
         DestroyWeaponServerRpc();
     }
 
@@ -99,10 +83,4 @@ public class NetworkWeapon : Weapon
     }
 
     public override void MainButtonReleaseFunction() { }
-
-    //when a weapon is disabled by being swapped with a different weapon
-    public new void DeactivateWeapon()
-    {
-        DestroyWeapon();
-    }
 }
