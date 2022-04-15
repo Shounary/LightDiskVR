@@ -2773,13 +2773,17 @@ PrefabInstance:
       propertyPath: weaponImage
       value: 
       objectReference: {fileID: -8053190852583139176, guid: 58aa12c5c7a19e74bbe8b2d8325d47c7, type: 3}
+    - target: {fileID: 7044476037423635692, guid: 98d93217c6c2bd943a03255f0c25b9df, type: 3}
+      propertyPath: isSummonable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7044476037423635693, guid: 98d93217c6c2bd943a03255f0c25b9df, type: 3}
       propertyPath: m_Name
       value: Shuriken
       objectReference: {fileID: 0}
     - target: {fileID: 7044476037423635693, guid: 98d93217c6c2bd943a03255f0c25b9df, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6200600484467940339, guid: 98d93217c6c2bd943a03255f0c25b9df, type: 3}
