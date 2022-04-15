@@ -48,14 +48,22 @@ public class PlayerStats : MonoBehaviour
         timeSinceHit += Time.deltaTime;
     }
 
-    public virtual void takeDamage(int damage) {
-        if (timeSinceHit >= invincibilityTime ) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
+    protected int calculateDamage(int damage)
+    {
+        if (timeSinceHit >= invincibilityTime)
+        { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
             timeSinceHit = 0.0f;
-            if(!invincible)
+            if (!invincible)
             {
-                health = Mathf.Max(0, health - damage);
+                return Mathf.Max(0, health - damage);
             }
         }
+        return health;
+    }
+
+    public virtual void takeDamage(int damage) {
+
+        health = calculateDamage(damage);
 
         healthBar.displayHealth(health);
 

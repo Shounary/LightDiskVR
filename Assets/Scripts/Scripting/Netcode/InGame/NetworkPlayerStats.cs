@@ -13,7 +13,8 @@ public class NetworkPlayerStats : PlayerStats
 
     public override void takeDamage(int damage)
     {
-        base.takeDamage(damage);
+        health = calculateDamage(damage);
+        healthBar.displayHealth(health);
         NetUtils.NetworkVRPlayer.SetHealthServerRpc(health);
     }
 }
