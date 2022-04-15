@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = !isPaused;
     }
 
-    void Quit()
+    public void Quit()
     {
         Time.timeScale = 1;
         SceneManager.activeSceneChanged += Disconnect;

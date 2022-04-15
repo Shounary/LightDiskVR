@@ -8,12 +8,13 @@ public class NetworkPlayerStats : PlayerStats
     protected new void Start()
     {
         base.Start();
-        NetUtils.NetworkVRPlayer.health.Value = health;
+        NetUtils.NetworkVRPlayer.SetHealthServerRpc(health);
     }
 
     public override void takeDamage(int damage)
     {
-        base.takeDamage(damage);
-        NetUtils.NetworkVRPlayer.health.Value = health;
+        health = calculateDamage(damage);
+        healthBar.displayHealth(health);
+        NetUtils.NetworkVRPlayer.SetHealthServerRpc(health);
     }
 }

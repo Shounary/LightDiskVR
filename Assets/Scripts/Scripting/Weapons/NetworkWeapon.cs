@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 using Unity.Netcode;
 using Unity.Netcode.Samples;
 
@@ -9,6 +10,7 @@ public class NetworkWeapon : Weapon
 {
     [SerializeField] NetworkObject NetworkObject;
     [SerializeField] ClientNetworkTransform WeaponCNT;
+    [SerializeField] NetworkDisk NetworkDisk; // interface to all RPC calls
 
     public override void TriggerFunction(float additionalFactor, Transform targetTransform) { }
 
@@ -16,7 +18,9 @@ public class NetworkWeapon : Weapon
     {
         if (!NetworkObject.IsOwner)
         {
-            this.enabled = false;
+            //this.enabled = false;
+            XRGrabInteractable interactable = GetComponent<XRGrabInteractable>();
+            interactable.enabled = false;
         } else
         {
             base.Start();
@@ -55,16 +59,10 @@ public class NetworkWeapon : Weapon
 
         if (angle > 5)
         {
-            AttractWeaponServerRpc(normal);
+            NetworkDisk.AttractWeaponServerRpc(normal);
         }
 
-        AttractWeaponServerRpc(parallel);
-    }
-
-    [ServerRpc]
-    public void AttractWeaponServerRpc(Vector3 f)
-    {
-        weaponRB.AddForce(f, ForceMode.VelocityChange);
+        NetworkDisk.AttractWeaponServerRpc(parallel);
     }
 
     //because weapon references are stored in the inventory script, actually destorying the weapon
@@ -73,13 +71,7 @@ public class NetworkWeapon : Weapon
     public new void DestroyWeapon()
     {
         base.DestroyWeapon();
-        DestroyWeaponServerRpc();
-    }
-
-    [ServerRpc]
-    void DestroyWeaponServerRpc()
-    {
-        NetworkObject.Despawn(true);
+        NetworkDisk.DestroyWeaponServerRpc();
     }
 
     public override void MainButtonReleaseFunction() { }
