@@ -95,7 +95,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1662463083666574709
 RectTransform:
   m_ObjectHideFlags: 0
@@ -105,7 +105,7 @@ RectTransform:
   m_GameObject: {fileID: 1662463083666574710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.361}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.00443574, y: 0.00443574, z: 0.00443574}
   m_Children:
   - {fileID: 1662463083438428482}
   - {fileID: 4634855822996924699}
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1662463083666574698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,7 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a30ffaf21e9c94ab3345f71eb847b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variations: []
+  variations:
+  - {fileID: 6044414919554231976}
+  - {fileID: 3640238236933655960}
+  - {fileID: 6778865594673336020}
   scoreText: {fileID: 0}
   ps: {fileID: 0}
   cameraRigidBody: {fileID: 0}
