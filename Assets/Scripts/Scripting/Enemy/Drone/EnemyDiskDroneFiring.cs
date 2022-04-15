@@ -15,6 +15,10 @@ public class EnemyDiskDroneFiring : MonoBehaviour
     public float attackRate = 0.2f;
     public float initialDiskSpeed = 12f;
     public float attackRange = 50f;
+    public float diskLifetime = 2.0f;
+    public float aimDeviationX = 1.0f;
+    public float aimDeviationY = 1.0f;
+    public float aimDeviationZ = 1.0f;
 
     [Header("Other")]
     public LayerMask doNotFireThrough;
@@ -53,8 +57,12 @@ public class EnemyDiskDroneFiring : MonoBehaviour
 
     public void FireDiskStraight(Transform target) {
         enemyDisk = Instantiate(enemyDiskPrefab, firePoint.position, firePoint.rotation);
-        enemyDisk.GetComponent<Rigidbody>().velocity = initialDiskSpeed * Vector3.Normalize(target.position - firePoint.position - new Vector3(0, -Random.Range(-0.5f * target.position.y, -0.15f * target.position.y), 0));
-        Destroy(enemyDisk, 2f);
+        float offsetX = Random.Range(-1 * aimDeviationX, aimDeviationX);
+        float offsetY = Random.Range(-1 * aimDeviationY, aimDeviationY);
+        float offsetZ = Random.Range(-1 * aimDeviationZ, aimDeviationZ);
+        Vector3 offset = new Vector3(offsetX, offsetY, offsetZ);
+        enemyDisk.GetComponent<Rigidbody>().velocity = initialDiskSpeed * (target.position - firePoint.position + offset).normalized;
+        Destroy(enemyDisk, diskLifetime);
     }
 
     private void OnTriggerEnter(Collider other) {
