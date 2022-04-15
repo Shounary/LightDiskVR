@@ -10,7 +10,7 @@ public class NetworkPlayerBody : PlayerBody {
         bool namecheck;
         if (w is NetworkWeapon)
         {
-            namecheck = !w.GetComponent<NetworkObject>().IsOwner && NetUtils.BaseAccessor.WeaponInventory.weaponList.Contains(w);
+            namecheck = !w.GetComponent<NetworkObject>().IsOwner && !NetUtils.BaseAccessor.WeaponInventory.weaponList.Contains(w);
 
             if (w != null && namecheck && intMaskList.Contains(1 << other.gameObject.layer))
                 ps.takeDamage(w.damage);
