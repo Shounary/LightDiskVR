@@ -65,14 +65,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3087088235417820408, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
   m_PrefabInstance: {fileID: 3917178230228151466}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2518638087314808368 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1490519023632216730, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
-  m_PrefabInstance: {fileID: 3917178230228151466}
-  m_PrefabAsset: {fileID: 0}
 --- !u!54 &3917178230999280940 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 1916699014, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+  m_PrefabInstance: {fileID: 3917178230228151466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8829490612180838983 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5536113849709299437, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
   m_PrefabInstance: {fileID: 3917178230228151466}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &-7317799844147977136
@@ -91,19 +91,6 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &1721754336975298225
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2056762653564055634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd99ead27abf79a428aab0393dbee0fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CenterGlow: {fileID: 0}
 --- !u!114 &5815914746614232698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,7 +111,7 @@ MonoBehaviour:
   playerName: 
   hand: 0
   weaponRB: {fileID: 3917178230999280940}
-  weaponTransform: {fileID: 2518638087314808368}
+  weaponTransform: {fileID: 8829490612180838983}
   transforms: []
   isHeld: 0
   isWeaponEnabled: 1
@@ -160,7 +147,7 @@ MonoBehaviour:
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
   InLocalSpace: 0
-  Interpolate: 1
+  Interpolate: 0
   CanCommitToTransform: 0
 --- !u!114 &8763601861124548150
 MonoBehaviour:

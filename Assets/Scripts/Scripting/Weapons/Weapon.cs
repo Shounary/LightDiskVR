@@ -136,10 +136,12 @@ public class Weapon : MonoBehaviour
     }
 
     //enabled the weapon and moves it to the given postiion
-    public void EnableWeapon(Vector3 t)
+    public void EnableWeapon(Vector3 t, Quaternion? rot = null)
     {
-        this.gameObject.transform.position = t;
-        this.gameObject.SetActive(true);
+        transform.position = t;
+        if(rot.HasValue)
+            transform.rotation = rot.Value;
+        gameObject.SetActive(true);
         if (weaponInventory != null)
             playerName = weaponInventory.playerName;
         //play spawning animation (implement later)
