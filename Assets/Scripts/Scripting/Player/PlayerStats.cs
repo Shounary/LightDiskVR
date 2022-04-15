@@ -17,6 +17,7 @@ public class PlayerStats : MonoBehaviour
     public float invincibilityTime = 2.0f;
     public WeaponInventory weaponInventory;
 
+    public GameObject endGameMenu;
 
     const string glyphs= "abcdefghijklmnopqrstuvwxyz0123456789";
 
@@ -43,6 +44,7 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0) return;
         timeSinceHit += Time.deltaTime;
     }
 
@@ -60,7 +62,7 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0) {
             if(TutorialManager.instance == null)
             {
-                PauseController.instance.DeathMenu();
+                endGameMenu.SetActive(true);
             }
             else
                 TutorialManager.instance.onPlayerDeath();

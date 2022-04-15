@@ -11,6 +11,8 @@ public class StasisDisk : Weapon
     private Vector3 storedVelocity;
     private bool inStasis;
     //private bool isHeld;
+    public ParticleSystem stasisStartParticles;
+    public ParticleSystem stasisEndParticles;
     
 
     // Start is called before the first frame update
@@ -21,7 +23,7 @@ public class StasisDisk : Weapon
         isHeld = false;
     }
 
-    public override void MainButtonFunction()
+    public override void TriggerPressFunction()
     {
         if (!inStasis && stasisCount < maxStasis && !isHeld) 
             startStasis();
@@ -35,12 +37,14 @@ public class StasisDisk : Weapon
         weaponRB.velocity = weaponRB.velocity / velocityDivisor;
         weaponRB.isKinematic = true;
         stasisCount++;
+        stasisStartParticles.Play();
     }
 
     private void endStasis() {
         inStasis = false;
         weaponRB.velocity = storedVelocity;
         weaponRB.isKinematic = false;
+        stasisEndParticles.Play();
     }
 
     public override void OnReleaseFunction(int h)

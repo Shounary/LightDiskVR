@@ -30,6 +30,7 @@ public class Weapon : MonoBehaviour
     public Vector3 startLoc;
     public WeaponInventory weaponInventory;
 
+
     public bool FirstWeaponSummon;
 
     protected void Start() {
@@ -40,6 +41,8 @@ public class Weapon : MonoBehaviour
     }
 
     public virtual void TriggerFunction(float additionalFactor, Transform targetTransform) { }
+
+    public virtual void TriggerPressFunction(){}
 
     public void onAddToInventory(WeaponInventory wi)
     {
