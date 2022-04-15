@@ -12529,6 +12529,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 909934000}
     m_Modifications:
+    - target: {fileID: 4150744731072581575, guid: 35ae0ee91c4e3924a98aa6cfa55a8870, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 909933994}
     - target: {fileID: 4150744731072581593, guid: 35ae0ee91c4e3924a98aa6cfa55a8870, type: 3}
       propertyPath: m_Name
       value: New Pause
