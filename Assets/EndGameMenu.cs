@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using Unity.Netcode;
+
 
 public class EndGameMenu : MonoBehaviour
 {
@@ -17,9 +21,48 @@ public class EndGameMenu : MonoBehaviour
     public GameObject playerDeathEffect;
     public Transform deathEffectPoint;
 
+    public GameObject lRayInteractor;
+    public GameObject rRayInteractor;
+
+    public Button playAgain, quit;
+
     public bool isDead;
     public List<GameObject> disableOnDeath = new List<GameObject>();
     
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+        playAgain.onClick.AddListener(Reload);
+        quit.onClick.AddListener(Quit);
+    }
+
+    void Quit()
+    {
+        Time.timeScale = 1;
+        lRayInteractor.SetActive(false);
+        rRayInteractor.SetActive(false);
+        SceneManager.activeSceneChanged += Disconnect;
+        SceneManager.LoadScene(0);
+    }
+
+    void Reload() {
+        lRayInteractor.SetActive(false);
+        rRayInteractor.SetActive(false);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void Disconnect(Scene prev, Scene next)
+    {
+        SceneManager.activeSceneChanged -= Disconnect;
+
+        foreach (NetworkObject obj in NetworkManager.Singleton.SpawnManager.SpawnedObjectsList)
+        {
+            Destroy(obj.gameObject);
+        }
+
+        gameObject.SetActive(false);
+    }
+
     public void setType(int type) {
         if(type == 0)
             Die();
@@ -45,6 +88,8 @@ public class EndGameMenu : MonoBehaviour
         else {
             setType(ps.health <= 0? 0: 1);
         }
+         lRayInteractor.SetActive(true);
+        rRayInteractor.SetActive(true);
     }
 
     public void Die() {
