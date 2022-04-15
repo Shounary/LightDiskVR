@@ -36,8 +36,10 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 1;
         }
         gameObject.SetActive(false);
+        if(!SceneManager.GetActiveScene().name.Equals("WeaponSelect")) {
         lRayInteractor.SetActive(false);
         rRayInteractor.SetActive(false);
+        }
     }
 
     public void togglePause() {
