@@ -78,15 +78,19 @@ public class WeaponInventory : MonoBehaviour
         setActiveWeapon(weaponList[1], Hand.RIGHT);
     }
 
-    public void setActiveWeapon (Weapon weapon, Hand h, Vector3 activeLoc) {
+    public void setActiveWeapon (Weapon weapon, Hand h, Vector3 activeLoc, Quaternion rot) {
         activeWeapons[(int) h] = weapon;
         weapon.setHand(h);
-        weapon.EnableWeapon(activeLoc);
+        weapon.EnableWeapon(activeLoc, rot);
     }
+
     public void setActiveWeapon(Weapon weapon, Hand h)
     {
-        if(weaponSelectScreens.Count > 0)
-            setActiveWeapon(weapon, h, weaponSelectScreens[(int) h].transform.position);
+        if (weaponSelectScreens.Count > 0)
+        {
+            var t = weaponSelectScreens[(int)h].transform;
+            setActiveWeapon(weapon, h, t.position, t.rotation);
+        }
         else
             Debug.Log("must have swap inventory enabled to call setActiveWeapon with no location");
     }
