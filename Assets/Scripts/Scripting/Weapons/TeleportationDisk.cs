@@ -26,6 +26,14 @@ public class TeleportationDisk : Weapon
         teleported = false;
     }
 
+    public override void TriggerPressFunction()
+    {
+        if(!teleported && !isHeld) {
+            Teleport();
+            teleported = true;
+        }
+    }
+
     public override void MainButtonFunction()
     {
         if (!isHeld && !teleported) {
