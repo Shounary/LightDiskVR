@@ -16,7 +16,9 @@ public class NetworkWeapon : Weapon
     {
         if (!NetworkObject.IsOwner)
         {
-            this.enabled = false;
+            //this.enabled = false;
+            XRGrabInteractable interactable = GetComponent<XRGrabInteractable>();
+            interactable.enabled = false;
         } else
         {
             base.Start();
@@ -61,7 +63,7 @@ public class NetworkWeapon : Weapon
         AttractWeaponServerRpc(parallel);
     }
 
-    [ServerRpc]
+    [ServerRpc(requireOwnership = false)]
     public void AttractWeaponServerRpc(Vector3 f)
     {
         weaponRB.AddForce(f, ForceMode.VelocityChange);
