@@ -50,6 +50,7 @@ public class PauseMenu : MonoBehaviour
 
     void Quit()
     {
+        Time.timeScale = 1;
         SceneManager.activeSceneChanged += Disconnect;
         SceneManager.LoadScene(0);
     }
