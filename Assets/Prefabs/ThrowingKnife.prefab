@@ -47,9 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8b793c46e23af46b2c18bfe5fad54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryColor: {r: 0, g: 0, b: 0, a: 0}
-  accentColor: {r: 0, g: 0, b: 0, a: 0}
-  weaponImage: {fileID: 0}
+  weaponImage: {fileID: 7265211444120722394, guid: 8252342426312b245b3b44bf95c03bc7, type: 3}
   weaponName: Throwing Knife
   weaponDescription: 
   damage: 40
@@ -61,11 +59,11 @@ MonoBehaviour:
   transforms: []
   isHeld: 0
   isWeaponEnabled: 1
-  parentGameObject: {fileID: 0}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
   startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
+  FirstWeaponSummon: 0
 --- !u!54 &7305265859598068226
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -222,7 +220,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7305265861055031715}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.131}
   m_LocalScale: {x: 0.03999999, y: 0.0035, z: 0.020000001}
   m_Children: []
   m_Father: {fileID: 7305265859598068252}
