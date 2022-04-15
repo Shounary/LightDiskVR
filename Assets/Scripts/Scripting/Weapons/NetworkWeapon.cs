@@ -10,6 +10,7 @@ public class NetworkWeapon : Weapon
 {
     [SerializeField] NetworkObject NetworkObject;
     [SerializeField] ClientNetworkTransform WeaponCNT;
+    [SerializeField] NetworkDisk NetworkDisk; // interface to all RPC calls
 
     public override void TriggerFunction(float additionalFactor, Transform targetTransform) { }
 
@@ -58,17 +59,10 @@ public class NetworkWeapon : Weapon
 
         if (angle > 5)
         {
-            AttractWeaponServerRpc(normal);
+            NetworkDisk.AttractWeaponServerRpc(normal);
         }
 
-        AttractWeaponServerRpc(parallel);
-    }
-
-    //Add ownershipRequired = false
-    [ServerRpc]
-    public void AttractWeaponServerRpc(Vector3 f)
-    {
-        weaponRB.AddForce(f, ForceMode.VelocityChange);
+        NetworkDisk.AttractWeaponServerRpc(parallel);
     }
 
     //because weapon references are stored in the inventory script, actually destorying the weapon
@@ -77,13 +71,7 @@ public class NetworkWeapon : Weapon
     public new void DestroyWeapon()
     {
         base.DestroyWeapon();
-        DestroyWeaponServerRpc();
-    }
-
-    [ServerRpc]
-    void DestroyWeaponServerRpc()
-    {
-        NetworkObject.Despawn(true);
+        NetworkDisk.DestroyWeaponServerRpc();
     }
 
     public override void MainButtonReleaseFunction() { }
