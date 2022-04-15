@@ -296,15 +296,15 @@ public class BaseAccessor : NetworkBehaviour
 
             var acc = c.PlayerObject.GetComponent<BaseAccessor>();
 
-            SpawnWeapon(acc.PlayerConfig.WeaponIndex1, acc.transform, c.ClientId, Hand.LEFT);
-            SpawnWeapon(acc.PlayerConfig.WeaponIndex2, acc.transform, c.ClientId, Hand.RIGHT);
+            SpawnWeapon(acc.PlayerConfig.WeaponIndex1, c.ClientId, Hand.LEFT);
+            SpawnWeapon(acc.PlayerConfig.WeaponIndex2, c.ClientId, Hand.RIGHT);
         }
 
         // game ending rule
         StartCoroutine(CheckMatchTerminate(MatchConfig.WinCondition));
     }
 
-    void SpawnWeapon(int index, Transform t, ulong owner, Hand hand)
+    void SpawnWeapon(int index, ulong owner, Hand hand)
     {
         if (index != 0) // 0 is saved for null
         {
@@ -340,6 +340,16 @@ public class BaseAccessor : NetworkBehaviour
         {
             globalHealthBar.displayHealth(Player.health.Value);
         };
+
+        RollCall(acc =>
+        {
+            if (!acc.IsOwner)
+            {
+                acc.WeaponInventory.enabled = false;
+                acc.WeaponInventory.weaponList.RemoveAll(t => true);
+            }
+        });
+
         Debug.Log($"PLAYER {NetworkManager.LocalClientId} SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
@@ -364,6 +374,9 @@ public class BaseAccessor : NetworkBehaviour
         Debug.Log($"Match won under {check.Item1} mode");
         StopCoroutine("CheckMatchTerminate");
         EnterResultServerPath(personalResults);
+
+        yield return new WaitForSeconds(1);
+        EnterResultClientRpc(personalResults[OwnerClientId]);
     }
 
     #endregion
@@ -371,7 +384,7 @@ public class BaseAccessor : NetworkBehaviour
     #region ENTER_RESULT
     public void EnterResultServerPath(Dictionary<ulong, bool> personalResults)
     {
-        RollCall(c => c.EnterResultClientRpc(personalResults[c.OwnerClientId]));
+        RollCall(c => c.EnterResultClientRpc(personalResults[c.OwnerClientId]), true);
     }
 
     [ClientRpc]

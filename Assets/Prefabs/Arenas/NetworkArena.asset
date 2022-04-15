@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15298a7d946a0a44d9abe25ff7df2840, type: 3}
   m_Name: NetworkArena
   m_EditorClassIdentifier: 
-  BuildIndex: 2
+  BuildIndex: 3
   _spawnPoints:
   - {x: 2, y: 1, z: 0}
   - {x: -2, y: 1, z: 5}
