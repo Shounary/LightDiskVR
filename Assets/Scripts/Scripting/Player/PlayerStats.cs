@@ -53,7 +53,7 @@ public class PlayerStats : MonoBehaviour
         timeSinceHit += Time.deltaTime;
     }
 
-    public void takeDamage(int damage) {
+    public virtual void takeDamage(int damage) {
         if (timeSinceHit >= invincibilityTime ) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
             timeSinceHit = 0.0f;
             if(!invincible)

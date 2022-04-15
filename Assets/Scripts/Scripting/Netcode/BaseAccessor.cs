@@ -88,6 +88,7 @@ public class BaseAccessor : NetworkBehaviour
         PreMatchManager.PersistentUIObj.SetActive(true);
         PreMatchManager.Persistent.Accessor = this;
         MatchConfigFactory.Instance.ArenaIndex = 0;
+        HealthBarDisplay.SetActive(false);
         MatchConfig = new MatchConfig(MatchConfigFactory.Instance.Arena);
 
         // FIXME:
@@ -331,6 +332,7 @@ public class BaseAccessor : NetworkBehaviour
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
     {
         transform.position = PlayerConfig.SpawnPosition.Value;
+        HealthBarDisplay.SetActive(true);
         Debug.Log($"PLAYER {NetworkManager.LocalClientId} SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
@@ -411,6 +413,7 @@ public class BaseAccessor : NetworkBehaviour
 
     public NetworkVRPlayer Player;
     public WeaponInventory WeaponInventory;
+    [SerializeField] GameObject HealthBarDisplay;
     
     [SerializeField]
     private PauseMenu PauseMenu;
