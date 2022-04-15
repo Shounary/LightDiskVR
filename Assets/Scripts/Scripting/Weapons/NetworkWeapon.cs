@@ -7,22 +7,19 @@ using Unity.Netcode.Samples;
 
 public class NetworkWeapon : Weapon
 {
-    NetworkObject NetworkObject;
-    ClientNetworkTransform WeaponCNT;
-
-    protected new void Start()
-    {
-        NetworkObject = GetComponent<NetworkObject>();
-        WeaponCNT = GetComponent<ClientNetworkTransform>();
-
-        if (!NetworkObject.IsOwner) {
-            this.enabled = false;
-        } else {
-            base.Start();
-        }
-    }
+    [SerializeField] NetworkObject NetworkObject;
+    [SerializeField] ClientNetworkTransform WeaponCNT;
 
     public override void TriggerFunction(float additionalFactor, Transform targetTransform) { }
+
+    private new void Start()
+    {
+        base.Start();
+        if (!NetworkObject.IsOwner)
+        {
+            this.enabled = false;
+        }
+    }
 
     public new void onAddToInventory(WeaponInventory wi)
     {

@@ -28,8 +28,7 @@ public class PlayerConfigMenuUIFlat : MonoBehaviour
 
     private void Start()
     {
-        BaseAccessor accessor = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject().GetComponent<BaseAccessor>();
-        print(accessor);
+        var accessor = NetUtils.BaseAccessor;
 
         if (NetworkManager.Singleton.IsHost)
         {

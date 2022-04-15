@@ -294,26 +294,39 @@ public class BaseAccessor : NetworkBehaviour
 
             var acc = c.PlayerObject.GetComponent<BaseAccessor>();
 
-            SpawnWeapon(acc.PlayerConfig.WeaponIndex1, acc.transform);
-            SpawnWeapon(acc.PlayerConfig.WeaponIndex2, acc.transform);
+            SpawnWeapon(acc.PlayerConfig.WeaponIndex1, acc.transform, c.ClientId, Hand.LEFT);
+            SpawnWeapon(acc.PlayerConfig.WeaponIndex2, acc.transform, c.ClientId, Hand.RIGHT);
         }
 
         // game ending rule
         StartCoroutine(CheckMatchTerminate(MatchConfig.WinCondition));
     }
 
-    void SpawnWeapon(int index, Transform t)
+    void SpawnWeapon(int index, Transform t, ulong owner, Hand hand)
     {
-        if (index != 0)
+        if (index != 0) // 0 is saved for null
         {
             var w = PlayerConfig.Weapons[index];
-            var obj = Instantiate(w, t.position + t.forward * 0.5f + Random.Range(-1, 1) * t.right - t.up * 0.3f, t.rotation);
-            obj.GetComponent<NetworkObject>().Spawn();
-
-            // TODO: is there anything to set up?
-            // var ww = obj.GetComponent<Weapon>();
+            var obj = Instantiate(w, t.position + t.forward * 0.5f - t.up * 0.2f + t.right * Random.Range(-1f, 1f), t.rotation);
+            // Debug.Log($"{t.position} => {obj.transform.position}");
+            var no = obj.GetComponent<NetworkObject>();
+            no.SpawnWithOwnership(owner, true);
+            NetworkManager.ConnectedClients[owner].PlayerObject.GetComponent<BaseAccessor>()
+                .AcquireWeaponClientRpc(new NetworkObjectReference(no), hand);
         }
     }
+
+    [ClientRpc]
+    void AcquireWeaponClientRpc(NetworkObjectReference r, Hand hand)
+    {
+        if (r.TryGet(out NetworkObject networkObject))
+        {
+            var w = networkObject.GetComponent<NetworkWeapon>();
+            WeaponInventory.addWeapon(w);
+            WeaponInventory.setActiveWeapon(w, hand);
+        }
+    }
+
 
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
     {
@@ -328,11 +341,12 @@ public class BaseAccessor : NetworkBehaviour
         Dictionary<ulong, bool> personalResults = new Dictionary<ulong, bool>(NetworkManager.Singleton.ConnectedClients.Count);
         while(IsClient && isActiveAndEnabled)
         {
-            if (cFunc())
-            {
-
-            }
-            yield return new WaitForSeconds(1);
+            if (cFunc()) // check overall game result
+                // assign personal results
+                personalResults = NetworkManager.ConnectedClients.ToDictionary(
+                    kvp => kvp.Key,
+                    kvp => check.Item3(kvp.Key));
+            yield return new WaitForSeconds(1); // check per interval
         }
         Debug.Log($"Match won under {check.Item1} mode");
         StopCoroutine("CheckMatchTerminate");
@@ -396,33 +410,13 @@ public class BaseAccessor : NetworkBehaviour
     #region XR_RIG_CONTROL
 
     public NetworkVRPlayer Player;
+    public WeaponInventory WeaponInventory;
+    
     [SerializeField]
     private PauseMenu PauseMenu;
 
-    private void Update()
-    {
-        if (IsSpawned && IsOwner)
-        {
-            CheckPause();
-        }
-    }
-
-    void CheckPause()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePause();
-            return;
-        }
-    }
-
     public void ActivatePause() {
         PauseMenu.gameObject.SetActive(true);
-    }
-
-    public void TogglePause()
-    {
-        PauseMenu.gameObject.SetActive(!PauseMenu.gameObject.activeSelf);
     }
     #endregion
 

@@ -37,10 +37,10 @@ public class MatchConfig
 
     private static (string, Func<bool>, Func<ulong, bool>)[] WinConditions =
     {
-        ("Last Survivor", () => {
+        ("Last Survivor", () => { // predicate for when a game should end
             return NetworkManager.Singleton.ConnectedClientsList
                 .Count(client => client.PlayerObject.GetComponent<BaseAccessor>().Player.health.Value > 0) > 1;
-        }, (ulong id) => {
+        }, (ulong id) => { // predicate for whether a specific player won
             return NetworkManager.Singleton.ConnectedClients[id].PlayerObject.GetComponent<BaseAccessor>().Player.health.Value > 0;
         })
     };
