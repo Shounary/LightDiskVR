@@ -9775,7 +9775,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5103353031920018729
 Transform:
   m_ObjectHideFlags: 0
@@ -10001,12 +10001,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50a6ee4839b83a641a36e852f56227a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponImage: {fileID: 0}
-  weaponName: 
+  weaponImage: {fileID: -8269724714130656677, guid: 93fec042021712f4a9e7e0f914189204, type: 3}
+  weaponName: Stasis Disk
   weaponDescription: 
   damage: 10
   isSummonable: 1
-  playerName: 
+  playerName: Player
   hand: 2
   weaponRB: {fileID: 5944087046148625973}
   weaponTransform: {fileID: 2209465980676280670}
@@ -10020,7 +10020,7 @@ MonoBehaviour:
   startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
   FirstWeaponSummon: 0
-  maxStasis: 2
+  maxStasis: 1
   velocityDivisor: 100
   stasisStartParticles: {fileID: 6266996954013868875}
   stasisEndParticles: {fileID: 4706082616056215011}
