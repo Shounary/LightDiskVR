@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class PlayerBody : MonoBehaviour
 {
@@ -23,7 +24,15 @@ public class PlayerBody : MonoBehaviour
 
     private async void OnTriggerEnter(Collider other) {
         Weapon w = other.gameObject.GetComponent<Weapon>();
-        if(w != null && w.playerName != ps.playerName && intMaskList.Contains(1 << other.gameObject.layer))
+        bool namecheck;
+        if (w is NetworkWeapon)
+        {
+            namecheck = !w.GetComponent<NetworkObject>().IsOwner && NetUtils.BaseAccessor.WeaponInventory.weaponList.Contains(w);
+        } else
+        {
+            namecheck = w.playerName != ps.playerName;
+        }
+        if(w != null && namecheck && intMaskList.Contains(1 << other.gameObject.layer))
             ps.takeDamage(w.damage);
     }
 

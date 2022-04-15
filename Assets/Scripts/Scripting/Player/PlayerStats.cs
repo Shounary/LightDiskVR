@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     public string playerName;
     public bool invincible = false; //set to true to make the player not take damage
 
-    public HealthBar healthBar;
+    public HealthBar healthBar, globalHealthBar;
     public float timeSinceHit = 10.0f;
     public float invincibilityTime = 2.0f;
     public WeaponInventory weaponInventory;

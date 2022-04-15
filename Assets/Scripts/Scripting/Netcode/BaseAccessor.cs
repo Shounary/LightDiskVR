@@ -89,6 +89,7 @@ public class BaseAccessor : NetworkBehaviour
         PreMatchManager.Persistent.Accessor = this;
         MatchConfigFactory.Instance.ArenaIndex = 0;
         HealthBarDisplay.SetActive(false);
+        HealthBarGlobalDisplay.SetActive(false);
         MatchConfig = new MatchConfig(MatchConfigFactory.Instance.Arena);
 
         // FIXME:
@@ -328,11 +329,17 @@ public class BaseAccessor : NetworkBehaviour
         }
     }
 
-
+    [SerializeField] HealthBar globalHealthBar;
     public void EnterMatchSceneClientPath(Scene prev, Scene next)
     {
         transform.position = PlayerConfig.SpawnPosition.Value;
-        HealthBarDisplay.SetActive(true);
+        HealthBarDisplay.SetActive(IsOwner);
+        HealthBarGlobalDisplay.SetActive(!IsOwner);
+
+        Player.health.OnValueChanged += delegate
+        {
+            globalHealthBar.displayHealth(Player.health.Value);
+        };
         Debug.Log($"PLAYER {NetworkManager.LocalClientId} SPAWNED AT {PlayerConfig.SpawnPoint} : {PlayerConfig.SpawnPosition}");
         SceneManager.activeSceneChanged -= EnterMatchSceneClientPath;
     }
@@ -354,7 +361,6 @@ public class BaseAccessor : NetworkBehaviour
         StopCoroutine("CheckMatchTerminate");
         EnterResultServerPath(personalResults);
     }
-
 
     #endregion
 
@@ -413,7 +419,7 @@ public class BaseAccessor : NetworkBehaviour
 
     public NetworkVRPlayer Player;
     public WeaponInventory WeaponInventory;
-    [SerializeField] GameObject HealthBarDisplay;
+    [SerializeField] GameObject HealthBarDisplay, HealthBarGlobalDisplay;
     
     [SerializeField]
     private PauseMenu PauseMenu;
