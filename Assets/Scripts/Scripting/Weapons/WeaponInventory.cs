@@ -28,13 +28,6 @@ public class WeaponInventory : MonoBehaviour
             w.onAddToInventory(this);
     }
 
-    private int mod(int num1, int num2)
-    {
-        if(num1 < 0)
-            num1 += num2;
-        return num1 % num2;
-    }
-
     public void ToggleSelectUI(Hand h)
     {
         if (isSelectMenuEnabled[(int) h])
@@ -153,8 +146,8 @@ public class WeaponInventory : MonoBehaviour
         List<Weapon> newSwapList = new List<Weapon>(3);
         for(int i = 0; i < cycleList.Count; i++)
         {
-            Debug.Log("i " + i + " dir " + dir + " i + dir mod 3 " + mod((i + dir),3));
-            newSwapList.Add(cycleList[mod((i + dir),3)]);
+            Debug.Log("i " + i + " dir " + dir + " i + dir mod 3 " + MathUtils.Mod((i + dir),3));
+            newSwapList.Add(cycleList[MathUtils.Mod((i + dir),3)]);
         }
         selectScripts[(int) h].UpdateWeaponDisplay(newSwapList);
         weaponSwapList = newSwapList;
