@@ -34,21 +34,6 @@ public class NetworkWeapon : Weapon
 
     public override void SecondaryButtonFunction() { }
 
-    public new void setHand(int h)
-    {
-        setHand((Hand)h);
-    }
-
-    public new void setHand(Hand h)
-    {
-        hand = h;
-        if (transforms.Count > 0)
-        {
-            weaponTransform.position = transforms[(int)h].position;
-            weaponTransform.rotation = transforms[(int)h].rotation;
-        }
-    }
-
     public override void OnGrabFunction(int h)
     {
         isHeld = true;
@@ -119,15 +104,5 @@ public class NetworkWeapon : Weapon
     public new void DeactivateWeapon()
     {
         DestroyWeapon();
-    }
-
-    //enabled the weapon and moves it to the given postiion
-    public new void EnableWeapon(Vector3 t)
-    {
-        this.gameObject.transform.position = t;
-        this.gameObject.SetActive(true);
-        if (weaponInventory != null)
-            playerName = weaponInventory.playerName;
-        //play spawning animation (implement later)
     }
 }

@@ -307,7 +307,7 @@ public class BaseAccessor : NetworkBehaviour
         if (index != 0) // 0 is saved for null
         {
             var w = PlayerConfig.Weapons[index];
-            var obj = Instantiate(w, t.position + t.forward * 0.5f - t.up * 0.2f + t.right * Random.Range(-1f, 1f), t.rotation);
+            var obj = Instantiate(w);
             // Debug.Log($"{t.position} => {obj.transform.position}");
             var no = obj.GetComponent<NetworkObject>();
             no.SpawnWithOwnership(owner, true);
