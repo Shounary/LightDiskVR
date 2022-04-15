@@ -48,7 +48,7 @@ public class NetworkWeapon : Weapon
     }
 
     //when called, the weapon will be attracted to the target transfrom
-    public new void AttractWeapon(float additionalFactor, Transform targetTransform) {
+    public override void AttractWeapon(float additionalFactor, Transform targetTransform) {
 
         Vector3 targetDirection = Vector3.Normalize(targetTransform.position - weaponRB.position);
         Vector3 initialDirection = Vector3.Normalize(weaponRB.velocity);
