@@ -93,7 +93,7 @@ public class Weapon : MonoBehaviour
 
 
     //when called, the weapon will be attracted to the target transfrom
-    public void AttractWeapon(float additionalFactor, Transform targetTransform) {
+    public virtual void AttractWeapon(float additionalFactor, Transform targetTransform) {
         if (!FirstWeaponSummon) {
             EnableWeapon(targetTransform.position);
             FirstWeaponSummon = true;
