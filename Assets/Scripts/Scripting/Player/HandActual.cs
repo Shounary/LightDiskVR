@@ -29,6 +29,8 @@ public class HandActual : MonoBehaviour
 
     public PauseMenu pauseMenu;
     private Animator animator;
+
+    private bool triggerHeld = false;
     void Start()
     {
         List<InputDevice> inputDevices = new List<InputDevice>();
@@ -60,8 +62,15 @@ public class HandActual : MonoBehaviour
             if(weapon != null)
             {
                 weapon.TriggerFunction(trigger, this.transform);
+                if (!triggerHeld) {
+                    weapon.TriggerPressFunction();
+                    triggerHeld = true;
+                }
             }
+            
         }
+        else if (trigger < 0.01 && triggerHeld)
+            triggerHeld = false;
 
         // Grip/Summon
         if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float grip) && grip > 0.5) {
