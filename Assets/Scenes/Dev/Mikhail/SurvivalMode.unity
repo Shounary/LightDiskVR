@@ -12660,6 +12660,7 @@ MonoBehaviour:
   timeSinceHit: 10
   invincibilityTime: 0.1
   weaponInventory: {fileID: 1505104443}
+  endGameMenu: {fileID: 183001901}
 --- !u!114 &2002546789
 MonoBehaviour:
   m_ObjectHideFlags: 0
