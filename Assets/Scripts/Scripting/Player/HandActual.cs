@@ -24,9 +24,13 @@ public class HandActual : MonoBehaviour
 
     public bool button1Pressed;
     public bool button2Pressed;
+    public bool buttonMPressed;
     public bool stickDelay;
 
+    public PauseMenu pauseMenu;
     private Animator animator;
+
+    private bool triggerHeld = false;
     void Start()
     {
         List<InputDevice> inputDevices = new List<InputDevice>();
@@ -50,14 +54,23 @@ public class HandActual : MonoBehaviour
             weaponInventory = GetComponentInParent<WeaponInventory>();
            // weaponInventory.weaponList[(int) hand].EnableWeapon(this.gameObject.transform.position);
         }
+        if(pauseMenu == null)
+            pauseMenu = weaponInventory.gameObject.GetComponentInChildren<PauseMenu>(true);
         weapon = weaponInventory.getActiveWeapon(hand);
         //UpdateAnimation();
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
             if(weapon != null)
             {
                 weapon.TriggerFunction(trigger, this.transform);
+                if (!triggerHeld) {
+                    weapon.TriggerPressFunction();
+                    triggerHeld = true;
+                }
             }
+            
         }
+        else if (trigger < 0.01 && triggerHeld)
+            triggerHeld = false;
 
         // Grip/Summon
         if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float grip) && grip > 0.5) {
@@ -78,7 +91,7 @@ public class HandActual : MonoBehaviour
             Debug.Log("Hello");
             //weapon.MainButtonFunction();
             if(weapon != null && weapon.isHeld) {
-            weaponInventory.ToggleSelectUI(hand);
+                weaponInventory.ToggleSelectUI(hand);
             }
         }
         else if (!pressed1 && button1Pressed)
@@ -91,6 +104,16 @@ public class HandActual : MonoBehaviour
                 weapon.MainButtonFunction();
                // weapon.SecondaryButtonFunction();
             }
+        }
+
+        if( targetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressedM) && pressedM && !buttonMPressed) {
+            buttonMPressed = true;
+            if(pauseMenu) {
+                pauseMenu.togglePause();
+            }
+        }
+        else if (!pressedM && buttonMPressed) {
+            buttonMPressed = false;
         }
 
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool pressed) && pressed) {

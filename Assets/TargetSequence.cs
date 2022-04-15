@@ -41,6 +41,7 @@ public class TargetSequence : MonoBehaviour
 
     void Update()
     {
+        if(Time.timeScale == 0) return;
         if (currentWave >= maxWaves)
             return;
         if (currentWave >= timeBetweenWaves.Length - 1) {
@@ -48,8 +49,8 @@ public class TargetSequence : MonoBehaviour
         }
         waveTimer -= Time.deltaTime;
         spawnTimer -= Time.deltaTime;
-        Debug.Log("wave timer: " + waveTimer);
-        Debug.Log("spawn timer: " + spawnTimer);
+        //Debug.Log("wave timer: " + waveTimer);
+        //Debug.Log("spawn timer: " + spawnTimer);
         if (waveTimer <= 0 && spawnTimer <= 0) {
             DestroyExistingObjects();
 

@@ -9,6 +9,10 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField]
     private Button resume, quit;
+    public bool isSinglePlayer;
+    public bool isPaused;
+    public GameObject lRayInteractor;
+    public GameObject rRayInteractor;
 
     void Start()
     {
@@ -17,8 +21,31 @@ public class PauseMenu : MonoBehaviour
         quit.onClick.AddListener(Quit);
     }
 
+    public void Pause() {
+        if(isSinglePlayer) {
+            Time.timeScale = 0;
+        }
+        Debug.Log("amogus2");
+        gameObject.SetActive(true);
+        lRayInteractor.SetActive(true);
+        rRayInteractor.SetActive(true);
+    }
+
     void Resume() {
+        if(isSinglePlayer) {
+            Time.timeScale = 1;
+        }
         gameObject.SetActive(false);
+        lRayInteractor.SetActive(false);
+        rRayInteractor.SetActive(false);
+    }
+
+    public void togglePause() {
+        if(isPaused)
+            Resume();
+        else
+            Pause();
+        isPaused = !isPaused;
     }
 
     void Quit()
