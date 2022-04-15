@@ -27,6 +27,7 @@ public class HandActual : MonoBehaviour
     public bool buttonMPressed;
     public bool stickDelay;
 
+    public PauseMenu pauseMenu;
     private Animator animator;
     void Start()
     {
@@ -51,6 +52,8 @@ public class HandActual : MonoBehaviour
             weaponInventory = GetComponentInParent<WeaponInventory>();
            // weaponInventory.weaponList[(int) hand].EnableWeapon(this.gameObject.transform.position);
         }
+        if(pauseMenu == null)
+            pauseMenu = weaponInventory.gameObject.GetComponentInChildren<PauseMenu>(true);
         weapon = weaponInventory.getActiveWeapon(hand);
         //UpdateAnimation();
         if (targetDevice.TryGetFeatureValue(CommonUsages.trigger, out float trigger) && trigger > 0.5) {
@@ -79,7 +82,7 @@ public class HandActual : MonoBehaviour
             Debug.Log("Hello");
             //weapon.MainButtonFunction();
             if(weapon != null && weapon.isHeld) {
-            weaponInventory.ToggleSelectUI(hand);
+                weaponInventory.ToggleSelectUI(hand);
             }
         }
         else if (!pressed1 && button1Pressed)
@@ -96,7 +99,10 @@ public class HandActual : MonoBehaviour
 
         if( targetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressedM) && pressedM && !buttonMPressed) {
             buttonMPressed = true;
-            Debug.Log("Amogus");
+            if(pauseMenu) {
+                Debug.Log("amogus");
+                pauseMenu.Pause();
+            }
         }
         else if (!pressedM && buttonMPressed) {
             buttonMPressed = false;

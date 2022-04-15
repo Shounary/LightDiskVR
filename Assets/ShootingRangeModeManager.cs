@@ -20,6 +20,7 @@ public class ShootingRangeModeManager : MonoBehaviour
 
     void Update()
     {
+        if(Time.timeScale == 0) return;
         if (playerTimer > 0)
             playerTimer -= Time.deltaTime;
         else {
