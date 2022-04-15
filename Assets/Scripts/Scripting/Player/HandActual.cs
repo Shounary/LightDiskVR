@@ -100,8 +100,7 @@ public class HandActual : MonoBehaviour
         if( targetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressedM) && pressedM && !buttonMPressed) {
             buttonMPressed = true;
             if(pauseMenu) {
-                Debug.Log("amogus");
-                pauseMenu.Pause();
+                pauseMenu.togglePause();
             }
         }
         else if (!pressedM && buttonMPressed) {
