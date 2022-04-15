@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = !isPaused;
     }
 
-    void Quit()
+    public void Quit()
     {
         SceneManager.activeSceneChanged += Disconnect;
         SceneManager.LoadScene(0);
