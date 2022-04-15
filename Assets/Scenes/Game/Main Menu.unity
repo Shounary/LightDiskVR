@@ -934,14 +934,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2268963780710084518}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
+        m_MethodName: goToScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Credits
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &87691830
@@ -1438,7 +1438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &148165884
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1970,14 +1970,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2268963780710084518}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
+        m_MethodName: goToScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Credits
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &218778703
@@ -2234,14 +2234,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2268963780710084518}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
+        m_MethodName: goToScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Credits
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &261612713
@@ -10538,7 +10538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1189810456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11105,14 +11105,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2268963780710084518}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
+        m_MethodName: goToScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Credits
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1277488655
@@ -12705,7 +12705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 826765234084480552, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.532
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 826765234084480552, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15959,14 +15959,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2268963780710084518}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
+        m_MethodName: goToScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Credits
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1669103775
@@ -20457,7 +20457,7 @@ MonoBehaviour:
   - {fileID: 1304360881}
   - {fileID: 1583959853}
   - {fileID: 478415482}
-  - {fileID: 2040849821}
+  - {fileID: 1189810455}
   activeMenu: {fileID: 0}
 --- !u!114 &2268963780710084520
 MonoBehaviour:
