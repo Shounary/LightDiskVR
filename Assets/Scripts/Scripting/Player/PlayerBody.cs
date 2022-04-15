@@ -9,11 +9,14 @@ public class PlayerBody : MonoBehaviour
     //public float damageTakePerDiskHit = 100;
     public List<LayerMask> toTakeDamageFrom;
     public List<int> intMaskList = new List<int>();
+
+    public WeaponInventory weaponInventory;
     void Start()
     {
         foreach(LayerMask lm in toTakeDamageFrom) {
             intMaskList.Add(lm.value);
         }
+        weaponInventory = GetComponentInParent<WeaponInventory>();
     }
 
     // Update is called once per frame
@@ -25,7 +28,8 @@ public class PlayerBody : MonoBehaviour
     protected async virtual void OnTriggerEnter(Collider other) {
         Weapon w = other.gameObject.GetComponent<Weapon>();
         if (w != null && w.playerName != ps.playerName && intMaskList.Contains(1 << other.gameObject.layer))
-            ps.takeDamage(w.damage);
+            if (! weaponInventory.weaponList.Contains(w))
+                ps.takeDamage(w.damage);
     }
 
 }
