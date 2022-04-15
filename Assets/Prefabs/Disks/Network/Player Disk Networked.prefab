@@ -65,14 +65,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3087088235417820408, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
   m_PrefabInstance: {fileID: 3917178230228151466}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2518638087314808368 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1490519023632216730, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
-  m_PrefabInstance: {fileID: 3917178230228151466}
-  m_PrefabAsset: {fileID: 0}
 --- !u!54 &3917178230999280940 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 1916699014, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+  m_PrefabInstance: {fileID: 3917178230228151466}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8829490612180838983 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5536113849709299437, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
   m_PrefabInstance: {fileID: 3917178230228151466}
   m_PrefabAsset: {fileID: 0}
 --- !u!108 &2723248892635517908 stripped
@@ -129,7 +129,7 @@ MonoBehaviour:
   playerName: 
   hand: 0
   weaponRB: {fileID: 3917178230999280940}
-  weaponTransform: {fileID: 2518638087314808368}
+  weaponTransform: {fileID: 8829490612180838983}
   transforms: []
   isHeld: 0
   isWeaponEnabled: 1
