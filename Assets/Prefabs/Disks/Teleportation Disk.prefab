@@ -316,14 +316,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c352e4fd2ec268b4087ea23262e225e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryColor: {r: 0, g: 0, b: 0, a: 0}
-  accentColor: {r: 0, g: 0, b: 0, a: 0}
-  weaponImage: {fileID: -4580073576422207378, guid: 76fbf6f42e7c99a4da2403d63fd368a2, type: 3}
+  weaponImage: {fileID: 6492013792574038688, guid: 47a9623f2f3eaa944b39ab657f99d0da, type: 3}
   weaponName: Teleportation Disk
   weaponDescription: 
   damage: 0
   isSummonable: 0
-  storableLocations: []
   playerName: 
   hand: 2
   weaponRB: {fileID: 5944087046148625973}
@@ -331,11 +328,13 @@ MonoBehaviour:
   transforms: []
   isHeld: 0
   isWeaponEnabled: 1
-  parentGameObject: {fileID: 0}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
+  startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
+  FirstWeaponSummon: 0
   playerTransform: {fileID: 0}
+  velocityDivisor: 5
 --- !u!1001 &2816170657387129445
 PrefabInstance:
   m_ObjectHideFlags: 0

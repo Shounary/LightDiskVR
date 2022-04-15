@@ -5354,6 +5354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield Disk
       objectReference: {fileID: 0}
+    - target: {fileID: 3087088235417820408, guid: c38512c3620aa9e49ad681b762d53d55, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c38512c3620aa9e49ad681b762d53d55, type: 3}
 --- !u!54 &1975805609 stripped
