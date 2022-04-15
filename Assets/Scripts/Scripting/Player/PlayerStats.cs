@@ -38,13 +38,13 @@ public class PlayerStats : MonoBehaviour
     }
 
     private void Start() {
-        if (NetUtils.IsUnderNetwork)
-        {
-            NetUtils.NetworkVRPlayer.SetHealthServerRpc(startHealth);
-        }
-        else {
+      //  if (NetUtils.IsUnderNetwork)
+      //  {
+     //       NetUtils.NetworkVRPlayer.SetHealthServerRpc(startHealth);
+     //   }
+      //  else {
             health = startHealth;
-        }
+      //  }
 
     }
 
@@ -61,8 +61,8 @@ public class PlayerStats : MonoBehaviour
             if(!invincible)
             {
                 health = Mathf.Max(0, health - damage);
-                if (NetUtils.IsUnderNetwork)
-                    NetUtils.NetworkVRPlayer.SetHealthServerRpc(health);
+             //   if (NetUtils.IsUnderNetwork)
+           //         NetUtils.NetworkVRPlayer.SetHealthServerRpc(health);
             }
         }
 
