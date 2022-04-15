@@ -39,7 +39,7 @@ public class MatchConfig
     {
         ("Last Survivor", () => { // predicate for when a game should end
             return NetworkManager.Singleton.ConnectedClientsList
-                .Count(client => client.PlayerObject.GetComponent<BaseAccessor>().Player.health.Value > 0) > 1;
+                .Count(client => client.PlayerObject.GetComponent<BaseAccessor>().Player.health.Value > 0) <= 1;
         }, (ulong id) => { // predicate for whether a specific player won
             return NetworkManager.Singleton.ConnectedClients[id].PlayerObject.GetComponent<BaseAccessor>().Player.health.Value > 0;
         })

@@ -4,7 +4,7 @@ using Unity.Netcode;
 
 public class DemoGrab : NetworkBehaviour
 {
-    public override void OnNetworkSpawn()
+    /*public override void OnNetworkSpawn()
     {
         if (IsOwner)
         {
@@ -44,7 +44,7 @@ public class DemoGrab : NetworkBehaviour
             var disk = objDiskPair.Item2;
             var oldOwnerId = obj.OwnerClientId;
 
-            disk.ClientOwnsDiskServerRpc(NetworkManager.LocalClientId);
+           //  disk.ClientOwnsDiskServerRpc(NetworkManager.LocalClientId);
 
         } else
         {
@@ -55,5 +55,5 @@ public class DemoGrab : NetworkBehaviour
     private void FixedUpdate()
     {
         transform.position += 0.1f * Vector3.right * Input.GetAxis("Horizontal");
-    }
+    }*/
 }

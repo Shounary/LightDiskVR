@@ -278,8 +278,8 @@ public class BaseAccessor : NetworkBehaviour
             SceneManager.activeSceneChanged += EnterMatchSceneServerPath;
         }
 
-        string sceneName = System.IO.Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
-        NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
+        string sceneName = System.IO.Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(MatchConfig.Arena.BuildIndex));
+        NetworkManager.Singleton.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         Debug.Log($"Entering the match in {sceneName} at build index {MatchConfig.Arena.BuildIndex}");
     }
 
@@ -350,11 +350,16 @@ public class BaseAccessor : NetworkBehaviour
         Dictionary<ulong, bool> personalResults = new Dictionary<ulong, bool>(NetworkManager.Singleton.ConnectedClients.Count);
         while(IsClient && isActiveAndEnabled)
         {
+            Debug.Log("Checking for win condition");
             if (cFunc()) // check overall game result
+            {
                 // assign personal results
                 personalResults = NetworkManager.ConnectedClients.ToDictionary(
                     kvp => kvp.Key,
                     kvp => check.Item3(kvp.Key));
+                break;
+            }
+
             yield return new WaitForSeconds(1); // check per interval
         }
         Debug.Log($"Match won under {check.Item1} mode");
@@ -373,8 +378,7 @@ public class BaseAccessor : NetworkBehaviour
     [ClientRpc]
     public void EnterResultClientRpc(bool won)
     {
-        Debug.Log(won ? "You won" : "You lost");
-        throw new NotImplementedException();
+        PauseMenu.Quit();
     }
 
     #endregion

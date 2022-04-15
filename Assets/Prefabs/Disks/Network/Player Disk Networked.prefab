@@ -122,6 +122,7 @@ MonoBehaviour:
   FirstWeaponSummon: 0
   NetworkObject: {fileID: -7317799844147977136}
   WeaponCNT: {fileID: 6502053805902440238}
+  NetworkDisk: {fileID: 4590235789257126098}
 --- !u!114 &6502053805902440238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,3 +162,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4590235789257126098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056762653564055634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd99ead27abf79a428aab0393dbee0fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 5815914746614232698}
