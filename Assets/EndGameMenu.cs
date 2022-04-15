@@ -11,25 +11,39 @@ public class EndGameMenu : MonoBehaviour
     public List<GameObject> variations = new List<GameObject>();
     public TextMeshProUGUI scoreText;
     public PlayerStats ps;
+
+    public Rigidbody cameraRigidBody;
+    public GameObject playerDeathEffect;
+    public Transform deathEffectPoint;
+
+    public bool isDead;
+    public List<GameObject> disableOnDeath = new List<GameObject>();
     
     public void setType(int type) {
+        if(type == 0)
+            Die();
+        if (type == 2)
+            scoreText.text = ShootingRangeModeManager.instance.playerScore.ToString();
         variations[type].SetActive(true);
         this.type = type;
     }
 
-    public void updateStats() {
-        if (type == 2)
-            scoreText.text = ShootingRangeModeManager.instance.playerScore.ToString();
-    }
 
     private void OnEnable() {
         if(ShootingRangeModeManager.instance) {
             setType(2);
-            updateStats();  
         }  
         else {
             setType(ps.health <= 0? 0: 1);
         }
+    }
+
+    public void Die() {
+        cameraRigidBody.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        Destroy(Instantiate(playerDeathEffect, deathEffectPoint.position, deathEffectPoint.rotation), 2.0f);
+        foreach(GameObject o in disableOnDeath)
+            o.SetActive(false);
+        isDead = true;
     }
 
 }

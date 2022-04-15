@@ -24,6 +24,7 @@ public class HandActual : MonoBehaviour
 
     public bool button1Pressed;
     public bool button2Pressed;
+    public bool buttonMPressed;
     public bool stickDelay;
 
     private Animator animator;
@@ -91,6 +92,14 @@ public class HandActual : MonoBehaviour
                 weapon.MainButtonFunction();
                // weapon.SecondaryButtonFunction();
             }
+        }
+
+        if( targetDevice.TryGetFeatureValue(CommonUsages.menuButton, out bool pressedM) && pressedM && !buttonMPressed) {
+            buttonMPressed = true;
+            Debug.Log("Amogus");
+        }
+        else if (!pressedM && buttonMPressed) {
+            buttonMPressed = false;
         }
 
         if (targetDevice.TryGetFeatureValue(CommonUsages.primaryTouch, out bool pressed) && pressed) {

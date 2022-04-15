@@ -5310,6 +5310,14 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.r
       value: 0.108179085
       objectReference: {fileID: 0}
+    - target: {fileID: 826765235518563429, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 826765235518563450, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 826765235675215950, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -5325,6 +5333,10 @@ PrefabInstance:
     - target: {fileID: 826765235675215950, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 826765235675215950, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.012207031
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 826765235043826428, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
