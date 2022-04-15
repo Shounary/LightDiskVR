@@ -1841,7 +1841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cecf9869b004d18498cedb4c08e016f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 2408089671839410925}
+  ps: {fileID: 0}
   toTakeDamageFrom:
   - serializedVersion: 2
     m_Bits: 128
@@ -2456,7 +2456,7 @@ GameObject:
   - component: {fileID: 3172250533663331974}
   - component: {fileID: 8870636738060439298}
   - component: {fileID: 4807880947862555822}
-  - component: {fileID: 2408089671839410925}
+  - component: {fileID: 6541755813943301933}
   m_Layer: 0
   m_Name: XRNetRig
   m_TagString: Untagged
@@ -2578,7 +2578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponsMapped: 0
---- !u!114 &2408089671839410925
+--- !u!114 &6541755813943301933
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2587,15 +2587,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6308754455344914967}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef70e984be867484f8d3a0d87b6e0bfb, type: 3}
+  m_Script: {fileID: 11500000, guid: c70867e9ec1d5465ca1015cc574300c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 100
-  health: 0
+  health: 100
   playerName: 
   invincible: 0
   healthBar: {fileID: 7186703427766409986}
-  globalHealthBar: {fileID: 0}
   timeSinceHit: 10
   invincibilityTime: 2
   weaponInventory: {fileID: 8870636738060439298}
@@ -3111,7 +3110,7 @@ PrefabInstance:
     - target: {fileID: 8716612540972966043, guid: 8baffc49cfce3f44ba492683a42f93af, type: 3}
       propertyPath: stats
       value: 
-      objectReference: {fileID: 2408089671839410925}
+      objectReference: {fileID: 0}
     - target: {fileID: 8716612540972966043, guid: 8baffc49cfce3f44ba492683a42f93af, type: 3}
       propertyPath: weaponInventory
       value: 

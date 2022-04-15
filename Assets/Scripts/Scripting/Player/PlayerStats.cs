@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     public string playerName;
     public bool invincible = false; //set to true to make the player not take damage
 
-    public HealthBar healthBar, globalHealthBar;
+    public HealthBar healthBar;
     public float timeSinceHit = 10.0f;
     public float invincibilityTime = 2.0f;
     public WeaponInventory weaponInventory;
@@ -36,15 +36,8 @@ public class PlayerStats : MonoBehaviour
 
     }
 
-    private void Start() {
-        if (NetUtils.IsUnderNetwork)
-        {
-            NetUtils.NetworkVRPlayer.SetHealthServerRpc(startHealth);
-        }
-        else {
-            health = startHealth;
-        }
-
+    protected void Start() {
+        health = startHealth;
     }
 
     // Update is called once per frame
@@ -59,8 +52,6 @@ public class PlayerStats : MonoBehaviour
             if(!invincible)
             {
                 health = Mathf.Max(0, health - damage);
-                if (NetUtils.IsUnderNetwork)
-                    NetUtils.NetworkVRPlayer.SetHealthServerRpc(health);
             }
         }
 
