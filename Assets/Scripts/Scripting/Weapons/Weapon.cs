@@ -135,8 +135,7 @@ public class Weapon : MonoBehaviour
     //enabled the weapon and moves it to the given postiion
     public void EnableWeapon(Vector3 t, Quaternion? rot = null)
     {
-        transform.position = Vector3.zero;// t;
-        Debug.Log($"Setting weapon transform to {t}");
+        transform.position = t;
         if(rot.HasValue)
             transform.rotation = rot.Value;
         gameObject.SetActive(true);

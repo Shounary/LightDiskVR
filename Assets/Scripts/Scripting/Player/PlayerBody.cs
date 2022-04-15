@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class PlayerBody : MonoBehaviour
 {
@@ -21,9 +22,9 @@ public class PlayerBody : MonoBehaviour
         
     }
 
-    private async void OnTriggerEnter(Collider other) {
+    protected async virtual void OnTriggerEnter(Collider other) {
         Weapon w = other.gameObject.GetComponent<Weapon>();
-        if(w != null && w.playerName != ps.playerName && intMaskList.Contains(1 << other.gameObject.layer))
+        if (w != null && w.playerName != ps.playerName && intMaskList.Contains(1 << other.gameObject.layer))
             ps.takeDamage(w.damage);
     }
 
