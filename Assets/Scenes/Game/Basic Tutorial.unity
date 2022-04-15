@@ -2306,6 +2306,10 @@ PrefabInstance:
       propertyPath: health
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 9208627395771684610, guid: 4ceb2126c89f11048b9d671001878028, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.03000001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ceb2126c89f11048b9d671001878028, type: 3}
 --- !u!1 &254994333 stripped
@@ -2346,8 +2350,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8b793c46e23af46b2c18bfe5fad54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryColor: {r: 0, g: 0, b: 0, a: 0}
-  accentColor: {r: 0, g: 0, b: 0, a: 0}
   weaponImage: {fileID: 0}
   weaponName: 
   weaponDescription: 
@@ -2360,11 +2362,11 @@ MonoBehaviour:
   transforms: []
   isHeld: 0
   isWeaponEnabled: 1
-  parentGameObject: {fileID: 0}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
   startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
+  FirstWeaponSummon: 0
 --- !u!1 &278010029
 GameObject:
   m_ObjectHideFlags: 0
@@ -10425,6 +10427,10 @@ PrefabInstance:
       propertyPath: isSummonable
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6070709432925138090, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
+      propertyPath: FirstWeaponSummon
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8484248402038359846, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
     - {fileID: 143446536956234287, guid: f24335951fc46ea47b45a4ee21ef4f12, type: 3}
@@ -13950,6 +13956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 826765235043826428, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
+    - {fileID: 1505104443, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
 --- !u!20 &826765235343951704 stripped
 Camera:
@@ -13981,6 +13988,7 @@ MonoBehaviour:
   timeSinceHit: 10
   invincibilityTime: 2
   weaponInventory: {fileID: 1505104443}
+  endGameMenu: {fileID: 0}
 --- !u!4 &826765235343951707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 826765234446945161, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}

@@ -66,7 +66,7 @@ public class MainMenu : MonoBehaviour
             case 0:
                 break;
             case 1:
-                goToScene("Lobby");
+                goToScene("WeaponSelect");
                 break;
             case 2:
                 goToScene("Adv Tutorial");

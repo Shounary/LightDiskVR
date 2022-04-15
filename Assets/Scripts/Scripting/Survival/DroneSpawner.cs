@@ -14,7 +14,7 @@ public class DroneSpawner : MonoBehaviour
     public Transform droneTarget;
 
     private float counter;
-    private float currentSpawnRate;
+    public float currentSpawnRate;
 
     void Start() {
         currentSpawnRate = initSpawnRate;
