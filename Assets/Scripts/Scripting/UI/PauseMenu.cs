@@ -11,6 +11,8 @@ public class PauseMenu : MonoBehaviour
     private Button resume, quit;
     public bool isSinglePlayer;
     public bool isPaused;
+    public GameObject lRayInteractor;
+    public GameObject rRayInteractor;
 
     void Start()
     {
@@ -25,6 +27,8 @@ public class PauseMenu : MonoBehaviour
         }
         Debug.Log("amogus2");
         gameObject.SetActive(true);
+        lRayInteractor.SetActive(true);
+        rRayInteractor.SetActive(true);
     }
 
     void Resume() {
@@ -32,6 +36,8 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 1;
         }
         gameObject.SetActive(false);
+        lRayInteractor.SetActive(false);
+        rRayInteractor.SetActive(false);
     }
 
     public void togglePause() {
