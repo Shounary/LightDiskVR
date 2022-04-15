@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour
     public void onButton2Click() {
         switch(currActiveMenu) {
             case 0:
-                openSubMenu(4);
+                //openSubMenu(4);
                 break;
             case 1:
                 openSubMenu(3);
@@ -72,7 +72,7 @@ public class MainMenu : MonoBehaviour
                 goToScene("Adv Tutorial");
                 break;
             case 3:
-                goToScene("ShootingRange");
+                goToScene("ShootingRange70sec");
                 break;
             default:
                 break;
