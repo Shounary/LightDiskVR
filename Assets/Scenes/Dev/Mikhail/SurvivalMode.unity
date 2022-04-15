@@ -12149,7 +12149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initSpawnRate: 0.15
   maxSpawnRate: 5
-  spawnRateIncrease: 0.01
+  spawnRateIncrease: 0.005
   droneZones:
   - {fileID: 1020625514}
   - {fileID: 1902795377}

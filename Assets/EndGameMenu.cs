@@ -48,6 +48,7 @@ public class EndGameMenu : MonoBehaviour
     void Reload() {
         lRayInteractor.SetActive(false);
         rRayInteractor.SetActive(false);
+                    Time.timeScale = 1;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
