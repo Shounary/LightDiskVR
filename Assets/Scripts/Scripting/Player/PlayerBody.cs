@@ -22,17 +22,9 @@ public class PlayerBody : MonoBehaviour
         
     }
 
-    private async void OnTriggerEnter(Collider other) {
+    protected async virtual void OnTriggerEnter(Collider other) {
         Weapon w = other.gameObject.GetComponent<Weapon>();
-        bool namecheck;
-        if (w is NetworkWeapon)
-        {
-            namecheck = !w.GetComponent<NetworkObject>().IsOwner && NetUtils.BaseAccessor.WeaponInventory.weaponList.Contains(w);
-        } else
-        {
-            namecheck = w.playerName != ps.playerName;
-        }
-        if(w != null && namecheck && intMaskList.Contains(1 << other.gameObject.layer))
+        if (w != null && w.playerName != ps.playerName && intMaskList.Contains(1 << other.gameObject.layer))
             ps.takeDamage(w.damage);
     }
 

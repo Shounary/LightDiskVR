@@ -1603,8 +1603,8 @@ GameObject:
   - component: {fileID: 6308754453953264494}
   - component: {fileID: 2645245201632099851}
   - component: {fileID: 3241749653331399631}
-  - component: {fileID: 3768738990617611728}
   - component: {fileID: 8532582598915393517}
+  - component: {fileID: 3641996372948863948}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1829,25 +1829,6 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   CanCommitToTransform: 0
---- !u!114 &3768738990617611728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6308754453953264493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cecf9869b004d18498cedb4c08e016f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ps: {fileID: 0}
-  toTakeDamageFrom:
-  - serializedVersion: 2
-    m_Bits: 128
-  - serializedVersion: 2
-    m_Bits: 256
-  intMaskList: 
 --- !u!136 &8532582598915393517
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1862,6 +1843,25 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: -0.2, z: 0}
+--- !u!114 &3641996372948863948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6308754453953264493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1ef8f36f08ad495a8167bf79ebb6b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 6541755813943301933}
+  toTakeDamageFrom:
+  - serializedVersion: 2
+    m_Bits: 128
+  - serializedVersion: 2
+    m_Bits: 256
+  intMaskList: 
 --- !u!1 &6308754454687461149
 GameObject:
   m_ObjectHideFlags: 0
@@ -3110,7 +3110,7 @@ PrefabInstance:
     - target: {fileID: 8716612540972966043, guid: 8baffc49cfce3f44ba492683a42f93af, type: 3}
       propertyPath: stats
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6541755813943301933}
     - target: {fileID: 8716612540972966043, guid: 8baffc49cfce3f44ba492683a42f93af, type: 3}
       propertyPath: weaponInventory
       value: 
