@@ -13664,6 +13664,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4564632778565071771, guid: d860c017afa7023469f9310933bf07cf, type: 3}
+      propertyPath: ps
+      value: 
+      objectReference: {fileID: 2002546788}
+    - target: {fileID: 4564632778565071771, guid: d860c017afa7023469f9310933bf07cf, type: 3}
+      propertyPath: cameraRigidBody
+      value: 
+      objectReference: {fileID: 909934001}
+    - target: {fileID: 4564632778565071771, guid: d860c017afa7023469f9310933bf07cf, type: 3}
+      propertyPath: deathEffectPoint
+      value: 
+      objectReference: {fileID: 768929532}
+    - target: {fileID: 4564632778565071771, guid: d860c017afa7023469f9310933bf07cf, type: 3}
+      propertyPath: playerDeathEffect
+      value: 
+      objectReference: {fileID: 1300411056466267811, guid: d4690983375d9784084b82184d16a9e6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d860c017afa7023469f9310933bf07cf, type: 3}
 --- !u!224 &1662463083778272860 stripped
