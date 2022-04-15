@@ -14,10 +14,12 @@ public class NetworkWeapon : Weapon
 
     private new void Start()
     {
-        base.Start();
         if (!NetworkObject.IsOwner)
         {
             this.enabled = false;
+        } else
+        {
+            base.Start();
         }
     }
 
@@ -34,17 +36,6 @@ public class NetworkWeapon : Weapon
 
     public override void SecondaryButtonFunction() { }
 
-    public override void OnGrabFunction(int h)
-    {
-        isHeld = true;
-        setHand((Hand)h);
-    }
-
-    public override void GrabHeldFunction(float additionalFactor, Transform targetTransform) {
-        if (isSummonable)
-            AttractWeapon(additionalFactor, targetTransform);
-    }
-
     public override void OnReleaseFunction(int h)
     {
         isHeld = false;
@@ -57,6 +48,7 @@ public class NetworkWeapon : Weapon
     public new void AttractWeapon(float additionalFactor, Transform targetTransform) {
         if (!FirstWeaponSummon)
         {
+            Debug.Log("First summon weapon");
             EnableWeapon(targetTransform.position);
             FirstWeaponSummon = true;
         }
@@ -86,9 +78,7 @@ public class NetworkWeapon : Weapon
     //be re-enabled later 
     public new void DestroyWeapon()
     {
-        //play disintegration animation (implement later)
-        this.gameObject.SetActive(false);
-        weaponRB.velocity = Vector3.zero;
+        base.DestroyWeapon();
         DestroyWeaponServerRpc();
     }
 
@@ -99,10 +89,4 @@ public class NetworkWeapon : Weapon
     }
 
     public override void MainButtonReleaseFunction() { }
-
-    //when a weapon is disabled by being swapped with a different weapon
-    public new void DeactivateWeapon()
-    {
-        DestroyWeapon();
-    }
 }
