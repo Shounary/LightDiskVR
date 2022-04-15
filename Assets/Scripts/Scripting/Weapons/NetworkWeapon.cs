@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.XR.Interaction.Toolkit;
 using Unity.Netcode;
 using Unity.Netcode.Samples;
 
@@ -63,7 +64,8 @@ public class NetworkWeapon : Weapon
         AttractWeaponServerRpc(parallel);
     }
 
-    [ServerRpc(requireOwnership = false)]
+    //Add ownershipRequired = false
+    [ServerRpc]
     public void AttractWeaponServerRpc(Vector3 f)
     {
         weaponRB.AddForce(f, ForceMode.VelocityChange);
