@@ -217,6 +217,11 @@ MonoBehaviour:
   variations: []
   scoreText: {fileID: 0}
   ps: {fileID: 0}
+  cameraRigidBody: {fileID: 0}
+  playerDeathEffect: {fileID: 0}
+  deathEffectPoint: {fileID: 0}
+  isDead: 0
+  disableOnDeath: []
 --- !u!1 &1861571404334556436
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class ShootingRangeModeManager : MonoBehaviour
     public TextMeshProUGUI playerTimeTMP;
     public int playerScore = 0;
     public float playerTimer = 20.0f;
+    public GameObject endScreen;
 
     public static ShootingRangeModeManager instance;
 
@@ -21,9 +22,13 @@ public class ShootingRangeModeManager : MonoBehaviour
     {
         if (playerTimer > 0)
             playerTimer -= Time.deltaTime;
-        else
+        else {
             playerTimer = 0;
+            endScreen.SetActive(true);
+        }
+
         UpdatePlayerTimer();
+        
     }
 
     public void increaseScoreIfGameNotOver(int playerScore) {

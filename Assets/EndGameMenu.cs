@@ -28,10 +28,10 @@ public class EndGameMenu : MonoBehaviour
         this.type = type;
     }
 
-
     private void OnEnable() {
         if(ShootingRangeModeManager.instance) {
             setType(2);
+            Time.timeScale = 0;
         }  
         else {
             setType(ps.health <= 0? 0: 1);
@@ -44,6 +44,7 @@ public class EndGameMenu : MonoBehaviour
         foreach(GameObject o in disableOnDeath)
             o.SetActive(false);
         isDead = true;
+        Time.timeScale = 0;
     }
 
 }
