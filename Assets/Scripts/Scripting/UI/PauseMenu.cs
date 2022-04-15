@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        resume.onClick.AddListener(Resume);
+        resume.onClick.AddListener(togglePause);
         quit.onClick.AddListener(Quit);
     }
 
