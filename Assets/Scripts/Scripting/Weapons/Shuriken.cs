@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shuriken : Weapon
 {
-    public List<string> noStickTags = new List<string>();
+    /*public List<string> noStickTags = new List<string>();
     public bool hasCollided = true;
 
     private void OnCollisionEnter(Collision other) {
@@ -19,15 +19,15 @@ public class Shuriken : Weapon
         
     }
 
-    public override void TriggerFunction(float additionalFactor, Transform targetTransform)
+    public override void TriggerPressFunction()
     {
         if(hasCollided)
         {
-            this.gameObject.transform.SetPositionAndRotation(targetTransform.position, targetTransform.rotation);
+            this.gameObject.transform.SetPositionAndRotation(tar, targetTransform.rotation);
            // this.gameObject.transform.SetParent(parentGameObject.transform);
             hasCollided = false;
             weaponRB.isKinematic = false;
         }
-    }
+    }*/
 
 }

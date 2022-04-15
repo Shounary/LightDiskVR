@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3160088291541200381}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -0.5}
+  m_LocalPosition: {x: 0, y: -1, z: -0.666}
   m_LocalScale: {x: 2, y: 50, z: 2}
   m_Children: []
   m_Father: {fileID: 6898363313884869263}
@@ -62,8 +62,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7044476037423635693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41, y: -0.21320605, z: 0.311}
-  m_LocalScale: {x: 0.15, y: 0.01125, z: 0.15}
+  m_LocalPosition: {x: 0.41, y: -0.21301, z: 0.311}
+  m_LocalScale: {x: 0.20702164, y: 0.02328993, z: 0.20702164}
   m_Children:
   - {fileID: 558642014673291000}
   - {fileID: 996061066256203477}
@@ -288,20 +288,14 @@ MonoBehaviour:
   hand: 2
   weaponRB: {fileID: 5410102731996152211}
   weaponTransform: {fileID: 558642014673291000}
-  transforms:
-  - {fileID: 558642014673291000}
-  - {fileID: 558642014673291000}
+  transforms: []
   isHeld: 0
   isWeaponEnabled: 1
-  diskReturnForceMagnitude: 5
+  diskReturnForceMagnitude: 20
   stoppingFactorMultiplier: 0.2
   startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
   FirstWeaponSummon: 0
-  noStickTags:
-  - PlayerDisk
-  - EnemyDisk
-  hasCollided: 1
 --- !u!114 &3767167766982108595
 MonoBehaviour:
   m_ObjectHideFlags: 0
