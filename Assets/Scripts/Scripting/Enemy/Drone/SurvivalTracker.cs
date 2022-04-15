@@ -10,8 +10,14 @@ public class SurvivalTracker : MonoBehaviour
     public TextMeshProUGUI killScoreTMP;
     public TextMeshProUGUI timeScoreTMP;
 
+    public static SurvivalTracker instance;
+
     public int killScore;
     public float timeScore;
+
+    void Awake() {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()

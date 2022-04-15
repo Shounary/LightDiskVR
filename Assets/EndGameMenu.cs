@@ -6,10 +6,11 @@ using TMPro;
 public class EndGameMenu : MonoBehaviour
 {
     //parent gameobjects of features that change depending on the menu
-    //index 0 = death, index 1 = victory, index 2 = score
+    //index 0 = death, index 1 = victory, index 2 = shooting range score, index 3 = survival time
     int type;
     public List<GameObject> variations = new List<GameObject>();
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI timeText;
     public PlayerStats ps;
 
     public Rigidbody cameraRigidBody;
@@ -24,6 +25,10 @@ public class EndGameMenu : MonoBehaviour
             Die();
         if (type == 2)
             scoreText.text = ShootingRangeModeManager.instance.playerScore.ToString();
+        if (type == 3) {
+            timeText.text = System.Math.Round(SurvivalTracker.instance.timeScore, 1).ToString();
+            Die();
+        }
         variations[type].SetActive(true);
         this.type = type;
     }
@@ -31,6 +36,10 @@ public class EndGameMenu : MonoBehaviour
     private void OnEnable() {
         if(ShootingRangeModeManager.instance) {
             setType(2);
+            Time.timeScale = 0;
+        }
+        else if (SurvivalTracker.instance) {
+            setType(3);
             Time.timeScale = 0;
         }  
         else {
