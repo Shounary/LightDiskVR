@@ -81,12 +81,12 @@ public class HandActual : MonoBehaviour
         }
         
         if( targetDevice.TryGetFeatureValue(CommonUsages.primaryButton, out bool pressed1) && pressed1 && !button1Pressed) {
-            if(PauseController.instance.isDead)
+            /*if(PauseController.instance && PauseController.instance.isDead)
             {
                 Time.timeScale = 1.0f;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 return;
-            }
+            }*/
             button1Pressed = true;
             Debug.Log("Hello");
             //weapon.MainButtonFunction();

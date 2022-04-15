@@ -9257,7 +9257,7 @@ RectTransform:
   - {fileID: 1940583579}
   - {fileID: 696539399}
   m_Father: {fileID: 826765235343951707}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 29.882, y: -67.428, z: -3.198}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -9937,7 +9937,8 @@ PrefabInstance:
       propertyPath: playerDeathEffect
       value: 
       objectReference: {fileID: 1300411056466267811, guid: d4690983375d9784084b82184d16a9e6, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1505104443, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a905d98e7a9da3c4889e834a870f1224, type: 3}
 --- !u!20 &826765235343951704 stripped
 Camera:

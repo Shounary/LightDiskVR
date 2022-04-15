@@ -17,7 +17,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        resume.onClick.AddListener(Resume);
+        resume.onClick.AddListener(togglePause);
         quit.onClick.AddListener(Quit);
     }
 
@@ -50,6 +50,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
+        Time.timeScale = 1;
         SceneManager.activeSceneChanged += Disconnect;
         SceneManager.LoadScene(0);
     }
