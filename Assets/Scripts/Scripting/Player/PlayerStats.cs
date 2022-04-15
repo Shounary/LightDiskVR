@@ -37,9 +37,9 @@ public class PlayerStats : MonoBehaviour
     }
 
     private void Start() {
-        if (isUnderNetwork)
+        if (NetUtils.IsUnderNetwork)
         {
-            nPlayer.SetHealthServerRpc(startHealth);
+            NetUtils.NetworkVRPlayer.SetHealthServerRpc(startHealth);
         }
         else {
             health = startHealth;
@@ -53,18 +53,14 @@ public class PlayerStats : MonoBehaviour
         timeSinceHit += Time.deltaTime;
     }
 
-    BaseAccessor bacc => NetworkManager.Singleton.LocalClient.PlayerObject.GetComponent<BaseAccessor>();
-    NetworkVRPlayer nPlayer => bacc.Player;
-    bool isUnderNetwork => NetworkManager.Singleton.IsClient;
-
     public void takeDamage(int damage) {
         if (timeSinceHit >= invincibilityTime ) { // timer so you can't take damage multiple times in 2 seconds (like if the disk passes through multiple hitboxes)
             timeSinceHit = 0.0f;
             if(!invincible)
             {
                 health = Mathf.Max(0, health - damage);
-                if (isUnderNetwork)
-                    nPlayer.SetHealthServerRpc(health);
+                if (NetUtils.IsUnderNetwork)
+                    NetUtils.NetworkVRPlayer.SetHealthServerRpc(health);
             }
         }
 
