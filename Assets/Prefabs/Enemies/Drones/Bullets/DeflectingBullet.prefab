@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 5671635144148041645}
   - component: {fileID: 5671635144148041644}
   - component: {fileID: -8379441544852154266}
-  - component: {fileID: 5153512436056221202}
   - component: {fileID: 429490333729976107}
+  - component: {fileID: 4941294174040525370}
   m_Layer: 8
-  m_Name: DroneBullet
+  m_Name: DeflectingBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1f732f53162943a43a9740478a778686, type: 2}
+  - {fileID: 2100000, guid: 34a8c741915ab7c4199860187b602afd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,10 +93,10 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5671635144148041635}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.68
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-8379441544852154266
 Rigidbody:
@@ -113,20 +113,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &5153512436056221202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5671635144148041635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277d3e11d5f26f8478d1c4593482f55d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyEffect: {fileID: 6510891669543474542, guid: c9f2552a041c31840890377c0c9f7aae, type: 3}
+  m_CollisionDetection: 1
 --- !u!114 &429490333729976107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +129,7 @@ MonoBehaviour:
   weaponImage: {fileID: 0}
   weaponName: 
   weaponDescription: 
-  damage: 7
+  damage: 1
   isSummonable: 0
   playerName: 
   hand: 0
@@ -156,3 +143,30 @@ MonoBehaviour:
   startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
   FirstWeaponSummon: 0
+--- !u!114 &4941294174040525370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5671635144148041635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51929130f2e84fa48b06239cb998d52e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deflectXRange:
+  - 0.8
+  - 1.2
+  deflectYRange:
+  - 0.8
+  - 1.2
+  deflectZRange:
+  - 0.8
+  - 1.2
+  bulletDeflectsFrom:
+    serializedVersion: 2
+    m_Bits: 4096
+  destroyEffect: {fileID: 6510891669543474542, guid: c9f2552a041c31840890377c0c9f7aae, type: 3}
+  newBulletMaterial: {fileID: 2100000, guid: 1f732f53162943a43a9740478a778686, type: 2}
+  bulletRb: {fileID: -8379441544852154266}
