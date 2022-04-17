@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5772598375453476293}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8154713405564763922}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,8 +75,8 @@ GameObject:
   - component: {fileID: 7744415175859090418}
   - component: {fileID: -6282117984227687934}
   - component: {fileID: 8761209663295050265}
-  m_Layer: 0
-  m_Name: EnemyDrone
+  m_Layer: 9
+  m_Name: BulletDeflectDrone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6ef74c719eca7f747a30fcc87c191d2a, type: 2}
+  - {fileID: 2100000, guid: 0e6882eb9fb90a44db0560b26c712928, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,10 +174,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathEffect: {fileID: 4015009708438205680, guid: 2e2aec08967244a46866f72c3a050560, type: 3}
-  enemyDiskPrefab: {fileID: 5671635144148041635, guid: 6626ed01aed8a1e409ac98cfeeaf3623, type: 3}
+  enemyDiskPrefab: {fileID: 5671635144148041635, guid: 5c9b6ff0cc949b0478724d3ef1e9bf5e, type: 3}
   firePoint: {fileID: 5772598375453476293}
   playerTarget: {fileID: 0}
-  attackRate: 0.4
+  attackRate: 2
   initialDiskSpeed: 15
   attackRange: 50
   diskLifetime: 5
@@ -189,7 +189,7 @@ MonoBehaviour:
     m_Bits: 512
   toTakeDamageFrom:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
 --- !u!114 &-6282117984227687934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,7 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 617609762124850229}
   - component: {fileID: 574884685554187086}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,8 +269,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.9607843, g: 0.3764706, b: 0.03137255, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 0.9607843, g: 0.46786442, b: 0.03137252, a: 1}
+  m_Intensity: 1.48
   m_Range: 7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
