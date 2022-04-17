@@ -10,125 +10,113 @@ public class Sword : Weapon
     public GameObject swordLineRendererGO;
     public float timeBeforeButtonReleaseRegisters = 0.3f;
     public float sphereColliderRadius = 0.1f;
+    public float slashSpeed = 20f;
     public Transform startPoint;
+    public GameObject blade;
 
     private LineRenderer lineRend;
     private GameObject lineRendererGOPointer;
+    private bool energyMode;
 
-    private bool isDrawing;
-    private bool drawingCompleted;
-
-    private float timerCounter;
-    private List<Vector3> fieldPointVectors;
+    private List<Vector3> pointVectors;
+    private List<Vector3> dirVectors;
 
     // Start is called before the first frame update
     void Start()
     {
-        fieldPointVectors = new List<Vector3>();
-        isDrawing = false;
-        drawingCompleted = true;
+        Reset();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (drawingCompleted)
-        {
-            return;
-        }
-
-        // checks whether the drawing is actually complete by waiting for "timeBeforeButtonReleaseRegisters" seconds
-        if (isDrawing)
-        {
-            isDrawing = false;
-            timerCounter = timeBeforeButtonReleaseRegisters;
-        }
-        else
-        {
-            if (timerCounter <= 0)
-            {
-                drawingCompleted = true;
-                // CreateProjectileFromDrawing();
-                // TODO: some function to create a field from drawing, also destroy the reference to a previous one.
-            }
-            else
-            {
-                timerCounter -= Time.deltaTime;
-            }
-        }
+        Draw();
+        energyMode = false;
     }
 
     // uses trigger btn to draw
     public override void TriggerFunction(float additionalFactor, Transform targetTransform)
     {
-        if (!isHeld)
-        {
-            return;
-        }
-
-        if (drawingCompleted)
-        {
-            Reset();
-            lineRendererGOPointer = (GameObject)Instantiate(swordLineRendererGO, Vector3.zero, Quaternion.identity);
-            lineRend = lineRendererGOPointer.GetComponent<LineRenderer>();
-            lineRend.SetPosition(0, startPoint.position);
-            lineRend.SetPosition(1, startPoint.position);
-        }
-        isDrawing = true;
-        drawingCompleted = false;
-        Draw();
+        energyMode = true;
     }
 
     public void Draw()
     {
-        if ((fieldPointVectors.Count == 0) || (Vector3.Distance(fieldPointVectors[fieldPointVectors.Count - 1], startPoint.position) > 0.05))
+        if ((pointVectors.Count <= 10) && ((pointVectors.Count == 0) || 
+            ((Vector3.Distance(pointVectors[pointVectors.Count - 1], startPoint.position) > 0.2))))
         {
-            if (fieldPointVectors.Count >= 30)
+            if ((pointVectors.Count == 0) || (Vector3.Dot((startPoint.position - pointVectors[pointVectors.Count - 1]), startPoint.up) < 0))
             {
-                fieldPointVectors.RemoveAt(0);
+                pointVectors.Add(startPoint.position);
+                dirVectors.Add(startPoint.forward);
             }
-            fieldPointVectors.Add(startPoint.position);
-            lineRend.positionCount = fieldPointVectors.Count;
-            lineRend.SetPositions(fieldPointVectors.ToArray());
+            else
+            {
+                if (energyMode)
+                {
+                    CreateProjectileFromDrawing();
+                }
+                else
+                {
+                    Destroy(lineRendererGOPointer);
+                }
+                Reset();
+            }
+        }
+        else if (pointVectors.Count > 3)
+        {
+            if (energyMode)
+            {
+                CreateProjectileFromDrawing();
+            }
+            else
+            {
+                Destroy(lineRendererGOPointer);
+            }
+            Reset();
+        }
+        else if (pointVectors.Count >= 1)
+        {
+            pointVectors.RemoveAt(0);
+            dirVectors.RemoveAt(0);
+
+        } 
+        if (pointVectors.Count > 1)
+        {
+            lineRend.positionCount = pointVectors.Count;
+            lineRend.SetPositions(pointVectors.ToArray());
         }
     }
 
     // resets the prev drawing
     public void Reset()
     {
-        if (lineRendererGOPointer == null)
-            return;
-        lineRend = null;
-        Destroy(lineRendererGOPointer);
-        lineRendererGOPointer = null;
-        fieldPointVectors = new List<Vector3>();
+        lineRendererGOPointer = (GameObject)Instantiate(swordLineRendererGO, Vector3.zero, Quaternion.identity);
+        lineRend = lineRendererGOPointer.GetComponent<LineRenderer>();
+        pointVectors = new List<Vector3>();
+        dirVectors = new List<Vector3>();
     }
 
     public void CreateProjectileFromDrawing()
     {
-        AccelerationField accelerationField = lineRendererGOPointer.GetComponent<AccelerationField>();
-        accelerationField.SetForceVector(CalculateForceVector());
-
+        SwordSlash swordSlash = lineRendererGOPointer.GetComponent<SwordSlash>();
+        swordSlash.parentBlade = blade;
         Vector3[] fieldPoints = new Vector3[lineRend.positionCount];
+        Vector3 totalDir = new Vector3(0, 0, 0);
         lineRend.GetPositions(fieldPoints);
         foreach (Vector3 fieldPoint in fieldPoints)
         {
             SphereCollider sphereCollider = lineRendererGOPointer.AddComponent<SphereCollider>();
             sphereCollider.center = fieldPoint;
             sphereCollider.radius = sphereColliderRadius;
-            sphereCollider.isTrigger = true;
-            // TODO add an internal collider at some point
+            //sphereCollider.isTrigger = true;
         }
-    }
-
-    // calculates the direction in which the A-field applies the force based on the average of fieldPointVectors array. 
-    public Vector3 CalculateForceVector()
-    {
-        Vector3 sum = Vector3.zero;
-        foreach (Vector3 v3 in fieldPointVectors)
+        for (int i = 0; i < dirVectors.Count; i++)
         {
-            sum += v3;
+
+            totalDir += (dirVectors[i] * (i + 1));
         }
-        return sum / fieldPointVectors.Count;
+        Rigidbody body = lineRendererGOPointer.GetComponent<Rigidbody>();
+        body.AddForce(totalDir.normalized * slashSpeed);
     }
 }
