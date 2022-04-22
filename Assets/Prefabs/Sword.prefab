@@ -336,8 +336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de526d319241512459a0def368155e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primaryColor: {r: 0, g: 0, b: 0, a: 0}
-  accentColor: {r: 0, g: 0, b: 0, a: 0}
   weaponImage: {fileID: 7265211444120722394, guid: 8252342426312b245b3b44bf95c03bc7, type: 3}
   weaponName: Sword
   weaponDescription: 
@@ -350,14 +348,15 @@ MonoBehaviour:
   transforms: []
   isHeld: 0
   isWeaponEnabled: 1
-  parentGameObject: {fileID: 0}
   diskReturnForceMagnitude: 5
   stoppingFactorMultiplier: 0.2
   startLoc: {x: 0, y: 0, z: 0}
   weaponInventory: {fileID: 0}
+  FirstWeaponSummon: 0
   swordLineRendererGO: {fileID: 0}
   timeBeforeButtonReleaseRegisters: 0.3
   sphereColliderRadius: 0.18
+  slashSpeed: 20
   startPoint: {fileID: 0}
 --- !u!65 &175396048
 BoxCollider:
