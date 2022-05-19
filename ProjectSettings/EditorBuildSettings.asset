@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Dev/Mikhail/SwordMastery.unity
-    guid: 3ee017c14b1f5a844a0867afc8710345
-  - enabled: 1
     path: Assets/Scenes/Game/Main Menu.unity
     guid: 6e49dacb998fcab40ad0ce0d704500b7
   - enabled: 1
@@ -44,6 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game/Credits.unity
     guid: f597ce55250e2c64cbdfe480a787a3a7
+  - enabled: 1
+    path: Assets/Scenes/Dev/Mikhail/SwordMastery.unity
+    guid: 3ee017c14b1f5a844a0867afc8710345
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: b84ddba791cd77d498851b6123bca114, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 9beec0e4e0b6c2247a4194526c05c7ca, type: 2}
