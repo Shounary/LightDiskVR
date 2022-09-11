@@ -1,9 +1,5 @@
 # LightDiskVR
 
-Hello and welcome! This is the official LightDiskVR (LDVR) repository.
+Become submerged in a futuristic VR world wielding various weapons and abilities. Throw disks, wield swords, create gravity fields… and defeat your opponents to prove you are the best out there!
 
-# Directions
-
-1) Install GitHub Desktop: https://desktop.github.com/
-2) Fork this repository (button at the top right corner). After this you should have a copy of this repo on your account.
-3) Clone/Download it on your machine and then open with Unity to see the project.
+Demo build for Oculus(Meta) Quest:
